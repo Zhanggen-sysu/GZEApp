@@ -7,28 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D638C0729BACBD100987BA4 /* GZECompaniesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C0629BACBD100987BA4 /* GZECompaniesCell.m */; };
+		3D638C0A29BACFFB00987BA4 /* GZECompanySmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C0929BACFFB00987BA4 /* GZECompanySmallCell.m */; };
+		3D638C1329BAD6A000987BA4 /* GZECompanyListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C1229BAD6A000987BA4 /* GZECompanyListReq.m */; };
+		3D638C1629BAD8CD00987BA4 /* GZECompanyListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C1529BAD8CD00987BA4 /* GZECompanyListItem.m */; };
+		3D638C1929BAD90A00987BA4 /* GZECompanyListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C1829BAD90A00987BA4 /* GZECompanyListRsp.m */; };
+		3D638C2B29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C2A29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m */; };
+		3D638C2E29BB3C6700987BA4 /* GZEMovieListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
-		3DA27D5929AE0DA00086089A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5829AE0DA00086089A /* ViewController.m */; };
-		3DA27D5C29AE0DA00086089A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5A29AE0DA00086089A /* Main.storyboard */; };
 		3DA27D5E29AE0DA10086089A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5D29AE0DA10086089A /* Assets.xcassets */; };
-		3DA27D6129AE0DA10086089A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5F29AE0DA10086089A /* LaunchScreen.storyboard */; };
 		3DA27D6429AE0DA10086089A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D6329AE0DA10086089A /* main.m */; };
+		3DA27D7929AE128F0086089A /* SceneDelegate+CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D7829AE128F0086089A /* SceneDelegate+CYLTabBar.m */; };
+		3DA27D7D29AEED0F0086089A /* YPNavigationController+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */; };
+		3DA27D8D29AF01C80086089A /* GZEBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D8B29AF01C80086089A /* GZEBaseModel.m */; };
+		3DA27D9029AF02720086089A /* GZEBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D8F29AF02720086089A /* GZEBaseReq.m */; };
+		3DA27DA529AF65190086089A /* GZETmdbVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DA429AF65190086089A /* GZETmdbVC.m */; };
+		3DA27DAA29B051E70086089A /* GZEBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DA929B051E70086089A /* GZEBaseView.m */; };
+		3DA27DB129B0563A0086089A /* GZECommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DB029B0563A0086089A /* GZECommonHelper.m */; };
+		3DA27DB929B072420086089A /* GZETmdbDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DB829B072420086089A /* GZETmdbDate.m */; };
+		3DA27DBC29B072A20086089A /* GZEMovieListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DBB29B072A20086089A /* GZEMovieListItem.m */; };
+		3DA27DCC29B0758B0086089A /* GZEMovieListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DC829B0758B0086089A /* GZEMovieListReq.m */; };
+		3DA27DCD29B0758B0086089A /* GZEMovieListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DCA29B0758B0086089A /* GZEMovieListRsp.m */; };
+		3DA27DD029B075BE0086089A /* GZETmdbListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DCF29B075BE0086089A /* GZETmdbListManager.m */; };
+		3DA27DD329B07B180086089A /* UIView+GZEExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD229B07B180086089A /* UIView+GZEExtension.m */; };
+		3DA27DD629B07D440086089A /* GZEBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD529B07D440086089A /* GZEBaseTableViewCell.m */; };
+		3DA27DD929B07DBC0086089A /* GZEBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD829B07DBC0086089A /* GZEBaseCollectionViewCell.m */; };
+		3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */; };
+		3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */; };
+		3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */; };
+		3DF1EE0029BEF088006BCF3E /* GZETrendingReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDFF29BEF088006BCF3E /* GZETrendingReq.m */; };
+		3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE0229BEF0CE006BCF3E /* GZETrendingItem.m */; };
+		3DF1EE0629BEF301006BCF3E /* GZETrendingRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE0529BEF301006BCF3E /* GZETrendingRsp.m */; };
+		3DF1EE0929BEF3DA006BCF3E /* GZEListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE0729BEF3DA006BCF3E /* GZEListTableViewCell.m */; };
+		3DF1EE0C29BEF55A006BCF3E /* GZETrendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE0B29BEF55A006BCF3E /* GZETrendingCell.m */; };
+		3DF1EE1029BEF58A006BCF3E /* GZETrendingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE0F29BEF58A006BCF3E /* GZETrendingViewModel.m */; };
+		3DF1EE1929BF06BA006BCF3E /* GZEListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE1829BF06BA006BCF3E /* GZEListCollectionViewCell.m */; };
+		3DF1EE1C29BF0AFE006BCF3E /* GZEListSmallView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE1B29BF0AFE006BCF3E /* GZEListSmallView.m */; };
+		3DF1EE1F29BF1119006BCF3E /* GZEListSmallViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE1E29BF1119006BCF3E /* GZEListSmallViewModel.m */; };
+		3DF1EE2529BF1862006BCF3E /* GZETVListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2429BF1862006BCF3E /* GZETVListReq.m */; };
+		3DF1EE2929BF19FE006BCF3E /* GZEGenreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2829BF19FE006BCF3E /* GZEGenreItem.m */; };
+		3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2B29BF1A7C006BCF3E /* GZETVListRsp.m */; };
+		3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2E29BF1AA1006BCF3E /* GZETVListItem.m */; };
+		3DF1EE3529BF1E8B006BCF3E /* GZEListCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */; };
+		C4C6072CA7938FB0BFB164EA /* Pods_GZEApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2520A96919FC83F5AABF1E17 /* Pods_GZEApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06F500E23F5B23F2CC4F1569 /* Pods-GZEApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GZEApp.release.xcconfig"; path = "Target Support Files/Pods-GZEApp/Pods-GZEApp.release.xcconfig"; sourceTree = "<group>"; };
+		2520A96919FC83F5AABF1E17 /* Pods_GZEApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GZEApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D638C0529BACBD100987BA4 /* GZECompaniesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECompaniesCell.h; sourceTree = "<group>"; };
+		3D638C0629BACBD100987BA4 /* GZECompaniesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECompaniesCell.m; sourceTree = "<group>"; };
+		3D638C0829BACFFB00987BA4 /* GZECompanySmallCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECompanySmallCell.h; sourceTree = "<group>"; };
+		3D638C0929BACFFB00987BA4 /* GZECompanySmallCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECompanySmallCell.m; sourceTree = "<group>"; };
+		3D638C1129BAD6A000987BA4 /* GZECompanyListReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZECompanyListReq.h; sourceTree = "<group>"; };
+		3D638C1229BAD6A000987BA4 /* GZECompanyListReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZECompanyListReq.m; sourceTree = "<group>"; };
+		3D638C1429BAD8CD00987BA4 /* GZECompanyListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECompanyListItem.h; sourceTree = "<group>"; };
+		3D638C1529BAD8CD00987BA4 /* GZECompanyListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECompanyListItem.m; sourceTree = "<group>"; };
+		3D638C1729BAD90A00987BA4 /* GZECompanyListRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECompanyListRsp.h; sourceTree = "<group>"; };
+		3D638C1829BAD90A00987BA4 /* GZECompanyListRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECompanyListRsp.m; sourceTree = "<group>"; };
+		3D638C2929BB2F8100987BA4 /* GZEMovieDiscoveryReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieDiscoveryReq.h; sourceTree = "<group>"; };
+		3D638C2A29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieDiscoveryReq.m; sourceTree = "<group>"; };
+		3D638C2C29BB3C6700987BA4 /* GZEMovieListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieListCell.h; sourceTree = "<group>"; };
+		3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieListCell.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA27D5129AE0DA00086089A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DA27D5229AE0DA00086089A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3DA27D5429AE0DA00086089A /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		3DA27D5529AE0DA00086089A /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		3DA27D5729AE0DA00086089A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3DA27D5829AE0DA00086089A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		3DA27D5B29AE0DA00086089A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DA27D5D29AE0DA10086089A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3DA27D6029AE0DA10086089A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DA27D6229AE0DA10086089A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DA27D6329AE0DA10086089A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3DA27D7729AE128F0086089A /* SceneDelegate+CYLTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SceneDelegate+CYLTabBar.h"; sourceTree = "<group>"; };
+		3DA27D7829AE128F0086089A /* SceneDelegate+CYLTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SceneDelegate+CYLTabBar.m"; sourceTree = "<group>"; };
+		3DA27D7A29AE12C30086089A /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		3DA27D7B29AEED0F0086089A /* YPNavigationController+Configure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YPNavigationController+Configure.h"; sourceTree = "<group>"; };
+		3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YPNavigationController+Configure.m"; sourceTree = "<group>"; };
+		3DA27D8B29AF01C80086089A /* GZEBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEBaseModel.m; sourceTree = "<group>"; };
+		3DA27D8C29AF01C80086089A /* GZEBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEBaseModel.h; sourceTree = "<group>"; };
+		3DA27D8E29AF02720086089A /* GZEBaseReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEBaseReq.h; sourceTree = "<group>"; };
+		3DA27D8F29AF02720086089A /* GZEBaseReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEBaseReq.m; sourceTree = "<group>"; };
+		3DA27DA329AF65190086089A /* GZETmdbVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZETmdbVC.h; sourceTree = "<group>"; };
+		3DA27DA429AF65190086089A /* GZETmdbVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZETmdbVC.m; sourceTree = "<group>"; };
+		3DA27DA829B051E70086089A /* GZEBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBaseView.h; sourceTree = "<group>"; };
+		3DA27DA929B051E70086089A /* GZEBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseView.m; sourceTree = "<group>"; };
+		3DA27DAF29B0563A0086089A /* GZECommonHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECommonHelper.h; sourceTree = "<group>"; };
+		3DA27DB029B0563A0086089A /* GZECommonHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECommonHelper.m; sourceTree = "<group>"; };
+		3DA27DB729B072420086089A /* GZETmdbDate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETmdbDate.h; sourceTree = "<group>"; };
+		3DA27DB829B072420086089A /* GZETmdbDate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETmdbDate.m; sourceTree = "<group>"; };
+		3DA27DBA29B072A20086089A /* GZEMovieListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieListItem.h; sourceTree = "<group>"; };
+		3DA27DBB29B072A20086089A /* GZEMovieListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieListItem.m; sourceTree = "<group>"; };
+		3DA27DC829B0758B0086089A /* GZEMovieListReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEMovieListReq.m; sourceTree = "<group>"; };
+		3DA27DC929B0758B0086089A /* GZEMovieListRsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEMovieListRsp.h; sourceTree = "<group>"; };
+		3DA27DCA29B0758B0086089A /* GZEMovieListRsp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEMovieListRsp.m; sourceTree = "<group>"; };
+		3DA27DCB29B0758B0086089A /* GZEMovieListReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEMovieListReq.h; sourceTree = "<group>"; };
+		3DA27DCE29B075BE0086089A /* GZETmdbListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZETmdbListManager.h; sourceTree = "<group>"; };
+		3DA27DCF29B075BE0086089A /* GZETmdbListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZETmdbListManager.m; sourceTree = "<group>"; };
+		3DA27DD129B07B180086089A /* UIView+GZEExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+GZEExtension.h"; sourceTree = "<group>"; };
+		3DA27DD229B07B180086089A /* UIView+GZEExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+GZEExtension.m"; sourceTree = "<group>"; };
+		3DA27DD429B07D440086089A /* GZEBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBaseTableViewCell.h; sourceTree = "<group>"; };
+		3DA27DD529B07D440086089A /* GZEBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseTableViewCell.m; sourceTree = "<group>"; };
+		3DA27DD729B07DBC0086089A /* GZEBaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBaseCollectionViewCell.h; sourceTree = "<group>"; };
+		3DA27DD829B07DBC0086089A /* GZEBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGlobalConfig.h; sourceTree = "<group>"; };
+		3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGlobalConfig.m; sourceTree = "<group>"; };
+		3DF1EDEC29BEC8B9006BCF3E /* GZEGenreListReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGenreListReq.h; sourceTree = "<group>"; };
+		3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGenreListReq.m; sourceTree = "<group>"; };
+		3DF1EDEF29BEC8D3006BCF3E /* GZEGenreListRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGenreListRsp.h; sourceTree = "<group>"; };
+		3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGenreListRsp.m; sourceTree = "<group>"; };
+		3DF1EDFE29BEF088006BCF3E /* GZETrendingReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETrendingReq.h; sourceTree = "<group>"; };
+		3DF1EDFF29BEF088006BCF3E /* GZETrendingReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETrendingReq.m; sourceTree = "<group>"; };
+		3DF1EE0129BEF0CE006BCF3E /* GZETrendingItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETrendingItem.h; sourceTree = "<group>"; };
+		3DF1EE0229BEF0CE006BCF3E /* GZETrendingItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETrendingItem.m; sourceTree = "<group>"; };
+		3DF1EE0429BEF301006BCF3E /* GZETrendingRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETrendingRsp.h; sourceTree = "<group>"; };
+		3DF1EE0529BEF301006BCF3E /* GZETrendingRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETrendingRsp.m; sourceTree = "<group>"; };
+		3DF1EE0729BEF3DA006BCF3E /* GZEListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEListTableViewCell.m; sourceTree = "<group>"; };
+		3DF1EE0829BEF3DA006BCF3E /* GZEListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEListTableViewCell.h; sourceTree = "<group>"; };
+		3DF1EE0A29BEF55A006BCF3E /* GZETrendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZETrendingCell.h; sourceTree = "<group>"; };
+		3DF1EE0B29BEF55A006BCF3E /* GZETrendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZETrendingCell.m; sourceTree = "<group>"; };
+		3DF1EE0E29BEF58A006BCF3E /* GZETrendingViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETrendingViewModel.h; sourceTree = "<group>"; };
+		3DF1EE0F29BEF58A006BCF3E /* GZETrendingViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETrendingViewModel.m; sourceTree = "<group>"; };
+		3DF1EE1729BF06BA006BCF3E /* GZEListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListCollectionViewCell.h; sourceTree = "<group>"; };
+		3DF1EE1829BF06BA006BCF3E /* GZEListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListCollectionViewCell.m; sourceTree = "<group>"; };
+		3DF1EE1A29BF0AFE006BCF3E /* GZEListSmallView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListSmallView.h; sourceTree = "<group>"; };
+		3DF1EE1B29BF0AFE006BCF3E /* GZEListSmallView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListSmallView.m; sourceTree = "<group>"; };
+		3DF1EE1D29BF1119006BCF3E /* GZEListSmallViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListSmallViewModel.h; sourceTree = "<group>"; };
+		3DF1EE1E29BF1119006BCF3E /* GZEListSmallViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListSmallViewModel.m; sourceTree = "<group>"; };
+		3DF1EE2329BF1862006BCF3E /* GZETVListReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVListReq.h; sourceTree = "<group>"; };
+		3DF1EE2429BF1862006BCF3E /* GZETVListReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVListReq.m; sourceTree = "<group>"; };
+		3DF1EE2729BF19FD006BCF3E /* GZEGenreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEGenreItem.h; sourceTree = "<group>"; };
+		3DF1EE2829BF19FE006BCF3E /* GZEGenreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEGenreItem.m; sourceTree = "<group>"; };
+		3DF1EE2A29BF1A7C006BCF3E /* GZETVListRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVListRsp.h; sourceTree = "<group>"; };
+		3DF1EE2B29BF1A7C006BCF3E /* GZETVListRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVListRsp.m; sourceTree = "<group>"; };
+		3DF1EE2D29BF1AA1006BCF3E /* GZETVListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVListItem.h; sourceTree = "<group>"; };
+		3DF1EE2E29BF1AA1006BCF3E /* GZETVListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVListItem.m; sourceTree = "<group>"; };
+		3DF1EE3329BF1E8B006BCF3E /* GZEListCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListCollectionViewModel.h; sourceTree = "<group>"; };
+		3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListCollectionViewModel.m; sourceTree = "<group>"; };
+		845A551A512F54E853209722 /* Pods-GZEApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GZEApp.debug.xcconfig"; path = "Target Support Files/Pods-GZEApp/Pods-GZEApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C6072CA7938FB0BFB164EA /* Pods_GZEApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +163,8 @@
 			children = (
 				3DA27D5029AE0DA00086089A /* GZEApp */,
 				3DA27D4F29AE0DA00086089A /* Products */,
+				77DCEDD6680D89BDF08EC735 /* Pods */,
+				6284CC2A59C4FD51B260B43A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,19 +179,287 @@
 		3DA27D5029AE0DA00086089A /* GZEApp */ = {
 			isa = PBXGroup;
 			children = (
-				3DA27D5129AE0DA00086089A /* AppDelegate.h */,
-				3DA27D5229AE0DA00086089A /* AppDelegate.m */,
-				3DA27D5429AE0DA00086089A /* SceneDelegate.h */,
-				3DA27D5529AE0DA00086089A /* SceneDelegate.m */,
-				3DA27D5729AE0DA00086089A /* ViewController.h */,
-				3DA27D5829AE0DA00086089A /* ViewController.m */,
-				3DA27D5A29AE0DA00086089A /* Main.storyboard */,
-				3DA27D5D29AE0DA10086089A /* Assets.xcassets */,
-				3DA27D5F29AE0DA10086089A /* LaunchScreen.storyboard */,
+				3DA27D6A29AE0E2D0086089A /* AppDelegate */,
+				3DA27D7129AE0FDC0086089A /* Common */,
+				3DA27D7E29AEFD6B0086089A /* Section */,
+				3DA27D7229AE10040086089A /* Resource */,
 				3DA27D6229AE0DA10086089A /* Info.plist */,
 				3DA27D6329AE0DA10086089A /* main.m */,
 			);
 			path = GZEApp;
+			sourceTree = "<group>";
+		};
+		3DA27D6A29AE0E2D0086089A /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D5129AE0DA00086089A /* AppDelegate.h */,
+				3DA27D5229AE0DA00086089A /* AppDelegate.m */,
+				3DA27D5429AE0DA00086089A /* SceneDelegate.h */,
+				3DA27D5529AE0DA00086089A /* SceneDelegate.m */,
+				3DA27D7729AE128F0086089A /* SceneDelegate+CYLTabBar.h */,
+				3DA27D7829AE128F0086089A /* SceneDelegate+CYLTabBar.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		3DA27D6B29AE0F3C0086089A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE2629BF197F006BCF3E /* Model */,
+				3DA27D8A29AF01600086089A /* Network */,
+				3DA27D6E29AE0F850086089A /* View */,
+				3DA27D6C29AE0F750086089A /* ViewController */,
+				3DF1EE0D29BEF56E006BCF3E /* ViewModel */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3DA27D6C29AE0F750086089A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27DA329AF65190086089A /* GZETmdbVC.h */,
+				3DA27DA429AF65190086089A /* GZETmdbVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3DA27D6E29AE0F850086089A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE0A29BEF55A006BCF3E /* GZETrendingCell.h */,
+				3DF1EE0B29BEF55A006BCF3E /* GZETrendingCell.m */,
+				3D638C0529BACBD100987BA4 /* GZECompaniesCell.h */,
+				3D638C0629BACBD100987BA4 /* GZECompaniesCell.m */,
+				3D638C0829BACFFB00987BA4 /* GZECompanySmallCell.h */,
+				3D638C0929BACFFB00987BA4 /* GZECompanySmallCell.m */,
+				3D638C2C29BB3C6700987BA4 /* GZEMovieListCell.h */,
+				3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */,
+				3DF1EE0829BEF3DA006BCF3E /* GZEListTableViewCell.h */,
+				3DF1EE0729BEF3DA006BCF3E /* GZEListTableViewCell.m */,
+				3DF1EE1729BF06BA006BCF3E /* GZEListCollectionViewCell.h */,
+				3DF1EE1829BF06BA006BCF3E /* GZEListCollectionViewCell.m */,
+				3DF1EE1A29BF0AFE006BCF3E /* GZEListSmallView.h */,
+				3DF1EE1B29BF0AFE006BCF3E /* GZEListSmallView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DA27D7129AE0FDC0086089A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D7A29AE12C30086089A /* Macro.h */,
+				3DA27D7B29AEED0F0086089A /* YPNavigationController+Configure.h */,
+				3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */,
+				3DA27DAF29B0563A0086089A /* GZECommonHelper.h */,
+				3DA27DB029B0563A0086089A /* GZECommonHelper.m */,
+				3DA27DD129B07B180086089A /* UIView+GZEExtension.h */,
+				3DA27DD229B07B180086089A /* UIView+GZEExtension.m */,
+				3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */,
+				3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3DA27D7229AE10040086089A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D5D29AE0DA10086089A /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		3DA27D7E29AEFD6B0086089A /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27DB529B071FB0086089A /* Tmdb */,
+				3DA27DA629B0512E0086089A /* Common */,
+				3DA27D7F29AEFD810086089A /* Base */,
+				3DA27D6B29AE0F3C0086089A /* Main */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		3DA27D7F29AEFD810086089A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D8029AEFDDB0086089A /* Model */,
+				3DA27D8129AEFDE60086089A /* View */,
+				3DA27D8229AEFE0B0086089A /* Network */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		3DA27D8029AEFDDB0086089A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D8C29AF01C80086089A /* GZEBaseModel.h */,
+				3DA27D8B29AF01C80086089A /* GZEBaseModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DA27D8129AEFDE60086089A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27DA829B051E70086089A /* GZEBaseView.h */,
+				3DA27DA929B051E70086089A /* GZEBaseView.m */,
+				3DA27DD429B07D440086089A /* GZEBaseTableViewCell.h */,
+				3DA27DD529B07D440086089A /* GZEBaseTableViewCell.m */,
+				3DA27DD729B07DBC0086089A /* GZEBaseCollectionViewCell.h */,
+				3DA27DD829B07DBC0086089A /* GZEBaseCollectionViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DA27D8229AEFE0B0086089A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27D8E29AF02720086089A /* GZEBaseReq.h */,
+				3DA27D8F29AF02720086089A /* GZEBaseReq.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3DA27D8A29AF01600086089A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE3229BF1BA3006BCF3E /* Common */,
+				3DF1EE3129BF1B8B006BCF3E /* Movie */,
+				3DF1EE3029BF1B86006BCF3E /* TV */,
+				3DA27DCE29B075BE0086089A /* GZETmdbListManager.h */,
+				3DA27DCF29B075BE0086089A /* GZETmdbListManager.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3DA27DA629B0512E0086089A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EDEB29BEC88C006BCF3E /* Network */,
+				3DA27DA729B051350086089A /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3DA27DA729B051350086089A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE2729BF19FD006BCF3E /* GZEGenreItem.h */,
+				3DF1EE2829BF19FE006BCF3E /* GZEGenreItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DA27DB529B071FB0086089A /* Tmdb */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27DB629B072100086089A /* Model */,
+			);
+			path = Tmdb;
+			sourceTree = "<group>";
+		};
+		3DA27DB629B072100086089A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DA27DB729B072420086089A /* GZETmdbDate.h */,
+				3DA27DB829B072420086089A /* GZETmdbDate.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DF1EDEB29BEC88C006BCF3E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EDEC29BEC8B9006BCF3E /* GZEGenreListReq.h */,
+				3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */,
+				3DF1EDEF29BEC8D3006BCF3E /* GZEGenreListRsp.h */,
+				3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3DF1EE0D29BEF56E006BCF3E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE0E29BEF58A006BCF3E /* GZETrendingViewModel.h */,
+				3DF1EE0F29BEF58A006BCF3E /* GZETrendingViewModel.m */,
+				3DF1EE1D29BF1119006BCF3E /* GZEListSmallViewModel.h */,
+				3DF1EE1E29BF1119006BCF3E /* GZEListSmallViewModel.m */,
+				3DF1EE3329BF1E8B006BCF3E /* GZEListCollectionViewModel.h */,
+				3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3DF1EE2629BF197F006BCF3E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D638C1429BAD8CD00987BA4 /* GZECompanyListItem.h */,
+				3D638C1529BAD8CD00987BA4 /* GZECompanyListItem.m */,
+				3DF1EE0129BEF0CE006BCF3E /* GZETrendingItem.h */,
+				3DF1EE0229BEF0CE006BCF3E /* GZETrendingItem.m */,
+				3DA27DBA29B072A20086089A /* GZEMovieListItem.h */,
+				3DA27DBB29B072A20086089A /* GZEMovieListItem.m */,
+				3DF1EE2D29BF1AA1006BCF3E /* GZETVListItem.h */,
+				3DF1EE2E29BF1AA1006BCF3E /* GZETVListItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DF1EE3029BF1B86006BCF3E /* TV */ = {
+			isa = PBXGroup;
+			children = (
+				3DF1EE2329BF1862006BCF3E /* GZETVListReq.h */,
+				3DF1EE2429BF1862006BCF3E /* GZETVListReq.m */,
+				3DF1EE2A29BF1A7C006BCF3E /* GZETVListRsp.h */,
+				3DF1EE2B29BF1A7C006BCF3E /* GZETVListRsp.m */,
+			);
+			path = TV;
+			sourceTree = "<group>";
+		};
+		3DF1EE3129BF1B8B006BCF3E /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				3D638C2929BB2F8100987BA4 /* GZEMovieDiscoveryReq.h */,
+				3D638C2A29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m */,
+				3DA27DCB29B0758B0086089A /* GZEMovieListReq.h */,
+				3DA27DC829B0758B0086089A /* GZEMovieListReq.m */,
+				3DA27DC929B0758B0086089A /* GZEMovieListRsp.h */,
+				3DA27DCA29B0758B0086089A /* GZEMovieListRsp.m */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		3DF1EE3229BF1BA3006BCF3E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3D638C1129BAD6A000987BA4 /* GZECompanyListReq.h */,
+				3D638C1229BAD6A000987BA4 /* GZECompanyListReq.m */,
+				3D638C1729BAD90A00987BA4 /* GZECompanyListRsp.h */,
+				3D638C1829BAD90A00987BA4 /* GZECompanyListRsp.m */,
+				3DF1EDFE29BEF088006BCF3E /* GZETrendingReq.h */,
+				3DF1EDFF29BEF088006BCF3E /* GZETrendingReq.m */,
+				3DF1EE0429BEF301006BCF3E /* GZETrendingRsp.h */,
+				3DF1EE0529BEF301006BCF3E /* GZETrendingRsp.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6284CC2A59C4FD51B260B43A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2520A96919FC83F5AABF1E17 /* Pods_GZEApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77DCEDD6680D89BDF08EC735 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				845A551A512F54E853209722 /* Pods-GZEApp.debug.xcconfig */,
+				06F500E23F5B23F2CC4F1569 /* Pods-GZEApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +469,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DA27D6729AE0DA10086089A /* Build configuration list for PBXNativeTarget "GZEApp" */;
 			buildPhases = (
+				1F4C4C41916F05C4A4B31F39 /* [CP] Check Pods Manifest.lock */,
 				3DA27D4A29AE0DA00086089A /* Sources */,
 				3DA27D4B29AE0DA00086089A /* Frameworks */,
 				3DA27D4C29AE0DA00086089A /* Resources */,
+				D1EE889E93140D380F5856CB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,46 +521,105 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DA27D6129AE0DA10086089A /* LaunchScreen.storyboard in Resources */,
 				3DA27D5E29AE0DA10086089A /* Assets.xcassets in Resources */,
-				3DA27D5C29AE0DA00086089A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F4C4C41916F05C4A4B31F39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GZEApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1EE889E93140D380F5856CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GZEApp/Pods-GZEApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GZEApp/Pods-GZEApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GZEApp/Pods-GZEApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3DA27D4A29AE0DA00086089A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DA27D5929AE0DA00086089A /* ViewController.m in Sources */,
+				3DF1EE0929BEF3DA006BCF3E /* GZEListTableViewCell.m in Sources */,
+				3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */,
+				3DA27DB929B072420086089A /* GZETmdbDate.m in Sources */,
+				3D638C2B29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m in Sources */,
+				3DA27DD929B07DBC0086089A /* GZEBaseCollectionViewCell.m in Sources */,
+				3DA27DCC29B0758B0086089A /* GZEMovieListReq.m in Sources */,
 				3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */,
+				3DF1EE0C29BEF55A006BCF3E /* GZETrendingCell.m in Sources */,
+				3DA27DD629B07D440086089A /* GZEBaseTableViewCell.m in Sources */,
+				3D638C0729BACBD100987BA4 /* GZECompaniesCell.m in Sources */,
+				3D638C2E29BB3C6700987BA4 /* GZEMovieListCell.m in Sources */,
+				3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */,
+				3DF1EE1929BF06BA006BCF3E /* GZEListCollectionViewCell.m in Sources */,
+				3DA27D7D29AEED0F0086089A /* YPNavigationController+Configure.m in Sources */,
+				3DA27DD329B07B180086089A /* UIView+GZEExtension.m in Sources */,
+				3DA27D9029AF02720086089A /* GZEBaseReq.m in Sources */,
+				3DF1EE2929BF19FE006BCF3E /* GZEGenreItem.m in Sources */,
+				3DF1EE0629BEF301006BCF3E /* GZETrendingRsp.m in Sources */,
+				3DF1EE1029BEF58A006BCF3E /* GZETrendingViewModel.m in Sources */,
+				3DA27DAA29B051E70086089A /* GZEBaseView.m in Sources */,
+				3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */,
+				3DF1EE1F29BF1119006BCF3E /* GZEListSmallViewModel.m in Sources */,
+				3DA27D8D29AF01C80086089A /* GZEBaseModel.m in Sources */,
+				3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */,
+				3D638C0A29BACFFB00987BA4 /* GZECompanySmallCell.m in Sources */,
+				3DF1EE3529BF1E8B006BCF3E /* GZEListCollectionViewModel.m in Sources */,
+				3DA27DA529AF65190086089A /* GZETmdbVC.m in Sources */,
 				3DA27D6429AE0DA10086089A /* main.m in Sources */,
+				3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */,
+				3DF1EE0029BEF088006BCF3E /* GZETrendingReq.m in Sources */,
+				3D638C1329BAD6A000987BA4 /* GZECompanyListReq.m in Sources */,
+				3DA27DB129B0563A0086089A /* GZECommonHelper.m in Sources */,
+				3DA27DCD29B0758B0086089A /* GZEMovieListRsp.m in Sources */,
+				3DA27DBC29B072A20086089A /* GZEMovieListItem.m in Sources */,
+				3DF1EE1C29BF0AFE006BCF3E /* GZEListSmallView.m in Sources */,
+				3D638C1929BAD90A00987BA4 /* GZECompanyListRsp.m in Sources */,
 				3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */,
+				3DA27D7929AE128F0086089A /* SceneDelegate+CYLTabBar.m in Sources */,
+				3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */,
+				3DF1EE2529BF1862006BCF3E /* GZETVListReq.m in Sources */,
+				3DA27DD029B075BE0086089A /* GZETmdbListManager.m in Sources */,
+				3D638C1629BAD8CD00987BA4 /* GZECompanyListItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		3DA27D5A29AE0DA00086089A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3DA27D5B29AE0DA00086089A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3DA27D5F29AE0DA10086089A /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3DA27D6029AE0DA10086089A /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3DA27D6529AE0DA10086089A /* Debug */ = {
@@ -287,6 +734,7 @@
 		};
 		3DA27D6829AE0DA10086089A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 845A551A512F54E853209722 /* Pods-GZEApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -297,7 +745,7 @@
 				INFOPLIST_FILE = GZEApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -314,6 +762,7 @@
 		};
 		3DA27D6929AE0DA10086089A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06F500E23F5B23F2CC4F1569 /* Pods-GZEApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,7 +773,7 @@
 				INFOPLIST_FILE = GZEApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

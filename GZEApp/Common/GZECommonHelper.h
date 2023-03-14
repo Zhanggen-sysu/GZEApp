@@ -1,0 +1,65 @@
+//
+//  GZECommonHelper.h
+//  GZEApp
+//
+//  Created by GenZhang on 2023/3/2.
+//
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+// 2 * 3
+typedef NS_ENUM(NSUInteger, GZEPosterSize) {
+    GZEPosterSize_default,
+    GZEPosterSize_w92,
+    GZEPosterSize_w154,
+    GZEPosterSize_w185,
+    GZEPosterSize_w342,
+    GZEPosterSize_w500,
+    GZEPosterSize_w780,
+    GZEPosterSize_original,
+};
+
+// 16 * 9
+typedef NS_ENUM(NSUInteger, GZEBackdropSize) {
+    GZEBackdropSize_default,
+    GZEBackdropSize_w300,
+    GZEBackdropSize_w780,
+    GZEBackdropSize_w1280,
+    GZEBackdropSize_original,
+};
+
+typedef NS_ENUM(NSUInteger, GZEProfileSize) {
+    GZEProfileSize_default,
+    GZEProfileSize_w45,
+    GZEProfileSize_w185,
+    GZEProfileSize_h632,
+    GZEProfileSize_original,
+};
+
+typedef NS_ENUM(NSUInteger, GZELogoSize) {
+    GZELogoSize_default,
+    GZELogoSize_w45,
+    GZELogoSize_w92,
+    GZELogoSize_w154,
+    GZELogoSize_w185,
+    GZELogoSize_w300,
+    GZELogoSize_w500,
+    GZELogoSize_original,
+};
+
+@interface GZECommonHelper : NSObject
+
++ (NSURL *)getPosterUrl:(NSString *)string size:(GZEPosterSize)size;
++ (NSURL *)getBackdropUrl:(NSString *)string size:(GZEBackdropSize)size;
++ (NSURL *)getProfileUrl:(NSString *)string size:(GZEProfileSize)size;
++ (NSURL *)getLogoUrl:(NSString *)string size:(GZELogoSize)size;
++ (void)showMessage:(NSString *)message inView:(nullable UIView *)view duration:(NSInteger)duration;
++ (UIWindow *)getKeyWindow;
++ (void)applyCornerRadiusToView:(UIView *)view radius:(CGFloat)radius corners:(UIRectCorner)corners;
++ (NSAttributedString *)generateRatingString:(double)voteAverage starSize:(CGFloat)size space:(NSInteger)space;
+@end
+
+NS_ASSUME_NONNULL_END
