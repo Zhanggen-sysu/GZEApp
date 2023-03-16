@@ -14,6 +14,8 @@
 		3D638C1929BAD90A00987BA4 /* GZECompanyListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C1829BAD90A00987BA4 /* GZECompanyListRsp.m */; };
 		3D638C2B29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C2A29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m */; };
 		3D638C2E29BB3C6700987BA4 /* GZEMovieListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */; };
+		3D97CE1629C2C36500C19665 /* GZEDiscoverHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97CE1529C2C36500C19665 /* GZEDiscoverHeaderView.m */; };
+		3D97CE1929C2F84400C19665 /* GZEPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
 		3DA27D5E29AE0DA10086089A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5D29AE0DA10086089A /* Assets.xcassets */; };
@@ -50,6 +52,10 @@
 		3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2B29BF1A7C006BCF3E /* GZETVListRsp.m */; };
 		3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE2E29BF1AA1006BCF3E /* GZETVListItem.m */; };
 		3DF1EE3529BF1E8B006BCF3E /* GZEListCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */; };
+		3DF1EE4729C027C4006BCF3E /* GZEDiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE4629C027C4006BCF3E /* GZEDiscoverCell.m */; };
+		3DF1EE4A29C04A22006BCF3E /* GZEDiscoverCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE4929C04A22006BCF3E /* GZEDiscoverCellViewModel.m */; };
+		3DF1EE5029C05273006BCF3E /* GZEListCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE4F29C05273006BCF3E /* GZEListCollectionFooterView.m */; };
+		3DF1EE5C29C199BF006BCF3E /* GZECustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EE5B29C199BF006BCF3E /* GZECustomButton.m */; };
 		C4C6072CA7938FB0BFB164EA /* Pods_GZEApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2520A96919FC83F5AABF1E17 /* Pods_GZEApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +76,10 @@
 		3D638C2A29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieDiscoveryReq.m; sourceTree = "<group>"; };
 		3D638C2C29BB3C6700987BA4 /* GZEMovieListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieListCell.h; sourceTree = "<group>"; };
 		3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieListCell.m; sourceTree = "<group>"; };
+		3D97CE1429C2C36500C19665 /* GZEDiscoverHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEDiscoverHeaderView.h; sourceTree = "<group>"; };
+		3D97CE1529C2C36500C19665 /* GZEDiscoverHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEDiscoverHeaderView.m; sourceTree = "<group>"; };
+		3D97CE1729C2F84400C19665 /* GZEPaddingLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPaddingLabel.h; sourceTree = "<group>"; };
+		3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPaddingLabel.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA27D5129AE0DA00086089A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DA27D5229AE0DA00086089A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -143,6 +153,14 @@
 		3DF1EE2E29BF1AA1006BCF3E /* GZETVListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVListItem.m; sourceTree = "<group>"; };
 		3DF1EE3329BF1E8B006BCF3E /* GZEListCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListCollectionViewModel.h; sourceTree = "<group>"; };
 		3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListCollectionViewModel.m; sourceTree = "<group>"; };
+		3DF1EE4529C027C4006BCF3E /* GZEDiscoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDiscoverCell.h; sourceTree = "<group>"; };
+		3DF1EE4629C027C4006BCF3E /* GZEDiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDiscoverCell.m; sourceTree = "<group>"; };
+		3DF1EE4829C04A22006BCF3E /* GZEDiscoverCellViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDiscoverCellViewModel.h; sourceTree = "<group>"; };
+		3DF1EE4929C04A22006BCF3E /* GZEDiscoverCellViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDiscoverCellViewModel.m; sourceTree = "<group>"; };
+		3DF1EE4E29C05273006BCF3E /* GZEListCollectionFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEListCollectionFooterView.h; sourceTree = "<group>"; };
+		3DF1EE4F29C05273006BCF3E /* GZEListCollectionFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEListCollectionFooterView.m; sourceTree = "<group>"; };
+		3DF1EE5A29C199BF006BCF3E /* GZECustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECustomButton.h; sourceTree = "<group>"; };
+		3DF1EE5B29C199BF006BCF3E /* GZECustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECustomButton.m; sourceTree = "<group>"; };
 		845A551A512F54E853209722 /* Pods-GZEApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GZEApp.debug.xcconfig"; path = "Target Support Files/Pods-GZEApp/Pods-GZEApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,20 +244,26 @@
 		3DA27D6E29AE0F850086089A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3DF1EE0A29BEF55A006BCF3E /* GZETrendingCell.h */,
-				3DF1EE0B29BEF55A006BCF3E /* GZETrendingCell.m */,
 				3D638C0529BACBD100987BA4 /* GZECompaniesCell.h */,
 				3D638C0629BACBD100987BA4 /* GZECompaniesCell.m */,
 				3D638C0829BACFFB00987BA4 /* GZECompanySmallCell.h */,
 				3D638C0929BACFFB00987BA4 /* GZECompanySmallCell.m */,
-				3D638C2C29BB3C6700987BA4 /* GZEMovieListCell.h */,
-				3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */,
-				3DF1EE0829BEF3DA006BCF3E /* GZEListTableViewCell.h */,
-				3DF1EE0729BEF3DA006BCF3E /* GZEListTableViewCell.m */,
+				3DF1EE4529C027C4006BCF3E /* GZEDiscoverCell.h */,
+				3DF1EE4629C027C4006BCF3E /* GZEDiscoverCell.m */,
+				3DF1EE4E29C05273006BCF3E /* GZEListCollectionFooterView.h */,
+				3DF1EE4F29C05273006BCF3E /* GZEListCollectionFooterView.m */,
 				3DF1EE1729BF06BA006BCF3E /* GZEListCollectionViewCell.h */,
 				3DF1EE1829BF06BA006BCF3E /* GZEListCollectionViewCell.m */,
 				3DF1EE1A29BF0AFE006BCF3E /* GZEListSmallView.h */,
 				3DF1EE1B29BF0AFE006BCF3E /* GZEListSmallView.m */,
+				3DF1EE0829BEF3DA006BCF3E /* GZEListTableViewCell.h */,
+				3DF1EE0729BEF3DA006BCF3E /* GZEListTableViewCell.m */,
+				3D638C2C29BB3C6700987BA4 /* GZEMovieListCell.h */,
+				3D638C2D29BB3C6700987BA4 /* GZEMovieListCell.m */,
+				3DF1EE0A29BEF55A006BCF3E /* GZETrendingCell.h */,
+				3DF1EE0B29BEF55A006BCF3E /* GZETrendingCell.m */,
+				3D97CE1429C2C36500C19665 /* GZEDiscoverHeaderView.h */,
+				3D97CE1529C2C36500C19665 /* GZEDiscoverHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +280,10 @@
 				3DA27DD229B07B180086089A /* UIView+GZEExtension.m */,
 				3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */,
 				3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */,
+				3DF1EE5A29C199BF006BCF3E /* GZECustomButton.h */,
+				3DF1EE5B29C199BF006BCF3E /* GZECustomButton.m */,
+				3D97CE1729C2F84400C19665 /* GZEPaddingLabel.h */,
+				3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -387,6 +415,8 @@
 				3DF1EE1E29BF1119006BCF3E /* GZEListSmallViewModel.m */,
 				3DF1EE3329BF1E8B006BCF3E /* GZEListCollectionViewModel.h */,
 				3DF1EE3429BF1E8B006BCF3E /* GZEListCollectionViewModel.m */,
+				3DF1EE4829C04A22006BCF3E /* GZEDiscoverCellViewModel.h */,
+				3DF1EE4929C04A22006BCF3E /* GZEDiscoverCellViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -588,15 +618,18 @@
 				3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */,
 				3DF1EE1929BF06BA006BCF3E /* GZEListCollectionViewCell.m in Sources */,
 				3DA27D7D29AEED0F0086089A /* YPNavigationController+Configure.m in Sources */,
+				3DF1EE4A29C04A22006BCF3E /* GZEDiscoverCellViewModel.m in Sources */,
 				3DA27DD329B07B180086089A /* UIView+GZEExtension.m in Sources */,
 				3DA27D9029AF02720086089A /* GZEBaseReq.m in Sources */,
 				3DF1EE2929BF19FE006BCF3E /* GZEGenreItem.m in Sources */,
+				3DF1EE4729C027C4006BCF3E /* GZEDiscoverCell.m in Sources */,
 				3DF1EE0629BEF301006BCF3E /* GZETrendingRsp.m in Sources */,
 				3DF1EE1029BEF58A006BCF3E /* GZETrendingViewModel.m in Sources */,
 				3DA27DAA29B051E70086089A /* GZEBaseView.m in Sources */,
 				3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */,
 				3DF1EE1F29BF1119006BCF3E /* GZEListSmallViewModel.m in Sources */,
 				3DA27D8D29AF01C80086089A /* GZEBaseModel.m in Sources */,
+				3D97CE1929C2F84400C19665 /* GZEPaddingLabel.m in Sources */,
 				3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */,
 				3D638C0A29BACFFB00987BA4 /* GZECompanySmallCell.m in Sources */,
 				3DF1EE3529BF1E8B006BCF3E /* GZEListCollectionViewModel.m in Sources */,
@@ -604,6 +637,7 @@
 				3DA27D6429AE0DA10086089A /* main.m in Sources */,
 				3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */,
 				3DF1EE0029BEF088006BCF3E /* GZETrendingReq.m in Sources */,
+				3DF1EE5C29C199BF006BCF3E /* GZECustomButton.m in Sources */,
 				3D638C1329BAD6A000987BA4 /* GZECompanyListReq.m in Sources */,
 				3DA27DB129B0563A0086089A /* GZECommonHelper.m in Sources */,
 				3DA27DCD29B0758B0086089A /* GZEMovieListRsp.m in Sources */,
@@ -611,7 +645,9 @@
 				3DF1EE1C29BF0AFE006BCF3E /* GZEListSmallView.m in Sources */,
 				3D638C1929BAD90A00987BA4 /* GZECompanyListRsp.m in Sources */,
 				3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */,
+				3DF1EE5029C05273006BCF3E /* GZEListCollectionFooterView.m in Sources */,
 				3DA27D7929AE128F0086089A /* SceneDelegate+CYLTabBar.m in Sources */,
+				3D97CE1629C2C36500C19665 /* GZEDiscoverHeaderView.m in Sources */,
 				3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */,
 				3DF1EE2529BF1862006BCF3E /* GZETVListReq.m in Sources */,
 				3DA27DD029B075BE0086089A /* GZETmdbListManager.m in Sources */,

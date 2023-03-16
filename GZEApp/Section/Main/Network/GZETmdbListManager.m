@@ -16,6 +16,8 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger tvPage;
 
+@property (nonatomic, assign) NSInteger discoverPage;
+
 @end
 
 @implementation GZETmdbListManager
@@ -51,6 +53,13 @@
     req.mediaType = type;
     req.timeWindow = timeWindow;
     [req startRequestWithRspClass:[GZETrendingRsp class] completeBlock:block];
+}
+
+- (void)getMovieDiscoverWithReq:(GZEMovieDiscoveryReq *)req loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block;
+{
+    self.discoverPage = loadMore ? ++self.discoverPage : 1;
+    req.page = self.discoverPage;
+    [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:block];
 }
 
 @end

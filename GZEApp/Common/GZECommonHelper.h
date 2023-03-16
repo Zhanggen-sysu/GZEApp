@@ -50,6 +50,14 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
     GZELogoSize_original,
 };
 
+typedef NS_ENUM(NSUInteger, GZEMediaType) {
+    GZEMediaType_Default,
+    GZEMediaType_All,
+    GZEMediaType_Movie,
+    GZEMediaType_TV,
+    GZEMediaType_Person,
+};
+
 @interface GZECommonHelper : NSObject
 
 + (NSURL *)getPosterUrl:(NSString *)string size:(GZEPosterSize)size;

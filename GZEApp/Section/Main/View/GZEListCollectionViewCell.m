@@ -30,7 +30,7 @@
     [self.bgImg sd_setImageWithURL:viewModel.imgUrl placeholderImage:kGetImage(@"default-backdrop")];
     NSArray *subView = self.stackView.arrangedSubviews;
     [subView enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.stackView removeArrangedSubview:obj];
+        [obj removeFromSuperview];
     }];
     [viewModel.viewModels enumerateObjectsUsingBlock:^(GZEListSmallViewModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         GZEListSmallView *view = [GZEListSmallView createListView:idx model:obj];
@@ -77,7 +77,7 @@
                              , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor];
     gradientLayer.startPoint = CGPointMake(0.5, 0);
     gradientLayer.endPoint = CGPointMake(0.5, 1);
-    gradientLayer.locations = @[@0, @0.3, @1];
+    gradientLayer.locations = @[@0, @0.4, @1];
     [self.maskView.layer addSublayer:gradientLayer];
 }
 

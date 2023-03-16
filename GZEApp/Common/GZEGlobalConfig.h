@@ -6,17 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GZECommonHelper.h"
 @class GZEGenreItem;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEGlobalConfig : NSObject
+
+@property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *genresDict;
+@property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *tvGenresDict;
 
 + (GZEGlobalConfig *)shareConfig;
 // 语言
 + (NSString *)language;
 
 // 获取类型列表
-- (void)getGenresWithCompletion:(void (^)(NSArray<GZEGenreItem *> *))completion;
+- (void)getGenresWithType:(GZEMediaType)mediaType completion:(nullable void (^)(NSDictionary<NSNumber *, NSString *> *))completion;
 
 @end
 

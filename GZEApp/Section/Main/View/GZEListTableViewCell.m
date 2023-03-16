@@ -7,6 +7,7 @@
 
 #import "GZEListTableViewCell.h"
 #import "GZEListCollectionViewCell.h"
+#import "GZEListCollectionFooterView.h"
 
 @interface GZEListTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -38,7 +39,7 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15.f);
         make.right.equalTo(self.contentView);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(15.f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10.f);
         make.height.mas_equalTo(300.f);
         make.bottom.equalTo(self.contentView).offset(-15.f);
     }];
@@ -68,6 +69,7 @@
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 15);
         _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[GZEListCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEListCollectionViewCell class])];
+        [_collectionView registerClass:[GZEListCollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([GZEListCollectionFooterView class])];
     }
     return _collectionView;
 }
@@ -81,9 +83,28 @@
     return cell;
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.viewModel.count;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(65, 300);
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        GZEListCollectionFooterView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([GZEListCollectionFooterView class]) forIndexPath:indexPath];
+        return view;
+    }
+    return nil;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

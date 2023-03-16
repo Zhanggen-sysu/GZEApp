@@ -6,14 +6,7 @@
 //
 
 #import "GZEBaseReq.h"
-
-typedef NS_ENUM(NSUInteger, GZEMediaType) {
-    GZEMediaType_Default,
-    GZEMediaType_All,
-    GZEMediaType_Movie,
-    GZEMediaType_Tv,
-    GZEMediaType_Person,
-};
+#import "GZECommonHelper.h"
 
 typedef NS_ENUM(NSUInteger, GZETimeWindow) {
     GZETimeWindow_Default,

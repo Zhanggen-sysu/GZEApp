@@ -26,7 +26,7 @@
         case GZEMediaType_Movie:
             [url appendString:@"movie"];
             break;
-        case GZEMediaType_Tv:
+        case GZEMediaType_TV:
             [url appendString:@"tv"];
             break;
         case GZEMediaType_Person:

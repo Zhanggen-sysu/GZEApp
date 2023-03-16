@@ -8,6 +8,7 @@
 #import "GZEBaseReq.h"
 #import "Macro.h"
 #import "NSObject+YYModel.h"
+#import "GZEGlobalConfig.h"
 
 @implementation GZEBaseReq
 
@@ -19,22 +20,19 @@
 
 - (NSDictionary *)jsonDictionary
 {
-    id dict = [[self dictionaryWithValuesForKeys:[self class].properties.allValues] mutableCopy];
-
-    for (id jsonName in [self class].properties) {
-        id propertyName = [self class].properties[jsonName];
-        if (!dict[propertyName] || [dict[propertyName] isEqual:[NSNull null]]) {
-            [dict removeObjectForKey:propertyName];
-            continue;
+    NSMutableDictionary* dict = [[self dictionaryWithValuesForKeys:[self class].properties.allValues] mutableCopy];
+    [[self class].properties enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([key isEqualToString:@"language"]) {
+            // 修改下语言
+            dict[obj] = [GZEGlobalConfig language];
         }
-//        if (![dict[propertyName] isKindOfClass:[NSString class]]) {
-//            NSAssert(NO, @"property value should be NSString class");
-//        }
-        if (![jsonName isEqualToString:propertyName]) {
-            dict[jsonName] = dict[propertyName];
-            [dict removeObjectForKey:propertyName];
+        if (!dict[obj] || [dict[obj] isEqual:[NSNull null]] || [dict[obj] isEqual:@(NO)] || [dict[obj] isEqual:@(0)]) {
+            [dict removeObjectForKey:obj];
+        } else if (![key isEqualToString:obj]) {
+            dict[key] = dict[obj];
+            [dict removeObjectForKey:obj];
         }
-    }
+    }];
     [dict setObject:API_KEY forKey:@"api_key"];
     return dict;
 }

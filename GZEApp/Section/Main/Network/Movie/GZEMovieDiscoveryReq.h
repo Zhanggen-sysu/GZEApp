@@ -36,9 +36,11 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
 };
 // 回包和MovieListRsp一样
 @interface GZEMovieDiscoveryReq : GZEBaseReq
-
+// en-US
 @property (nonatomic, copy) NSString *language;
+// ISO 3166-1 例如 CN
 @property (nonatomic, copy) NSString *region;
+
 @property (nonatomic, copy) NSString *sortBy;
 
 // 分级信息，各国不一样，需要请求/certification/movie/list
@@ -53,10 +55,12 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
 @property (nonatomic, assign) NSInteger page;
 
 @property (nonatomic, assign) NSInteger primaryReleaseYear;
+// 示例：2011-01-01
 @property (nonatomic, copy) NSString *primaryReleaseDateGte;
 @property (nonatomic, copy) NSString *primaryReleaseDateLTE;
 @property (nonatomic, copy) NSString *releaseDateGte;
 @property (nonatomic, copy) NSString *releaseDateLTE;
+// 1-6
 @property (nonatomic, assign) NSInteger withReleaseType;
 @property (nonatomic, assign) NSInteger year;
 
@@ -64,7 +68,7 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
 @property (nonatomic, copy) NSString *voteCountLTE;
 @property (nonatomic, copy) NSString *voteAverageGte;
 @property (nonatomic, copy) NSString *voteAverageLTE;
-
+// 逗号,分割
 @property (nonatomic, copy) NSString *withCast;
 @property (nonatomic, copy) NSString *withCrew;
 @property (nonatomic, copy) NSString *withPeople;

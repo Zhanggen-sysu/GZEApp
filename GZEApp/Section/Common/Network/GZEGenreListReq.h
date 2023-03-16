@@ -6,12 +6,14 @@
 //
 
 #import "GZEBaseReq.h"
+#import "GZECommonHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEGenreListReq : GZEBaseReq
 
 @property (nonatomic, strong) NSString *language;
+@property (nonatomic, assign) GZEMediaType type;
 
 @end
 

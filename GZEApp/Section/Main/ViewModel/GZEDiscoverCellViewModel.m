@@ -1,0 +1,70 @@
+//
+//  GZEDiscoverCellViewModel.m
+//  GZEApp
+//
+//  Created by GenZhang on 2023/3/14.
+//
+
+#import "GZEDiscoverCellViewModel.h"
+#import "GZEMovieListItem.h"
+#import "GZETVListItem.h"
+#import "GZECommonHelper.h"
+#import "GZEGlobalConfig.h"
+#import "GZEGenreItem.h"
+
+@implementation GZEDiscoverCellViewModel
+
++ (GZEDiscoverCellViewModel *)viewModelWithTVItem:(GZETVListItem *)item
+{
+    GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
+    viewModel.name = item.name;
+    viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
+    viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w300];
+    viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
+    viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
+    viewModel.overview = item.overview;
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendString:[NSString stringWithFormat:@"%@ / %@", item.firstAirDate, item.originalLanguage]];
+    if (item.genreIDS.count > 0) {
+        [str appendString:@" / "];
+        [[GZEGlobalConfig shareConfig] getGenresWithType:GZEMediaType_TV completion:^(NSDictionary<NSNumber *,NSString *> * _Nonnull genresDict) {
+            NSInteger count = item.genreIDS.count;
+            [item.genreIDS enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [str appendString:genresDict[obj]];
+                if (idx != count - 1) {
+                    [str appendString:@", "];
+                }
+            }];
+        }];
+    }
+    viewModel.detail = str;
+    return viewModel;
+}
+
++ (GZEDiscoverCellViewModel *)viewModelWithMovieItem:(GZEMovieListItem *)item
+{
+    GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
+    viewModel.name = item.title;
+    viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
+    viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w300];
+    viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
+    viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
+    viewModel.overview = item.overview;
+    NSMutableString *str = [[NSMutableString alloc] init];
+    [str appendString:[NSString stringWithFormat:@"%@ / %@", item.releaseDate, item.originalLanguage]];
+    if (item.genreIDS.count > 0) {
+        [str appendString:@" / "];
+        [[GZEGlobalConfig shareConfig] getGenresWithType:GZEMediaType_Movie completion:^(NSDictionary<NSNumber *,NSString *> * _Nonnull genresDict) {
+            NSInteger count = item.genreIDS.count;
+            [item.genreIDS enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [str appendString:genresDict[obj]];
+                if (idx != count - 1) {
+                    [str appendString:@", "];
+                }
+            }];
+        }];
+    }
+    viewModel.detail = str;
+    return viewModel;
+}
+@end

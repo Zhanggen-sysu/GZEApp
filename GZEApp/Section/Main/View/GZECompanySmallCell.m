@@ -61,7 +61,7 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
-        _nameLabel.textColor = [UIColor grayColor];
+        _nameLabel.textColor = RGBColor(128, 128, 128);
         _nameLabel.numberOfLines = 2;
     }
     return _nameLabel;

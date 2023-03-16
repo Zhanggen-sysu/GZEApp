@@ -30,10 +30,8 @@
 
 - (void)defineLayout
 {
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 1.5));
-    }];
     [self.cycleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 1.5));
         make.edges.equalTo(self.contentView);
     }];
 }
