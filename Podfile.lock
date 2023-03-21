@@ -26,6 +26,7 @@ PODS:
   - YTKNetwork (3.0.6):
     - AFNetworking/NSURLSession (~> 4.0)
   - YYModel (1.0.4)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - CYLTabBarController
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - YPNavigationBarTransition
   - YTKNetwork
   - YYModel
+  - YYText
 
 SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
@@ -55,6 +57,7 @@ SPEC REPOS:
     - YPNavigationBarTransition
     - YTKNetwork
     - YYModel
+    - YYText
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -70,7 +73,8 @@ SPEC CHECKSUMS:
   YPNavigationBarTransition: d3d8c0e4cced41dec43647832bb45737d79cc8b0
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 3b5260ab945a12117047044c3be69f2701d3152b
+PODFILE CHECKSUM: 59fff61b075fb4be82299e013be00ed4eba1e527
 
 COCOAPODS: 1.11.3

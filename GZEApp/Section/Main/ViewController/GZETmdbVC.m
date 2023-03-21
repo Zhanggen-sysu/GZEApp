@@ -665,7 +665,8 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat gradientProgress = scrollView.contentOffset.y / (SCREEN_WIDTH / 2.0 * 3);
+    CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
+    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2.0 * 3));
     if (gradientProgress != self.gradientProgress) {
         if ((gradientProgress >= 0.5 && self.gradientProgress < 0.5) || (self.gradientProgress >= 0.5 && gradientProgress < 0.5)) {
             self.gradientProgress = gradientProgress;

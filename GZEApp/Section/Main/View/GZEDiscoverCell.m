@@ -164,7 +164,7 @@
 {
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];
-        _contentLabel.font = kFont(13.f);
+        _contentLabel.font = kFont(14.f);
         _contentLabel.numberOfLines = 3;
     }
     return _contentLabel;

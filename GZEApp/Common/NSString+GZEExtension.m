@@ -21,6 +21,11 @@
     return [self textSizeIn:CGSizeMake(CGFLOAT_MAX, height) font:font].width;
 }
 
+- (NSInteger)numberOflines:(CGFloat)width font:(UIFont *)font
+{
+    return [self textSizeIn:CGSizeMake(width, CGFLOAT_MAX) font:font].height / font.lineHeight;
+}
+
 - (CGSize)textSizeIn:(CGSize)size font:(UIFont *)font
 {
     return [self textSizeIn:size font:font breakMode:NSLineBreakByWordWrapping];

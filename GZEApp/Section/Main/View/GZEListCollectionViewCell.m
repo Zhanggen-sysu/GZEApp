@@ -60,9 +60,8 @@
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
-    [self layoutIfNeeded];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.maskView.bounds;
+    gradientLayer.frame = CGRectMake(0, 0, 320, 300);
     gradientLayer.colors = @[(__bridge id)RGBAColor(70, 130, 180, 0.1f).CGColor
                              , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor
                              , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor];
