@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GZECommonHelper.h"
+#import "GZEEnum.h"
 @class GZEGenreItem;
+@class GZELanguageItem;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEGlobalConfig : NSObject
@@ -21,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 获取类型列表
 - (void)getGenresWithType:(GZEMediaType)mediaType completion:(nullable void (^)(NSDictionary<NSNumber *, NSString *> *))completion;
+
+- (void)getAllLanguagesWithCompletion:(nullable void (^)(NSDictionary<NSString *, GZELanguageItem *> *))completion;
+
+- (NSArray<NSString *> *)supportLanguages;
 
 @end
 

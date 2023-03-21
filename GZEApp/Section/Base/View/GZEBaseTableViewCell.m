@@ -13,6 +13,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupSubviews];
         [self defineLayout];
     }
@@ -21,12 +22,14 @@
 
 - (void)setupSubviews
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
 }
 
 - (void)defineLayout
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
 }
 
 @end

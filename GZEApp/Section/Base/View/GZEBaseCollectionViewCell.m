@@ -22,12 +22,14 @@
 
 - (void)setupSubviews
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
 }
 
 - (void)defineLayout
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
 }
 
 @end

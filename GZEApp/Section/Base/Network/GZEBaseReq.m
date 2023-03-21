@@ -14,7 +14,8 @@
 
 + (NSDictionary<NSString *, NSString *> *)properties
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
     return nil;
 }
 
@@ -26,7 +27,7 @@
             // 修改下语言
             dict[obj] = [GZEGlobalConfig language];
         }
-        if (!dict[obj] || [dict[obj] isEqual:[NSNull null]] || [dict[obj] isEqual:@(NO)] || [dict[obj] isEqual:@(0)]) {
+        if (!dict[obj] || [dict[obj] isEqual:[NSNull null]]) {
             [dict removeObjectForKey:obj];
         } else if (![key isEqualToString:obj]) {
             dict[key] = dict[obj];
@@ -48,8 +49,19 @@
     [self startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
         id rsp = nil;
-        if ([rspClass respondsToSelector:@selector(yy_modelWithJSON:)]) {
-            rsp = [rspClass yy_modelWithJSON:request.responseString];
+        // 请求回来是字典，直接转模型
+        if ([request.responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([rspClass respondsToSelector:@selector(yy_modelWithJSON:)]) {
+                rsp = [rspClass yy_modelWithJSON:request.responseString];
+            }
+        }
+        // 请求回来是数组，先给数组加个key：results，然后再转模型，在rsp中需要添加results属性，
+        // 并实现modelContainerPropertyGenericClass，具体见GZELanguageListRsp
+        if ([request.responseObject isKindOfClass:[NSArray class]]) {
+            if ([rspClass respondsToSelector:@selector(yy_modelWithJSON:)]) {
+                NSString *str = [[NSString alloc] initWithFormat:@"{\"results\":%@}", request.responseString];
+                rsp = [rspClass yy_modelWithJSON:str];
+            }
         }
         if (rsp) {
             !block ?: block(YES, rsp, nil);

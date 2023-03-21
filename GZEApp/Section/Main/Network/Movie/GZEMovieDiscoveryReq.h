@@ -6,6 +6,7 @@
 //
 
 #import "GZEBaseReq.h"
+#import "GZEEnum.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, GZEMovieDiscoverySortType) {
@@ -26,14 +27,6 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoverySortType) {
     GZEMovieDiscoverySortType_VoteCountAsc,
 };
 
-typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
-    GZEMovieDiscoveryWatchMonetizationType_Default,
-    GZEMovieDiscoveryWatchMonetizationType_Flatrate,
-    GZEMovieDiscoveryWatchMonetizationType_Free,
-    GZEMovieDiscoveryWatchMonetizationType_Ads,
-    GZEMovieDiscoveryWatchMonetizationType_Rent,
-    GZEMovieDiscoveryWatchMonetizationType_Buy,
-};
 // 回包和MovieListRsp一样
 @interface GZEMovieDiscoveryReq : GZEBaseReq
 // en-US
@@ -49,25 +42,32 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
 @property (nonatomic, copy) NSString *certification;
 @property (nonatomic, copy) NSString *certificationLTE;
 @property (nonatomic, copy) NSString *certificationGte;
-
-@property (nonatomic, assign) BOOL includeAdult;
-@property (nonatomic, assign) BOOL includeVideo;
-@property (nonatomic, assign) NSInteger page;
-
-@property (nonatomic, assign) NSInteger primaryReleaseYear;
+// BOOL
+@property (nonatomic, strong) NSNumber *includeAdult;
+// BOOL
+@property (nonatomic, strong) NSNumber *includeVideo;
+// NSInteger, 1-1000
+@property (nonatomic, strong) NSNumber *page;
+// NSInteger
+@property (nonatomic, strong) NSNumber *primaryReleaseYear;
 // 示例：2011-01-01
 @property (nonatomic, copy) NSString *primaryReleaseDateGte;
 @property (nonatomic, copy) NSString *primaryReleaseDateLTE;
 @property (nonatomic, copy) NSString *releaseDateGte;
 @property (nonatomic, copy) NSString *releaseDateLTE;
-// 1-6
-@property (nonatomic, assign) NSInteger withReleaseType;
-@property (nonatomic, assign) NSInteger year;
+// 1-6, NSInteger
+@property (nonatomic, strong) NSNumber *withReleaseType;
+// NSInteger
+@property (nonatomic, strong) NSNumber *year;
 
-@property (nonatomic, copy) NSString *voteCountGte;
-@property (nonatomic, copy) NSString *voteCountLTE;
-@property (nonatomic, copy) NSString *voteAverageGte;
-@property (nonatomic, copy) NSString *voteAverageLTE;
+// NSInteger, min=0
+@property (nonatomic, strong) NSNumber *voteCountGte;
+// NSInteger, min=1
+@property (nonatomic, strong) NSNumber *voteCountLTE;
+// NSInteger, min=0
+@property (nonatomic, strong) NSNumber *voteAverageGte;
+// NSInteger, min=0
+@property (nonatomic, strong) NSNumber *voteAverageLTE;
 // 逗号,分割
 @property (nonatomic, copy) NSString *withCast;
 @property (nonatomic, copy) NSString *withCrew;
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, GZEMovieDiscoveryWatchMonetizationType) {
 
 // local
 @property (nonatomic, assign) GZEMovieDiscoverySortType sortType;
-@property (nonatomic, assign) GZEMovieDiscoveryWatchMonetizationType watchMonetizationType;
+@property (nonatomic, assign) GZEMediaWatchMonetizationType watchMonetizationType;
 @end
 
 NS_ASSUME_NONNULL_END

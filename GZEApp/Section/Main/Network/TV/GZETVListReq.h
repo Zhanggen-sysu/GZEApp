@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GZETVListReq : GZEBaseReq
 
 @property (nonatomic, copy) NSString *language;
-@property (nonatomic, assign) NSInteger page;
+// NSInteger
+@property (nonatomic, strong) NSNumber *page;
 @property (nonatomic, assign) GZETVListType type;
 
 @end

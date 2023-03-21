@@ -21,6 +21,7 @@ PODS:
   - SDWebImage (5.14.2):
     - SDWebImage/Core (= 5.14.2)
   - SDWebImage/Core (5.14.2)
+  - UICollectionViewLeftAlignedLayout (1.0.2)
   - YPNavigationBarTransition (2.2.3)
   - YTKNetwork (3.0.6):
     - AFNetworking/NSURLSession (~> 4.0)
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - MJRefresh
   - PYSearch
   - SDCycleScrollView (>= 1.82)
+  - UICollectionViewLeftAlignedLayout
   - YPNavigationBarTransition
   - YTKNetwork
   - YYModel
@@ -49,6 +51,7 @@ SPEC REPOS:
     - PYSearch
     - SDCycleScrollView
     - SDWebImage
+    - UICollectionViewLeftAlignedLayout
     - YPNavigationBarTransition
     - YTKNetwork
     - YYModel
@@ -63,10 +66,11 @@ SPEC CHECKSUMS:
   PYSearch: 76dee18eea3309b60921a5d6a69390a63a5dda15
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
+  UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
   YPNavigationBarTransition: d3d8c0e4cced41dec43647832bb45737d79cc8b0
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 87d0701e670f5f44a90583462c7d457aef7d91dc
+PODFILE CHECKSUM: 3b5260ab945a12117047044c3be69f2701d3152b
 
 COCOAPODS: 1.11.3

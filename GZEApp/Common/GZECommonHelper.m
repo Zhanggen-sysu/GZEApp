@@ -166,9 +166,9 @@
 
 + (void)applyCornerRadiusToView:(UIView *)view radius:(CGFloat)radius corners:(UIRectCorner)corners
 {
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:view.frame byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
     CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-    shapeLayer.frame = view.frame;
+    shapeLayer.frame = view.bounds;
     shapeLayer.path = path.CGPath;
     view.layer.mask = shapeLayer;
 }

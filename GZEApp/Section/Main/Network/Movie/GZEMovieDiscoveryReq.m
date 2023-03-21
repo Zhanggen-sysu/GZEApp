@@ -62,69 +62,69 @@
     _sortType = sortType;
     switch (sortType) {
         case GZEMovieDiscoverySortType_PopularityDesc:
-            _sortBy = @"popularity_desc";
+            _sortBy = @"popularity.desc";
             break;
         case GZEMovieDiscoverySortType_PopularityAsc:
-            _sortBy = @"popularity_asc";
+            _sortBy = @"popularity.asc";
             break;
         case GZEMovieDiscoverySortType_ReleaseDateDesc:
-            _sortBy = @"release_date_desc";
+            _sortBy = @"release_date.desc";
             break;
         case GZEMovieDiscoverySortType_ReleaseDateAsc:
-            _sortBy = @"release_date_asc";
+            _sortBy = @"release_date.asc";
             break;
         case GZEMovieDiscoverySortType_RevenueDesc:
-            _sortBy = @"revenue_desc";
+            _sortBy = @"revenue.desc";
             break;
         case GZEMovieDiscoverySortType_RevenueAsc:
-            _sortBy = @"revenue_asc";
+            _sortBy = @"revenue.asc";
             break;
         case GZEMovieDiscoverySortType_PrimaryReleaseDateDesc:
-            _sortBy = @"primary_release_date_desc";
+            _sortBy = @"primary_release_date.desc";
             break;
         case GZEMovieDiscoverySortType_PrimaryReleaseDateAsc:
-            _sortBy = @"primary_release_date_asc";
+            _sortBy = @"primary_release_date.asc";
             break;
         case GZEMovieDiscoverySortType_OriginalTitleDesc:
-            _sortBy = @"original_title_desc";
+            _sortBy = @"original_title.desc";
             break;
         case GZEMovieDiscoverySortType_OriginalTitleAsc:
-            _sortBy = @"original_title_asc";
+            _sortBy = @"original_title.asc";
             break;
         case GZEMovieDiscoverySortType_VoteAverageDesc:
-            _sortBy = @"vote_average_desc";
+            _sortBy = @"vote_average.desc";
             break;
         case GZEMovieDiscoverySortType_VoteAverageAsc:
-            _sortBy = @"vote_average_asc";
+            _sortBy = @"vote_average.asc";
             break;
         case GZEMovieDiscoverySortType_VoteCountDesc:
-            _sortBy = @"vote_count_desc";
+            _sortBy = @"vote_count.desc";
             break;
         case GZEMovieDiscoverySortType_VoteCountAsc:
-            _sortBy = @"vote_count_asc";
+            _sortBy = @"vote_count.asc";
             break;
         default:
             break;
     }
 }
 
-- (void)setWatchMonetizationType:(GZEMovieDiscoveryWatchMonetizationType)watchMonetizationType
+- (void)setWatchMonetizationType:(GZEMediaWatchMonetizationType)watchMonetizationType
 {
     _watchMonetizationType = watchMonetizationType;
     switch (watchMonetizationType) {
-        case GZEMovieDiscoveryWatchMonetizationType_Flatrate:
+        case GZEMediaWatchMonetizationType_Flatrate:
             _withWatchMonetizationTypes = @"flatrate";
             break;
-        case GZEMovieDiscoveryWatchMonetizationType_Free:
+        case GZEMediaWatchMonetizationType_Free:
             _withWatchMonetizationTypes = @"free";
             break;
-        case GZEMovieDiscoveryWatchMonetizationType_Ads:
+        case GZEMediaWatchMonetizationType_Ads:
             _withWatchMonetizationTypes = @"ads";
             break;
-        case GZEMovieDiscoveryWatchMonetizationType_Rent:
+        case GZEMediaWatchMonetizationType_Rent:
             _withWatchMonetizationTypes = @"rent";
             break;
-        case GZEMovieDiscoveryWatchMonetizationType_Buy:
+        case GZEMediaWatchMonetizationType_Buy:
             _withWatchMonetizationTypes = @"buy";
             break;
             

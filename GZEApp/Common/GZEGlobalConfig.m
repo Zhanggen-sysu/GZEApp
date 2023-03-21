@@ -9,11 +9,18 @@
 #import "GZEGenreItem.h"
 #import "GZEGenreListReq.h"
 #import "GZEGenreListRsp.h"
+#import "GZECommonHelper.h"
+#import "GZELanguageListReq.h"
+#import "GZELanguageItem.h"
+#import "GZELanguageListRsp.h"
+#import "Macro.h"
 
 @interface GZEGlobalConfig ()
 
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *genresDict;
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *tvGenresDict;
+// 把GZELanguageItem的iso639_1作为key，方便使用
+@property (nonatomic, copy) NSDictionary<NSString *, GZELanguageItem *> *allLanguage;
 
 @end
 
@@ -40,7 +47,9 @@
     if ((mediaType == GZEMediaType_Movie && !self.genresDict) || (mediaType == GZEMediaType_TV && !self.tvGenresDict)) {
         GZEGenreListReq *req = [[GZEGenreListReq alloc] init];
         req.type = mediaType;
+        WeakSelf(self)
         [req startRequestWithRspClass:[GZEGenreListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEGenreListRsp *model = (GZEGenreListRsp *)rsp;
                 NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -64,6 +73,33 @@
             !completion ?: completion(self.genresDict);
         }
     }
+}
+
+- (void)getAllLanguagesWithCompletion:(void (^)(NSDictionary<NSString *,GZELanguageItem *> * _Nonnull))completion
+{
+    if (!self.allLanguage) {
+        GZELanguageListReq *req = [[GZELanguageListReq alloc] init];
+        [req startRequestWithRspClass:[GZELanguageListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            if (isSuccess) {
+                GZELanguageListRsp *model = (GZELanguageListRsp *)rsp;
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                [model.results enumerateObjectsUsingBlock:^(GZELanguageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [dict setObject:obj forKey:obj.iso639_1];
+                }];
+                self.allLanguage = dict;
+                !completion ?: completion(dict);
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            }
+        }];
+    } else {
+        !completion ?: completion(self.allLanguage);
+    }
+}
+
+- (NSArray<NSString *> *)supportLanguages
+{
+    return @[@"en", @"zh", @"cn", @"ja", @"ko", @"th", @"de", @"fr", @"ru", @"it", @"es", @"sv"];
 }
 
 @end

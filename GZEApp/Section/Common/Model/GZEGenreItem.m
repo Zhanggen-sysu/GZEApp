@@ -18,4 +18,12 @@
     };
 }
 
++ (GZEGenreItem *)itemWithId:(NSInteger)identifier name:(NSString *)name
+{
+    GZEGenreItem *item = [[GZEGenreItem alloc] init];
+    item.identifier = identifier;
+    item.name = name;
+    return item;
+}
+
 @end

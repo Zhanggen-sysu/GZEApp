@@ -6,7 +6,7 @@
 //
 
 #import "GZEBaseModel.h"
-@class GZEListSmallViewModel;
+@class GZEListSmallTableViewCellModel;
 @class GZEMovieListItem;
 @class GZETVListItem;
 NS_ASSUME_NONNULL_BEGIN
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSURL *imgUrl;
-@property (nonatomic, copy) NSArray<GZEListSmallViewModel *> *viewModels;
+@property (nonatomic, copy) NSArray<GZEListSmallTableViewCellModel *> *viewModels;
 
 + (GZEListCollectionViewModel *)viewModelWithTitle:(NSString *)title tvList:(NSArray<GZETVListItem *> *)tvList;
 + (GZEListCollectionViewModel *)viewModelWithTitle:(NSString *)title movieList:(NSArray<GZEMovieListItem *> *)movieList;

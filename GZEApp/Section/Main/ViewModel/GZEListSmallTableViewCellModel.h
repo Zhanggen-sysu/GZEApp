@@ -1,5 +1,5 @@
 //
-//  GZEListSmallViewModel.h
+//  GZEListSmallTableViewCellModel.h
 //  GZEApp
 //
 //  Created by GenZhang on 2023/3/13.
@@ -10,14 +10,14 @@
 @class GZETVListItem;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GZEListSmallViewModel : GZEBaseModel
+@interface GZEListSmallTableViewCellModel : GZEBaseModel
 
 @property (nonatomic, strong) NSURL *imgUrl;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSAttributedString *score;
 @property (nonatomic, copy) NSString *scoreNum;
-+ (GZEListSmallViewModel *)viewModelWithMovie:(GZEMovieListItem *)movie;
-+ (GZEListSmallViewModel *)viewModelWithTV:(GZETVListItem *)tv;
++ (GZEListSmallTableViewCellModel *)viewModelWithMovie:(GZEMovieListItem *)movie;
++ (GZEListSmallTableViewCellModel *)viewModelWithTV:(GZETVListItem *)tv;
 
 @end
 

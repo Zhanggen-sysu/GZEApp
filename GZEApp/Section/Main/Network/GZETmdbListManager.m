@@ -27,7 +27,7 @@
     self.page = loadMore ? ++self.page : 1;
     GZEMovieListReq *req = [[GZEMovieListReq alloc] init];
     req.type = type;
-    req.page = self.page;
+    req.page = @(self.page);
     [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:block];
 }
 
@@ -36,7 +36,7 @@
     self.tvPage = loadMore ? ++self.tvPage : 1;
     GZETVListReq *req = [[GZETVListReq alloc] init];
     req.type = type;
-    req.page = self.tvPage;
+    req.page = @(self.tvPage);
     [req startRequestWithRspClass:[GZETVListRsp class] completeBlock:block];
 }
 
@@ -58,8 +58,15 @@
 - (void)getMovieDiscoverWithReq:(GZEMovieDiscoveryReq *)req loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block;
 {
     self.discoverPage = loadMore ? ++self.discoverPage : 1;
-    req.page = self.discoverPage;
+    req.page = @(self.discoverPage);
     [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:block];
+}
+
+- (void)getTVDiscoverWithReq:(GZETVDiscoveryReq *)req loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block
+{
+    self.discoverPage = loadMore ? ++self.discoverPage : 1;
+    req.page = @(self.discoverPage);
+    [req startRequestWithRspClass:[GZETVListRsp class] completeBlock:block];
 }
 
 @end

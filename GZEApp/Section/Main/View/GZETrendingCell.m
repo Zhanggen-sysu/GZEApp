@@ -30,16 +30,12 @@
 
 - (void)defineLayout
 {
-    [self.cycleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 1.5));
-        make.edges.equalTo(self.contentView);
-    }];
 }
 
 - (SDCycleScrollView *)cycleView
 {
     if (!_cycleView) {
-        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:kGetImage(@"default-poster")];
+        _cycleView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 1.5) delegate:self placeholderImage:kGetImage(@"default-poster")];
         _cycleView.autoScrollTimeInterval = 8;
     }
     return _cycleView;

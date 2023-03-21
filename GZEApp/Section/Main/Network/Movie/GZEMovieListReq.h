@@ -20,7 +20,8 @@ typedef NS_ENUM(NSUInteger, GZEMovieListType) {
 @interface GZEMovieListReq : GZEBaseReq
 
 @property (nonatomic, copy) NSString *language;
-@property (nonatomic, assign) NSInteger page;
+// NSInteger
+@property (nonatomic, strong) NSNumber *page;
 @property (nonatomic, copy) NSString *region;
 @property (nonatomic, assign) GZEMovieListType type;
 

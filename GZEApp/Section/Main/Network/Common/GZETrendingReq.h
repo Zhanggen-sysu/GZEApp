@@ -6,7 +6,7 @@
 //
 
 #import "GZEBaseReq.h"
-#import "GZECommonHelper.h"
+#import "GZEEnum.h"
 
 typedef NS_ENUM(NSUInteger, GZETimeWindow) {
     GZETimeWindow_Default,

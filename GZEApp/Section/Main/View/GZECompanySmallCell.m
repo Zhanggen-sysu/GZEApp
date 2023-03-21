@@ -42,8 +42,6 @@
         make.left.right.equalTo(self.contentView);
         make.top.equalTo(self.icon.mas_bottom).offset(10.f);
     }];
-    [self layoutIfNeeded];
-    [GZECommonHelper applyCornerRadiusToView:self.icon radius:5 corners:UIRectCornerAllCorners];
 }
 
 - (UIImageView *)icon
@@ -51,6 +49,8 @@
     if (!_icon) {
         _icon = [[UIImageView alloc] init];
         _icon.contentMode = UIViewContentModeScaleAspectFit;
+        _icon.layer.masksToBounds = YES;
+        _icon.layer.cornerRadius = 5;
     }
     return _icon;
 }

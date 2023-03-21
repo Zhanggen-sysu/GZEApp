@@ -8,7 +8,7 @@
 #import "GZEListCollectionViewModel.h"
 #import "GZETVListItem.h"
 #import "GZEMovieListItem.h"
-#import "GZEListSmallViewModel.h"
+#import "GZEListSmallTableViewCellModel.h"
 #import "GZECommonHelper.h"
 
 @implementation GZEListCollectionViewModel
@@ -19,7 +19,7 @@
     viewModel.title = title;
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [tvList enumerateObjectsUsingBlock:^(GZETVListItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [array addObject:[GZEListSmallViewModel viewModelWithTV:obj]];
+        [array addObject:[GZEListSmallTableViewCellModel viewModelWithTV:obj]];
         if (idx == 0) {
             viewModel.imgUrl = [GZECommonHelper getBackdropUrl:obj.backdropPath size:GZEBackdropSize_w300];
         }
@@ -35,7 +35,7 @@
     viewModel.title = title;
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [movieList enumerateObjectsUsingBlock:^(GZEMovieListItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [array addObject:[GZEListSmallViewModel viewModelWithMovie:obj]];
+        [array addObject:[GZEListSmallTableViewCellModel viewModelWithMovie:obj]];
         if (idx == 0) {
             viewModel.imgUrl = [GZECommonHelper getBackdropUrl:obj.backdropPath size:GZEBackdropSize_w300];
         }

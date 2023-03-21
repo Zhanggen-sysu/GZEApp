@@ -16,7 +16,8 @@
 
 + (NSDictionary<NSString *, NSString *> *)properties
 {
-    NSAssert(NO, @"Must override");
+    NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];
+    NSAssert(NO, assert);
     return nil;
 }
 

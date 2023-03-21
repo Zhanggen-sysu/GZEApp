@@ -11,6 +11,7 @@
 #import "GZETrendingReq.h"
 #import "GZETVListReq.h"
 #import "GZEMovieDiscoveryReq.h"
+#import "GZETVDiscoveryReq.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getTVListType:(GZETVListType)type loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block;
 
 - (void)getMovieDiscoverWithReq:(GZEMovieDiscoveryReq *)req loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block;
+
+- (void)getTVDiscoverWithReq:(GZETVDiscoveryReq *)req loadMore:(BOOL)loadMore block:(GZECommonRspBlock)block;
 
 @end
 

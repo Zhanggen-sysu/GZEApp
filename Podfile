@@ -15,6 +15,7 @@ target 'GZEApp' do
   pod 'MJRefresh' 
   pod 'PYSearch'
   pod 'SDCycleScrollView','>= 1.82'
+  pod 'UICollectionViewLeftAlignedLayout'
   pod 'YPNavigationBarTransition'
   pod 'YTKNetwork'
   pod 'YYModel' 

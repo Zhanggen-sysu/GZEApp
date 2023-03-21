@@ -6,7 +6,7 @@
 //
 
 #import "GZEBaseReq.h"
-#import "GZECommonHelper.h"
+#import "GZEEnum.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

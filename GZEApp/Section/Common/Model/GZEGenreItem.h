@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger identifier;
 @property (nonatomic, copy)   NSString *name;
 
++ (GZEGenreItem *)itemWithId:(NSInteger)identifier name:(NSString *)name;
+
 @end
 
 NS_ASSUME_NONNULL_END

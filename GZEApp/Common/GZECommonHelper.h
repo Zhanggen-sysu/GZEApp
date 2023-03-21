@@ -50,23 +50,22 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
     GZELogoSize_original,
 };
 
-typedef NS_ENUM(NSUInteger, GZEMediaType) {
-    GZEMediaType_Default,
-    GZEMediaType_All,
-    GZEMediaType_Movie,
-    GZEMediaType_TV,
-    GZEMediaType_Person,
-};
-
 @interface GZECommonHelper : NSObject
 
+// 获取各类型图片URL
 + (NSURL *)getPosterUrl:(NSString *)string size:(GZEPosterSize)size;
 + (NSURL *)getBackdropUrl:(NSString *)string size:(GZEBackdropSize)size;
 + (NSURL *)getProfileUrl:(NSString *)string size:(GZEProfileSize)size;
 + (NSURL *)getLogoUrl:(NSString *)string size:(GZELogoSize)size;
+
+// 提示
 + (void)showMessage:(NSString *)message inView:(nullable UIView *)view duration:(NSInteger)duration;
 + (UIWindow *)getKeyWindow;
+
+// 圆角
 + (void)applyCornerRadiusToView:(UIView *)view radius:(CGFloat)radius corners:(UIRectCorner)corners;
+
+// 通过评分生成五颗星星的评级字符串
 + (NSAttributedString *)generateRatingString:(double)voteAverage starSize:(CGFloat)size space:(NSInteger)space;
 @end
 

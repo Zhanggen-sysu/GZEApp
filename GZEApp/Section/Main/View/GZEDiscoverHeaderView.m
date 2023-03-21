@@ -23,8 +23,6 @@
 
 @implementation GZEDiscoverHeaderView
 
-
-
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
@@ -34,36 +32,102 @@
     return self;
 }
 
+- (void)setButtonArrow:(GZECustomButton *)button isUp:(BOOL)isUp
+{
+    if (isUp) {
+        if (button.isSelected) {
+            [button setImage:kGetImage(@"arrow-up-select") forState:UIControlStateNormal];
+        } else {
+            [button setImage:kGetImage(@"arrow-up-gray") forState:UIControlStateNormal];
+        }
+    } else {
+        if (button.isSelected) {
+            [button setImage:kGetImage(@"arrow-down-select") forState:UIControlStateNormal];
+        } else {
+            [button setImage:kGetImage(@"arrow-down-gray") forState:UIControlStateNormal];
+        }
+    }
+}
+
+#pragma mark - Public
+- (void)resetFilter
+{
+    [self updateSortTitle:@"" hightlight:NO];
+    [self sortArrowIsUp:NO];
+    
+    [self updateGenreTitle:@"" hightlight:NO];
+    [self genreArrowIsUp:NO];
+    
+    [self updateLanguageTitle:@"" hightlight:NO];
+    [self languageArrowIsUp:NO];
+    
+    [self.filterButton setSelected:NO];
+}
+
+- (void)updateSortTitle:(NSString *)title hightlight:(BOOL)hightlight
+{
+    [self.sortButton setSelected:hightlight];
+    [self.sortButton setTitle:!hightlight ? @"Sort" : title forState:UIControlStateNormal];
+}
+
+- (void)sortArrowIsUp:(BOOL)isUp
+{
+    [self setButtonArrow:self.sortButton isUp:isUp];
+}
+
+- (void)updateGenreTitle:(NSString *)title hightlight:(BOOL)hightlight
+{
+    [self.genreButton setSelected:hightlight];
+    [self.genreButton setTitle:!hightlight ? @"Genre" : title forState:UIControlStateNormal];
+}
+
+- (void)genreArrowIsUp:(BOOL)isUp
+{
+    [self setButtonArrow:self.genreButton isUp:isUp];
+}
+
+- (void)updateLanguageTitle:(NSString *)title hightlight:(BOOL)hightlight
+{
+    [self.languageButton setSelected:hightlight];
+    [self.languageButton setTitle:!hightlight ? @"Language" : title forState:UIControlStateNormal];
+}
+
+- (void)languageArrowIsUp:(BOOL)isUp
+{
+    [self setButtonArrow:self.languageButton isUp:isUp];
+}
+
 #pragma mark - Action
 - (void)tapMediaButton
 {
     [self.mediaButton setSelected:!self.mediaButton.isSelected];
-    !self.didTapMediaButton ?: self.didTapMediaButton(!self.mediaButton.isSelected);
+    !self.didTapMediaButton ?: self.didTapMediaButton(self.mediaButton.isSelected ? GZEMediaType_TV : GZEMediaType_Movie);
 }
 
 - (void)tapGenreButton
 {
-    
+    !self.didTapGenreButton ?: self.didTapGenreButton();
 }
 
 - (void)tapSortButton
 {
-    
+    !self.didTapSortButton ?: self.didTapSortButton();
 }
 
 - (void)tapLanguageButton
 {
-    
+    !self.didTapLanguageButton ?: self.didTapLanguageButton();
 }
 
 - (void)tapFilterButton
 {
-    
+    !self.didTapFilterButton ?: self.didTapFilterButton();
 }
 
 #pragma mark - UI
 - (void)setupSubviews
 {
+    self.contentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.mediaButton];
     [self.contentView addSubview:self.genreButton];
@@ -139,8 +203,8 @@
         [_sortButton setTitleColor:RGBColor(128, 128, 128) forState:UIControlStateNormal];
         [_sortButton setTitleColor:RGBColor(0, 191, 255) forState:UIControlStateSelected];
         [_sortButton setImage:kGetImage(@"arrow-down-gray") forState:UIControlStateNormal];
-        [_sortButton setImage:kGetImage(@"arrow-down-select") forState:UIControlStateSelected];
         [_sortButton setImagePosition:GZEBtnImgPosition_Right spacing:5 contentAlign:GZEBtnContentAlign_Center contentOffset:0 imageSize:CGSizeMake(12, 12) titleSize:CGSizeZero];
+        [_sortButton addTarget:self action:@selector(tapSortButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sortButton;
 }
@@ -154,8 +218,8 @@
         [_languageButton setTitleColor:RGBColor(128, 128, 128) forState:UIControlStateNormal];
         [_languageButton setTitleColor:RGBColor(0, 191, 255) forState:UIControlStateSelected];
         [_languageButton setImage:kGetImage(@"arrow-down-gray") forState:UIControlStateNormal];
-        [_languageButton setImage:kGetImage(@"arrow-down-select") forState:UIControlStateSelected];
         [_languageButton setImagePosition:GZEBtnImgPosition_Right spacing:5 contentAlign:GZEBtnContentAlign_Center contentOffset:0 imageSize:CGSizeMake(12, 12) titleSize:CGSizeZero];
+        [_languageButton addTarget:self action:@selector(tapLanguageButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _languageButton;
 }
@@ -169,8 +233,8 @@
         [_genreButton setTitleColor:RGBColor(128, 128, 128) forState:UIControlStateNormal];
         [_genreButton setTitleColor:RGBColor(0, 191, 255) forState:UIControlStateSelected];
         [_genreButton setImage:kGetImage(@"arrow-down-gray") forState:UIControlStateNormal];
-        [_genreButton setImage:kGetImage(@"arrow-down-select") forState:UIControlStateSelected];
         [_genreButton setImagePosition:GZEBtnImgPosition_Right spacing:5 contentAlign:GZEBtnContentAlign_Center contentOffset:0 imageSize:CGSizeMake(12, 12) titleSize:CGSizeZero];
+        [_genreButton addTarget:self action:@selector(tapGenreButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _genreButton;
 }
@@ -181,6 +245,7 @@
         _filterButton = [[UIButton alloc] init];
         [_filterButton setImage:kGetImage(@"filter-gray") forState:UIControlStateNormal];
         [_filterButton setImage:kGetImage(@"filter-select") forState:UIControlStateSelected];
+        [_filterButton addTarget:self action:@selector(tapFilterButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _filterButton;
 }

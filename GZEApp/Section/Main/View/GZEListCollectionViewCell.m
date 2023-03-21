@@ -7,16 +7,16 @@
 
 #import "GZEListCollectionViewCell.h"
 #import "GZEListCollectionViewModel.h"
-#import "GZEListSmallView.h"
+#import "GZEListSmallTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "GZECommonHelper.h"
 
-@interface GZEListCollectionViewCell ()
+@interface GZEListCollectionViewCell () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIImageView *bgImg;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, strong) UIStackView *stackView;
+@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) GZEListCollectionViewModel *viewModel;
 
 @end
@@ -28,26 +28,17 @@
     self.viewModel = viewModel;
     self.titleLabel.text = viewModel.title;
     [self.bgImg sd_setImageWithURL:viewModel.imgUrl placeholderImage:kGetImage(@"default-backdrop")];
-    NSArray *subView = self.stackView.arrangedSubviews;
-    [subView enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj removeFromSuperview];
-    }];
-    [viewModel.viewModels enumerateObjectsUsingBlock:^(GZEListSmallViewModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        GZEListSmallView *view = [GZEListSmallView createListView:idx model:obj];
-        [self.stackView addArrangedSubview:view];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(69.f);
-            make.left.right.equalTo(self.stackView);
-        }];
-    }];
+    [self.tableView reloadData];
 }
 
 - (void)setupSubviews
 {
+    self.contentView.layer.masksToBounds = YES;
+    self.contentView.layer.cornerRadius = 15.f;
     [self.contentView addSubview:self.bgImg];
     [self.contentView addSubview:self.maskView];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.stackView];
+    [self.contentView addSubview:self.tableView];
 }
 
 - (void)defineLayout
@@ -61,15 +52,15 @@
         make.left.top.equalTo(self.contentView).offset(15.f);
         make.right.equalTo(self.contentView).offset(-15.f);
     }];
-    [self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15.f);
+        make.height.mas_equalTo(240);
     }];
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
     [self layoutIfNeeded];
-    [GZECommonHelper applyCornerRadiusToView:self.contentView radius:15.f corners:UIRectCornerAllCorners];
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = self.maskView.bounds;
     gradientLayer.colors = @[(__bridge id)RGBAColor(70, 130, 180, 0.1f).CGColor
@@ -104,16 +95,41 @@
     return _maskView;
 }
 
-- (UIStackView *)stackView
+- (UITableView *)tableView
 {
-    if (!_stackView) {
-        _stackView = [[UIStackView alloc] init];
-        _stackView.axis = UILayoutConstraintAxisVertical;
-        _stackView.alignment = UIStackViewAlignmentFill;
-        _stackView.distribution = UIStackViewDistributionFill;
-        _stackView.spacing = 10.f;
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.rowHeight = 80.f;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.scrollEnabled = NO;
     }
-    return _stackView;
+    return _tableView;
+}
+
+#pragma mark - UITableViewDelegate, DataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GZEListSmallTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GZEListSmallTableViewCell class])];
+    if (!cell) {
+        cell = [[GZEListSmallTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GZEListSmallTableViewCell class])];
+    }
+    GZEListSmallTableViewCellModel *model = self.viewModel.viewModels[indexPath.row];
+    [cell updateWithIndex:indexPath.row+1 model:model];
+    return cell;
 }
 
 
