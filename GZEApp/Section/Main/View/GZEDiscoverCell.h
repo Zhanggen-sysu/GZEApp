@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEDiscoverCell : GZEBaseTableViewCell
 
+@property (nonatomic, copy) void (^didChangeHeight)(BOOL isWrap);
 - (void)updateWithModel:(GZEDiscoverCellViewModel *)viewModel;
 
 @end

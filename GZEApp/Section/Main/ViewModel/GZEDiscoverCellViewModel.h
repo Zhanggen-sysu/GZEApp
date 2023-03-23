@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *score;
 @property (nonatomic, copy) NSString *detail;
 @property (nonatomic, copy) NSString *overview;
+// 文本是否展开
+@property (nonatomic, assign) BOOL isWrap;
 
 + (GZEDiscoverCellViewModel *)viewModelWithTVItem:(GZETVListItem *)item;
 + (GZEDiscoverCellViewModel *)viewModelWithMovieItem:(GZEMovieListItem *)item;

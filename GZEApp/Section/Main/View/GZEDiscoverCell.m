@@ -9,6 +9,7 @@
 #import "UIImageView+WebCache.h"
 #import "GZEDiscoverCellViewModel.h"
 #import "GZECommonHelper.h"
+#import "GZEWrappingLabel.h"
 
 @interface GZEDiscoverCell ()
 
@@ -18,7 +19,7 @@
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *scoreNumLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) GZEWrappingLabel *contentLabel;
 @property (nonatomic, strong) UIView *lineView;
 
 @end
@@ -34,6 +35,7 @@
     self.scoreNumLabel.text = viewModel.score;
     self.detailLabel.text = viewModel.detail;
     self.contentLabel.text = viewModel.overview;
+    self.contentLabel.isWrap = viewModel.isWrap;
 }
 
 - (CGSize)posterSize
@@ -93,13 +95,14 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.nameLabel);
         make.top.equalTo(self.detailLabel.mas_bottom).offset(10.f);
-        make.bottom.equalTo(self.contentView).offset(-5.f);
+        make.bottom.equalTo(self.contentView).offset(-5.f).priorityHigh();
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(0.5f);
         make.left.right.equalTo(self.nameLabel);
         make.bottom.equalTo(self.contentView);
     }];
+    [self.contentView layoutIfNeeded];
 }
 
 - (UIImageView *)posterImg
@@ -160,12 +163,26 @@
     return _detailLabel;
 }
 
-- (UILabel *)contentLabel
+- (GZEWrappingLabel *)contentLabel
 {
     if (!_contentLabel) {
-        _contentLabel = [[UILabel alloc] init];
+        _contentLabel = [[GZEWrappingLabel alloc] initWithFrame:CGRectZero];
         _contentLabel.font = kFont(14.f);
-        _contentLabel.numberOfLines = 3;
+        _contentLabel.wrapText = nil;
+        NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithAttributedString:[[NSAttributedString alloc] initWithString:@"Expand " attributes:@{
+            NSFontAttributeName: kFont(14.f),
+            NSForegroundColorAttributeName: RGBColor(128, 128, 128),
+        }]];
+        NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+        attach.image = kGetImage(@"arrow-down-gray");
+        attach.bounds = CGRectMake(0, 0, 12, 12);
+        [attri appendAttributedString:[NSAttributedString attributedStringWithAttachment:attach]];
+        _contentLabel.expandText = attri;
+        WeakSelf(self)
+        _contentLabel.didChangeHeight = ^(BOOL isWrap) {
+            StrongSelfReturnNil(self)
+            !self.didChangeHeight ?: self.didChangeHeight(isWrap);
+        };
     }
     return _contentLabel;
 }

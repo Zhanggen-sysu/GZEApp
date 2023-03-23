@@ -23,6 +23,7 @@
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
     viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
     viewModel.overview = item.overview;
+    viewModel.isWrap = YES;
     NSMutableString *str = [[NSMutableString alloc] init];
     [str appendString:[NSString stringWithFormat:@"%@ / %@", item.firstAirDate, item.originalLanguage]];
     if (item.genreIDS.count > 0) {
@@ -50,6 +51,7 @@
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
     viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
     viewModel.overview = item.overview;
+    viewModel.isWrap = YES;
     NSMutableString *str = [[NSMutableString alloc] init];
     [str appendString:[NSString stringWithFormat:@"%@ / %@", item.releaseDate, item.originalLanguage]];
     if (item.genreIDS.count > 0) {

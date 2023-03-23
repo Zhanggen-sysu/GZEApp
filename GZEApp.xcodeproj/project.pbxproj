@@ -47,6 +47,7 @@
 		3DD8FB4829C94FD5005DF827 /* GZELanguageListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4729C94FD5005DF827 /* GZELanguageListReq.m */; };
 		3DD8FB4E29C95139005DF827 /* GZELanguageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4C29C95139005DF827 /* GZELanguageItem.m */; };
 		3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5029C9539F005DF827 /* GZELanguageListRsp.m */; };
+		3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */; };
 		3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */; };
 		3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */; };
 		3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */; };
@@ -154,6 +155,8 @@
 		3DD8FB4D29C95139005DF827 /* GZELanguageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZELanguageItem.h; sourceTree = "<group>"; };
 		3DD8FB4F29C9539F005DF827 /* GZELanguageListRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZELanguageListRsp.h; sourceTree = "<group>"; };
 		3DD8FB5029C9539F005DF827 /* GZELanguageListRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZELanguageListRsp.m; sourceTree = "<group>"; };
+		3DD8FB5929CA978E005DF827 /* GZEWrappingLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEWrappingLabel.h; sourceTree = "<group>"; };
+		3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEWrappingLabel.m; sourceTree = "<group>"; };
 		3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGlobalConfig.h; sourceTree = "<group>"; };
 		3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGlobalConfig.m; sourceTree = "<group>"; };
 		3DF1EDEC29BEC8B9006BCF3E /* GZEGenreListReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGenreListReq.h; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */,
 				3D1ED2F929C412A7008A17E4 /* NSString+GZEExtension.h */,
 				3D1ED2FA29C412A7008A17E4 /* NSString+GZEExtension.m */,
+				3DD8FB5929CA978E005DF827 /* GZEWrappingLabel.h */,
+				3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 				3DD8FB4229C946C9005DF827 /* GZEListSmallTableViewCellModel.m in Sources */,
 				3D97CE1629C2C36500C19665 /* GZEDiscoverHeaderView.m in Sources */,
 				3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */,
+				3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */,
 				3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */,
 				3DF1EE2529BF1862006BCF3E /* GZETVListReq.m in Sources */,
 				3DA27DD029B075BE0086089A /* GZETmdbListManager.m in Sources */,

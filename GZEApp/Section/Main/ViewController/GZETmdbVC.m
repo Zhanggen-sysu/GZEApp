@@ -516,6 +516,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 303;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -656,6 +657,17 @@
         GZEDiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GZEDiscoverCell class])];
         if (!cell) {
             cell = [[GZEDiscoverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GZEDiscoverCell class])];
+            WeakSelf(self)
+            WeakSelf(cell)
+            cell.didChangeHeight = ^(BOOL isWrap) {
+                StrongSelfReturnNil(self)
+                StrongSelfReturnNil(cell)
+                // 获取修改cell的IndexPath的正确姿势，不能直接用indexPath
+                NSIndexPath *changeIndexPath = [tableView indexPathForCell:cell];
+                self.discoverArray[changeIndexPath.row].isWrap = isWrap;
+                // 更新该行的高度
+                [self.tableView reloadRowsAtIndexPaths:@[changeIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            };
         }
         [cell updateWithModel:self.discoverArray[indexPath.row]];
         return cell;
