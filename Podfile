@@ -9,11 +9,11 @@ target 'GZEApp' do
 
   # Pods for GZEApp
   pod 'CYLTabBarController'
+  pod 'JXCategoryView'
   pod 'LookinServer', :configurations => ['Debug']
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'MJRefresh' 
-  pod 'PYSearch'
   pod 'SDCycleScrollView','>= 1.82'
   pod 'UICollectionViewLeftAlignedLayout'
   pod 'YPNavigationBarTransition'

@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 利用CoreText实现的支持收起展开的Label，不过收起展开按钮暂时只支持自定义文案，不能添加图片
 @interface GZEWrappingLabel : UIView
 
 // 收起时的行数限制

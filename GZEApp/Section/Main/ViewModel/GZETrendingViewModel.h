@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<NSURL *> *imgUrls;
 @property (nonatomic, strong) GZETrendingRsp *rsp;
 @property (nonatomic, copy) NSArray<GZETrendingItem *> *media;
+@property (nonatomic, copy) NSArray<GZETrendingItem *> *people;
 
 @end
 

@@ -47,8 +47,8 @@
     GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
     viewModel.name = item.title;
     viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
-    viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w300];
-    viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
+    viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w780];
+    viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w185];
     viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
     viewModel.overview = item.overview;
     viewModel.isWrap = YES;

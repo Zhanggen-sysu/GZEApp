@@ -17,14 +17,18 @@
     _rsp = rsp;
     NSMutableArray *urlArray = [[NSMutableArray alloc] init];
     NSMutableArray *mediaArray = [[NSMutableArray alloc] init];
+    NSMutableArray *peopleArray = [[NSMutableArray alloc] init];
     [rsp.results enumerateObjectsUsingBlock:^(GZETrendingItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.mediaType isEqualToString:@"tv"] || [obj.mediaType isEqualToString:@"movie"]) {
             [urlArray addObject:[GZECommonHelper getPosterUrl:obj.posterPath size:GZEPosterSize_w780]];
             [mediaArray addObject:obj];
+        } else {
+            [peopleArray addObject:obj];
         }
     }];
     self.imgUrls = urlArray;
     self.media = mediaArray;
+    self.people = peopleArray;
 }
 
 @end

@@ -22,6 +22,7 @@
 #import "GZEDiscoverCellViewModel.h"
 #import "GZEDiscoverFilterViewModel.h"
 
+#import "GZESearchVC.h"
 #import "GZEDiscoverFilterView.h"
 #import "GZEDiscoverSortView.h"
 #import "GZECustomButton.h"
@@ -38,6 +39,8 @@
 
 @property (nonatomic, strong) GZECustomButton *searchBtn;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIButton *backToTopBtn;
+@property (nonatomic, strong) GZESearchVC *searchVC;
 
 @property (nonatomic, strong) GZETmdbListManager *manager;
 
@@ -92,16 +95,6 @@
 #pragma mark - Data
 - (void)initData
 {
-    self.trendingModel = [[GZETrendingViewModel alloc] init];
-    self.listViewModel = [NSMutableArray arrayWithObjects:
-                          [GZEListCollectionViewModel new],
-                          [GZEListCollectionViewModel new],
-                          [GZEListCollectionViewModel new],
-                          [GZEListCollectionViewModel new], nil];
-    self.moviesReq = [[GZEMovieDiscoveryReq alloc] init];
-    self.tvsReq = [[GZETVDiscoveryReq alloc] init];
-    self.mediaType = GZEMediaType_Movie;
-    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [array addObject:[GZEGenreItem itemWithId:GZEMovieDiscoverySortType_PopularityDesc name:@"Popularity"]];
     [array addObject:[GZEGenreItem itemWithId:GZEMovieDiscoverySortType_ReleaseDateDesc name:@"Release Date"]];
@@ -119,12 +112,24 @@
 
 - (void)loadData
 {
+    self.trendingModel = [[GZETrendingViewModel alloc] init];
+    self.listViewModel = [NSMutableArray arrayWithObjects:
+                          [GZEListCollectionViewModel new],
+                          [GZEListCollectionViewModel new],
+                          [GZEListCollectionViewModel new],
+                          [GZEListCollectionViewModel new], nil];
+    self.moviesReq = [[GZEMovieDiscoveryReq alloc] init];
+    self.tvsReq = [[GZETVDiscoveryReq alloc] init];
+    self.mediaType = GZEMediaType_Movie;
+    GZEDiscoverHeaderView *header = (GZEDiscoverHeaderView *)[self.tableView headerViewForSection:3];
+    [header resetFilter];
     WeakSelf(self)
     [self.manager getTrendingList:GZEMediaType_All timeWindow:GZETimeWindow_Week block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
         StrongSelfReturnNil(self)
         if (isSuccess) {
             GZETrendingRsp *model = (GZETrendingRsp *)rsp;
-            [self.trendingModel setRsp:model];;
+            [self.trendingModel setRsp:model];
+            self.searchVC = [[GZESearchVC alloc] initWithTrendingViewModel:self.trendingModel];
             [self.tableView reloadData];
         } else {
             [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
@@ -153,6 +158,8 @@
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
                 self.listViewModel[0] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular Movie" movieList:model.results];
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
             dispatch_group_leave(group);
         }];
@@ -165,6 +172,8 @@
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
                 self.listViewModel[1] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated Movie" movieList:model.results];
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
             dispatch_group_leave(group);
         }];
@@ -177,6 +186,8 @@
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
                 self.listViewModel[2] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular TV" tvList:model.results];
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
             dispatch_group_leave(group);
         }];
@@ -189,6 +200,8 @@
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
                 self.listViewModel[3] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated TV" tvList:model.results];
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
             dispatch_group_leave(group);
         }];
@@ -220,12 +233,15 @@
             if (isSuccess) {
                 GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
                 self.moviesRsp = response;
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
             dispatch_group_leave(newGroup);
         }];
     });
     
     dispatch_group_notify(newGroup, dispatch_get_main_queue(), ^{
+        [self.tableView.mj_header endRefreshing];
         [self updateTableView:NO];
     });
     
@@ -243,21 +259,35 @@
         WeakSelf(self)
         [self.manager getMovieDiscoverWithReq:self.moviesReq loadMore:loadMore block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
-            GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
-            self.moviesRsp = response;
-            [self updateTableView:loadMore];
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView.mj_header endRefreshing];
+            if (isSuccess) {
+                GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
+                self.moviesRsp = response;
+                [self updateTableView:loadMore];
+                if (loadMore) {
+                    [self.tableView.mj_footer endRefreshing];
+                } else {
+                    [self.tableView.mj_header endRefreshing];
+                }
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
+            }
         }];
     } else if (self.mediaType == GZEMediaType_TV) {
         WeakSelf(self)
         [self.manager getTVDiscoverWithReq:self.tvsReq loadMore:loadMore block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
-            GZETVListRsp *response = (GZETVListRsp *)rsp;
-            self.tvsRsp = response;
-            [self updateTableView:loadMore];
-            [self.tableView.mj_footer endRefreshing];
-            [self.tableView.mj_header endRefreshing];
+            if (isSuccess) {
+                GZETVListRsp *response = (GZETVListRsp *)rsp;
+                self.tvsRsp = response;
+                [self updateTableView:loadMore];
+                if (loadMore) {
+                    [self.tableView.mj_footer endRefreshing];
+                } else {
+                    [self.tableView.mj_header endRefreshing];
+                }
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
+            }
         }];
     }
 }
@@ -271,6 +301,16 @@
 }
 
 #pragma mark - private
+- (void)didTapBackToTop
+{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+}
+
+- (void)didTapSearchBtn
+{
+    [self.navigationController pushViewController:self.searchVC animated:NO];
+}
+
 // 统一这里调用dismiss 和 show
 - (void)showOrHideSortView:(BOOL)isHidden
 {
@@ -385,6 +425,7 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.sortView];
     [self.view addSubview:self.filterView];
+    [self.view addSubview:self.backToTopBtn];
 }
 
 - (void)defineLayout
@@ -415,6 +456,11 @@
             make.top.equalTo(self.view).offset(44 + 30.f);
         }
     }];
+    [self.backToTopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.bottom.equalTo(self.view).offset(-150);
+    }];
 }
 
 - (GZECustomButton *)searchBtn
@@ -423,13 +469,14 @@
         _searchBtn = [[GZECustomButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 20, 36)];
         [_searchBtn setImage:kGetImage(@"search-white") forState:UIControlStateNormal];
         [_searchBtn setTitle:@"Search Movie, TV, Person..." forState:UIControlStateNormal];
-        _searchBtn.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+        _searchBtn.backgroundColor = RGBAColor(118, 118, 128, 0.12);
         _searchBtn.titleLabel.font = kFont(14.f);
-        _searchBtn.titleLabel.textColor = [UIColor whiteColor];
+        [_searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _searchBtn.layer.masksToBounds = YES;
-        _searchBtn.layer.cornerRadius = 18;
+        _searchBtn.layer.cornerRadius = 10;
         _searchBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [_searchBtn setImagePosition:GZEBtnImgPosition_Left spacing:15 contentAlign:GZEBtnContentAlign_Left contentOffset:20 imageSize:CGSizeZero titleSize:CGSizeZero];
+        [_searchBtn addTarget:self action:@selector(didTapSearchBtn) forControlEvents:UIControlEventTouchUpInside];
+        [_searchBtn setImagePosition:GZEBtnImgPosition_Left spacing:4 contentAlign:GZEBtnContentAlign_Left contentOffset:6 imageSize:CGSizeZero titleSize:CGSizeZero];
     }
     return _searchBtn;
 }
@@ -525,13 +572,29 @@
             _tableView.sectionHeaderTopPadding = 0;
         }
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-            [self loadDataWithMore:NO];
+            [self loadData];
         }];
         _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [self loadDataWithMore:YES];
         }];
     }
     return _tableView;
+}
+
+- (UIButton *)backToTopBtn
+{
+    if (!_backToTopBtn) {
+        _backToTopBtn = [[UIButton alloc] init];
+        [_backToTopBtn setImage:kGetImage(@"arrow-up-gray") forState:UIControlStateNormal];
+        _backToTopBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
+        _backToTopBtn.layer.masksToBounds = YES;
+        _backToTopBtn.layer.cornerRadius = 20;
+        _backToTopBtn.layer.borderWidth = 0.5;
+        _backToTopBtn.layer.borderColor = RGBColor(128, 128, 128).CGColor;
+        _backToTopBtn.hidden = YES;
+        [_backToTopBtn addTarget:self action:@selector(didTapBackToTop) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backToTopBtn;
 }
 
 #pragma mark - UITableViewDelegate, DataSource
@@ -679,7 +742,24 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
     CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2.0 * 3));
+    // 改变UITableView的吸顶位置, 49是header Title占用的高度
+    CGFloat navigateBarHeight = self.navigationController.navigationBar.bottom - 49;
     if (gradientProgress != self.gradientProgress) {
+        // 需要等导航栏完全不透明时再设置
+        if (gradientProgress < 1 && self.gradientProgress >= 1) {
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        } else if (gradientProgress >= 1 && self.gradientProgress < 1) {
+            scrollView.contentInset = UIEdgeInsetsMake(navigateBarHeight, 0, 0, 0);
+        }
+        
+        if (gradientProgress < 0.5 && self.gradientProgress >= 0.5) {
+            [self.searchBtn setImage:kGetImage(@"search-white") forState:UIControlStateNormal];
+            [self.searchBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        } else if (gradientProgress >= 0.5 && self.gradientProgress < 0.5) {
+            [self.searchBtn setImage:kGetImage(@"search-gray") forState:UIControlStateNormal];
+            [self.searchBtn setTitleColor:RGBAColor(60, 60, 67, 0.6) forState:UIControlStateNormal];
+        }
+        
         if ((gradientProgress >= 0.5 && self.gradientProgress < 0.5) || (self.gradientProgress >= 0.5 && gradientProgress < 0.5)) {
             self.gradientProgress = gradientProgress;
             [self setNeedsStatusBarAppearanceUpdate];
@@ -689,16 +769,14 @@
             [self yp_refreshNavigationBarStyle];
         }
     }
-    // 改变UITableView的吸顶位置, 49是header Title占用的高度
-    CGFloat navigateBarHeight = self.navigationController.navigationBar.bottom - 49;
-    // 设置成(SCREEN_WIDTH / 2.0 * 3)是因为小于这个值时导航栏还有透明度，此时改变tableview的contentInset会有一条黑线，
-    // 需要等导航栏完全不透明时再设置
-    if (scrollView.contentOffset.y <= (SCREEN_WIDTH / 2.0 * 3) && scrollView.contentOffset.y >= 0) {
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    } else if (scrollView.contentOffset.y >= (SCREEN_WIDTH / 2.0 * 3)) {
-        scrollView.contentInset = UIEdgeInsetsMake(navigateBarHeight, 0, 0, 0);
+
+    CGRect rect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:10 inSection:3]];
+    // 加个MAX避免空数据的情况
+    if (scrollView.contentOffset.y >= MAX(4000, rect.origin.y) && self.backToTopBtn.isHidden) {
+        self.backToTopBtn.hidden = NO;
+    } else {
+        self.backToTopBtn.hidden = YES;
     }
-    
 }
 
 #pragma mark - YPNavigationBarConfigureStyle
