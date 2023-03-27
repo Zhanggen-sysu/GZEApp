@@ -72,6 +72,7 @@
         make.top.equalTo(self.scoreLabel.mas_bottom).offset(10.f);
         make.left.equalTo(self.titleLabel);
     }];
+    [self.typeLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (UIImageView *)poster

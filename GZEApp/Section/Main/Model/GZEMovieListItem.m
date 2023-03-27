@@ -30,11 +30,4 @@
     };
 }
 
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
-{
-    return @{
-        @"genre_ids": [NSNumber class],
-    };
-}
-
 @end

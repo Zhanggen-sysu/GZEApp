@@ -19,5 +19,4 @@ target 'GZEApp' do
   pod 'YPNavigationBarTransition'
   pod 'YTKNetwork'
   pod 'YYModel' 
-  pod 'YYText'
 end

@@ -114,9 +114,17 @@
         if (model.knownFor.count > 0) {
             GZETrendingItem *item = model.knownFor.firstObject;
             if ([item.mediaType isEqualToString:@"tv"]) {
-                viewModel.detail = [NSString stringWithFormat:@"%@ (%@)", item.title, [item.firstAirDate substringToIndex:3]];
+                NSMutableString *detail = [[NSMutableString alloc] initWithString:item.name.length > 0 ? item.name : @""];
+                if (item.firstAirDate.length > 0) {
+                    [detail appendFormat:@" (%@)", [item.firstAirDate substringToIndex:3]];
+                }
+                viewModel.detail = detail;
             } else if ([item.mediaType isEqualToString:@"movie"]) {
-                viewModel.detail = [NSString stringWithFormat:@"%@ (%@)", item.title, [item.releaseDate substringToIndex:3]];
+                NSMutableString *detail = [[NSMutableString alloc] initWithString:item.title.length > 0 ? item.title : @""];
+                if (item.releaseDate.length > 0) {
+                    [detail appendFormat:@" (%@)", [item.releaseDate substringToIndex:3]];
+                }
+                viewModel.detail = detail;
             }
         }
     }

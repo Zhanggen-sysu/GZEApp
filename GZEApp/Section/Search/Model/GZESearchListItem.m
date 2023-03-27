@@ -41,9 +41,7 @@
 + (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
 {
     return @{
-        @"origin_country": [NSString class],
-        @"genre_ids": [NSNumber class],
-        @"known_for": [GZETrendingItem class],
+        @"knownFor": [GZETrendingItem class],
     };
 }
 
