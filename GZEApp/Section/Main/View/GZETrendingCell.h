@@ -6,11 +6,14 @@
 //
 
 #import "GZEBaseTableViewCell.h"
+#import "GZEEnum.h"
 @class GZETrendingViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZETrendingCell : GZEBaseTableViewCell
+
+@property (nonatomic, copy) void (^didTapItem)(NSInteger Id, GZEMediaType type);
 
 - (void)updateWithModel:(GZETrendingViewModel *)model;
 

@@ -74,11 +74,11 @@
         make.edges.equalTo(self);
     }];
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.bgView);
+        make.top.leading.trailing.equalTo(self.bgView);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(500);
-        make.left.right.top.equalTo(self.contentView);
+        make.leading.trailing.top.equalTo(self.contentView);
     }];
 }
 

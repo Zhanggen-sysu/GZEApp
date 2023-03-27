@@ -26,12 +26,12 @@
 {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(15.0f);
+        make.leading.equalTo(self.contentView).offset(15.0f);
     }];
     
     [self.selectArrow mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
-        make.right.equalTo(self.contentView).offset(-15.0f);
+        make.trailing.equalTo(self.contentView).offset(-15.0f);
     }];
 }
 

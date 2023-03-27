@@ -40,7 +40,7 @@
     } else if ([model.mediaType isEqualToString:@"tv"]) {
         viewModel.mediaType = @"TV";
         viewModel.posterUrl = [GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92];
-        viewModel.title = model.title;
+        viewModel.title = model.name;
         NSMutableString *str = [[NSMutableString alloc] init];
         [str appendString:[NSString stringWithFormat:@"%@ / %@", model.firstAirDate, model.originalLanguage]];
         if (model.genreIDS.count > 0) {
@@ -116,13 +116,13 @@
             if ([item.mediaType isEqualToString:@"tv"]) {
                 NSMutableString *detail = [[NSMutableString alloc] initWithString:item.name.length > 0 ? item.name : @""];
                 if (item.firstAirDate.length > 0) {
-                    [detail appendFormat:@" (%@)", [item.firstAirDate substringToIndex:3]];
+                    [detail appendFormat:@" (%@)", [item.firstAirDate substringToIndex:4]];
                 }
                 viewModel.detail = detail;
             } else if ([item.mediaType isEqualToString:@"movie"]) {
                 NSMutableString *detail = [[NSMutableString alloc] initWithString:item.title.length > 0 ? item.title : @""];
                 if (item.releaseDate.length > 0) {
-                    [detail appendFormat:@" (%@)", [item.releaseDate substringToIndex:3]];
+                    [detail appendFormat:@" (%@)", [item.releaseDate substringToIndex:4]];
                 }
                 viewModel.detail = detail;
             }

@@ -8,18 +8,21 @@
 #import "GZETrendingCell.h"
 #import "SDCycleScrollView.h"
 #import "GZETrendingViewModel.h"
+#import "GZETrendingItem.h"
 #import "GZECommonHelper.h"
 
 @interface GZETrendingCell () <SDCycleScrollViewDelegate>
 
 @property (nonatomic, strong) SDCycleScrollView *cycleView;
+@property (nonatomic, strong) GZETrendingViewModel *viewModel;
 
 @end
 
 @implementation GZETrendingCell
 
-- (void)updateWithModel:(GZETrendingViewModel *)model;
+- (void)updateWithModel:(GZETrendingViewModel *)model
 {
+    self.viewModel = model;
     self.cycleView.imageURLStringsGroup = model.imgUrls;
 }
 
@@ -44,7 +47,12 @@
 #pragma mark - SDCycleScrollViewDelegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    
+    GZETrendingItem *item = self.viewModel.media[index];
+    if ([item.mediaType isEqualToString:@"tv"]) {
+        !self.didTapItem ?: self.didTapItem(item.identifier, GZEMediaType_TV);
+    } else if ([item.mediaType isEqualToString:@"movie"]) {
+        !self.didTapItem ?: self.didTapItem(item.identifier, GZEMediaType_Movie);
+    }
 }
 
 

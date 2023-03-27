@@ -45,15 +45,15 @@
 {
     // 320*180
     [self.bgImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.contentView);
+        make.leading.trailing.top.equalTo(self.contentView);
         make.height.mas_equalTo(180.f);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.contentView).offset(15.f);
-        make.right.equalTo(self.contentView).offset(-15.f);
+        make.leading.top.equalTo(self.contentView).offset(15.f);
+        make.trailing.equalTo(self.contentView).offset(-15.f);
     }];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.titleLabel);
+        make.leading.trailing.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15.f);
         make.height.mas_equalTo(240);
     }];

@@ -34,11 +34,11 @@
 - (void)defineLayout
 {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self.contentView).offset(15.f);
+        make.top.leading.equalTo(self.contentView).offset(15.f);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(15.f);
-        make.right.equalTo(self.contentView);
+        make.leading.equalTo(self.contentView).offset(15.f);
+        make.trailing.equalTo(self.contentView);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10.f);
         make.height.mas_equalTo(300.f);
         make.bottom.equalTo(self.contentView).offset(-15.f);

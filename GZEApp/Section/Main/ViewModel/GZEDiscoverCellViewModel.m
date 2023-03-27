@@ -17,7 +17,11 @@
 + (GZEDiscoverCellViewModel *)viewModelWithTVItem:(GZETVListItem *)item
 {
     GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
-    viewModel.name = item.name;
+    NSMutableString *title = [[NSMutableString alloc] initWithString:item.name];
+    if (item.firstAirDate.length > 0) {
+        [title appendString:[NSString stringWithFormat:@" (%@)", [item.firstAirDate substringToIndex:4]]];
+    }
+    viewModel.name = title;
     viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
     viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w300];
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
@@ -45,7 +49,11 @@
 + (GZEDiscoverCellViewModel *)viewModelWithMovieItem:(GZEMovieListItem *)item
 {
     GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
-    viewModel.name = item.title;
+    NSMutableString *title = [[NSMutableString alloc] initWithString:item.title];
+    if (item.releaseDate.length > 0) {
+        [title appendString:[NSString stringWithFormat:@" (%@)", [item.releaseDate substringToIndex:4]]];
+    }
+    viewModel.name = title;
     viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
     viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w780];
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w185];

@@ -45,26 +45,26 @@
 - (void)defineLayout
 {
     [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(5.f);
+        make.leading.equalTo(self.contentView).offset(5.f);
         make.centerY.equalTo(self.contentView);
         make.width.mas_equalTo(10.f);
     }];
     [self.posterImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(46, 69));
-        make.left.equalTo(self.indexLabel.mas_right).offset(10.f);
+        make.leading.equalTo(self.indexLabel.mas_trailing).offset(10.f);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.posterImg.mas_right).offset(10.f);
-        make.right.equalTo(self.contentView).offset(-10.f);
+        make.leading.equalTo(self.posterImg.mas_trailing).offset(10.f);
+        make.trailing.equalTo(self.contentView).offset(-10.f);
         make.bottom.equalTo(self.contentView.mas_centerY).offset(-5.f);
     }];
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_centerY).offset(5.f);
-        make.left.equalTo(self.titleLabel);
+        make.leading.equalTo(self.titleLabel);
     }];
     [self.scoreNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scoreLabel.mas_right).offset(5.f);
+        make.leading.equalTo(self.scoreLabel.mas_trailing).offset(5.f);
         make.centerY.equalTo(self.scoreLabel);
     }];
 }

@@ -40,8 +40,8 @@
 - (void)defineLayout
 {
     [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.bottom.equalTo(self);
-        make.left.equalTo(self).offset(15.f);
+        make.trailing.top.bottom.equalTo(self);
+        make.leading.equalTo(self).offset(15.f);
     }];
     
     [self.moreLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -48,31 +48,32 @@
     [self.poster mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(46, 69));
-        make.left.equalTo(self.contentView).offset(15.f);
+        make.leading.equalTo(self.contentView).offset(15.f);
     }];
     [self.scoreNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.scoreLabel);
-        make.left.equalTo(self.scoreLabel.mas_right).offset(5.f);
+        make.leading.equalTo(self.scoreLabel.mas_trailing).offset(5.f);
     }];
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5.f);
-        make.left.equalTo(self.titleLabel);
+        make.leading.equalTo(self.titleLabel);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
-        make.left.equalTo(self.poster.mas_right).offset(10.f);
-        make.right.equalTo(self.contentView).offset(-15.f);
+        make.leading.equalTo(self.poster.mas_trailing).offset(10.f);
+        make.trailing.equalTo(self.contentView).offset(-15.f);
     }];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.typeLabel.mas_right).offset(5.f);
+        make.leading.equalTo(self.typeLabel.mas_trailing).offset(5.f);
         make.centerY.equalTo(self.typeLabel);
-        make.right.equalTo(self.titleLabel);
+        make.trailing.equalTo(self.titleLabel);
     }];
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scoreLabel.mas_bottom).offset(10.f);
-        make.left.equalTo(self.titleLabel);
+        make.leading.equalTo(self.titleLabel);
     }];
     [self.typeLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [self.typeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (UIImageView *)poster
@@ -89,6 +90,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = kBoldFont(14.f);
+        _titleLabel.backgroundColor = [UIColor whiteColor];
     }
     return _titleLabel;
 }
@@ -99,6 +101,7 @@
         _detailLabel = [[UILabel alloc] init];
         _detailLabel.font = kFont(10.f);
         _detailLabel.textColor = RGBColor(128, 128, 128);
+        _detailLabel.backgroundColor = [UIColor whiteColor];
     }
     return _detailLabel;
 }
@@ -107,6 +110,7 @@
 {
     if (!_scoreLabel) {
         _scoreLabel = [[UILabel alloc] init];
+        _scoreLabel.backgroundColor = [UIColor whiteColor];
     }
     return _scoreLabel;
 }
@@ -117,6 +121,7 @@
         _scoreNum = [[UILabel alloc] init];
         _scoreNum.font = kFont(12.f);
         _scoreNum.textColor = RGBColor(255, 215, 0);
+        _scoreNum.backgroundColor = [UIColor whiteColor];
     }
     return _scoreNum;
 }

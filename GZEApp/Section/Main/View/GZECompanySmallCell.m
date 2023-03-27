@@ -35,11 +35,11 @@
 - (void)defineLayout
 {
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.contentView);
+        make.leading.trailing.top.equalTo(self.contentView);
         make.height.equalTo(self.icon.mas_width);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.contentView);
+        make.leading.trailing.bottom.equalTo(self.contentView);
         make.top.equalTo(self.icon.mas_bottom).offset(10.f);
     }];
 }

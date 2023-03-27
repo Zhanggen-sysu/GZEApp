@@ -40,8 +40,8 @@
 {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(5.f);
-        make.right.equalTo(self.contentView).offset(-5.f);
+        make.leading.equalTo(self.contentView).offset(5.f);
+        make.trailing.equalTo(self.contentView).offset(-5.f);
     }];
 }
 
@@ -49,8 +49,8 @@
 {
     [super setSelected:selected];
     if (selected) {
-        self.titleLabel.textColor = RGBColor(0, 191, 255);
-        self.contentView.backgroundColor = RGBColor(224, 255, 255);
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = RGBColor(0, 191, 255);
     } else {
         self.titleLabel.textColor = RGBColor(128, 128, 128);
         self.contentView.backgroundColor = RGBColor(245, 245, 245);

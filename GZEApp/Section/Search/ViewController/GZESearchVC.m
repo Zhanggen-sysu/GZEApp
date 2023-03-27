@@ -9,14 +9,17 @@
 #import "Macro.h"
 #import "Masonry.h"
 #import "GZESearchTableViewCell.h"
+#import "GZESearchListView.h"
+#import "GZESearchAdvanceView.h"
 #import <JXCategoryView/JXCategoryView.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import "GZESearchRsp.h"
 #import "GZESearchReq.h"
 #import "GZESearchCellViewModel.h"
+#import "GZETrendingViewModel.h"
 #import "GZECommonHelper.h"
 
-@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate>
 
 @property (nonatomic, strong) GZETrendingViewModel *viewModel;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -24,9 +27,11 @@
 @property (nonatomic, strong) JXCategoryTitleView *segmentView;
 @property (nonatomic, strong) UITableView *searchTableView;
 
-@property (nonatomic, strong) UIView *containerView;
-@property (nonatomic, strong) UITableView *recentTableView;
-@property (nonatomic, strong) UITableView *trendTableView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) JXCategoryListContainerView *containerView;
+@property (nonatomic, strong) GZESearchListView *recentView;
+@property (nonatomic, strong) GZESearchListView *trendView;
+@property (nonatomic, strong) GZESearchAdvanceView *advanceView;
 
 @property (nonatomic, strong) GZESearchReq *request;
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *searchArray;
@@ -54,11 +59,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancel)];
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = RGBColor(245, 245, 245);
-}
-
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -119,7 +119,9 @@
 {
     [self.searchView addSubview:self.searchBar];
     [self.view addSubview:self.searchTableView];
-    [self.view addSubview:self.containerView];
+    [self.view addSubview:self.contentView];
+    [self.contentView addSubview:self.segmentView];
+    [self.contentView addSubview:self.containerView];
 }
 
 - (void)defineLayout
@@ -131,8 +133,29 @@
         } else {
             make.top.equalTo(self.view).offset(44);
         }
-        make.bottom.left.right.equalTo(self.view);
+        make.bottom.leading.trailing.equalTo(self.view);
     }];
+    
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        // 导航栏+过滤按钮高度
+        if (@available(iOS 11.0, *)) {
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        } else {
+            make.top.equalTo(self.view).offset(44);
+        }
+        make.bottom.leading.trailing.equalTo(self.view);
+    }];
+    
+    [self.segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.top.equalTo(self.contentView);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self.contentView);
+        make.top.equalTo(self.segmentView.mas_bottom).offset(10.f);
+    }];
+
 }
 
 - (UISearchBar *)searchBar
@@ -156,10 +179,43 @@
     return _searchView;
 }
 
-- (UIView *)containerView
+- (UIView *)contentView
+{
+    if (!_contentView) {
+        _contentView = [[UIView alloc] init];
+    }
+    return _contentView;
+}
+
+- (JXCategoryTitleView *)segmentView
+{
+    if (!_segmentView) {
+        _segmentView = [[JXCategoryTitleView alloc] init];
+        _segmentView.backgroundColor = [UIColor whiteColor];
+        _segmentView.titles = @[@"Trending", @"Recent", @"Advance Search"];
+        _segmentView.titleFont = kBoldFont(14.f);
+        _segmentView.titleColor = RGBColor(128, 128, 128);
+        _segmentView.titleSelectedColor = [UIColor blackColor];
+        _segmentView.cellWidth = SCREEN_WIDTH / 3.0;
+        _segmentView.cellSpacing = 0;
+        _segmentView.contentEdgeInsetLeft = 0;
+        _segmentView.contentEdgeInsetRight = 0;
+        _segmentView.averageCellSpacingEnabled = NO;
+        _segmentView.listContainer = self.containerView;
+        
+        JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+        lineView.indicatorColor = RGBColor(0, 191, 255);
+        lineView.indicatorWidth = SCREEN_WIDTH / 3.0;
+        lineView.indicatorHeight = 2.0f;
+        _segmentView.indicators = @[lineView];
+    }
+    return _segmentView;
+}
+
+- (JXCategoryListContainerView *)containerView
 {
     if (!_containerView) {
-        _containerView = [[UIView alloc] init];
+        _containerView = [[JXCategoryListContainerView alloc] initWithType:JXCategoryListContainerType_ScrollView delegate:self];
     }
     return _containerView;
 }
@@ -175,6 +231,54 @@
         _searchTableView.dataSource = self;
     }
     return _searchTableView;
+}
+
+- (GZESearchListView *)trendView
+{
+    if (!_trendView) {
+        _trendView = [[GZESearchListView alloc] init];
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        [self.viewModel.media enumerateObjectsUsingBlock:^(GZETrendingItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [array addObject:[GZESearchCellViewModel viewModelWithTrendModel:obj]];
+        }];
+        [self.viewModel.people enumerateObjectsUsingBlock:^(GZETrendingItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [array addObject:[GZESearchCellViewModel viewModelWithTrendModel:obj]];
+        }];
+        [_trendView updateWithModel:array];
+    }
+    return _trendView;
+}
+
+- (GZESearchListView *)recentView
+{
+    if (!_recentView) {
+        _recentView = [[GZESearchListView alloc] init];
+    }
+    return _recentView;
+}
+
+- (GZESearchAdvanceView *)advanceView
+{
+    if (!_advanceView) {
+        _advanceView = [[GZESearchAdvanceView alloc] init];
+    }
+    return _advanceView;
+}
+
+#pragma mark - JXCategoryListContainerViewDelegate
+- (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView
+{
+    return 3;
+}
+
+- (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index
+{
+    if (index == 0) {
+        return self.trendView;
+    } else if (index == 1) {
+        return self.recentView;
+    }
+    return self.advanceView;
 }
 
 #pragma mark - UITableViewDelegate, DataSource
@@ -203,11 +307,11 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     if (searchText.length > 0) {
-        self.containerView.hidden = YES;
+        self.contentView.hidden = YES;
         self.searchTableView.hidden = NO;
         [self loadDataWithMore:NO];
     } else {
-        self.containerView.hidden = NO;
+        self.contentView.hidden = NO;
         self.searchTableView.hidden = YES;
     }
 }

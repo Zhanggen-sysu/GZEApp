@@ -139,28 +139,28 @@
 - (void)defineLayout
 {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.contentView).offset(15.f);
+        make.leading.top.equalTo(self.contentView).offset(15.f);
     }];
     [self.mediaButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10.f);
-        make.left.equalTo(self.contentView);
+        make.leading.equalTo(self.contentView);
         make.height.mas_equalTo(30.f);
     }];
     [self.genreButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mediaButton.mas_right);
+        make.leading.equalTo(self.mediaButton.mas_trailing);
         make.top.bottom.width.equalTo(self.mediaButton);
     }];
     [self.languageButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.genreButton.mas_right);
+        make.leading.equalTo(self.genreButton.mas_trailing);
         make.top.bottom.width.equalTo(self.mediaButton);
     }];
     [self.sortButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.languageButton.mas_right);
+        make.leading.equalTo(self.languageButton.mas_trailing);
         make.top.bottom.width.equalTo(self.mediaButton);
     }];
     [self.filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.sortButton.mas_right).offset(10.f);
-        make.right.equalTo(self.contentView).offset(-15.f);
+        make.leading.equalTo(self.sortButton.mas_trailing).offset(10.f);
+        make.trailing.equalTo(self.contentView).offset(-15.f);
         make.centerY.equalTo(self.mediaButton);
         make.size.mas_equalTo(CGSizeMake(25.f, 25.f));
     }];

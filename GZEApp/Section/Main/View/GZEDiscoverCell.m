@@ -68,38 +68,38 @@
 {
     [self.posterImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo([self posterSize]);
-        make.top.left.equalTo(self.contentView).offset(15.f);
+        make.top.leading.equalTo(self.contentView).offset(15.f);
     }];
     [self.backdropImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo([self backdropSize]);
-        make.left.equalTo(self.posterImg.mas_right).offset(10.f);
+        make.leading.equalTo(self.posterImg.mas_trailing).offset(10.f);
         make.top.equalTo(self.posterImg);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.posterImg);
-        make.right.equalTo(self.backdropImg);
+        make.leading.equalTo(self.posterImg);
+        make.trailing.equalTo(self.backdropImg);
         make.top.equalTo(self.posterImg.mas_bottom).offset(10.f);
     }];
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.posterImg);
+        make.leading.equalTo(self.posterImg);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(10.f);
     }];
     [self.scoreNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scoreLabel);
-        make.left.equalTo(self.scoreLabel.mas_right).offset(5.f);
+        make.leading.equalTo(self.scoreLabel.mas_trailing).offset(5.f);
     }];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.nameLabel);
+        make.leading.trailing.equalTo(self.nameLabel);
         make.top.equalTo(self.scoreLabel.mas_bottom).offset(5.f);
     }];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.nameLabel);
+        make.leading.trailing.equalTo(self.nameLabel);
         make.top.equalTo(self.detailLabel.mas_bottom).offset(10.f);
         make.bottom.equalTo(self.contentView).offset(-5.f).priorityHigh();
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(0.5f);
-        make.left.right.equalTo(self.nameLabel);
+        make.left.trailing.equalTo(self.nameLabel);
         make.bottom.equalTo(self.contentView);
     }];
     [self.contentView layoutIfNeeded];

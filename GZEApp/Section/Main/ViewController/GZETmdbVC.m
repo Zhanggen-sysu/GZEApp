@@ -22,6 +22,7 @@
 #import "GZEDiscoverCellViewModel.h"
 #import "GZEDiscoverFilterViewModel.h"
 
+#import "GZEMovieDetailVC.h"
 #import "GZESearchVC.h"
 #import "GZEDiscoverFilterView.h"
 #import "GZEDiscoverSortView.h"
@@ -439,7 +440,7 @@
         make.top.leading.trailing.equalTo(self.view);
     }];
     [self.sortView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
+        make.bottom.leading.trailing.equalTo(self.view);
         // 导航栏+过滤按钮高度
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(30.f);
@@ -448,7 +449,7 @@
         }
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
+        make.bottom.leading.trailing.equalTo(self.view);
         // 导航栏+过滤按钮高度
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(30.f);
@@ -457,7 +458,7 @@
         }
     }];
     [self.backToTopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-20);
+        make.trailing.equalTo(self.view).offset(-20);
         make.size.mas_equalTo(CGSizeMake(40, 40));
         make.bottom.equalTo(self.view).offset(-150);
     }];
@@ -699,6 +700,16 @@
         GZETrendingCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GZETrendingCell class])];
         if (!cell) {
             cell = [[GZETrendingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GZETrendingCell class])];
+            WeakSelf(self)
+            cell.didTapItem = ^(NSInteger Id, GZEMediaType type) {
+                StrongSelfReturnNil(self)
+                if (type == GZEMediaType_Movie) {
+                    GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:Id];
+                    [self.navigationController pushViewController:vc animated:YES];
+                } else if (type == GZEMediaType_TV) {
+                    
+                }
+            };
         }
         [cell updateWithModel:self.trendingModel];
         return cell;
@@ -772,7 +783,7 @@
 
     CGRect rect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:10 inSection:3]];
     // 加个MAX避免空数据的情况
-    if (scrollView.contentOffset.y >= MAX(4000, rect.origin.y) && self.backToTopBtn.isHidden) {
+    if (scrollView.contentOffset.y >= MAX(4000, rect.origin.y)) {
         self.backToTopBtn.hidden = NO;
     } else {
         self.backToTopBtn.hidden = YES;
