@@ -24,10 +24,14 @@
     NSMutableDictionary* dict = [[self dictionaryWithValuesForKeys:[self class].properties.allValues] mutableCopy];
     [[self class].properties enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         if ([key isEqualToString:@"language"]) {
-            // 修改下语言
-            dict[obj] = [GZEGlobalConfig language];
-        }
-        if (!dict[obj] || [dict[obj] isEqual:[NSNull null]]) {
+            // 空串不用加语言，处理电影详情页图片加语言请求不到的情况
+            if (![dict[obj] isEqual:[NSNull null]] && [dict[obj] isEqualToString:@""]) {
+                [dict removeObjectForKey:obj];
+            } else {
+                // 修改下语言
+                dict[obj] = [GZEGlobalConfig language];
+            }
+        } else if (!dict[obj] || [dict[obj] isEqual:[NSNull null]]) {
             [dict removeObjectForKey:obj];
         } else if (![key isEqualToString:obj]) {
             dict[key] = dict[obj];

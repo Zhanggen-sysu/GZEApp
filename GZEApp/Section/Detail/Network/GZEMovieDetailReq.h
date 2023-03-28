@@ -23,8 +23,8 @@ typedef NS_ENUM(NSUInteger, GZEMovieDetailType) {
 
 @property (nonatomic, assign) NSInteger movieId;
 @property (nonatomic, assign) GZEMovieDetailType type;
-
-@property (nonatomic, copy) NSString *language;
+// image不能有
+@property (nonatomic, copy, nullable) NSString *language;
 @property (nonatomic, copy) NSString *append_to_response;
 // image
 @property (nonatomic, copy) NSString *include_image_language;

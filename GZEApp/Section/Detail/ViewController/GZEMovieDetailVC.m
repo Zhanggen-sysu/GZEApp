@@ -8,7 +8,10 @@
 #import "GZEMovieDetailVC.h"
 #import "GZEMovieDetailView.h"
 #import "GZEMovieCastView.h"
+#import "GZEMovieVIView.h"
 
+#import "GZEMovieViedeoRsp.h"
+#import "GZEMovieVideoItem.h"
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
 #import "GZEMovieDetailViewModel.h"
@@ -21,6 +24,7 @@
 @property (nonatomic, strong) UIStackView *contentView;
 @property (nonatomic, strong) GZEMovieDetailView *detailView;
 @property (nonatomic, strong) GZEMovieCastView *castView;
+@property (nonatomic, strong) GZEMovieVIView *viView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
 @property (nonatomic, strong) GZEDetailManager *manager;
@@ -69,6 +73,18 @@
 }
 
 
+- (GZEMovieVideoItem *)choosenVideo
+{
+    __block GZEMovieVideoItem *ret = nil;
+    [self.viewModel.videos.results enumerateObjectsUsingBlock:^(GZEMovieVideoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.site isEqualToString:@"YouTube"] && [obj.type isEqualToString:@"Trailer"]) {
+            ret = obj;
+            *stop = YES;
+        }
+    }];
+    return ret;
+}
+
 #pragma mark - UI
 - (void)setupSubviews
 {
@@ -99,6 +115,7 @@
     self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
     [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
     [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
+    [self.viView updateWithImgModel:self.viewModel.images videoModel:[self choosenVideo] magicColor:self.viewModel.magicColor];
 }
 
 - (GZEDetailManager *)manager
@@ -131,6 +148,7 @@
         _contentView = [[UIStackView alloc] initWithArrangedSubviews:@[
             self.detailView,
             self.castView,
+            self.viView,
         ]];
         _contentView.axis = UILayoutConstraintAxisVertical;
         _contentView.alignment = UIStackViewAlignmentFill;
@@ -154,6 +172,14 @@
         _castView = [[GZEMovieCastView alloc] init];
     }
     return _castView;
+}
+
+- (GZEMovieVIView *)viView
+{
+    if (!_viView) {
+        _viView = [[GZEMovieVIView alloc] init];
+    }
+    return _viView;
 }
 
 #pragma mark - UIScrollViewDelegate

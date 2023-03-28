@@ -94,6 +94,8 @@
         GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
         req.movieId = movieId;
         req.type = GZEMovieDetailType_Image;
+        // 图片不能加语言，标记一下
+        req.language = @"";
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieImageRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
