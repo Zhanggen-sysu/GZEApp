@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, GZEBackdropSize) {
     GZEBackdropSize_original,
 };
 
+// 约2 * 3，和poster一样
 typedef NS_ENUM(NSUInteger, GZEProfileSize) {
     GZEProfileSize_default,
     GZEProfileSize_w45,
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSUInteger, GZEProfileSize) {
     GZEProfileSize_original,
 };
 
+// 1 * 1
 typedef NS_ENUM(NSUInteger, GZELogoSize) {
     GZELogoSize_default,
     GZELogoSize_w45,
@@ -67,6 +69,14 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
 
 // 通过评分生成五颗星星的评级字符串
 + (NSAttributedString *)generateRatingString:(double)voteAverage starSize:(CGFloat)size space:(NSInteger)space;
+
+/// 颜色加深或减浅
+/// - Parameters:
+///   - color: 原始颜色
+///   - deeper: YES加深 NO减浅
+///   - degree: 变化程度，0-255
++ (UIColor *)changeColor:(UIColor *)color deeper:(BOOL)deeper degree:(NSUInteger)degree;
+
 @end
 
 NS_ASSUME_NONNULL_END

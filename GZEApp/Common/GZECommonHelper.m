@@ -181,18 +181,37 @@
         NSTextAttachment *attach = [[NSTextAttachment alloc] init];
         if (voteAverage >= 2) {
             voteAverage -= 2;
-            attach.image = kGetImage(@"starFullIcon");
+            attach.image = [UIImage imageNamed:@"starFullIcon"];
         } else if (voteAverage >= 1) {
             voteAverage -= 1;
-            attach.image = kGetImage(@"starHalfIcon");
+            attach.image = [UIImage imageNamed:@"starHalfIcon"];
         } else {
-            attach.image = kGetImage(@"starEmptyIcon");
+            attach.image = [UIImage imageNamed:@"starEmptyIcon"];
         }
         attach.bounds = CGRectMake(0, 0, size, size);
         [attStr appendAttributedString:[NSAttributedString attributedStringWithAttachment:attach]];
         [attStr appendAttributedString:[[NSAttributedString alloc] initWithString:[@"" stringByPaddingToLength:space withString:@" " startingAtIndex:0]]];
     }
     return attStr;
+}
+
++ (UIColor *)changeColor:(UIColor *)color deeper:(BOOL)deeper degree:(NSUInteger)degree
+{
+    CGFloat red, green, blue;
+    [color getRed:&red green:&green blue:&blue alpha:nil];
+    red = red * 255;
+    green = green * 255;
+    blue = blue * 255;
+    if (deeper) {
+        red = red >= degree ? red - degree : 0;
+        green = green >= degree ? green - degree : 0;
+        blue = blue >= degree ? blue - degree : 0;
+    } else {
+        red = red + degree <= 255 ? red + degree : 255;
+        green = green + degree <= 255 ? green + degree : 255;
+        blue = blue + degree <= 255 ? blue + degree : 255;
+    }
+    return [UIColor colorWithRed:red/255.f green:green/255.f blue:blue/255.f alpha:1];
 }
 
 @end

@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, GZEMovieDetailType) {
     GZEMovieDetailType_Default,
     GZEMovieDetailType_Common,
     GZEMovieDetailType_CrewCast,
+    GZEMovieDetailType_Video,
     GZEMovieDetailType_Image,
     GZEMovieDetailType_Review,
     GZEMovieDetailType_Similar,

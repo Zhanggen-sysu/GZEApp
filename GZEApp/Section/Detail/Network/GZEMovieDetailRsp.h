@@ -10,6 +10,7 @@
 @class GZEProductionCompany;
 @class GZEProductionCountry;
 @class GZELanguageItem;
+@class GZECollectionItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)         BOOL isAdult;
 @property (nonatomic, copy)           NSString *backdropPath;
-@property (nonatomic, nullable, copy) id belongsToCollection;
+@property (nonatomic, nullable, copy) NSArray<GZECollectionItem *> *belongsToCollection;
 @property (nonatomic, assign)         NSInteger budget;
 @property (nonatomic, copy)           NSArray<GZEGenreItem *> *genres;
 @property (nonatomic, copy)           NSString *homepage;

@@ -11,6 +11,8 @@
 #import "GZECommonHelper.h"
 #import "GZEGenreItem.h"
 #import "GZEPaddingLabel.h"
+#import "GZEProductionCountry.h"
+#import <TTGTextTagCollectionView.h>
 #import "Macro.h"
 
 @interface GZEMovieDetailView ()
@@ -26,8 +28,9 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *tagLineLabel;
 @property (nonatomic, strong) UILabel *ratingLabel;
-@property (nonatomic, strong) UILabel *genreLabel;
+@property (nonatomic, strong) TTGTextTagCollectionView *genresView;
 @property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UILabel *subTitleLabel;
 
 @property (nonatomic, strong) UILabel *overviewLabel;
 
@@ -35,9 +38,10 @@
 
 @implementation GZEMovieDetailView
 
-- (void)updateWithModel:(GZEMovieDetailRsp *)rsp
+- (void)updateWithModel:(GZEMovieDetailRsp *)rsp magicColor:(nonnull UIColor *)magicColor
 {
     self.detail = rsp;
+    self.detailContent.backgroundColor = magicColor;
     [self.backdropImg sd_setImageWithURL:[GZECommonHelper getBackdropUrl:self.detail.backdropPath size:GZEBackdropSize_w780] placeholderImage:kGetImage(@"default-backdrop")];
     [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:self.detail.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
     if (self.detail.title.length > 0) {
@@ -45,21 +49,34 @@
     } else {
         self.titleLabel.text = @"(Not Initialized Yet)";
     }
+    
+    if (self.detail.originalLanguage.length > 0 && ![self.detail.originalLanguage isEqualToString:@"en"] && self.detail.originalTitle.length > 0) {
+        NSMutableString *subTitle = [[NSMutableString alloc] initWithString:self.detail.originalTitle];
+        if (self.detail.releaseDate.length > 0) {
+            [subTitle appendString:[[NSString alloc] initWithFormat:@" (%@)", [self.detail.releaseDate substringToIndex:4]]];
+        }
+        self.subTitleLabel.text = subTitle;
+        self.subTitleLabel.hidden = NO;
+    } else {
+        self.subTitleLabel.hidden = YES;
+    }
+    
     if (self.detail.tagline.length > 0) {
         self.tagLineLabel.hidden = NO;
         self.tagLineLabel.text = self.detail.tagline;
     } else {
         self.tagLineLabel.hidden = YES;
     }
+    
     if (self.detail.voteAverage > 0) {
         NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithAttributedString:[GZECommonHelper generateRatingString:self.detail.voteAverage starSize:20 space:2]];
         [attri appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f", self.detail.voteAverage] attributes:@{
-            NSFontAttributeName: kBoldFont(14.f),
+            NSFontAttributeName: kBoldFont(16.f),
             NSForegroundColorAttributeName: RGBColor(255, 215, 0),
         }]];
         [attri appendAttributedString:[[NSAttributedString alloc] initWithString:@" / 10" attributes:@{
-            NSFontAttributeName: kFont(10.f),
-            NSForegroundColorAttributeName: RGBColor(128, 128, 128),
+            NSFontAttributeName: kFont(12.f),
+            NSForegroundColorAttributeName: RGBColor(245, 245, 245),
         }]];
         self.ratingLabel.hidden = NO;
         self.ratingLabel.attributedText = attri;
@@ -68,17 +85,30 @@
     }
     
     if (self.detail.genres.count > 0) {
-        NSMutableAttributedString *genresStr = [[NSMutableAttributedString alloc] init];
+        TTGTextTagStyle *style = [[TTGTextTagStyle alloc] init];
+        style.backgroundColor = [GZECommonHelper changeColor:magicColor deeper:NO degree:30];
+        style.borderWidth = 0;
+        style.shadowOffset = CGSizeMake(0, 0);
+        style.shadowRadius = 0;
+        style.extraSpace = CGSizeMake(8, 3);
         [self.detail.genres enumerateObjectsUsingBlock:^(GZEGenreItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
+            TTGTextTagStringContent *text = [TTGTextTagStringContent contentWithText:obj.name];
+            text.textFont = kFont(12.f);
+            text.textColor = [UIColor whiteColor];
+            TTGTextTag *textTag = [TTGTextTag tagWithContent:text style:style];
+            [self.genresView addTag:textTag];
         }];
-        self.genreLabel.hidden = NO;
-        self.genreLabel.attributedText = genresStr;
+        [self.genresView reload];
+        self.genresView.hidden = NO;
     } else {
-        self.genreLabel.hidden = YES;
+        self.genresView.hidden = YES;
     }
-    if (self.detail.releaseDate.length > 0 || self.detail.runtime > 0) {
-        NSMutableString *detail = [[NSMutableString alloc] initWithString:self.detail.releaseDate.length > 0 ? self.detail.releaseDate : @""];
+    
+    if (self.detail.productionCountries.count > 0 || self.detail.releaseDate.length > 0 || self.detail.runtime > 0) {
+        NSMutableString *detail = [[NSMutableString alloc] initWithString:self.detail.productionCountries.count > 0 ? self.detail.productionCountries.firstObject.iso3166_1 : @""];
+        if (self.detail.releaseDate.length > 0) {
+            [detail appendString:detail.length > 0 ? [NSString stringWithFormat:@" · %@", self.detail.releaseDate] : self.detail.releaseDate];
+        }
         if (self.detail.runtime > 0) {
             NSString *runtime = [NSString stringWithFormat:@"%ldhrs %ldmin", self.detail.runtime/60, self.detail.runtime%60];
             [detail appendString:detail.length > 0 ? [NSString stringWithFormat:@" · %@", runtime] : runtime];
@@ -124,13 +154,16 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.stackView);
     }];
+    [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.stackView);
+    }];
     [self.tagLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.stackView);
     }];
     [self.ratingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.stackView);
     }];
-    [self.genreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.genresView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.stackView);
     }];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -158,7 +191,6 @@
     if (!_detailContent)
     {
         _detailContent = [[UIView alloc] init];
-        _detailContent.backgroundColor = [UIColor whiteColor];
     }
     return _detailContent;
 }
@@ -180,8 +212,21 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = kBoldFont(16.f);
         _titleLabel.numberOfLines = 0;
+        _titleLabel.textColor = [UIColor whiteColor];
     }
     return _titleLabel;
+}
+
+- (UILabel *)subTitleLabel
+{
+    if (!_subTitleLabel)
+    {
+        _subTitleLabel = [[UILabel alloc] init];
+        _subTitleLabel.font = kBoldFont(14.f);
+        _subTitleLabel.numberOfLines = 0;
+        _subTitleLabel.textColor = [UIColor whiteColor];
+    }
+    return _subTitleLabel;
 }
 
 - (UILabel *)tagLineLabel
@@ -190,7 +235,7 @@
     {
         _tagLineLabel = [[UILabel alloc] init];
         _tagLineLabel.font = kFont(14.f);
-        _tagLineLabel.textColor = RGBColor(128, 128, 128);
+        _tagLineLabel.textColor = RGBColor(245, 245, 245);
         _tagLineLabel.numberOfLines = 0;
     }
     return _tagLineLabel;
@@ -205,14 +250,14 @@
     return _ratingLabel;
 }
 
-- (UILabel *)genreLabel
+- (TTGTextTagCollectionView *)genresView
 {
-    if (!_genreLabel)
+    if (!_genresView)
     {
-        _genreLabel = [[UILabel alloc] init];
-        _genreLabel.numberOfLines = 0;
+        _genresView = [[TTGTextTagCollectionView alloc] init];
+        _genresView.enableTagSelection = NO;
     }
-    return _genreLabel;
+    return _genresView;
 }
 
 - (UILabel *)detailLabel
@@ -220,8 +265,9 @@
     if (!_detailLabel)
     {
         _detailLabel = [[UILabel alloc] init];
-        _detailLabel.font = kFont(14.f);
+        _detailLabel.font = kFont(12.f);
         _detailLabel.numberOfLines = 0;
+        _detailLabel.textColor = [UIColor whiteColor];
     }
     return _detailLabel;
 }
@@ -233,6 +279,7 @@
         _overviewLabel = [[UILabel alloc] init];
         _overviewLabel.font = kFont(14.f);
         _overviewLabel.numberOfLines = 0;
+        _overviewLabel.textColor = [UIColor whiteColor];
     }
     return _overviewLabel;
 }
@@ -242,9 +289,10 @@
     if (!_stackView) {
         _stackView = [[UIStackView alloc] initWithArrangedSubviews:@[
             self.titleLabel,
+            self.subTitleLabel,
             self.tagLineLabel,
             self.ratingLabel,
-            self.genreLabel,
+            self.genresView,
             self.detailLabel,
         ]];
         _stackView.axis = UILayoutConstraintAxisVertical;

@@ -17,6 +17,7 @@ target 'GZEApp' do
   pod 'SDCycleScrollView','>= 1.82'
   pod 'TTGTagCollectionView'
   pod 'UICollectionViewLeftAlignedLayout'
+  pod 'youtube-ios-player-helper', '~> 1.0.4'
   pod 'YPNavigationBarTransition'
   pod 'YTKNetwork'
   pod 'YYModel' 

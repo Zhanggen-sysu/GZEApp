@@ -7,6 +7,7 @@
 
 #import "GZEMovieDetailVC.h"
 #import "GZEMovieDetailView.h"
+#import "GZEMovieCastView.h"
 
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
 @property (nonatomic, strong) GZEMovieDetailView *detailView;
+@property (nonatomic, strong) GZEMovieCastView *castView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
 @property (nonatomic, strong) GZEDetailManager *manager;
@@ -87,11 +89,16 @@
     [self.detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.contentView);
     }];
+    [self.castView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
 }
 
 - (void)updateUI
 {
-    [self.detailView updateWithModel:self.viewModel.commonInfo];
+    self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
+    [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
+    [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
 }
 
 - (GZEDetailManager *)manager
@@ -107,7 +114,6 @@
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.backgroundColor = RGBColor(240, 240, 240);
         _scrollView.delegate = self;
         // Tips: 去除scrollView顶部空白区域
         if (@available(iOS 11, *)) {
@@ -124,16 +130,15 @@
     if (!_contentView) {
         _contentView = [[UIStackView alloc] initWithArrangedSubviews:@[
             self.detailView,
+            self.castView,
         ]];
         _contentView.axis = UILayoutConstraintAxisVertical;
         _contentView.alignment = UIStackViewAlignmentFill;
         _contentView.distribution = UIStackViewDistributionFill;
         _contentView.spacing = 15.f;
-        _contentView.backgroundColor = RGBColor(240, 240, 240);
     }
     return _contentView;
 }
-
 
 - (GZEMovieDetailView *)detailView
 {
@@ -141,6 +146,14 @@
         _detailView = [[GZEMovieDetailView alloc] init];
     }
     return _detailView;
+}
+
+- (GZEMovieCastView *)castView
+{
+    if (!_castView) {
+        _castView = [[GZEMovieCastView alloc] init];
+    }
+    return _castView;
 }
 
 #pragma mark - UIScrollViewDelegate

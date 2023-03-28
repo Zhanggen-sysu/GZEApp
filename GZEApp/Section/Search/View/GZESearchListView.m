@@ -37,8 +37,7 @@
 - (void)defineLayout
 {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.bottom.equalTo(self);
-//        make.top.equalTo(self).offset(10.f);
+
         make.edges.equalTo(self);
     }];
 }

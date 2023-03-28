@@ -6,11 +6,13 @@
 //
 
 #import "GZEBaseModel.h"
+#import <UIKit/UIKit.h>
 @class GZEMovieCrewCastRsp;
 @class GZEMovieReviewRsp;
 @class GZEMovieImageRsp;
 @class GZEMovieDetailRsp;
 @class GZEMovieListRsp;
+@class GZEMovieViedeoRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) GZEMovieImageRsp *images;
 @property (nonatomic, strong) GZEMovieReviewRsp *reviews;
 @property (nonatomic, strong) GZEMovieListRsp *similar;
+@property (nonatomic, strong) GZEMovieViedeoRsp *videos;
+@property (nonatomic, strong) UIColor *magicColor;
 
 @end
 

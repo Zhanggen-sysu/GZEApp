@@ -21,7 +21,9 @@ PODS:
   - SDWebImage (5.14.2):
     - SDWebImage/Core (= 5.14.2)
   - SDWebImage/Core (5.14.2)
+  - TTGTagCollectionView (2.3.0)
   - UICollectionViewLeftAlignedLayout (1.0.2)
+  - youtube-ios-player-helper (1.0.4)
   - YPNavigationBarTransition (2.2.3)
   - YTKNetwork (3.0.6):
     - AFNetworking/NSURLSession (~> 4.0)
@@ -35,7 +37,9 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh
   - SDCycleScrollView (>= 1.82)
+  - TTGTagCollectionView
   - UICollectionViewLeftAlignedLayout
+  - youtube-ios-player-helper (~> 1.0.4)
   - YPNavigationBarTransition
   - YTKNetwork
   - YYModel
@@ -51,7 +55,9 @@ SPEC REPOS:
     - MJRefresh
     - SDCycleScrollView
     - SDWebImage
+    - TTGTagCollectionView
     - UICollectionViewLeftAlignedLayout
+    - youtube-ios-player-helper
     - YPNavigationBarTransition
     - YTKNetwork
     - YYModel
@@ -66,11 +72,13 @@ SPEC CHECKSUMS:
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
+  TTGTagCollectionView: 4104f93281097eae5adbf4444811e32f5e52dc95
   UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
   YPNavigationBarTransition: d3d8c0e4cced41dec43647832bb45737d79cc8b0
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: dc417ad1512b5bfc3c6c4174d5e8b8be13d1845a
+PODFILE CHECKSUM: 47412b4678375c7c5dadf4071102dd0811f44a5c
 
 COCOAPODS: 1.11.3

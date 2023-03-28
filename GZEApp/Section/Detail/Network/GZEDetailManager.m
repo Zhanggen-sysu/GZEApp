@@ -11,9 +11,12 @@
 #import "GZEMovieImageRsp.h"
 #import "GZEMovieReviewRsp.h"
 #import "GZEMovieListRsp.h"
+#import "GZEMovieViedeoRsp.h"
 #import "GZEMovieDetailViewModel.h"
 #import "Macro.h"
 #import "GZECommonHelper.h"
+#import "SDWebImageDownloader.h"
+#import "UIImage+magicColor.h"
 
 @implementation GZEDetailManager
 
@@ -29,13 +32,24 @@
         req.type = GZEMovieDetailType_Common;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieDetailRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieDetailRsp *response = (GZEMovieDetailRsp *)rsp;
                 viewModel.commonInfo = response;
+                // 额外计算一个魔法色
+                WeakSelf(self)
+                [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                    StrongSelfReturnNil(self)
+                    if (image) {
+                        viewModel.magicColor = [image magicColor];
+                    } else {
+                        viewModel.magicColor = RGBColor(0, 191, 255);
+                    }
+                    dispatch_group_leave(group);
+                }];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
             }
-            dispatch_group_leave(group);
         }];
     });
     
@@ -46,6 +60,7 @@
         req.type = GZEMovieDetailType_CrewCast;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieCrewCastRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieCrewCastRsp *response = (GZEMovieCrewCastRsp *)rsp;
                 viewModel.crewCast = response;
@@ -60,9 +75,28 @@
     dispatch_async(queue, ^{
         GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
         req.movieId = movieId;
+        req.type = GZEMovieDetailType_Video;
+        WeakSelf(self)
+        [req startRequestWithRspClass:[GZEMovieViedeoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
+            if (isSuccess) {
+                GZEMovieViedeoRsp *response = (GZEMovieViedeoRsp *)rsp;
+                viewModel.videos = response;
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
+        req.movieId = movieId;
         req.type = GZEMovieDetailType_Image;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieImageRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieImageRsp *response = (GZEMovieImageRsp *)rsp;
                 viewModel.images = response;
@@ -80,6 +114,7 @@
         req.type = GZEMovieDetailType_Review;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieReviewRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieReviewRsp *response = (GZEMovieReviewRsp *)rsp;
                 viewModel.reviews = response;
@@ -97,6 +132,7 @@
         req.type = GZEMovieDetailType_Similar;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
                 viewModel.similar = response;

@@ -20,7 +20,6 @@
 @property (nonatomic, strong) UILabel *scoreNumLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) GZEWrappingLabel *contentLabel;
-@property (nonatomic, strong) UIView *lineView;
 
 @end
 
@@ -61,7 +60,6 @@
     [self.contentView addSubview:self.scoreNumLabel];
     [self.contentView addSubview:self.detailLabel];
     [self.contentView addSubview:self.contentLabel];
-    [self.contentView addSubview:self.lineView];
 }
 
 - (void)defineLayout
@@ -97,11 +95,7 @@
         make.top.equalTo(self.detailLabel.mas_bottom).offset(10.f);
         make.bottom.equalTo(self.contentView).offset(-5.f).priorityHigh();
     }];
-    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(0.5f);
-        make.left.trailing.equalTo(self.nameLabel);
-        make.bottom.equalTo(self.contentView);
-    }];
+    // layout一下，不然contentLabel可能没有高度和宽度
     [self.contentView layoutIfNeeded];
 }
 

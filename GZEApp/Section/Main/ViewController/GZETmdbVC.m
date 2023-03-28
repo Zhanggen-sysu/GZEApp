@@ -705,6 +705,8 @@
                 StrongSelfReturnNil(self)
                 if (type == GZEMediaType_Movie) {
                     GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:Id];
+                    // tips: 下一页的返回按钮需要在上一页设置才有效
+                    self.navigationItem.backButtonTitle = @"";
                     [self.navigationController pushViewController:vc animated:YES];
                 } else if (type == GZEMediaType_TV) {
                     
@@ -747,6 +749,17 @@
         return cell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 3) {
+        GZEDiscoverCellViewModel *model = self.discoverArray[indexPath.row];
+        GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:model.ID];
+        // tips: 下一页的返回按钮需要在上一页设置才有效
+        self.navigationItem.backButtonTitle = @"";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

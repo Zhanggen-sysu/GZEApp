@@ -31,6 +31,9 @@
         case GZEMovieDetailType_CrewCast:
             [url appendString:@"/credits"];
             break;
+        case GZEMovieDetailType_Video:
+            [url appendString:@"/videos"];
+            break;
         case GZEMovieDetailType_Image:
             [url appendString:@"/images"];
             break;
@@ -45,6 +48,5 @@
     }
     return url;
 }
-
 
 @end

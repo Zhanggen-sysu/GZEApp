@@ -17,6 +17,7 @@
 + (GZEDiscoverCellViewModel *)viewModelWithTVItem:(GZETVListItem *)item
 {
     GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
+    viewModel.ID = item.identifier;
     NSMutableString *title = [[NSMutableString alloc] initWithString:item.name];
     if (item.firstAirDate.length > 0) {
         [title appendString:[NSString stringWithFormat:@" (%@)", [item.firstAirDate substringToIndex:4]]];
@@ -49,6 +50,7 @@
 + (GZEDiscoverCellViewModel *)viewModelWithMovieItem:(GZEMovieListItem *)item
 {
     GZEDiscoverCellViewModel *viewModel = [[GZEDiscoverCellViewModel alloc] init];
+    viewModel.ID = item.identifier;
     NSMutableString *title = [[NSMutableString alloc] initWithString:item.title];
     if (item.releaseDate.length > 0) {
         [title appendString:[NSString stringWithFormat:@" (%@)", [item.releaseDate substringToIndex:4]]];

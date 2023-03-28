@@ -10,6 +10,7 @@
 #import "GZEProductionCompany.h"
 #import "GZEProductionCountry.h"
 #import "GZELanguageItem.h"
+#import "GZECollectionItem.h"
 
 @implementation GZEMovieDetailRsp
 
@@ -52,6 +53,7 @@
         @"productionCompanies": [GZEProductionCompany class],
         @"productionCountries": [GZEProductionCountry class],
         @"spokenLanguages": [GZELanguageItem class],
+        @"belongsToCollection": [GZECollectionItem class],
     };
 }
 
