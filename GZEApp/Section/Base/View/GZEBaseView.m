@@ -18,8 +18,6 @@
     return self;
 }
 
-
-
 - (void)setupSubviews
 {
     NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];

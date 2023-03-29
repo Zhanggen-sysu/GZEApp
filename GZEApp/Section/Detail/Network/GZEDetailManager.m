@@ -17,6 +17,9 @@
 #import "GZECommonHelper.h"
 #import "SDWebImageDownloader.h"
 #import "UIImage+magicColor.h"
+#import "GZEMovieVideoItem.h"
+#import "GZEYTVideoReq.h"
+#import "GZEYTVideoRsp.h"
 
 @implementation GZEDetailManager
 
@@ -49,6 +52,7 @@
                 }];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+                dispatch_group_leave(group);
             }
         }];
     });
@@ -81,11 +85,33 @@
             StrongSelfReturnNil(self)
             if (isSuccess) {
                 GZEMovieViedeoRsp *response = (GZEMovieViedeoRsp *)rsp;
+                response.results = [self reOrganizeVideos:response.results];
                 viewModel.videos = response;
+                // 请求首个视频信息展示在详情页
+                GZEMovieVideoItem *item = response.results.firstObject;
+                if (item) {
+                    GZEYTVideoReq *videoReq = [[GZEYTVideoReq alloc] init];
+                    videoReq.v = item.key;
+                    videoReq.withoutApiKey = YES;
+                    WeakSelf(self)
+                    [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+                        StrongSelfReturnNil(self)
+                        if (isSuccess) {
+                            GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
+                            videoRsp.videoType = item.type;
+                            viewModel.firstVideo = videoRsp;
+                        } else {
+                            [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+                        }
+                        dispatch_group_leave(group);
+                    }];
+                } else {
+                    dispatch_group_leave(group);
+                }
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+                dispatch_group_leave(group);
             }
-            dispatch_group_leave(group);
         }];
     });
     
@@ -144,9 +170,50 @@
             dispatch_group_leave(group);
         }];
     });
+    
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
+        req.movieId = movieId;
+        req.type = GZEMovieDetailType_Recommend;
+        WeakSelf(self)
+        [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
+            if (isSuccess) {
+                GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
+                viewModel.recommend = response;
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         !completion ?: completion(YES, viewModel, @"");
     });
+}
+
+// 将预告片放到前面，移除非Youtube视频
+- (NSArray<GZEMovieVideoItem *> *)reOrganizeVideos:(NSArray<GZEMovieVideoItem *> *)videos
+{
+    NSMutableArray *trailer = [[NSMutableArray alloc] init];
+    NSMutableArray *valid = [[NSMutableArray alloc] init];
+    [videos enumerateObjectsUsingBlock:^(GZEMovieVideoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.site isEqualToString:@"YouTube"]) {
+            if ([obj.type isEqualToString:@"Trailer"]) {
+                [trailer addObject:obj];
+            } else {
+                [valid addObject:obj];
+            }
+        }
+    }];
+    if (trailer.count > 0) {
+        NSRange range = NSMakeRange(0, [trailer count]);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [valid insertObjects:trailer atIndexes:indexSet];
+    }
+    return valid;
 }
 
 @end

@@ -30,7 +30,7 @@
     self.detailLabel.text = viewModel.detail;
     self.scoreLabel.attributedText = viewModel.stars;
     self.scoreNum.text = viewModel.score;
-    self.typeLabel.text = viewModel.mediaType;
+    self.typeLabel.text = viewModel.typeText;
 }
 
 - (void)setupSubviews

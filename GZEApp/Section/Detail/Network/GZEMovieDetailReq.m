@@ -43,6 +43,9 @@
         case GZEMovieDetailType_Similar:
             [url appendString:@"/similar"];
             break;
+        case GZEMovieDetailType_Recommend:
+            [url appendString:@"/recommendations"];
+            break;
         default:
             break;
     }

@@ -70,8 +70,8 @@
 {
     if (!_moreLabel) {
         _moreLabel = [[UILabel alloc] init];
-        _moreLabel.text = @"更\n多";
-        _moreLabel.numberOfLines = 2;
+        _moreLabel.text = @"More ";
+        _moreLabel.transform = CGAffineTransformMakeRotation(M_PI * 0.5);
         _moreLabel.font = kFont(14.f);
         _moreLabel.textColor = RGBColor(128, 128, 128);
     }

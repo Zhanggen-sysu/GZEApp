@@ -765,7 +765,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2.0 * 3));
+    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2 * 3));
     // 改变UITableView的吸顶位置, 49是header Title占用的高度
     CGFloat navigateBarHeight = self.navigationController.navigationBar.bottom - 49;
     if (gradientProgress != self.gradientProgress) {

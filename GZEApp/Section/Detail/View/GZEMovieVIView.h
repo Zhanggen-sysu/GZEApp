@@ -7,12 +7,12 @@
 
 #import "GZEBaseView.h"
 @class GZEMovieImageRsp;
-@class GZEMovieVideoItem;
+@class GZEYTVideoRsp;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEMovieVIView : GZEBaseView
 
-- (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEMovieVideoItem *)videoModel magicColor:(UIColor *)magicColor;
+- (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(UIColor *)magicColor;
 
 @end
 

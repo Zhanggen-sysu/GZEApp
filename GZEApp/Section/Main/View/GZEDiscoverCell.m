@@ -39,15 +39,15 @@
 
 - (CGSize)posterSize
 {
-    CGFloat width = (SCREEN_WIDTH - 40) * 3 / 11.f;
-    CGFloat height = width * 3 / 2.f;
+    CGFloat width = (SCREEN_WIDTH - 40) * 3 / 11;
+    CGFloat height = width * 3 / 2;
     return CGSizeMake(width, height);
 }
 
 - (CGSize)backdropSize
 {
-    CGFloat width = [self posterSize].width * 8 / 3.f;
-    CGFloat height = width * 9 / 16.f;
+    CGFloat width = [self posterSize].width * 8 / 3;
+    CGFloat height = width * 9 / 16;
     return CGSizeMake(width, height);
 }
 

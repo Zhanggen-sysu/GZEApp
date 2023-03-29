@@ -8,7 +8,7 @@
 #import "GZEMovieVIView.h"
 #import "GZEVISmallCell.h"
 #import "GZEMovieImageRsp.h"
-#import "GZEMovieVideoItem.h"
+#import "GZEYTVideoRsp.h"
 #import "GZECommonHelper.h"
 #import "GZEBackdropItem.h"
 
@@ -18,13 +18,13 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *rightArrowIcon;
 @property (nonatomic, strong) GZEMovieImageRsp *imgRsp;
-@property (nonatomic, strong) GZEMovieVideoItem *videoModel;
+@property (nonatomic, strong) GZEYTVideoRsp *videoModel;
 
 @end
 
 @implementation GZEMovieVIView
 
-- (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEMovieVideoItem *)videoModel magicColor:(nonnull UIColor *)magicColor
+- (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(nonnull UIColor *)magicColor
 {
     self.imgRsp = imgModel;
     self.videoModel = videoModel;
@@ -68,7 +68,7 @@
 {
     GZEVISmallCell *cell = (GZEVISmallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEVISmallCell class]) forIndexPath:indexPath];
     if (indexPath.row == 0 && self.videoModel) {
-        [cell updateWithKey:self.videoModel.key];
+        [cell updateWithVideo:self.videoModel];
     } else {
         NSInteger index = self.videoModel ? indexPath.row-1 : indexPath.row;
         GZEBackdropItem *backdrop = self.imgRsp.backdrops[index];
@@ -128,7 +128,7 @@
 - (CGSize)itemSize
 {
     CGFloat width = 300;
-    CGFloat height = 300 / 16.f * 9;
+    CGFloat height = 300 / 16 * 9;
     return CGSizeMake(width, height);
 }
 

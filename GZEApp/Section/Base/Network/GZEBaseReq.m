@@ -38,7 +38,9 @@
             [dict removeObjectForKey:obj];
         }
     }];
-    [dict setObject:API_KEY forKey:@"api_key"];
+    if (!self.withoutApiKey) {
+        [dict setObject:API_KEY forKey:@"api_key"];
+    }
     return dict;
 }
 

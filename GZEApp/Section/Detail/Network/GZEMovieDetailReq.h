@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, GZEMovieDetailType) {
     GZEMovieDetailType_Image,
     GZEMovieDetailType_Review,
     GZEMovieDetailType_Similar,
+    GZEMovieDetailType_Recommend,
 };
 
 @interface GZEMovieDetailReq : GZEBaseReq
@@ -25,10 +26,11 @@ typedef NS_ENUM(NSUInteger, GZEMovieDetailType) {
 @property (nonatomic, assign) GZEMovieDetailType type;
 // image不能有
 @property (nonatomic, copy, nullable) NSString *language;
+// common
 @property (nonatomic, copy) NSString *append_to_response;
 // image
 @property (nonatomic, copy) NSString *include_image_language;
-// review, similar
+// review, similar, recommend
 @property (nonatomic, strong) NSNumber *page;
 
 @end

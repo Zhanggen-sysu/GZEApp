@@ -13,6 +13,7 @@
 @class GZEMovieDetailRsp;
 @class GZEMovieListRsp;
 @class GZEMovieViedeoRsp;
+@class GZEYTVideoRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) GZEMovieImageRsp *images;
 @property (nonatomic, strong) GZEMovieReviewRsp *reviews;
 @property (nonatomic, strong) GZEMovieListRsp *similar;
+@property (nonatomic, strong) GZEMovieListRsp *recommend;
 @property (nonatomic, strong) GZEMovieViedeoRsp *videos;
+@property (nonatomic, strong) GZEYTVideoRsp *firstVideo;
 @property (nonatomic, strong) UIColor *magicColor;
 
 @end

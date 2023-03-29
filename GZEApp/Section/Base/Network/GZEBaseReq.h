@@ -5,12 +5,14 @@
 //  Created by GenZhang on 2023/3/1.
 //
 
-#import "YTKBaseRequest.h"
+#import <YTKNetwork/YTKNetwork.h>
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^GZECommonRspBlock)(BOOL isSuccess, id _Nullable rsp, NSString * _Nullable errorMessage);
 
 @interface GZEBaseReq : YTKBaseRequest
+
+@property (nonatomic, assign) BOOL withoutApiKey;
 
 - (NSDictionary *)jsonDictionary;
 

@@ -6,6 +6,7 @@
 //
 
 #import "GZEBaseModel.h"
+#import "GZEEnum.h"
 @class GZETrendingItem;
 @class GZESearchListItem;
 NS_ASSUME_NONNULL_BEGIN
@@ -17,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *detail;
 @property (nonatomic, copy) NSAttributedString *stars;
 @property (nonatomic, copy) NSString *score;
-@property (nonatomic, copy) NSString *mediaType;
+@property (nonatomic, assign) GZEMediaType mediaType;
+@property (nonatomic, copy) NSString *typeText;
+@property (nonatomic, assign) NSInteger ID;
 
 + (GZESearchCellViewModel *)viewModelWithTrendModel:(GZETrendingItem *)model;
 + (GZESearchCellViewModel *)viewModelWithSearchModel:(GZESearchListItem *)model;

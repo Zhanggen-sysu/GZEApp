@@ -115,7 +115,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.minimumInteritemSpacing = 20;
         layout.minimumLineSpacing = 10;
-        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 60) / 3.f, 30);
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 60) / 3, 30);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.showsVerticalScrollIndicator = NO;

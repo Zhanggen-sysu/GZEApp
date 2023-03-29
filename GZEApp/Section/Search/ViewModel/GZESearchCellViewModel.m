@@ -18,8 +18,10 @@
     GZESearchCellViewModel *viewModel = [[GZESearchCellViewModel alloc] init];
     viewModel.stars = [GZECommonHelper generateRatingString:model.voteAverage starSize:12 space:1];
     viewModel.score = [NSString stringWithFormat:@"%.1f", model.voteAverage];
+    viewModel.ID = model.identifier;
     if ([model.mediaType isEqualToString:@"movie"]) {
-        viewModel.mediaType = @"Movie";
+        viewModel.mediaType = GZEMediaType_Movie;
+        viewModel.typeText = @"Movie";
         viewModel.posterUrl = [GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92];
         viewModel.title = model.title;
         NSMutableString *str = [[NSMutableString alloc] init];
@@ -38,7 +40,8 @@
         }
         viewModel.detail = str;
     } else if ([model.mediaType isEqualToString:@"tv"]) {
-        viewModel.mediaType = @"TV";
+        viewModel.mediaType = GZEMediaType_TV;
+        viewModel.typeText = @"TV";
         viewModel.posterUrl = [GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92];
         viewModel.title = model.name;
         NSMutableString *str = [[NSMutableString alloc] init];
@@ -57,7 +60,8 @@
         }
         viewModel.detail = str;
     } else if ([model.mediaType isEqualToString:@"person"]) {
-        viewModel.mediaType = @"Person";
+        viewModel.mediaType = GZEMediaType_Person;
+        viewModel.typeText = @"Person";
         viewModel.posterUrl = [GZECommonHelper getProfileUrl:model.posterPath size:GZEProfileSize_w185];
         viewModel.title = model.name;
     }
@@ -70,7 +74,8 @@
     viewModel.stars = [GZECommonHelper generateRatingString:model.voteAverage starSize:12 space:1];
     viewModel.score = [NSString stringWithFormat:@"%.1f", model.voteAverage];
     if ([model.mediaType isEqualToString:@"movie"]) {
-        viewModel.mediaType = @"Movie";
+        viewModel.mediaType = GZEMediaType_Movie;
+        viewModel.typeText = @"Movie";
         viewModel.posterUrl = [GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92];
         viewModel.title = model.title;
         NSMutableString *str = [[NSMutableString alloc] init];
@@ -89,7 +94,8 @@
         }
         viewModel.detail = str;
     } else if ([model.mediaType isEqualToString:@"tv"]) {
-        viewModel.mediaType = @"TV";
+        viewModel.mediaType = GZEMediaType_TV;
+        viewModel.typeText = @"TV";
         viewModel.posterUrl = [GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92];
         viewModel.title = model.name;
         NSMutableString *str = [[NSMutableString alloc] init];
@@ -108,7 +114,8 @@
         }
         viewModel.detail = str;
     } else if ([model.mediaType isEqualToString:@"person"]) {
-        viewModel.mediaType = @"Person";
+        viewModel.mediaType = GZEMediaType_Person;
+        viewModel.typeText = @"Person";
         viewModel.posterUrl = [GZECommonHelper getProfileUrl:model.profilePath size:GZEProfileSize_w185];
         viewModel.title = model.name;
         if (model.knownFor.count > 0) {

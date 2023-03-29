@@ -84,9 +84,9 @@
 {
     if (!_characterLabel) {
         _characterLabel = [[UILabel alloc] init];
-        _characterLabel.font = kFont(14.f);
+        _characterLabel.font = kFont(12.f);
         _characterLabel.textAlignment = NSTextAlignmentCenter;
-        _characterLabel.textColor = RGBColor(245, 245, 245);
+        _characterLabel.textColor = RGBColor(200, 200, 200);
     }
     return _characterLabel;
 }

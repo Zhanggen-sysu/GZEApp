@@ -7,12 +7,15 @@
 
 #import "GZEVISmallCell.h"
 #import "UIImageView+WebCache.h"
-#import "YTPlayerView.h"
+#import "GZEYTVideoRsp.h"
+#import "GZEPaddingLabel.h"
 
 @interface GZEVISmallCell ()
 
 @property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) YTPlayerView *playerView;
+@property (nonatomic, strong) UIView *videoBg;
+@property (nonatomic, strong) GZEPaddingLabel *tagLabel;
+@property (nonatomic, strong) UIImageView *playImg;
 
 @end
 
@@ -20,50 +23,81 @@
 
 - (void)setupSubviews
 {
-   [self.contentView addSubview:self.imageView];
+    [self.contentView addSubview:self.imageView];
+    [self.contentView addSubview:self.videoBg];
+    [self.videoBg addSubview:self.tagLabel];
+    [self.videoBg addSubview:self.playImg];
 }
 
 - (void)defineLayout
 {
-   [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.edges.equalTo(self.contentView);
-   }];
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
+    [self.videoBg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
+    [self.tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.leading.equalTo(self.videoBg).offset(10.f);
+    }];
+    [self.playImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.videoBg);
+        make.size.mas_equalTo(CGSizeMake(48, 48));
+    }];
 }
 
 - (UIImageView *)imageView
 {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView;
 }
 
-- (YTPlayerView *)playerView
+- (UIView *)videoBg
 {
-    if (!_playerView) {
-        _playerView = [[YTPlayerView alloc] init];
+    if (!_videoBg) {
+        _videoBg = [[UIView alloc] init];
     }
-    return _playerView;
+    return _videoBg;
+}
+
+- (GZEPaddingLabel *)tagLabel
+{
+    if (!_tagLabel) {
+        _tagLabel = [[GZEPaddingLabel alloc] init];
+        _tagLabel.edgeInsets = UIEdgeInsetsMake(2, 4, 2, 4);
+        _tagLabel.textColor = [UIColor whiteColor];
+        _tagLabel.backgroundColor = RGBColor(0, 191, 255);
+        _tagLabel.layer.masksToBounds = YES;
+        _tagLabel.layer.cornerRadius = 2;
+        _tagLabel.font = kFont(12.f);
+    }
+    return _tagLabel;
+}
+
+- (UIImageView *)playImg
+{
+    if (!_playImg) {
+        _playImg = [[UIImageView alloc] init];
+        _playImg.image = kGetImage(@"play-video-white");
+    }
+    return _playImg;
 }
 
 - (void)updateWithUrl:(NSURL *)url
 {
-    [self.playerView removeFromSuperview];
-    [self.contentView addSubview:self.imageView];
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
+    self.videoBg.hidden = YES;
     [self.imageView sd_setImageWithURL:url placeholderImage:kGetImage(@"default-backdrop")];
 }
 
-- (void)updateWithKey:(NSString *)key
+- (void)updateWithVideo:(GZEYTVideoRsp *)model;
 {
-    [self.imageView removeFromSuperview];
-    [self.contentView addSubview:self.playerView];
-    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
-    [self.playerView loadWithVideoId:key];
+    self.videoBg.hidden = NO;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.thumbnailURL] placeholderImage:kGetImage(@"default-backdrop")];
+    self.tagLabel.text = model.videoType;
+    
 }
 
 @end

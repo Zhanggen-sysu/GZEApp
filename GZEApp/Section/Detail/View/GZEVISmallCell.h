@@ -6,6 +6,7 @@
 //
 
 #import "GZEBaseCollectionViewCell.h"
+@class GZEYTVideoRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateWithUrl:(NSURL *)url;
 // Youtube Key
-- (void)updateWithKey:(NSString *)key;
+- (void)updateWithVideo:(GZEYTVideoRsp *)model;
 
 @end
 

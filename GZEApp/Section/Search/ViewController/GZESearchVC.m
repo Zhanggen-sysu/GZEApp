@@ -11,6 +11,7 @@
 #import "GZESearchTableViewCell.h"
 #import "GZESearchListView.h"
 #import "GZESearchAdvanceView.h"
+#import "GZEMovieDetailVC.h"
 #import <JXCategoryView/JXCategoryView.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import "GZESearchRsp.h"
@@ -114,6 +115,16 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+- (void)didSelectCell:(GZESearchCellViewModel *)viewModel
+{
+    if (viewModel.mediaType == GZEMediaType_Movie) {
+        GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:viewModel.ID];
+        // tips: 下一页的返回按钮需要在上一页设置才有效
+        self.navigationItem.backButtonTitle = @"";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 #pragma mark - UI
 - (void)setupSubviews
 {
@@ -196,7 +207,7 @@
         _segmentView.titleFont = kBoldFont(14.f);
         _segmentView.titleColor = RGBColor(128, 128, 128);
         _segmentView.titleSelectedColor = [UIColor blackColor];
-        _segmentView.cellWidth = SCREEN_WIDTH / 3.0;
+        _segmentView.cellWidth = SCREEN_WIDTH / 3;
         _segmentView.cellSpacing = 0;
         _segmentView.contentEdgeInsetLeft = 0;
         _segmentView.contentEdgeInsetRight = 0;
@@ -205,7 +216,7 @@
         
         JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
         lineView.indicatorColor = RGBColor(0, 191, 255);
-        lineView.indicatorWidth = SCREEN_WIDTH / 3.0;
+        lineView.indicatorWidth = SCREEN_WIDTH / 3;
         lineView.indicatorHeight = 2.0f;
         _segmentView.indicators = @[lineView];
     }
@@ -237,6 +248,11 @@
 {
     if (!_trendView) {
         _trendView = [[GZESearchListView alloc] init];
+        WeakSelf(self)
+        _recentView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
+            StrongSelfReturnNil(self)
+            [self didSelectCell:model];
+        };
         NSMutableArray *array = [[NSMutableArray alloc] init];
         [self.viewModel.media enumerateObjectsUsingBlock:^(GZETrendingItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [array addObject:[GZESearchCellViewModel viewModelWithTrendModel:obj]];
@@ -253,6 +269,11 @@
 {
     if (!_recentView) {
         _recentView = [[GZESearchListView alloc] init];
+        WeakSelf(self)
+        _recentView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
+            StrongSelfReturnNil(self)
+            [self didSelectCell:model];
+        };
     }
     return _recentView;
 }

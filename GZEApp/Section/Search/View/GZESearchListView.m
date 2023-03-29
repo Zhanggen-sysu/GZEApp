@@ -37,7 +37,6 @@
 - (void)defineLayout
 {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-
         make.edges.equalTo(self);
     }];
 }
@@ -77,5 +76,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GZESearchCellViewModel *viewModel = self.viewModel[indexPath.row];
+    !self.selectItemBlock ?: self.selectItemBlock(viewModel);
+}
 
 @end

@@ -9,9 +9,8 @@
 #import "GZEMovieDetailView.h"
 #import "GZEMovieCastView.h"
 #import "GZEMovieVIView.h"
+#import "GZEMovieSimilarView.h"
 
-#import "GZEMovieViedeoRsp.h"
-#import "GZEMovieVideoItem.h"
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
 #import "GZEMovieDetailViewModel.h"
@@ -25,6 +24,8 @@
 @property (nonatomic, strong) GZEMovieDetailView *detailView;
 @property (nonatomic, strong) GZEMovieCastView *castView;
 @property (nonatomic, strong) GZEMovieVIView *viView;
+@property (nonatomic, strong) GZEMovieSimilarView *similarView;
+@property (nonatomic, strong) GZEMovieSimilarView *recommendView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
 @property (nonatomic, strong) GZEDetailManager *manager;
@@ -72,22 +73,11 @@
     }];
 }
 
-
-- (GZEMovieVideoItem *)choosenVideo
-{
-    __block GZEMovieVideoItem *ret = nil;
-    [self.viewModel.videos.results enumerateObjectsUsingBlock:^(GZEMovieVideoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.site isEqualToString:@"YouTube"] && [obj.type isEqualToString:@"Trailer"]) {
-            ret = obj;
-            *stop = YES;
-        }
-    }];
-    return ret;
-}
-
 #pragma mark - UI
 - (void)setupSubviews
 {
+    // 不加背景颜色看起来会有卡顿
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.contentView];
 }
@@ -108,6 +98,15 @@
     [self.castView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.contentView);
     }];
+    [self.viView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
+    [self.similarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
+    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
 }
 
 - (void)updateUI
@@ -115,7 +114,9 @@
     self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
     [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
     [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
-    [self.viView updateWithImgModel:self.viewModel.images videoModel:[self choosenVideo] magicColor:self.viewModel.magicColor];
+    [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
+    [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
+    [self.recommendView updateWithModel:self.viewModel.recommend magicColor:self.viewModel.magicColor];
 }
 
 - (GZEDetailManager *)manager
@@ -149,6 +150,8 @@
             self.detailView,
             self.castView,
             self.viView,
+            self.similarView,
+            self.recommendView,
         ]];
         _contentView.axis = UILayoutConstraintAxisVertical;
         _contentView.alignment = UIStackViewAlignmentFill;
@@ -182,10 +185,26 @@
     return _viView;
 }
 
+- (GZEMovieSimilarView *)similarView
+{
+    if (!_similarView) {
+        _similarView = [[GZEMovieSimilarView alloc] initWithTitle:@"More Like This"];
+    }
+    return _similarView;
+}
+
+- (GZEMovieSimilarView *)recommendView
+{
+    if (!_recommendView) {
+        _recommendView = [[GZEMovieSimilarView alloc] initWithTitle:@"Recommend For You"];
+    }
+    return _recommendView;
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16.0 * 9.0));
+    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16 * 9));
     if (gradientProgress != self.gradientProgress) {
         if ((gradientProgress >= 0.5 && self.gradientProgress < 0.5) || (self.gradientProgress >= 0.5 && gradientProgress < 0.5)) {
             self.gradientProgress = gradientProgress;

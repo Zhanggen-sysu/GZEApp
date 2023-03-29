@@ -7,10 +7,13 @@
 
 #import "GZEBaseView.h"
 #import <JXCategoryListContainerView.h>
+@class GZESearchCellViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZESearchListView : GZEBaseView <JXCategoryListContentViewDelegate>
+
+@property (nonatomic, copy) void (^selectItemBlock)(GZESearchCellViewModel *model);
 
 - (void)updateWithModel:(NSArray *)model;
 

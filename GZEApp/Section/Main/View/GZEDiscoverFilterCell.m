@@ -19,7 +19,7 @@
 - (void)updateWithString:(NSString *)text
 {
     CGSize size = [text textSizeIn:CGSizeMake(SCREEN_WIDTH - 20, 30) font:kFont(15.f)];
-    if (size.width > (SCREEN_WIDTH - 60) / 3.f - 10) {
+    if (size.width > (SCREEN_WIDTH - 60) / 3 - 10) {
         self.titleLabel.adjustsFontSizeToFitWidth = YES;
         self.titleLabel.minimumScaleFactor = 0.1;
     } else {
