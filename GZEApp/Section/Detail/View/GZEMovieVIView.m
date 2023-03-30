@@ -11,12 +11,13 @@
 #import "GZEYTVideoRsp.h"
 #import "GZECommonHelper.h"
 #import "GZEBackdropItem.h"
+#import "GZECustomButton.h"
 
 @interface GZEMovieVIView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *photoCollection;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIImageView *rightArrowIcon;
+@property (nonatomic, strong) GZECustomButton *seeAllBtn;
 @property (nonatomic, strong) GZEMovieImageRsp *imgRsp;
 @property (nonatomic, strong) GZEYTVideoRsp *videoModel;
 
@@ -26,11 +27,26 @@
 
 - (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(nonnull UIColor *)magicColor
 {
+    if (!videoModel && imgModel.backdrops.count <= 0) {
+        self.hidden = YES;
+        return;
+    }
     self.imgRsp = imgModel;
     self.videoModel = videoModel;
     self.backgroundColor = magicColor;
     self.photoCollection.backgroundColor = magicColor;
     [self.photoCollection reloadData];
+    NSInteger count = self.imgRsp.backdrops.count + self.imgRsp.posters.count;
+    if (count > 9) {
+        [self.seeAllBtn setTitle:[NSString stringWithFormat:@"See All (%ld)", count] forState:UIControlStateNormal];
+    } else {
+        self.seeAllBtn.hidden = YES;
+    }
+}
+
+- (void)didTapSeeAll
+{
+    
 }
 
 #pragma mark - UI
@@ -39,7 +55,7 @@
     self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.titleLabel];
     [self addSubview:self.photoCollection];
-    [self addSubview:self.rightArrowIcon];
+    [self addSubview:self.seeAllBtn];
 }
 
 - (void)defineLayout
@@ -56,10 +72,9 @@
         make.height.mas_equalTo([self itemSize].height);
         make.bottom.equalTo(self).offset(-10.f);
     }];
-    [self.rightArrowIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.seeAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self).offset(-15.f);
         make.centerY.equalTo(self.titleLabel);
-        make.size.mas_equalTo(CGSizeMake(14.f, 14.f));
     }];
 }
 
@@ -72,7 +87,7 @@
     } else {
         NSInteger index = self.videoModel ? indexPath.row-1 : indexPath.row;
         GZEBackdropItem *backdrop = self.imgRsp.backdrops[index];
-        [cell updateWithUrl:[GZECommonHelper getBackdropUrl:backdrop.filePath size:GZEBackdropSize_w300]];
+        [cell updateWithUrl:[GZECommonHelper getBackdropUrl:backdrop.filePath size:GZEBackdropSize_w780]];
     }
     return cell;
 }
@@ -116,13 +131,17 @@
     return _photoCollection;
 }
 
-- (UIImageView *)rightArrowIcon
+- (GZECustomButton *)seeAllBtn
 {
-    if (!_rightArrowIcon) {
-        _rightArrowIcon = [[UIImageView alloc] init];
-        _rightArrowIcon.image = kGetImage(@"arrow-right-white");
+    if (!_seeAllBtn) {
+        _seeAllBtn = [[GZECustomButton alloc] init];
+        _seeAllBtn.titleLabel.font = kFont(14.f);
+        [_seeAllBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_seeAllBtn setImage:kGetImage(@"arrow-right-white") forState:UIControlStateNormal];
+        [_seeAllBtn setImagePosition:GZEBtnImgPosition_Right spacing:5 contentAlign:GZEBtnContentAlign_Right contentOffset:0 imageSize:CGSizeZero titleSize:CGSizeZero];
+        [_seeAllBtn addTarget:self action:@selector(didTapSeeAll) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _rightArrowIcon;
+    return _seeAllBtn;
 }
 
 - (CGSize)itemSize

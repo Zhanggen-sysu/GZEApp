@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger ID;
 
 // 文本是否展开
-@property (nonatomic, assign) BOOL isWrap;
+@property (nonatomic, assign) BOOL isExpand;
 
 + (GZEDiscoverCellViewModel *)viewModelWithTVItem:(GZETVListItem *)item;
 + (GZEDiscoverCellViewModel *)viewModelWithMovieItem:(GZEMovieListItem *)item;

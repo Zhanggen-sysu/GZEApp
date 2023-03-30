@@ -71,6 +71,7 @@
 + (GZESearchCellViewModel *)viewModelWithSearchModel:(GZESearchListItem *)model
 {
     GZESearchCellViewModel *viewModel = [[GZESearchCellViewModel alloc] init];
+    viewModel.ID = model.identifier;
     viewModel.stars = [GZECommonHelper generateRatingString:model.voteAverage starSize:12 space:1];
     viewModel.score = [NSString stringWithFormat:@"%.1f", model.voteAverage];
     if ([model.mediaType isEqualToString:@"movie"]) {

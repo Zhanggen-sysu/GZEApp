@@ -53,7 +53,6 @@
         @"productionCompanies": [GZEProductionCompany class],
         @"productionCountries": [GZEProductionCountry class],
         @"spokenLanguages": [GZELanguageItem class],
-        @"belongsToCollection": [GZECollectionItem class],
     };
 }
 

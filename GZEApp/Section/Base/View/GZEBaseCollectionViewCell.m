@@ -14,6 +14,7 @@
     if (self = [super initWithFrame:frame])
     {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor whiteColor];
         [self setupSubviews];
         [self defineLayout];
     }

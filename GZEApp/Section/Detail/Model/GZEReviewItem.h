@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)   NSString *identifier;
 @property (nonatomic, copy)   NSString *updatedAt;
 @property (nonatomic, copy)   NSString *url;
+// local
+@property (nonatomic, assign) BOOL isExpand;
 
 @end
 

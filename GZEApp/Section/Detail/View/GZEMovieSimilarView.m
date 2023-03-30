@@ -32,11 +32,18 @@
 
 - (void)updateWithModel:(GZEMovieListRsp *)similar magicColor:(nonnull UIColor *)magicColor
 {
+    if (similar.results.count <= 0) {
+        self.hidden = YES;
+        return;
+    }
     self.magicColor = magicColor;
     self.backgroundColor = magicColor;
     self.collectionView.backgroundColor = magicColor;
     self.model = similar;
     [self.collectionView reloadData];
+    if (similar.results.count <= 10) {
+        self.rightIcon.hidden = YES;
+    }
 }
 
 #pragma mark - UI

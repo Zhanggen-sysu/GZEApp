@@ -51,6 +51,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:20];
         _titleLabel.text = @"Lists";
+        _titleLabel.textColor = [UIColor blackColor];
     }
     return _titleLabel;
 }
@@ -68,6 +69,7 @@
         _collectionView.dataSource = self;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 15);
         _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[GZEListCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEListCollectionViewCell class])];
         [_collectionView registerClass:[GZEListCollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([GZEListCollectionFooterView class])];
     }

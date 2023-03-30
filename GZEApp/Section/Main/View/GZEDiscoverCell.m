@@ -34,7 +34,7 @@
     self.scoreNumLabel.text = viewModel.score;
     self.detailLabel.text = viewModel.detail;
     self.contentLabel.text = viewModel.overview;
-    self.contentLabel.isWrap = viewModel.isWrap;
+    self.contentLabel.isExpand = viewModel.isExpand;
 }
 
 - (CGSize)posterSize
@@ -125,6 +125,7 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = kBoldFont(16.f);
         _nameLabel.numberOfLines = 2;
+        _nameLabel.textColor = [UIColor blackColor];
     }
     return _nameLabel;
 }
@@ -173,9 +174,9 @@
         [attri appendAttributedString:[NSAttributedString attributedStringWithAttachment:attach]];
         _contentLabel.expandText = attri;
         WeakSelf(self)
-        _contentLabel.didChangeHeight = ^(BOOL isWrap) {
+        _contentLabel.didChangeHeight = ^(BOOL isExpand) {
             StrongSelfReturnNil(self)
-            !self.didChangeHeight ?: self.didChangeHeight(isWrap);
+            !self.didChangeHeight ?: self.didChangeHeight(isExpand);
         };
     }
     return _contentLabel;

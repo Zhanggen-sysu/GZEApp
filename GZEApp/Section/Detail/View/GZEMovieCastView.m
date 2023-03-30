@@ -31,6 +31,10 @@ static NSInteger kCastCount = 4;
 
 - (void)updateWithModel:(GZEMovieCrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor
 {
+    if (model.cast.count <= 0) {
+        self.hidden = YES;
+        return;
+    }
     self.model = model;
     self.backgroundColor = magicColor;
     self.magicColor = magicColor;
@@ -43,6 +47,13 @@ static NSInteger kCastCount = 4;
         }
     }];
     self.directorLabel.text = [NSString stringWithFormat:@"Director: %@", director];
+}
+
+- (CGSize)itemSize
+{
+    CGFloat width = (int)(SCREEN_WIDTH / kCastCount);
+    CGFloat height = width + 70.f;
+    return CGSizeMake(width, height);
 }
 
 - (void)setupSubviews
@@ -63,7 +74,7 @@ static NSInteger kCastCount = 4;
     }];
     [self.castCollection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10.f);
-        make.height.mas_equalTo(SCREEN_WIDTH / kCastCount + 70.f);
+        make.height.mas_equalTo([self itemSize].height);
         make.leading.equalTo(self).offset(15.f);
         make.trailing.equalTo(self);
     }];
@@ -117,9 +128,7 @@ static NSInteger kCastCount = 4;
     if (!_castCollection) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        CGFloat width = SCREEN_WIDTH / kCastCount;
-        CGFloat height = width + 70.f;
-        layout.itemSize = CGSizeMake(width, height);
+        layout.itemSize = [self itemSize];
         
         _castCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _castCollection.showsHorizontalScrollIndicator = NO;

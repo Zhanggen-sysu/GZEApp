@@ -172,6 +172,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:20];
         _titleLabel.text = @"Discovery";
+        _titleLabel.textColor = [UIColor blackColor];
         [_titleLabel sizeToFit];
     }
     return _titleLabel;

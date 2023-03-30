@@ -249,7 +249,7 @@
     if (!_trendView) {
         _trendView = [[GZESearchListView alloc] init];
         WeakSelf(self)
-        _recentView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
+        _trendView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
             StrongSelfReturnNil(self)
             [self didSelectCell:model];
         };
@@ -322,6 +322,12 @@
     GZESearchCellViewModel *viewModel = self.searchArray[indexPath.row];
     [cell updateWithModel:viewModel];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GZESearchCellViewModel *viewModel = self.searchArray[indexPath.row];
+    [self didSelectCell:viewModel];
 }
 
 #pragma mark - UISearchBarDelegate

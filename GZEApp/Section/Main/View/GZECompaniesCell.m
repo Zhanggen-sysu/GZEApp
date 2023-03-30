@@ -59,6 +59,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:20];
         _titleLabel.text = @"Explore";
+        _titleLabel.textColor = [UIColor blackColor];
     }
     return _titleLabel;
 }
@@ -78,6 +79,7 @@
         _collectionView.dataSource = self;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 10);
         _collectionView.scrollEnabled = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[GZECompanySmallCell class] forCellWithReuseIdentifier:NSStringFromClass([GZECompanySmallCell class])];
     }
     return _collectionView;

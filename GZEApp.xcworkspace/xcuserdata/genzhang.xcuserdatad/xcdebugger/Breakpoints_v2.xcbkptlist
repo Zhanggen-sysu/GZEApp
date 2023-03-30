@@ -156,16 +156,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B17881B9-27EC-4119-A9F8-3CEB37B7B59D"
+            uuid = "A9C912E7-4D54-4EDE-A472-E491647B4B4F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GZEApp/Section/Detail/Network/GZEDetailManager.m"
+            filePath = "GZEApp/Section/Detail/View/GZEMovieVIView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-getMovieDetailWithId:completion:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-updateWithImgModel:videoModel:magicColor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

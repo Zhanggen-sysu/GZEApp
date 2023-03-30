@@ -35,6 +35,9 @@
 		3D99D53A29D3EB0C00E7142F /* GZEYTVideoRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53929D3EB0C00E7142F /* GZEYTVideoRsp.m */; };
 		3D99D53D29D42DF100E7142F /* GZEMovieSimilarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53C29D42DF100E7142F /* GZEMovieSimilarView.m */; };
 		3D99D54029D435A200E7142F /* GZEMovieSimilarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */; };
+		3D99D54729D44F4800E7142F /* GZEMovieNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */; };
+		3D99D54A29D55C3900E7142F /* GZEMovieReviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */; };
+		3D99D54D29D55D9D00E7142F /* GZEReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
 		3DA27D5E29AE0DA10086089A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5D29AE0DA10086089A /* Assets.xcassets */; };
@@ -168,6 +171,12 @@
 		3D99D53C29D42DF100E7142F /* GZEMovieSimilarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieSimilarView.m; sourceTree = "<group>"; };
 		3D99D53E29D435A200E7142F /* GZEMovieSimilarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieSimilarCell.h; sourceTree = "<group>"; };
 		3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieSimilarCell.m; sourceTree = "<group>"; };
+		3D99D54529D44F4800E7142F /* GZEMovieNavBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieNavBarView.h; sourceTree = "<group>"; };
+		3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieNavBarView.m; sourceTree = "<group>"; };
+		3D99D54829D55C3900E7142F /* GZEMovieReviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieReviewView.h; sourceTree = "<group>"; };
+		3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieReviewView.m; sourceTree = "<group>"; };
+		3D99D54B29D55D9D00E7142F /* GZEReviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEReviewCell.h; sourceTree = "<group>"; };
+		3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEReviewCell.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA27D5129AE0DA00086089A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DA27D5229AE0DA00086089A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -781,12 +790,18 @@
 				3D6ED4F429D298EF00562E29 /* GZEMovieCastView.m */,
 				3DF2506829D19C51001EF515 /* GZEMovieDetailView.h */,
 				3DF2506929D19C51001EF515 /* GZEMovieDetailView.m */,
+				3D99D54529D44F4800E7142F /* GZEMovieNavBarView.h */,
+				3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */,
+				3D99D54829D55C3900E7142F /* GZEMovieReviewView.h */,
+				3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */,
 				3D99D53E29D435A200E7142F /* GZEMovieSimilarCell.h */,
 				3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */,
 				3D99D53B29D42DF100E7142F /* GZEMovieSimilarView.h */,
 				3D99D53C29D42DF100E7142F /* GZEMovieSimilarView.m */,
 				3D99D52C29D2E9B000E7142F /* GZEMovieVIView.h */,
 				3D99D52D29D2E9B000E7142F /* GZEMovieVIView.m */,
+				3D99D54B29D55D9D00E7142F /* GZEReviewCell.h */,
+				3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */,
 				3D99D52F29D2EAD800E7142F /* GZEVISmallCell.h */,
 				3D99D53029D2EAD800E7142F /* GZEVISmallCell.m */,
 			);
@@ -979,6 +994,7 @@
 				3DA27D9029AF02720086089A /* GZEBaseReq.m in Sources */,
 				3DF1EE2929BF19FE006BCF3E /* GZEGenreItem.m in Sources */,
 				3DF2504529D18143001EF515 /* GZEProductionCountry.m in Sources */,
+				3D99D54729D44F4800E7142F /* GZEMovieNavBarView.m in Sources */,
 				3DF2500D29CD9803001EF515 /* GZESearchListItem.m in Sources */,
 				3DF1EE4729C027C4006BCF3E /* GZEDiscoverCell.m in Sources */,
 				3D99D53729D3DED200E7142F /* GZEYTVideoReq.m in Sources */,
@@ -988,6 +1004,7 @@
 				3D1ED2D729C3124D008A17E4 /* GZEDiscoverSortView.m in Sources */,
 				3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */,
 				3DA27D8D29AF01C80086089A /* GZEBaseModel.m in Sources */,
+				3D99D54A29D55C3900E7142F /* GZEMovieReviewView.m in Sources */,
 				3D97CE1929C2F84400C19665 /* GZEPaddingLabel.m in Sources */,
 				3DD8FB4E29C95139005DF827 /* GZELanguageItem.m in Sources */,
 				3D1ED2DA29C3139D008A17E4 /* GZEDiscoverSortCell.m in Sources */,
@@ -1011,6 +1028,7 @@
 				3DA27DB129B0563A0086089A /* GZECommonHelper.m in Sources */,
 				3DA27DCD29B0758B0086089A /* GZEMovieListRsp.m in Sources */,
 				3D99D53A29D3EB0C00E7142F /* GZEYTVideoRsp.m in Sources */,
+				3D99D54D29D55D9D00E7142F /* GZEReviewCell.m in Sources */,
 				3DF2503B29D17F61001EF515 /* GZEMovieDetailReq.m in Sources */,
 				3DA27DBC29B072A20086089A /* GZEMovieListItem.m in Sources */,
 				3D638C1929BAD90A00987BA4 /* GZECompanyListRsp.m in Sources */,
@@ -1168,6 +1186,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1196,6 +1215,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

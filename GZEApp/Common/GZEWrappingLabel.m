@@ -23,7 +23,7 @@
         // 一些默认值
         self.backgroundColor = [UIColor whiteColor];
         self.wrapNumberOfLine = 3;
-        self.isWrap = YES;
+        self.isExpand = NO;
         self.font = [UIFont systemFontOfSize:17];
         self.textColor = [UIColor blackColor];
         self.wrapText = [[NSAttributedString alloc] initWithString:@"Wrap" attributes:@{
@@ -41,10 +41,10 @@
     return self;
 }
 
-- (void)setIsWrap:(BOOL)isWrap
+- (void)setIsExpand:(BOOL)isExpand
 {
-    if (isWrap != self.isWrap) {
-        _isWrap = isWrap;
+    if (isExpand != self.isExpand) {
+        _isExpand = isExpand;
         [self invalidateIntrinsicContentSize];
         [self setNeedsDisplay];
     }
@@ -63,17 +63,9 @@
 {
     CGPoint point = [ges locationInView:self];
     if (CGRectContainsPoint(self.wrapFrame, point)) {
-        self.isWrap = YES;
-        // 重新计算下高度
-        [self invalidateIntrinsicContentSize];
-        !self.didChangeHeight ?: self.didChangeHeight(YES);
-        // 重新绘制
-        [self setNeedsDisplay];
-    } else if (CGRectContainsPoint(self.expandFrame, point)) {
-        self.isWrap = NO;
-        [self invalidateIntrinsicContentSize];
         !self.didChangeHeight ?: self.didChangeHeight(NO);
-        [self setNeedsDisplay];
+    } else if (CGRectContainsPoint(self.expandFrame, point)) {
+        !self.didChangeHeight ?: self.didChangeHeight(YES);
     }
 }
 
@@ -99,7 +91,7 @@
     if (!self.expandText || lines.count <= 1) {
         height = lines.count * self.font.lineHeight;
     } else {
-        if (self.isWrap) {
+        if (!self.isExpand) {
             height = self.wrapNumberOfLine * self.font.lineHeight;
         } else {
             CTLineRef line = (__bridge CTLineRef)(lines[lines.count - 1]);
@@ -178,7 +170,7 @@
     if (!self.expandText || lines.count <= 1) {
         CTFrameDraw(frame, context);
     } else {
-        if (self.isWrap) {
+        if (!self.isExpand) {
             // 收起状态
             for (int lineIndex = 0; lineIndex < MIN(self.wrapNumberOfLine, lines.count); lineIndex ++) {
                 // 获得当前行
@@ -270,7 +262,8 @@
     CFRelease(frameSetter);
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
     CGPoint point = [touch locationInView:self];
     if (CGRectContainsPoint(self.expandFrame, point)) {
         return YES;

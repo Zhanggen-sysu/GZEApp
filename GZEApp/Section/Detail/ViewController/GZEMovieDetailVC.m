@@ -10,6 +10,8 @@
 #import "GZEMovieCastView.h"
 #import "GZEMovieVIView.h"
 #import "GZEMovieSimilarView.h"
+#import "GZEMovieNavBarView.h"
+#import "GZEMovieReviewView.h"
 
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
@@ -17,7 +19,7 @@
 #import "Macro.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 
-@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate>
+@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
@@ -26,11 +28,14 @@
 @property (nonatomic, strong) GZEMovieVIView *viView;
 @property (nonatomic, strong) GZEMovieSimilarView *similarView;
 @property (nonatomic, strong) GZEMovieSimilarView *recommendView;
+@property (nonatomic, strong) GZEMovieReviewView *reviewView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
 @property (nonatomic, strong) GZEDetailManager *manager;
 @property (nonatomic, assign) NSInteger movieId;
 @property (nonatomic, strong) GZEMovieDetailViewModel *viewModel;
+
+@property (nonatomic, strong) GZEMovieNavBarView *navBarView;
 
 @end
 
@@ -40,6 +45,7 @@
 {
     if (self = [super init]) {
         self.movieId = movieId;
+        self.navigationItem.titleView = self.navBarView;
     }
     return self;
 }
@@ -53,12 +59,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    return self.gradientProgress < 0.5 ? UIStatusBarStyleLightContent : UIStatusBarStyleDarkContent;
-}
-
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
-{
-    return UIStatusBarAnimationFade;
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Data
@@ -107,16 +108,25 @@
     [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.contentView);
     }];
+    [self.reviewView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
+    // 处理titleView不居中问题
+    [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(300.f);
+    }];
 }
 
 - (void)updateUI
 {
+    [self.navBarView updateWithModel:self.viewModel.commonInfo];
     self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
     [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
     [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
     [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
     [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
     [self.recommendView updateWithModel:self.viewModel.recommend magicColor:self.viewModel.magicColor];
+    [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
 }
 
 - (GZEDetailManager *)manager
@@ -150,8 +160,9 @@
             self.detailView,
             self.castView,
             self.viView,
-            self.similarView,
             self.recommendView,
+            self.similarView,
+            self.reviewView,
         ]];
         _contentView.axis = UILayoutConstraintAxisVertical;
         _contentView.alignment = UIStackViewAlignmentFill;
@@ -201,12 +212,33 @@
     return _recommendView;
 }
 
+- (GZEMovieReviewView *)reviewView
+{
+    if (!_reviewView) {
+        _reviewView = [[GZEMovieReviewView alloc] init];
+    }
+    return _reviewView;
+}
+
+- (GZEMovieNavBarView *)navBarView
+{
+    if (!_navBarView) {
+        _navBarView = [[GZEMovieNavBarView alloc] init];
+    }
+    return _navBarView;
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
     CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16 * 9));
     if (gradientProgress != self.gradientProgress) {
         if ((gradientProgress >= 0.5 && self.gradientProgress < 0.5) || (self.gradientProgress >= 0.5 && gradientProgress < 0.5)) {
+            if (gradientProgress >= 0.5 && self.gradientProgress < 0.5) {
+                [self.navBarView updateView:NO];
+            } else {
+                [self.navBarView updateView:YES];
+            }
             self.gradientProgress = gradientProgress;
             [self setNeedsStatusBarAppearanceUpdate];
             [self yp_refreshNavigationBarStyle];
@@ -242,11 +274,12 @@
 }
 
 - (UIColor *)yp_navigationBarTintColor {
-    return [UIColor colorWithWhite:1 - self.gradientProgress alpha:1];
+    return [UIColor whiteColor];
 }
 
 - (UIColor *)yp_navigationBackgroundColor {
-    return [UIColor colorWithWhite:1 alpha:self.gradientProgress];
+    UIColor *color = self.viewModel.magicColor ?: [UIColor whiteColor];
+    return [color colorWithAlphaComponent:self.gradientProgress];
 }
 
 

@@ -566,6 +566,7 @@
         _tableView.rowHeight = UITableViewAutomaticDimension;
         _tableView.estimatedRowHeight = 303;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor whiteColor];
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
@@ -683,7 +684,7 @@
     if (section == 3) {
         return 80;
     }
-    return 0.1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -735,12 +736,12 @@
             cell = [[GZEDiscoverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GZEDiscoverCell class])];
             WeakSelf(self)
             WeakSelf(cell)
-            cell.didChangeHeight = ^(BOOL isWrap) {
+            cell.didChangeHeight = ^(BOOL isExpand) {
                 StrongSelfReturnNil(self)
                 StrongSelfReturnNil(cell)
                 // 获取修改cell的IndexPath的正确姿势，不能直接用indexPath
                 NSIndexPath *changeIndexPath = [tableView indexPathForCell:cell];
-                self.discoverArray[changeIndexPath.row].isWrap = isWrap;
+                self.discoverArray[changeIndexPath.row].isExpand = isExpand;
                 // 更新该行的高度
                 [self.tableView reloadRowsAtIndexPaths:@[changeIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             };

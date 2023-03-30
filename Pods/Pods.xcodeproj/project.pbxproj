@@ -36,7 +36,7 @@
 		088DCBCF09DA710727A0FF20BD04D54A /* SDImageHEICCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FA673D081013D892FFC9171E7C0A21 /* SDImageHEICCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08A7FAD6D288E5408488FA003BC3F6FF /* TAAnimatedDotView.h in Headers */ = {isa = PBXBuildFile; fileRef = D212AB8E630649CDC4BA35D9FB823DDC /* TAAnimatedDotView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08C3ED17F194EC739AC22DCE83030A66 /* NSBezierPath+SDRoundedCorners.h in Headers */ = {isa = PBXBuildFile; fileRef = C8A0C78E2E747DA4DC4F95B00E361D7F /* NSBezierPath+SDRoundedCorners.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		08E06C696103054C4B32302B72F87F9B /* youtube-ios-player-helper-Assets in Resources */ = {isa = PBXBuildFile; fileRef = D674200BB0575198145B5455CF13275F /* youtube-ios-player-helper-Assets */; };
+		08E06C696103054C4B32302B72F87F9B /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D674200BB0575198145B5455CF13275F /* Assets.bundle */; };
 		08F14683B2AE25F92DE67DEA49D4F6FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7657EFCB986C5DE17D1D461BB02B76A8 /* Foundation.framework */; };
 		08F84BCA58539E03D3F7E7382DA737D3 /* LKS_PerspectiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9845BEDD5A46D697C2639933DF2B89C4 /* LKS_PerspectiveManager.m */; };
 		0992AA51D5AA42FFC747B26913AB3C33 /* YTKBatchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0427E1279575E00D6A73F2BA500F7E /* YTKBatchRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1230,7 +1230,7 @@
 		9C71ECF9E38108EC119AB045D5D48005 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "SDWebImage/Core/NSData+ImageContentType.m"; sourceTree = "<group>"; };
 		9D48C1115EFD7FFC3F32B0B46FB45E4D /* CYLBaseTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CYLBaseTableViewController.h; path = CYLTabBarController/CYLBaseTableViewController.h; sourceTree = "<group>"; };
 		9D79C78CA93E8C4CF1B57D6882E3F66E /* LookinMsgAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinMsgAttribute.m; path = Src/Main/Shared/Message/LookinMsgAttribute.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DA985C92A9C32DCBA47B2CEE526ABF0 /* JXCategoryIndicatorProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JXCategoryIndicatorProtocol.h; path = Sources/Common/JXCategoryIndicatorProtocol.h; sourceTree = "<group>"; };
 		9E759CE125CBEC6B4BC022579EC54A7C /* JXCategoryIndicatorTriangleView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JXCategoryIndicatorTriangleView.m; path = Sources/Indicator/IndicatorViews/JXCategoryIndicatorTriangleView.m; sourceTree = "<group>"; };
 		9F1A9D95177172ABB5FCBF65C59A5354 /* NSSet+Lookin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+Lookin.h"; path = "Src/Main/Shared/Category/NSSet+Lookin.h"; sourceTree = "<group>"; };
@@ -1393,7 +1393,7 @@
 		D5A82427E5ACF0873489F1CF0BC83BD7 /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackStateFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
 		D5AB145D11ABB907DA442836BDB5E65B /* TADotView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TADotView.m; path = SDCycleScrollView/Lib/SDCycleScrollView/PageControl/TADotView.m; sourceTree = "<group>"; };
 		D5E1627B606780B9560C074C3B269D24 /* Masonry-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-umbrella.h"; sourceTree = "<group>"; };
-		D674200BB0575198145B5455CF13275F /* youtube-ios-player-helper-Assets */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "youtube-ios-player-helper-Assets"; path = Assets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D674200BB0575198145B5455CF13275F /* Assets.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Assets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E172B7F77B34E8F5323660C4EBC181 /* JXCategoryIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JXCategoryIndicatorView.h; path = Sources/Indicator/JXCategoryIndicatorView.h; sourceTree = "<group>"; };
 		D70E89E91C8DA8A035CFBD1A20B5789F /* NSArray+Lookin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Lookin.m"; path = "Src/Main/Shared/Category/NSArray+Lookin.m"; sourceTree = "<group>"; };
 		D77375D5AFEB7B2313C61F5347413E9D /* SDImageIOAnimatedCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageIOAnimatedCoder.m; path = SDWebImage/Core/SDImageIOAnimatedCoder.m; sourceTree = "<group>"; };
@@ -1484,7 +1484,7 @@
 		F7EF5729099A1853A97FC674EAA9902C /* Peertalk.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Peertalk.h; path = Src/Main/Shared/Peertalk/Peertalk.h; sourceTree = "<group>"; };
 		F899D800AA6AFB685F2D14F9966FA562 /* SDImageTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageTransformer.m; path = SDWebImage/Core/SDImageTransformer.m; sourceTree = "<group>"; };
 		F89E5C58F0CC9AD5A9ADF986AF8156A1 /* LookinAttributesGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LookinAttributesGroup.m; path = Src/Main/Shared/LookinAttributesGroup.m; sourceTree = "<group>"; };
-		F8E0E34734465A4DEC3D8FEC8FFAF1AF /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "YTPlayerView-iframe-player.html"; path = "Sources/Assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		F8E0E34734465A4DEC3D8FEC8FFAF1AF /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "Sources/Assets/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
 		F9D5FCF3BB97260B4A255B53B50853C0 /* JXCategoryImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JXCategoryImageView.h; path = Sources/Image/JXCategoryImageView.h; sourceTree = "<group>"; };
 		FA0427E1279575E00D6A73F2BA500F7E /* YTKBatchRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTKBatchRequest.h; path = YTKNetwork/YTKBatchRequest.h; sourceTree = "<group>"; };
 		FA0D5FC7E038B52CEB70ACA4ED36BA54 /* MJRefreshTrailer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshTrailer.h; path = MJRefresh/Base/MJRefreshTrailer.h; sourceTree = "<group>"; };
@@ -1698,7 +1698,6 @@
 				C6097A30A5356364C56C66C844BF779D /* YYModel.h */,
 				FD8F0EB9EBA097730AD13CB0F0E56192 /* Support Files */,
 			);
-			name = YYModel;
 			path = YYModel;
 			sourceTree = "<group>";
 		};
@@ -1798,7 +1797,6 @@
 				19B5662CE4D159877F3F316620D5D459 /* UIColor+JXAdd.m */,
 				EEAF40879E91EB1711330C52EB11B01D /* Support Files */,
 			);
-			name = JXCategoryView;
 			path = JXCategoryView;
 			sourceTree = "<group>";
 		};
@@ -1832,7 +1830,6 @@
 				46DCD1D0A636645490A28FC84B40D749 /* ViewController+MASAdditions.m */,
 				B06A414E30E8DDC395DB9A75F1E413CE /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -1842,7 +1839,6 @@
 				A7CE6C395C8266EA37D138B09EA0BAE1 /* Core */,
 				F1405B3B319FB5EF805C789BEA74B0A8 /* Support Files */,
 			);
-			name = CYLTabBarController;
 			path = CYLTabBarController;
 			sourceTree = "<group>";
 		};
@@ -1853,7 +1849,6 @@
 				36DC768555014602AFC36668E55BBE52 /* UICollectionViewLeftAlignedLayout.m */,
 				8529A53F09873B235D9395F7072350B8 /* Support Files */,
 			);
-			name = UICollectionViewLeftAlignedLayout;
 			path = UICollectionViewLeftAlignedLayout;
 			sourceTree = "<group>";
 		};
@@ -1905,7 +1900,6 @@
 				0E90787EE99A13F79F53B8754DD50202 /* Serialization */,
 				E6B3C9598D2097DC212E1F4450F9C5DD /* Support Files */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -1964,7 +1958,6 @@
 				45A3B15CC275CC392E3185EF7D3B6F40 /* Resources */,
 				CC50270F9974998F7F2ABA620489E704 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -1974,7 +1967,6 @@
 				DCAC2DB37AEAA60FD56CAEFF3271C0AB /* Core */,
 				04884EFBCCBE995977B6306ED21E511B /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -2010,7 +2002,6 @@
 				D43B45321C1C320CB4599F23A7E1A934 /* Resources */,
 				44CC8D736E75D78883DF8A7604C0983F /* Support Files */,
 			);
-			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -2034,7 +2025,6 @@
 				7B0EB34EE21C95F7ED220E1495696597 /* TTGTextTagStyle.m */,
 				BE6122018C7C7608F583BD3266F6187C /* Support Files */,
 			);
-			name = TTGTagCollectionView;
 			path = TTGTagCollectionView;
 			sourceTree = "<group>";
 		};
@@ -2085,7 +2075,6 @@
 				C1CB6F97622440708C547A29F615CA75 /* YPNavigationControllerDelegateProxy.m */,
 				D08BE761BB9ED298F7CC493621F5E057 /* Support Files */,
 			);
-			name = YPNavigationBarTransition;
 			path = YPNavigationBarTransition;
 			sourceTree = "<group>";
 		};
@@ -2108,7 +2097,6 @@
 				BFE43888FA16481FDAE6BB74F535AF5F /* UIView+SDExtension.m */,
 				DD4BD918D732B82FF2A7AA47F12752AD /* Support Files */,
 			);
-			name = SDCycleScrollView;
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
 		};
@@ -2119,7 +2107,6 @@
 				77A9D944A48CBE49F8D6B84AF73B22F3 /* MBProgressHUD.m */,
 				3CABE26CC17311425F35F9DEEF8C8C73 /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -2139,7 +2126,7 @@
 				36C6F0DD9B00CD62109C2D53724C22F7 /* TTGTagCollectionView */,
 				4A814427737E03EB24C323B10836E583 /* UICollectionViewLeftAlignedLayout */,
 				8498A1B2C60117E181CA67921DDAE0B6 /* youtube-ios-player-helper */,
-				D674200BB0575198145B5455CF13275F /* youtube-ios-player-helper-Assets */,
+				D674200BB0575198145B5455CF13275F /* Assets.bundle */,
 				1F48FEE4485F1079E50AA7E9F3BCE548 /* YPNavigationBarTransition */,
 				601EEA66C9A6080A11C1ADE5E2A91AE1 /* YTKNetwork */,
 				E460D5B0416D36F66EE8EC89E5D2FA0A /* YYModel */,
@@ -2250,7 +2237,6 @@
 				D51A948A0AB44C25EF535FDD89603B7D /* YTKRequestEventAccessory.m */,
 				5E8B6D903456C95481EB234BC081963A /* Support Files */,
 			);
-			name = YTKNetwork;
 			path = YTKNetwork;
 			sourceTree = "<group>";
 		};
@@ -2316,7 +2302,6 @@
 				D071ACBCBB741AA915898C53CF62181C /* Core */,
 				A2F766F2DEFF46978A90815596E27CB0 /* Support Files */,
 			);
-			name = LookinServer;
 			path = LookinServer;
 			sourceTree = "<group>";
 		};
@@ -3246,7 +3231,7 @@
 			);
 			name = "youtube-ios-player-helper-Assets";
 			productName = Assets;
-			productReference = D674200BB0575198145B5455CF13275F /* youtube-ios-player-helper-Assets */;
+			productReference = D674200BB0575198145B5455CF13275F /* Assets.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		3847153A6E5EEFB86565BA840768F429 /* SDWebImage */ = {
@@ -3650,7 +3635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08E06C696103054C4B32302B72F87F9B /* youtube-ios-player-helper-Assets in Resources */,
+				08E06C696103054C4B32302B72F87F9B /* Assets.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4269,6 +4254,7 @@
 			baseConfigurationReference = 1A45EFD82155629FAE0B32D7A30E3E1A /* youtube-ios-player-helper.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/youtube-ios-player-helper";
+				DEVELOPMENT_TEAM = Q8H2R68RPW;
 				IBSC_MODULE = youtube_ios_player_helper;
 				INFOPLIST_FILE = "Target Support Files/youtube-ios-player-helper/ResourceBundle-Assets-youtube-ios-player-helper-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -5296,6 +5282,7 @@
 			baseConfigurationReference = FCD75527F4F6979D05FA1A47A7585D71 /* youtube-ios-player-helper.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/youtube-ios-player-helper";
+				DEVELOPMENT_TEAM = Q8H2R68RPW;
 				IBSC_MODULE = youtube_ios_player_helper;
 				INFOPLIST_FILE = "Target Support Files/youtube-ios-player-helper/ResourceBundle-Assets-youtube-ios-player-helper-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
