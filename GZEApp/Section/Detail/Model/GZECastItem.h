@@ -6,6 +6,7 @@
 //
 
 #import "GZEBaseModel.h"
+@class GZERoleItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)           NSString *character;
 @property (nonatomic, copy)           NSString *creditID;
 @property (nonatomic, assign)         NSInteger order;
+// TV
+@property (nonatomic, copy)           NSArray<GZERoleItem *> *roles;
+@property (nonatomic, assign)         NSInteger totalEpisodeCount;
 
 @end
 

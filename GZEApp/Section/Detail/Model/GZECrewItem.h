@@ -6,7 +6,7 @@
 //
 
 #import "GZEBaseModel.h"
-
+@class GZEJobItem;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZECrewItem : GZEBaseModel
@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)           NSString *creditID;
 @property (nonatomic, copy)           NSString *department;
 @property (nonatomic, copy)           NSString *job;
+
+// TV
+@property (nonatomic, copy)           NSArray<GZEJobItem *> *jobs;
+@property (nonatomic, assign)         NSInteger totalEpisodeCount;
 
 @end
 

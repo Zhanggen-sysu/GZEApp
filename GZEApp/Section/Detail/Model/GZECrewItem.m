@@ -6,6 +6,7 @@
 //
 
 #import "GZECrewItem.h"
+#import "GZEJobItem.h"
 
 @implementation GZECrewItem
 
@@ -24,6 +25,15 @@
         @"credit_id": @"creditID",
         @"department": @"department",
         @"job": @"job",
+        @"jobs": @"jobs",
+        @"total_episode_count": @"totalEpisodeCount",
+    };
+}
+
++ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
+{
+    return @{
+        @"jobs": [GZEJobItem class],
     };
 }
 

@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZETVListItem : GZEBaseModel
 
+@property (nonatomic, assign) BOOL isAdult;
 @property (nonatomic, copy)   NSString *posterPath;
 @property (nonatomic, assign) double popularity;
 @property (nonatomic, assign) NSInteger identifier;
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger voteCount;
 @property (nonatomic, copy)   NSString *name;
 @property (nonatomic, copy)   NSString *originalName;
+@property (nonatomic, copy)   NSString *mediaType;
 
 @end
 

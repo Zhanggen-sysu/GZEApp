@@ -11,6 +11,7 @@
 #import "GZESearchTableViewCell.h"
 #import "GZESearchListView.h"
 #import "GZESearchAdvanceView.h"
+#import "GZETVDetailVC.h"
 #import "GZEMovieDetailVC.h"
 #import <JXCategoryView/JXCategoryView.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
@@ -119,6 +120,11 @@
 {
     if (viewModel.mediaType == GZEMediaType_Movie) {
         GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:viewModel.ID];
+        // tips: 下一页的返回按钮需要在上一页设置才有效
+        self.navigationItem.backButtonTitle = @"";
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (viewModel.mediaType == GZEMediaType_TV) {
+        GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:viewModel.ID];
         // tips: 下一页的返回按钮需要在上一页设置才有效
         self.navigationItem.backButtonTitle = @"";
         [self.navigationController pushViewController:vc animated:YES];

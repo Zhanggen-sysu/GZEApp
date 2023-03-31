@@ -9,9 +9,10 @@
 #import "GZEMovieDetailView.h"
 #import "GZEMovieCastView.h"
 #import "GZEMovieVIView.h"
-#import "GZEMovieSimilarView.h"
+#import "GZEVideoListView.h"
 #import "GZEMovieNavBarView.h"
 #import "GZEMovieReviewView.h"
+#import "GZECopyRightView.h"
 
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
@@ -26,9 +27,10 @@
 @property (nonatomic, strong) GZEMovieDetailView *detailView;
 @property (nonatomic, strong) GZEMovieCastView *castView;
 @property (nonatomic, strong) GZEMovieVIView *viView;
-@property (nonatomic, strong) GZEMovieSimilarView *similarView;
-@property (nonatomic, strong) GZEMovieSimilarView *recommendView;
+@property (nonatomic, strong) GZEVideoListView *similarView;
+@property (nonatomic, strong) GZEVideoListView *recommendView;
 @property (nonatomic, strong) GZEMovieReviewView *reviewView;
+@property (nonatomic, strong) GZECopyRightView *cprView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
 @property (nonatomic, strong) GZEDetailManager *manager;
@@ -70,7 +72,15 @@
                             completion:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
         StrongSelfReturnNil(self)
         self.viewModel = (GZEMovieDetailViewModel *)rsp;
-        [self updateUI];
+        [self.navBarView updateWithModel:self.viewModel.commonInfo];
+        self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
+        [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
+        [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
+        [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
+        [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
+        [self.recommendView updateWithModel:self.viewModel.recommend magicColor:self.viewModel.magicColor];
+        [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
+        [self.cprView updateWithMagicColor:self.viewModel.magicColor];
     }];
 }
 
@@ -111,22 +121,13 @@
     [self.reviewView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.contentView);
     }];
+    [self.cprView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self.contentView);
+    }];
     // 处理titleView不居中问题
     [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(300.f);
     }];
-}
-
-- (void)updateUI
-{
-    [self.navBarView updateWithModel:self.viewModel.commonInfo];
-    self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
-    [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
-    [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
-    [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
-    [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
-    [self.recommendView updateWithModel:self.viewModel.recommend magicColor:self.viewModel.magicColor];
-    [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
 }
 
 - (GZEDetailManager *)manager
@@ -163,6 +164,7 @@
             self.recommendView,
             self.similarView,
             self.reviewView,
+            self.cprView,
         ]];
         _contentView.axis = UILayoutConstraintAxisVertical;
         _contentView.alignment = UIStackViewAlignmentFill;
@@ -196,18 +198,19 @@
     return _viView;
 }
 
-- (GZEMovieSimilarView *)similarView
+- (GZEVideoListView *)similarView
 {
     if (!_similarView) {
-        _similarView = [[GZEMovieSimilarView alloc] initWithTitle:@"More Like This"];
+        _similarView = [[GZEVideoListView alloc] initWithTitle:@"Recommend For You"];
     }
     return _similarView;
 }
 
-- (GZEMovieSimilarView *)recommendView
+// 感觉这个的数据更像similar
+- (GZEVideoListView *)recommendView
 {
     if (!_recommendView) {
-        _recommendView = [[GZEMovieSimilarView alloc] initWithTitle:@"Recommend For You"];
+        _recommendView = [[GZEVideoListView alloc] initWithTitle:@"More Like This"];
     }
     return _recommendView;
 }
@@ -218,6 +221,14 @@
         _reviewView = [[GZEMovieReviewView alloc] init];
     }
     return _reviewView;
+}
+
+- (GZECopyRightView *)cprView
+{
+    if (!_cprView) {
+        _cprView = [[GZECopyRightView alloc] init];
+    }
+    return _cprView;
 }
 
 - (GZEMovieNavBarView *)navBarView

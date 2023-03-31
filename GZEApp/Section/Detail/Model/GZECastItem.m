@@ -6,6 +6,7 @@
 //
 
 #import "GZECastItem.h"
+#import "GZERoleItem.h"
 
 @implementation GZECastItem
 
@@ -25,6 +26,15 @@
         @"character": @"character",
         @"credit_id": @"creditID",
         @"order": @"order",
+        @"roles": @"roles",
+        @"total_episode_count": @"totalEpisodeCount",
+    };
+}
+
++ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
+{
+    return @{
+        @"roles": [GZERoleItem class],
     };
 }
 

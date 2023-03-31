@@ -6,7 +6,7 @@
 //
 
 #import "GZEMovieCastView.h"
-#import "GZEMovieCrewCastRsp.h"
+#import "GZECrewCastRsp.h"
 #import "GZECastSmallCell.h"
 #import "GZECastItem.h"
 #import "GZECrewItem.h"
@@ -15,7 +15,7 @@ static NSInteger kCastCount = 4;
 
 @interface GZEMovieCastView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) GZEMovieCrewCastRsp *model;
+@property (nonatomic, strong) GZECrewCastRsp *model;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UICollectionView *castCollection;
@@ -29,7 +29,7 @@ static NSInteger kCastCount = 4;
 
 @implementation GZEMovieCastView
 
-- (void)updateWithModel:(GZEMovieCrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor
+- (void)updateWithModel:(GZECrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor
 {
     if (model.cast.count <= 0) {
         self.hidden = YES;

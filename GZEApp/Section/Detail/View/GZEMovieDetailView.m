@@ -11,7 +11,6 @@
 #import "GZECommonHelper.h"
 #import "GZEGenreItem.h"
 #import "GZEPaddingLabel.h"
-#import "GZEProductionCountry.h"
 #import <TTGTextTagCollectionView.h>
 #import "Macro.h"
 
@@ -50,12 +49,8 @@
         self.titleLabel.text = @"(Not Initialized Yet)";
     }
     
-    if (self.detail.originalLanguage.length > 0 && ![self.detail.originalLanguage isEqualToString:@"en"] && self.detail.originalTitle.length > 0) {
-        NSMutableString *subTitle = [[NSMutableString alloc] initWithString:self.detail.originalTitle];
-        if (self.detail.releaseDate.length > 0) {
-            [subTitle appendString:[[NSString alloc] initWithFormat:@" (%@)", [self.detail.releaseDate substringToIndex:4]]];
-        }
-        self.subTitleLabel.text = subTitle;
+    if (self.detail.subTitleText.length > 0) {
+        self.subTitleLabel.text = self.detail.subTitleText;
         self.subTitleLabel.hidden = NO;
     } else {
         self.subTitleLabel.hidden = YES;
@@ -68,18 +63,9 @@
         self.tagLineLabel.hidden = YES;
     }
     
-    if (self.detail.voteAverage > 0) {
-        NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithAttributedString:[GZECommonHelper generateRatingString:self.detail.voteAverage starSize:20 space:2]];
-        [attri appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f", self.detail.voteAverage] attributes:@{
-            NSFontAttributeName: kBoldFont(16.f),
-            NSForegroundColorAttributeName: RGBColor(255, 215, 0),
-        }]];
-        [attri appendAttributedString:[[NSAttributedString alloc] initWithString:@" / 10" attributes:@{
-            NSFontAttributeName: kFont(12.f),
-            NSForegroundColorAttributeName: RGBColor(245, 245, 245),
-        }]];
+    if (self.detail.rateText.length > 0) {
         self.ratingLabel.hidden = NO;
-        self.ratingLabel.attributedText = attri;
+        self.ratingLabel.attributedText = self.detail.rateText;
     } else {
         self.ratingLabel.hidden = YES;
     }
@@ -104,16 +90,8 @@
         self.genresView.hidden = YES;
     }
     
-    if (self.detail.productionCountries.count > 0 || self.detail.releaseDate.length > 0 || self.detail.runtime > 0) {
-        NSMutableString *detail = [[NSMutableString alloc] initWithString:self.detail.productionCountries.count > 0 ? self.detail.productionCountries.firstObject.iso3166_1 : @""];
-        if (self.detail.releaseDate.length > 0) {
-            [detail appendString:detail.length > 0 ? [NSString stringWithFormat:@" · %@", self.detail.releaseDate] : self.detail.releaseDate];
-        }
-        if (self.detail.runtime > 0) {
-            NSString *runtime = [NSString stringWithFormat:@"%ldhrs %ldmin", self.detail.runtime/60, self.detail.runtime%60];
-            [detail appendString:detail.length > 0 ? [NSString stringWithFormat:@" · %@", runtime] : runtime];
-        }
-        self.detailLabel.text = detail;
+    if (self.detail.detailText.length > 0) {
+        self.detailLabel.text = self.detail.detailText;
         self.detailLabel.hidden = NO;
     } else {
         self.detailLabel.hidden = YES;

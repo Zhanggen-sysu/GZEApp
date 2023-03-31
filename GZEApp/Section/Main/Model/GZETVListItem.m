@@ -13,6 +13,7 @@
 {
     static NSDictionary<NSString *, NSString *> *properties;
     return properties = properties ? properties : @{
+        @"adult": @"isAdult",
         @"poster_path": @"posterPath",
         @"popularity": @"popularity",
         @"id": @"identifier",
@@ -26,6 +27,7 @@
         @"vote_count": @"voteCount",
         @"name": @"name",
         @"original_name": @"originalName",
+        @"media_type": @"mediaType",
     };
 }
 

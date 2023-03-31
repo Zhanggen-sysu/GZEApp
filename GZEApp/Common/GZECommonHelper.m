@@ -214,4 +214,16 @@
     return [UIColor colorWithRed:red/255.f green:green/255.f blue:blue/255.f alpha:1];
 }
 
++ (NSString *)getNumberString:(NSInteger)number
+{
+    if (number >= 1000000000) {
+        return [NSString stringWithFormat:@"%ldB", number / 1000000000];
+    } else if (number >= 1000000) {
+        return [NSString stringWithFormat:@"%ldM", number / 1000000];
+    } else if (number >= 1000) {
+        return [NSString stringWithFormat:@"%ldK", number / 1000];
+    }
+    return [NSString stringWithFormat:@"%ld", number];
+}
+
 @end

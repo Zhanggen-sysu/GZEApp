@@ -7,10 +7,10 @@
 
 #import "GZEMovieVIView.h"
 #import "GZEVISmallCell.h"
-#import "GZEMovieImageRsp.h"
+#import "GZETmdbImageRsp.h"
 #import "GZEYTVideoRsp.h"
 #import "GZECommonHelper.h"
-#import "GZEBackdropItem.h"
+#import "GZETmdbImageItem.h"
 #import "GZECustomButton.h"
 
 @interface GZEMovieVIView () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -18,14 +18,14 @@
 @property (nonatomic, strong) UICollectionView *photoCollection;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) GZECustomButton *seeAllBtn;
-@property (nonatomic, strong) GZEMovieImageRsp *imgRsp;
+@property (nonatomic, strong) GZETmdbImageRsp *imgRsp;
 @property (nonatomic, strong) GZEYTVideoRsp *videoModel;
 
 @end
 
 @implementation GZEMovieVIView
 
-- (void)updateWithImgModel:(GZEMovieImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(nonnull UIColor *)magicColor
+- (void)updateWithImgModel:(GZETmdbImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(nonnull UIColor *)magicColor
 {
     if (!videoModel && imgModel.backdrops.count <= 0) {
         self.hidden = YES;
@@ -86,7 +86,7 @@
         [cell updateWithVideo:self.videoModel];
     } else {
         NSInteger index = self.videoModel ? indexPath.row-1 : indexPath.row;
-        GZEBackdropItem *backdrop = self.imgRsp.backdrops[index];
+        GZETmdbImageItem *backdrop = self.imgRsp.backdrops[index];
         [cell updateWithUrl:[GZECommonHelper getBackdropUrl:backdrop.filePath size:GZEBackdropSize_w780]];
     }
     return cell;

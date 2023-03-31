@@ -7,17 +7,21 @@
 
 #import "GZEDetailManager.h"
 #import "GZEMovieDetailRsp.h"
-#import "GZEMovieCrewCastRsp.h"
-#import "GZEMovieImageRsp.h"
-#import "GZEMovieReviewRsp.h"
+#import "GZECrewCastRsp.h"
+#import "GZETmdbImageRsp.h"
+#import "GZETmdbReviewRsp.h"
 #import "GZEMovieListRsp.h"
-#import "GZEMovieViedeoRsp.h"
+#import "GZETmdbVideoRsp.h"
 #import "GZEMovieDetailViewModel.h"
+
+#import "GZETVDetailViewModel.h"
+#import "GZETVDetailRsp.h"
+
 #import "Macro.h"
 #import "GZECommonHelper.h"
 #import "SDWebImageDownloader.h"
 #import "UIImage+magicColor.h"
-#import "GZEMovieVideoItem.h"
+#import "GZETmdbVideoItem.h"
 #import "GZEYTVideoReq.h"
 #import "GZEYTVideoRsp.h"
 
@@ -63,10 +67,10 @@
         req.movieId = movieId;
         req.type = GZEMovieDetailType_CrewCast;
         WeakSelf(self)
-        [req startRequestWithRspClass:[GZEMovieCrewCastRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        [req startRequestWithRspClass:[GZECrewCastRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
             if (isSuccess) {
-                GZEMovieCrewCastRsp *response = (GZEMovieCrewCastRsp *)rsp;
+                GZECrewCastRsp *response = (GZECrewCastRsp *)rsp;
                 viewModel.crewCast = response;
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
@@ -81,14 +85,14 @@
         req.movieId = movieId;
         req.type = GZEMovieDetailType_Video;
         WeakSelf(self)
-        [req startRequestWithRspClass:[GZEMovieViedeoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        [req startRequestWithRspClass:[GZETmdbVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
             if (isSuccess) {
-                GZEMovieViedeoRsp *response = (GZEMovieViedeoRsp *)rsp;
+                GZETmdbVideoRsp *response = (GZETmdbVideoRsp *)rsp;
                 response.results = [self reOrganizeVideos:response.results];
                 viewModel.videos = response;
                 // 请求首个视频信息展示在详情页
-                GZEMovieVideoItem *item = response.results.firstObject;
+                GZETmdbVideoItem *item = response.results.firstObject;
                 if (item) {
                     GZEYTVideoReq *videoReq = [[GZEYTVideoReq alloc] init];
                     videoReq.v = item.key;
@@ -123,10 +127,10 @@
         // 图片不能加语言，标记一下
         req.language = @"";
         WeakSelf(self)
-        [req startRequestWithRspClass:[GZEMovieImageRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        [req startRequestWithRspClass:[GZETmdbImageRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
             if (isSuccess) {
-                GZEMovieImageRsp *response = (GZEMovieImageRsp *)rsp;
+                GZETmdbImageRsp *response = (GZETmdbImageRsp *)rsp;
                 viewModel.images = response;
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
@@ -141,10 +145,10 @@
         req.movieId = movieId;
         req.type = GZEMovieDetailType_Review;
         WeakSelf(self)
-        [req startRequestWithRspClass:[GZEMovieReviewRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        [req startRequestWithRspClass:[GZETmdbReviewRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
             StrongSelfReturnNil(self)
             if (isSuccess) {
-                GZEMovieReviewRsp *response = (GZEMovieReviewRsp *)rsp;
+                GZETmdbReviewRsp *response = (GZETmdbReviewRsp *)rsp;
                 viewModel.reviews = response;
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
@@ -195,11 +199,11 @@
 }
 
 // 将预告片放到前面，移除非Youtube视频
-- (NSArray<GZEMovieVideoItem *> *)reOrganizeVideos:(NSArray<GZEMovieVideoItem *> *)videos
+- (NSArray<GZETmdbVideoItem *> *)reOrganizeVideos:(NSArray<GZETmdbVideoItem *> *)videos
 {
     NSMutableArray *trailer = [[NSMutableArray alloc] init];
     NSMutableArray *valid = [[NSMutableArray alloc] init];
-    [videos enumerateObjectsUsingBlock:^(GZEMovieVideoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [videos enumerateObjectsUsingBlock:^(GZETmdbVideoItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.site isEqualToString:@"YouTube"]) {
             if ([obj.type isEqualToString:@"Trailer"]) {
                 [trailer addObject:obj];
@@ -215,5 +219,37 @@
     }
     return valid;
 }
+
+- (void)getTVDetailWithId:(NSInteger)tvId completion:(GZECommonRspBlock)completion
+{
+    GZETVDetailViewModel *viewModel = [[GZETVDetailViewModel alloc] init];
+    GZETVDetailReq *req = [[GZETVDetailReq alloc] init];
+    req.withoutApiKey = YES;
+    req.tvId = tvId;
+    req.type = GZETVDetailType_All;
+    WeakSelf(self)
+    [req startRequestWithRspClass:[GZETVDetailRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        StrongSelfReturnNil(self)
+        if (isSuccess) {
+            GZETVDetailRsp *response = (GZETVDetailRsp *)rsp;
+            viewModel.detail = response;
+            // 额外计算一个魔法色
+            WeakSelf(self)
+            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                StrongSelfReturnNil(self)
+                if (image) {
+                    viewModel.magicColor = [image magicColor];
+                } else {
+                    viewModel.magicColor = RGBColor(0, 191, 255);
+                }
+                !completion ?: completion(YES, viewModel, @"");
+            }];
+        } else {
+            [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            !completion ?: completion(YES, viewModel, @"");
+        }
+    }];
+}
+
 
 @end

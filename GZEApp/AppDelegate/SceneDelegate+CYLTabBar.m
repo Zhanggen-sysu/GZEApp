@@ -7,7 +7,7 @@
 
 #import "SceneDelegate+CYLTabBar.h"
 #import "CYLTabBarController.h"
-#import "GZETmdbVC.h"
+#import "GZETmdbMainVC.h"
 #import "GZEBookMainVC.h"
 #import "Macro.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
@@ -28,7 +28,7 @@
 
 - (NSArray *)viewControllers {
     // 影视VC
-    GZETmdbVC *tmdbVC = [[GZETmdbVC alloc] init];
+    GZETmdbMainVC *tmdbVC = [[GZETmdbMainVC alloc] init];
     YPNavigationController *tmdbNC = [[YPNavigationController alloc] initWithRootViewController:tmdbVC];
     [tmdbNC cyl_setHideNavigationBarSeparator:YES];
     

@@ -77,6 +77,8 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
 ///   - degree: 变化程度，0-255
 + (UIColor *)changeColor:(UIColor *)color deeper:(BOOL)deeper degree:(NSUInteger)degree;
 
++ (NSString *)getNumberString:(NSInteger)number;
+
 @end
 
 NS_ASSUME_NONNULL_END

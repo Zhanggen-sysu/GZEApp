@@ -6,13 +6,13 @@
 //
 
 #import "GZEBaseView.h"
-@class GZEMovieCrewCastRsp;
+@class GZECrewCastRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEMovieCastView : GZEBaseView
 
-- (void)updateWithModel:(GZEMovieCrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor;
+- (void)updateWithModel:(GZECrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor;
 
 @end
 

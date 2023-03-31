@@ -20,7 +20,7 @@
     NSMutableArray *peopleArray = [[NSMutableArray alloc] init];
     [rsp.results enumerateObjectsUsingBlock:^(GZETrendingItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.mediaType isEqualToString:@"tv"] || [obj.mediaType isEqualToString:@"movie"]) {
-            [urlArray addObject:[GZECommonHelper getPosterUrl:obj.posterPath size:GZEPosterSize_w780]];
+            [urlArray addObject:[GZECommonHelper getPosterUrl:obj.posterPath size:GZEPosterSize_w500]];
             [mediaArray addObject:obj];
         } else {
             [peopleArray addObject:obj];

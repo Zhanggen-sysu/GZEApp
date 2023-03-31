@@ -7,7 +7,7 @@
 
 #import "GZEMovieReviewView.h"
 #import "GZECustomButton.h"
-#import "GZEMovieReviewRsp.h"
+#import "GZETmdbReviewRsp.h"
 #import "GZEReviewCell.h"
 #import "GZECommonHelper.h"
 #import "GZEReviewItem.h"
@@ -18,14 +18,14 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) GZECustomButton *seeAllBtn;
 
-@property (nonatomic, strong) GZEMovieReviewRsp *model;
+@property (nonatomic, strong) GZETmdbReviewRsp *model;
 @property (nonatomic, strong) UIColor *magicColor;
 
 @end
 
 @implementation GZEMovieReviewView
 
-- (void)updateWithModel:(GZEMovieReviewRsp *)model magicColor:(nonnull UIColor *)magicColor
+- (void)updateWithModel:(GZETmdbReviewRsp *)model magicColor:(nonnull UIColor *)magicColor
 {
     if (model.results.count <= 0) {
         self.hidden = YES;
