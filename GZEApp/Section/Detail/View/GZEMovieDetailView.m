@@ -129,24 +129,6 @@
         make.trailing.equalTo(self).offset(-15.f);
         make.top.equalTo(self.backdropImg.mas_bottom).offset(10.f);
     }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
-    [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
-    [self.tagLineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
-    [self.ratingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
-    [self.genresView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
-    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.stackView);
-    }];
     [self.overviewLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(15.f);
         make.trailing.equalTo(self).offset(-15.f);

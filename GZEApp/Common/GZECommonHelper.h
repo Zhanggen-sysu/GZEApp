@@ -10,6 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, GZEDataType) {
+    GZEDataType_default,
+    GZEDataType_model,
+    GZEDataType_array,
+    GZEDataType_dictionary,
+};
+
 // 2 * 3
 typedef NS_ENUM(NSUInteger, GZEPosterSize) {
     GZEPosterSize_default,
@@ -78,6 +85,11 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
 + (UIColor *)changeColor:(UIColor *)color deeper:(BOOL)deeper degree:(NSUInteger)degree;
 
 + (NSString *)getNumberString:(NSInteger)number;
+
+
+/// 持久存储
++ (void)setModel:(id)model withKey:(NSString *)key;
++ (id)getModel:(Class)aClass withKey:(NSString *)key dataType:(GZEDataType)dataType;
 
 @end
 

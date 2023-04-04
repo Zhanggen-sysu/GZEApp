@@ -8,6 +8,7 @@
 #import "GZEBaseModel.h"
 #import <UIKit/UIKit.h>
 @class GZETVDetailRsp;
+@class GZEYTVideoRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIColor *magicColor;
 @property (nonatomic, strong) GZETVDetailRsp *detail;
+@property (nonatomic, strong) GZEYTVideoRsp *firstVideo;
 
 @end
 

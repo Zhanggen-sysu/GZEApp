@@ -21,6 +21,9 @@
 #import "GZETrendingViewModel.h"
 #import "GZECommonHelper.h"
 
+static NSString *kRecentSearchKey = @"kRecentSearchKey";
+static NSInteger kRecentSearchMax = 20;
+
 @interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate>
 
 @property (nonatomic, strong) GZETrendingViewModel *viewModel;
@@ -37,6 +40,7 @@
 
 @property (nonatomic, strong) GZESearchReq *request;
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *searchArray;
+@property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *recentArray;
 @property (nonatomic, assign) NSInteger page;
  
 @end
@@ -49,6 +53,7 @@
         self.viewModel = viewModel;
         self.page = 0;
         self.request = [[GZESearchReq alloc] init];
+        self.recentArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -118,6 +123,14 @@
 
 - (void)didSelectCell:(GZESearchCellViewModel *)viewModel
 {
+    if (![self.recentArray containsObject:viewModel]) {
+        [self.recentArray insertObject:viewModel atIndex:0];
+        if (self.recentArray.count > kRecentSearchMax) {
+            [self.recentArray removeLastObject];
+        }
+        [self.recentView updateWithModel:self.recentArray];
+        [GZECommonHelper setModel:self.recentArray withKey:kRecentSearchKey];
+    }
     if (viewModel.mediaType == GZEMediaType_Movie) {
         GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:viewModel.ID];
         // tips: 下一页的返回按钮需要在上一页设置才有效
@@ -233,6 +246,7 @@
 {
     if (!_containerView) {
         _containerView = [[JXCategoryListContainerView alloc] initWithType:JXCategoryListContainerType_ScrollView delegate:self];
+        _containerView.scrollView.scrollEnabled = NO;
     }
     return _containerView;
 }
@@ -275,11 +289,20 @@
 {
     if (!_recentView) {
         _recentView = [[GZESearchListView alloc] init];
+        _recentView.supportDelete = YES;
         WeakSelf(self)
         _recentView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
             StrongSelfReturnNil(self)
             [self didSelectCell:model];
         };
+        _recentView.deleteItemBlock = ^(NSMutableArray<GZESearchCellViewModel *> * _Nonnull model) {
+            StrongSelfReturnNil(self)
+            self.recentArray = model;
+            [GZECommonHelper setModel:self.recentArray withKey:kRecentSearchKey];
+        };
+        NSArray *array = [GZECommonHelper getModel:[GZESearchCellViewModel class] withKey:kRecentSearchKey dataType:GZEDataType_array];
+        [self.recentArray addObjectsFromArray:array];
+        [_recentView updateWithModel:self.recentArray];
     }
     return _recentView;
 }

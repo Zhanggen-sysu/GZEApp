@@ -80,6 +80,9 @@
 
 - (NSString *)detailText
 {
+    if (_detailText.length > 0) {
+        return _detailText;
+    }
     NSMutableString *detail = [[NSMutableString alloc] init];
     if (self.originalLanguage.length > 0) {
         [detail appendString:self.originalLanguage];
@@ -93,7 +96,106 @@
             *stop = YES;
         }
     }];
+    _detailText = detail;
     return detail;
+}
+
+- (NSString *)countryText
+{
+    if (_countryText.length > 0) {
+        return _countryText;
+    }
+    if (self.productionCountries.count > 0) {
+        NSMutableString *text = [[NSMutableString alloc] init];
+        [self.productionCountries enumerateObjectsUsingBlock:^(GZEProductionCountry * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [text appendString:obj.iso3166_1];
+            if (idx != self.productionCountries.count - 1) {
+                [text appendString:@", "];
+            }
+        }];
+        _countryText = text;
+        return text;
+    }
+    return @"";
+}
+
+- (NSString *)directorText
+{
+    if (_directorText.length > 0) {
+        return _directorText;
+    }
+    if (self.createdBy.count > 0) {
+        NSMutableString *text = [[NSMutableString alloc] init];
+        [self.createdBy enumerateObjectsUsingBlock:^(GZECreateByItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [text appendString:obj.name];
+            if (idx != self.createdBy.count - 1) {
+                [text appendString:@", "];
+            }
+        }];
+        _directorText = text;
+        return text;
+    }
+    return @"";
+}
+
+- (NSString *)subTitleText
+{
+    if (_subTitleText.length > 0) {
+        return _subTitleText;
+    }
+    if (self.originalLanguage.length > 0 && ![self.originalLanguage isEqualToString:@"en"] && self.originalName.length > 0) {
+        NSMutableString *subTitle = [[NSMutableString alloc] initWithString:self.originalName];
+        if (self.firstAirDate.length > 0) {
+            [subTitle appendString:[[NSString alloc] initWithFormat:@" (%@)", [self.firstAirDate substringToIndex:4]]];
+        }
+        _subTitleText = subTitle;
+        return subTitle;
+    }
+    return @"";
+}
+
+- (NSString *)companyText
+{
+    if (_companyText.length > 0) {
+        return _companyText;
+    }
+    if (self.productionCompanies.count > 0) {
+        NSMutableString *text = [[NSMutableString alloc] init];
+        [self.productionCompanies enumerateObjectsUsingBlock:^(GZEProductionCompany * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [text appendString:obj.name];
+            if (obj.originCountry.length > 0) {
+                [text appendString:[NSString stringWithFormat:@"(%@)", obj.originCountry]];
+            }
+            if (idx != self.productionCompanies.count - 1) {
+                [text appendString:@", "];
+            }
+        }];
+        _companyText = text;
+        return text;
+    }
+    return @"";
+}
+
+- (NSString *)networkText
+{
+    if (_networkText.length > 0) {
+        return _networkText;
+    }
+    if (self.networks.count > 0) {
+        NSMutableString *text = [[NSMutableString alloc] init];
+        [self.networks enumerateObjectsUsingBlock:^(GZETmdbNetwork * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [text appendString:obj.name];
+            if (obj.originCountry.length > 0) {
+                [text appendString:[NSString stringWithFormat:@"(%@)", obj.originCountry]];
+            }
+            if (idx != self.networks.count - 1) {
+                [text appendString:@", "];
+            }
+        }];
+        _networkText = text;
+        return text;
+    }
+    return @"";
 }
 
 @end

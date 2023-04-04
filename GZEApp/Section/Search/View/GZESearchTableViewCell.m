@@ -9,6 +9,7 @@
 #import "UIImageView+WebCache.h"
 #import "GZESearchCellViewModel.h"
 #import "GZEPaddingLabel.h"
+#import "GZECommonHelper.h"
 
 @interface GZESearchTableViewCell ()
 
@@ -28,8 +29,8 @@
     [self.poster sd_setImageWithURL:viewModel.posterUrl placeholderImage:kGetImage(@"default-poster")];
     self.titleLabel.text = viewModel.title;
     self.detailLabel.text = viewModel.detail;
-    self.scoreLabel.attributedText = viewModel.stars;
-    self.scoreNum.text = viewModel.score;
+    self.scoreLabel.attributedText = [GZECommonHelper generateRatingString:viewModel.voteAverage starSize:12 space:1];
+    self.scoreNum.text = [NSString stringWithFormat:@"%.1f", viewModel.voteAverage];
     self.typeLabel.text = viewModel.typeText;
 }
 

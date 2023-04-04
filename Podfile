@@ -14,6 +14,7 @@ target 'GZEApp' do
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'MJRefresh' 
+  pod 'MMKV'
   pod 'SDCycleScrollView','>= 1.82'
   pod 'TTGTagCollectionView'
   pod 'UICollectionViewLeftAlignedLayout'

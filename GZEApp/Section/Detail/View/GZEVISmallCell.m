@@ -92,9 +92,10 @@
     [self.imageView sd_setImageWithURL:url placeholderImage:kGetImage(@"default-backdrop")];
 }
 
-- (void)updateWithVideo:(GZEYTVideoRsp *)model;
+- (void)updateWithVideo:(GZEYTVideoRsp *)model magicColor:(UIColor *)magicColor
 {
     self.videoBg.hidden = NO;
+    self.tagLabel.backgroundColor = magicColor;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.thumbnailURL] placeholderImage:kGetImage(@"default-backdrop")];
     self.tagLabel.text = model.videoType;
     

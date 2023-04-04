@@ -52,7 +52,7 @@ static NSInteger kCastCount = 4;
 - (CGSize)itemSize
 {
     CGFloat width = (int)(SCREEN_WIDTH / kCastCount);
-    CGFloat height = width + 70.f;
+    CGFloat height = width * 1.5 + 70.f;
     return CGSizeMake(width, height);
 }
 
@@ -117,7 +117,7 @@ static NSInteger kCastCount = 4;
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = kBoldFont(16.f);
-        _titleLabel.text = @"Cast and Crew";
+        _titleLabel.text = @"Cast & Crew";
         _titleLabel.textColor = [UIColor whiteColor];
     }
     return _titleLabel;
@@ -129,6 +129,7 @@ static NSInteger kCastCount = 4;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.itemSize = [self itemSize];
+        layout.minimumLineSpacing = 15.f;
         
         _castCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _castCollection.showsHorizontalScrollIndicator = NO;

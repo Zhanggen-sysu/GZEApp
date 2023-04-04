@@ -13,11 +13,24 @@
 
 @implementation GZESearchCellViewModel
 
++ (NSDictionary<NSString *, NSString *> *)properties
+{
+    static NSDictionary<NSString *, NSString *> *properties;
+    return properties = properties ? properties : @{
+        @"posterUrl": @"posterUrl",
+        @"title": @"title",
+        @"detail": @"detail",
+        @"voteAverage": @"voteAverage",
+        @"mediaType": @"mediaType",
+        @"typeText": @"typeText",
+        @"ID": @"ID",
+    };
+}
+
 + (GZESearchCellViewModel *)viewModelWithTrendModel:(GZETrendingItem *)model
 {
     GZESearchCellViewModel *viewModel = [[GZESearchCellViewModel alloc] init];
-    viewModel.stars = [GZECommonHelper generateRatingString:model.voteAverage starSize:12 space:1];
-    viewModel.score = [NSString stringWithFormat:@"%.1f", model.voteAverage];
+    viewModel.voteAverage = model.voteAverage;
     viewModel.ID = model.identifier;
     if ([model.mediaType isEqualToString:@"movie"]) {
         viewModel.mediaType = GZEMediaType_Movie;
@@ -72,8 +85,7 @@
 {
     GZESearchCellViewModel *viewModel = [[GZESearchCellViewModel alloc] init];
     viewModel.ID = model.identifier;
-    viewModel.stars = [GZECommonHelper generateRatingString:model.voteAverage starSize:12 space:1];
-    viewModel.score = [NSString stringWithFormat:@"%.1f", model.voteAverage];
+    viewModel.voteAverage = model.voteAverage;
     if ([model.mediaType isEqualToString:@"movie"]) {
         viewModel.mediaType = GZEMediaType_Movie;
         viewModel.typeText = @"Movie";

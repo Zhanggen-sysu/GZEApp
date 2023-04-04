@@ -8,6 +8,8 @@
 #import "GZECommonHelper.h"
 #import "MBProgressHUD.h"
 #import "Macro.h"
+#import <YYModel/YYModel.h>
+#import <MMKV/MMKV.h>
 
 @implementation GZECommonHelper
 
@@ -224,6 +226,23 @@
         return [NSString stringWithFormat:@"%ldK", number / 1000];
     }
     return [NSString stringWithFormat:@"%ld", number];
+}
+
++ (void)setModel:(id)model withKey:(NSString *)key
+{
+    [[MMKV defaultMMKV] setString:[model yy_modelToJSONString] forKey:key];
+}
+
++ (id)getModel:(Class)aClass withKey:(NSString *)key dataType:(GZEDataType)dataType
+{
+    NSString *jsonString = [[MMKV defaultMMKV] getStringForKey:key];
+    if (dataType == GZEDataType_array) {
+        return [NSArray yy_modelArrayWithClass:aClass json:jsonString];
+    }
+    if (dataType == GZEDataType_dictionary) {
+        return [NSDictionary yy_modelDictionaryWithClass:aClass json:jsonString];
+    }
+    return [aClass yy_modelWithJSON:jsonString];
 }
 
 @end

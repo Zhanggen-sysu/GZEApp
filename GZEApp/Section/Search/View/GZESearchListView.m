@@ -11,7 +11,7 @@
 
 @interface GZESearchListView () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray<GZESearchCellViewModel *> *viewModel;
+@property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
@@ -23,7 +23,7 @@
     return self;
 }
 
-- (void)updateWithModel:(NSArray *)model
+- (void)updateWithModel:(NSMutableArray *)model
 {
     self.viewModel = model;
     [self.tableView reloadData];
@@ -80,6 +80,27 @@
 {
     GZESearchCellViewModel *viewModel = self.viewModel[indexPath.row];
     !self.selectItemBlock ?: self.selectItemBlock(viewModel);
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.supportDelete;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (indexPath.row < self.viewModel.count) {
+            [self.viewModel removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            !self.deleteItemBlock ?: self.deleteItemBlock(self.viewModel);
+        }
+    }
 }
 
 @end

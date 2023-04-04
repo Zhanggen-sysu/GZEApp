@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "YTKNetworkConfig.h"
+#import <MMKV/MMKV.h>
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
     // Override point for customization after application launch.
     YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
     config.baseUrl = @"https://api.themoviedb.org/3/";
+    [MMKV initializeMMKV:nil];
     return YES;
 }
 

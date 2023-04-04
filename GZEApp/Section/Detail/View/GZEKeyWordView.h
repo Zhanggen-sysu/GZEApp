@@ -6,10 +6,12 @@
 //
 
 #import "GZEBaseView.h"
-
+@class GZEKeywordRsp;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEKeyWordView : GZEBaseView
+
+- (void)updateWithModel:(GZEKeywordRsp *)model magicColor:(UIColor *)magicColor;
 
 @end
 

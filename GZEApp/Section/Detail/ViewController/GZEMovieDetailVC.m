@@ -8,11 +8,12 @@
 #import "GZEMovieDetailVC.h"
 #import "GZEMovieDetailView.h"
 #import "GZEMovieCastView.h"
-#import "GZEMovieVIView.h"
-#import "GZEVideoListView.h"
-#import "GZEMovieNavBarView.h"
-#import "GZEMovieReviewView.h"
+#import "GZEDetailVIView.h"
+#import "GZEDetailListView.h"
+#import "GZEDetailNavBarView.h"
+#import "GZEDetailReviewView.h"
 #import "GZECopyRightView.h"
+#import "GZEKeyWordView.h"
 
 #import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
@@ -25,11 +26,12 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
 @property (nonatomic, strong) GZEMovieDetailView *detailView;
+@property (nonatomic, strong) GZEKeyWordView *keywordView;
 @property (nonatomic, strong) GZEMovieCastView *castView;
-@property (nonatomic, strong) GZEMovieVIView *viView;
-@property (nonatomic, strong) GZEVideoListView *similarView;
-@property (nonatomic, strong) GZEVideoListView *recommendView;
-@property (nonatomic, strong) GZEMovieReviewView *reviewView;
+@property (nonatomic, strong) GZEDetailVIView *viView;
+@property (nonatomic, strong) GZEDetailListView *similarView;
+@property (nonatomic, strong) GZEDetailListView *recommendView;
+@property (nonatomic, strong) GZEDetailReviewView *reviewView;
 @property (nonatomic, strong) GZECopyRightView *cprView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
@@ -37,7 +39,7 @@
 @property (nonatomic, assign) NSInteger movieId;
 @property (nonatomic, strong) GZEMovieDetailViewModel *viewModel;
 
-@property (nonatomic, strong) GZEMovieNavBarView *navBarView;
+@property (nonatomic, strong) GZEDetailNavBarView *navBarView;
 
 @end
 
@@ -75,6 +77,7 @@
         [self.navBarView updateWithModel:self.viewModel.commonInfo];
         self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
         [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
+        [self.keywordView updateWithModel:self.viewModel.keyword magicColor:self.viewModel.magicColor];
         [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
         [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
         [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
@@ -102,27 +105,6 @@
         make.edges.equalTo(self.scrollView);
         // 还需要约束下宽度
         make.width.equalTo(self.view);
-    }];
-    [self.detailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.castView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.viView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.similarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.recommendView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.reviewView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
-    }];
-    [self.cprView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self.contentView);
     }];
     // 处理titleView不居中问题
     [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -159,6 +141,7 @@
     if (!_contentView) {
         _contentView = [[UIStackView alloc] initWithArrangedSubviews:@[
             self.detailView,
+            self.keywordView,
             self.castView,
             self.viView,
             self.recommendView,
@@ -182,6 +165,14 @@
     return _detailView;
 }
 
+- (GZEKeyWordView *)keywordView
+{
+    if (!_keywordView) {
+        _keywordView = [[GZEKeyWordView alloc] init];
+    }
+    return _keywordView;
+}
+
 - (GZEMovieCastView *)castView
 {
     if (!_castView) {
@@ -190,35 +181,35 @@
     return _castView;
 }
 
-- (GZEMovieVIView *)viView
+- (GZEDetailVIView *)viView
 {
     if (!_viView) {
-        _viView = [[GZEMovieVIView alloc] init];
+        _viView = [[GZEDetailVIView alloc] init];
     }
     return _viView;
 }
 
-- (GZEVideoListView *)similarView
+- (GZEDetailListView *)similarView
 {
     if (!_similarView) {
-        _similarView = [[GZEVideoListView alloc] initWithTitle:@"Recommend For You"];
+        _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
     }
     return _similarView;
 }
 
 // 感觉这个的数据更像similar
-- (GZEVideoListView *)recommendView
+- (GZEDetailListView *)recommendView
 {
     if (!_recommendView) {
-        _recommendView = [[GZEVideoListView alloc] initWithTitle:@"More Like This"];
+        _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
     }
     return _recommendView;
 }
 
-- (GZEMovieReviewView *)reviewView
+- (GZEDetailReviewView *)reviewView
 {
     if (!_reviewView) {
-        _reviewView = [[GZEMovieReviewView alloc] init];
+        _reviewView = [[GZEDetailReviewView alloc] init];
     }
     return _reviewView;
 }
@@ -231,10 +222,10 @@
     return _cprView;
 }
 
-- (GZEMovieNavBarView *)navBarView
+- (GZEDetailNavBarView *)navBarView
 {
     if (!_navBarView) {
-        _navBarView = [[GZEMovieNavBarView alloc] init];
+        _navBarView = [[GZEDetailNavBarView alloc] init];
     }
     return _navBarView;
 }
@@ -244,19 +235,13 @@
     CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
     CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16 * 9));
     if (gradientProgress != self.gradientProgress) {
-        if ((gradientProgress >= 0.5 && self.gradientProgress < 0.5) || (self.gradientProgress >= 0.5 && gradientProgress < 0.5)) {
-            if (gradientProgress >= 0.5 && self.gradientProgress < 0.5) {
-                [self.navBarView updateView:NO];
-            } else {
-                [self.navBarView updateView:YES];
-            }
-            self.gradientProgress = gradientProgress;
-            [self setNeedsStatusBarAppearanceUpdate];
-            [self yp_refreshNavigationBarStyle];
-        } else {
-            self.gradientProgress = gradientProgress;
-            [self yp_refreshNavigationBarStyle];
+        if (gradientProgress >= 1 && self.gradientProgress < 1) {
+            [self.navBarView updateView:NO];
+        } else if (self.gradientProgress >= 1 && gradientProgress < 1){
+            [self.navBarView updateView:YES];
         }
+        self.gradientProgress = gradientProgress;
+        [self yp_refreshNavigationBarStyle];
     }
 }
 

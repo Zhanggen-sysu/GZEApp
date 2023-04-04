@@ -26,19 +26,19 @@
 		3D97CE1629C2C36500C19665 /* GZEDiscoverHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97CE1529C2C36500C19665 /* GZEDiscoverHeaderView.m */; };
 		3D97CE1929C2F84400C19665 /* GZEPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */; };
 		3D97CE1C29C2FC7100C19665 /* GZETVDiscoveryReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D97CE1B29C2FC7100C19665 /* GZETVDiscoveryReq.m */; };
-		3D99D52E29D2E9B000E7142F /* GZEMovieVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D52D29D2E9B000E7142F /* GZEMovieVIView.m */; };
+		3D99D52E29D2E9B000E7142F /* GZEDetailVIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D52D29D2E9B000E7142F /* GZEDetailVIView.m */; };
 		3D99D53129D2EAD800E7142F /* GZEVISmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53029D2EAD800E7142F /* GZEVISmallCell.m */; };
 		3D99D53729D3DED200E7142F /* GZEYTVideoReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53629D3DED200E7142F /* GZEYTVideoReq.m */; };
 		3D99D53A29D3EB0C00E7142F /* GZEYTVideoRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53929D3EB0C00E7142F /* GZEYTVideoRsp.m */; };
-		3D99D54029D435A200E7142F /* GZEMovieSimilarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */; };
-		3D99D54729D44F4800E7142F /* GZEMovieNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */; };
-		3D99D54A29D55C3900E7142F /* GZEMovieReviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */; };
+		3D99D54029D435A200E7142F /* GZEDetailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D53F29D435A200E7142F /* GZEDetailListCell.m */; };
+		3D99D54729D44F4800E7142F /* GZEDetailNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54629D44F4800E7142F /* GZEDetailNavBarView.m */; };
+		3D99D54A29D55C3900E7142F /* GZEDetailReviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54929D55C3900E7142F /* GZEDetailReviewView.m */; };
 		3D99D54D29D55D9D00E7142F /* GZEReviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */; };
 		3D99D55029D67ACF00E7142F /* GZECopyRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D54F29D67ACF00E7142F /* GZECopyRightView.m */; };
 		3D99D55329D67CDD00E7142F /* GZETVDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D55229D67CDD00E7142F /* GZETVDetailVC.m */; };
 		3D99D55829D67E7F00E7142F /* GZETVDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D55729D67E7F00E7142F /* GZETVDetailViewModel.m */; };
 		3D99D55B29D67FB100E7142F /* GZETVDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D55A29D67FB100E7142F /* GZETVDetailView.m */; };
-		3D99D55E29D6844100E7142F /* GZEVideoListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D55D29D6844100E7142F /* GZEVideoListView.m */; };
+		3D99D55E29D6844100E7142F /* GZEDetailListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D55D29D6844100E7142F /* GZEDetailListView.m */; };
 		3D99D56229D6912A00E7142F /* GZETVDetailReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D56129D6912A00E7142F /* GZETVDetailReq.m */; };
 		3D99D56829D6B0E300E7142F /* GZEKeywordRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D56729D6B0E300E7142F /* GZEKeywordRsp.m */; };
 		3D99D56E29D6B24400E7142F /* GZETmdbVideoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D56C29D6B24400E7142F /* GZETmdbVideoItem.m */; };
@@ -56,6 +56,10 @@
 		3D99D59929D6CFAF00E7142F /* GZERoleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D59829D6CFAF00E7142F /* GZERoleItem.m */; };
 		3D99D59C29D6D0E000E7142F /* GZEJobItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D59B29D6D0E000E7142F /* GZEJobItem.m */; };
 		3D99D59F29D6D28C00E7142F /* GZETmdbImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D59E29D6D28C00E7142F /* GZETmdbImageItem.m */; };
+		3D99D5A229DA7B1300E7142F /* GZETVDetailLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5A129DA7B1300E7142F /* GZETVDetailLineView.m */; };
+		3D99D5A529DABABD00E7142F /* GZETVCastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5A429DABABD00E7142F /* GZETVCastView.m */; };
+		3D99D5A829DADE7D00E7142F /* GZETVDetailSeasonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5A729DADE7D00E7142F /* GZETVDetailSeasonView.m */; };
+		3D99D5AB29DAE16300E7142F /* GZETVDetailSeasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
 		3DA27D5E29AE0DA10086089A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DA27D5D29AE0DA10086089A /* Assets.xcassets */; };
@@ -167,20 +171,20 @@
 		3D97CE1A29C2FC7100C19665 /* GZETVDiscoveryReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDiscoveryReq.h; sourceTree = "<group>"; };
 		3D97CE1B29C2FC7100C19665 /* GZETVDiscoveryReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDiscoveryReq.m; sourceTree = "<group>"; };
 		3D97CE1D29C3013A00C19665 /* GZEEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEEnum.h; sourceTree = "<group>"; };
-		3D99D52C29D2E9B000E7142F /* GZEMovieVIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieVIView.h; sourceTree = "<group>"; };
-		3D99D52D29D2E9B000E7142F /* GZEMovieVIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieVIView.m; sourceTree = "<group>"; };
+		3D99D52C29D2E9B000E7142F /* GZEDetailVIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailVIView.h; sourceTree = "<group>"; };
+		3D99D52D29D2E9B000E7142F /* GZEDetailVIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailVIView.m; sourceTree = "<group>"; };
 		3D99D52F29D2EAD800E7142F /* GZEVISmallCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEVISmallCell.h; sourceTree = "<group>"; };
 		3D99D53029D2EAD800E7142F /* GZEVISmallCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEVISmallCell.m; sourceTree = "<group>"; };
 		3D99D53529D3DED200E7142F /* GZEYTVideoReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEYTVideoReq.h; sourceTree = "<group>"; };
 		3D99D53629D3DED200E7142F /* GZEYTVideoReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEYTVideoReq.m; sourceTree = "<group>"; };
 		3D99D53829D3EB0C00E7142F /* GZEYTVideoRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEYTVideoRsp.h; sourceTree = "<group>"; };
 		3D99D53929D3EB0C00E7142F /* GZEYTVideoRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEYTVideoRsp.m; sourceTree = "<group>"; };
-		3D99D53E29D435A200E7142F /* GZEMovieSimilarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieSimilarCell.h; sourceTree = "<group>"; };
-		3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieSimilarCell.m; sourceTree = "<group>"; };
-		3D99D54529D44F4800E7142F /* GZEMovieNavBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieNavBarView.h; sourceTree = "<group>"; };
-		3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieNavBarView.m; sourceTree = "<group>"; };
-		3D99D54829D55C3900E7142F /* GZEMovieReviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEMovieReviewView.h; sourceTree = "<group>"; };
-		3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEMovieReviewView.m; sourceTree = "<group>"; };
+		3D99D53E29D435A200E7142F /* GZEDetailListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailListCell.h; sourceTree = "<group>"; };
+		3D99D53F29D435A200E7142F /* GZEDetailListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListCell.m; sourceTree = "<group>"; };
+		3D99D54529D44F4800E7142F /* GZEDetailNavBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailNavBarView.h; sourceTree = "<group>"; };
+		3D99D54629D44F4800E7142F /* GZEDetailNavBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailNavBarView.m; sourceTree = "<group>"; };
+		3D99D54829D55C3900E7142F /* GZEDetailReviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailReviewView.h; sourceTree = "<group>"; };
+		3D99D54929D55C3900E7142F /* GZEDetailReviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailReviewView.m; sourceTree = "<group>"; };
 		3D99D54B29D55D9D00E7142F /* GZEReviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEReviewCell.h; sourceTree = "<group>"; };
 		3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEReviewCell.m; sourceTree = "<group>"; };
 		3D99D54E29D67ACF00E7142F /* GZECopyRightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECopyRightView.h; sourceTree = "<group>"; };
@@ -191,8 +195,8 @@
 		3D99D55729D67E7F00E7142F /* GZETVDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailViewModel.m; sourceTree = "<group>"; };
 		3D99D55929D67FB100E7142F /* GZETVDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailView.h; sourceTree = "<group>"; };
 		3D99D55A29D67FB100E7142F /* GZETVDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailView.m; sourceTree = "<group>"; };
-		3D99D55C29D6844100E7142F /* GZEVideoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEVideoListView.h; sourceTree = "<group>"; };
-		3D99D55D29D6844100E7142F /* GZEVideoListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEVideoListView.m; sourceTree = "<group>"; };
+		3D99D55C29D6844100E7142F /* GZEDetailListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEDetailListView.h; sourceTree = "<group>"; };
+		3D99D55D29D6844100E7142F /* GZEDetailListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListView.m; sourceTree = "<group>"; };
 		3D99D56029D6912A00E7142F /* GZETVDetailReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailReq.h; sourceTree = "<group>"; };
 		3D99D56129D6912A00E7142F /* GZETVDetailReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailReq.m; sourceTree = "<group>"; };
 		3D99D56629D6B0E300E7142F /* GZEKeywordRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEKeywordRsp.h; sourceTree = "<group>"; };
@@ -227,6 +231,14 @@
 		3D99D59B29D6D0E000E7142F /* GZEJobItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEJobItem.m; sourceTree = "<group>"; };
 		3D99D59D29D6D28C00E7142F /* GZETmdbImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZETmdbImageItem.h; sourceTree = "<group>"; };
 		3D99D59E29D6D28C00E7142F /* GZETmdbImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZETmdbImageItem.m; sourceTree = "<group>"; };
+		3D99D5A029DA7B1300E7142F /* GZETVDetailLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailLineView.h; sourceTree = "<group>"; };
+		3D99D5A129DA7B1300E7142F /* GZETVDetailLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailLineView.m; sourceTree = "<group>"; };
+		3D99D5A329DABABD00E7142F /* GZETVCastView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVCastView.h; sourceTree = "<group>"; };
+		3D99D5A429DABABD00E7142F /* GZETVCastView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVCastView.m; sourceTree = "<group>"; };
+		3D99D5A629DADE7D00E7142F /* GZETVDetailSeasonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailSeasonView.h; sourceTree = "<group>"; };
+		3D99D5A729DADE7D00E7142F /* GZETVDetailSeasonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailSeasonView.m; sourceTree = "<group>"; };
+		3D99D5A929DAE16300E7142F /* GZETVDetailSeasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailSeasonCell.h; sourceTree = "<group>"; };
+		3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailSeasonCell.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA27D5129AE0DA00086089A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DA27D5229AE0DA00086089A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -860,28 +872,36 @@
 				3D6ED4F729D299AC00562E29 /* GZECastSmallCell.m */,
 				3D99D54E29D67ACF00E7142F /* GZECopyRightView.h */,
 				3D99D54F29D67ACF00E7142F /* GZECopyRightView.m */,
+				3D99D53E29D435A200E7142F /* GZEDetailListCell.h */,
+				3D99D53F29D435A200E7142F /* GZEDetailListCell.m */,
+				3D99D55C29D6844100E7142F /* GZEDetailListView.h */,
+				3D99D55D29D6844100E7142F /* GZEDetailListView.m */,
+				3D99D54529D44F4800E7142F /* GZEDetailNavBarView.h */,
+				3D99D54629D44F4800E7142F /* GZEDetailNavBarView.m */,
+				3D99D54829D55C3900E7142F /* GZEDetailReviewView.h */,
+				3D99D54929D55C3900E7142F /* GZEDetailReviewView.m */,
+				3D99D52C29D2E9B000E7142F /* GZEDetailVIView.h */,
+				3D99D52D29D2E9B000E7142F /* GZEDetailVIView.m */,
 				3D99D57029D6B2E400E7142F /* GZEKeyWordView.h */,
 				3D99D56F29D6B2E400E7142F /* GZEKeyWordView.m */,
 				3D6ED4F329D298EF00562E29 /* GZEMovieCastView.h */,
 				3D6ED4F429D298EF00562E29 /* GZEMovieCastView.m */,
 				3DF2506829D19C51001EF515 /* GZEMovieDetailView.h */,
 				3DF2506929D19C51001EF515 /* GZEMovieDetailView.m */,
-				3D99D54529D44F4800E7142F /* GZEMovieNavBarView.h */,
-				3D99D54629D44F4800E7142F /* GZEMovieNavBarView.m */,
-				3D99D54829D55C3900E7142F /* GZEMovieReviewView.h */,
-				3D99D54929D55C3900E7142F /* GZEMovieReviewView.m */,
-				3D99D53E29D435A200E7142F /* GZEMovieSimilarCell.h */,
-				3D99D53F29D435A200E7142F /* GZEMovieSimilarCell.m */,
-				3D99D52C29D2E9B000E7142F /* GZEMovieVIView.h */,
-				3D99D52D29D2E9B000E7142F /* GZEMovieVIView.m */,
 				3D99D54B29D55D9D00E7142F /* GZEReviewCell.h */,
 				3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */,
+				3D99D5A329DABABD00E7142F /* GZETVCastView.h */,
+				3D99D5A429DABABD00E7142F /* GZETVCastView.m */,
+				3D99D5A029DA7B1300E7142F /* GZETVDetailLineView.h */,
+				3D99D5A129DA7B1300E7142F /* GZETVDetailLineView.m */,
 				3D99D55929D67FB100E7142F /* GZETVDetailView.h */,
 				3D99D55A29D67FB100E7142F /* GZETVDetailView.m */,
-				3D99D55C29D6844100E7142F /* GZEVideoListView.h */,
-				3D99D55D29D6844100E7142F /* GZEVideoListView.m */,
 				3D99D52F29D2EAD800E7142F /* GZEVISmallCell.h */,
 				3D99D53029D2EAD800E7142F /* GZEVISmallCell.m */,
+				3D99D5A629DADE7D00E7142F /* GZETVDetailSeasonView.h */,
+				3D99D5A729DADE7D00E7142F /* GZETVDetailSeasonView.m */,
+				3D99D5A929DAE16300E7142F /* GZETVDetailSeasonCell.h */,
+				3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1032,7 +1052,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D99D54029D435A200E7142F /* GZEMovieSimilarCell.m in Sources */,
+				3D99D54029D435A200E7142F /* GZEDetailListCell.m in Sources */,
 				3DF1EE0929BEF3DA006BCF3E /* GZEListTableViewCell.m in Sources */,
 				3D99D57129D6B2E400E7142F /* GZEKeyWordView.m in Sources */,
 				3DF2506A29D19C51001EF515 /* GZEMovieDetailView.m in Sources */,
@@ -1040,6 +1060,7 @@
 				3DF2505129D18AD3001EF515 /* GZECrewItem.m in Sources */,
 				3DF2505429D18B7E001EF515 /* GZETmdbImageRsp.m in Sources */,
 				3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */,
+				3D99D5A529DABABD00E7142F /* GZETVCastView.m in Sources */,
 				3DA27DB929B072420086089A /* GZETmdbDate.m in Sources */,
 				3DF2501F29CDA95A001EF515 /* GZESearchCellViewModel.m in Sources */,
 				3D99D59F29D6D28C00E7142F /* GZETmdbImageItem.m in Sources */,
@@ -1060,10 +1081,11 @@
 				3D99D55329D67CDD00E7142F /* GZETVDetailVC.m in Sources */,
 				3D99D59929D6CFAF00E7142F /* GZERoleItem.m in Sources */,
 				3D1ED2EF29C40146008A17E4 /* GZEDiscoverFilterCell.m in Sources */,
-				3D99D52E29D2E9B000E7142F /* GZEMovieVIView.m in Sources */,
+				3D99D52E29D2E9B000E7142F /* GZEDetailVIView.m in Sources */,
 				3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */,
 				3DF1EE1929BF06BA006BCF3E /* GZEListCollectionViewCell.m in Sources */,
 				3DF2504229D18127001EF515 /* GZEProductionCompany.m in Sources */,
+				3D99D5AB29DAE16300E7142F /* GZETVDetailSeasonCell.m in Sources */,
 				3D99D57C29D6B58700E7142F /* GZETmdbVideoRsp.m in Sources */,
 				3DA27D7D29AEED0F0086089A /* YPNavigationController+Configure.m in Sources */,
 				3DF1EE4A29C04A22006BCF3E /* GZEDiscoverCellViewModel.m in Sources */,
@@ -1072,7 +1094,7 @@
 				3DA27D9029AF02720086089A /* GZEBaseReq.m in Sources */,
 				3DF1EE2929BF19FE006BCF3E /* GZEGenreItem.m in Sources */,
 				3DF2504529D18143001EF515 /* GZEProductionCountry.m in Sources */,
-				3D99D54729D44F4800E7142F /* GZEMovieNavBarView.m in Sources */,
+				3D99D54729D44F4800E7142F /* GZEDetailNavBarView.m in Sources */,
 				3DF2500D29CD9803001EF515 /* GZESearchListItem.m in Sources */,
 				3DF1EE4729C027C4006BCF3E /* GZEDiscoverCell.m in Sources */,
 				3D99D56E29D6B24400E7142F /* GZETmdbVideoItem.m in Sources */,
@@ -1080,6 +1102,7 @@
 				3DF1EE0629BEF301006BCF3E /* GZETrendingRsp.m in Sources */,
 				3DF1EE1029BEF58A006BCF3E /* GZETrendingViewModel.m in Sources */,
 				3DA27DAA29B051E70086089A /* GZEBaseView.m in Sources */,
+				3D99D5A829DADE7D00E7142F /* GZETVDetailSeasonView.m in Sources */,
 				3D1ED2D729C3124D008A17E4 /* GZEDiscoverSortView.m in Sources */,
 				3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */,
 				3D99D55B29D67FB100E7142F /* GZETVDetailView.m in Sources */,
@@ -1087,8 +1110,8 @@
 				3D99D56829D6B0E300E7142F /* GZEKeywordRsp.m in Sources */,
 				3D99D59029D6C5C700E7142F /* GZETVRatingRsp.m in Sources */,
 				3D99D55829D67E7F00E7142F /* GZETVDetailViewModel.m in Sources */,
-				3D99D55E29D6844100E7142F /* GZEVideoListView.m in Sources */,
-				3D99D54A29D55C3900E7142F /* GZEMovieReviewView.m in Sources */,
+				3D99D55E29D6844100E7142F /* GZEDetailListView.m in Sources */,
+				3D99D54A29D55C3900E7142F /* GZEDetailReviewView.m in Sources */,
 				3D97CE1929C2F84400C19665 /* GZEPaddingLabel.m in Sources */,
 				3D99D59C29D6D0E000E7142F /* GZEJobItem.m in Sources */,
 				3DD8FB4E29C95139005DF827 /* GZELanguageItem.m in Sources */,
@@ -1130,6 +1153,7 @@
 				3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */,
 				3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */,
 				3DF2500729CD95DD001EF515 /* GZESearchReq.m in Sources */,
+				3D99D5A229DA7B1300E7142F /* GZETVDetailLineView.m in Sources */,
 				3DF2504E29D18AC7001EF515 /* GZECastItem.m in Sources */,
 				3D99D59329D6C5F500E7142F /* GZERatingItem.m in Sources */,
 				3DF2502E29D16BFA001EF515 /* GZESearchListView.m in Sources */,

@@ -12,6 +12,7 @@
 #import "GZETmdbReviewRsp.h"
 #import "GZEMovieListRsp.h"
 #import "GZETmdbVideoRsp.h"
+#import "GZEKeywordRsp.h"
 #import "GZEMovieDetailViewModel.h"
 
 #import "GZETVDetailViewModel.h"
@@ -143,6 +144,24 @@
     dispatch_async(queue, ^{
         GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
         req.movieId = movieId;
+        req.type = GZEMovieDetailType_Keyword;
+        WeakSelf(self)
+        [req startRequestWithRspClass:[GZEKeywordRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+            StrongSelfReturnNil(self)
+            if (isSuccess) {
+                GZEKeywordRsp *response = (GZEKeywordRsp *)rsp;
+                viewModel.keyword = response;
+            } else {
+                [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        GZEMovieDetailReq *req = [[GZEMovieDetailReq alloc] init];
+        req.movieId = movieId;
         req.type = GZEMovieDetailType_Review;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZETmdbReviewRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
@@ -224,26 +243,59 @@
 {
     GZETVDetailViewModel *viewModel = [[GZETVDetailViewModel alloc] init];
     GZETVDetailReq *req = [[GZETVDetailReq alloc] init];
-    req.withoutApiKey = YES;
     req.tvId = tvId;
     req.type = GZETVDetailType_All;
+    req.language = @"";
     WeakSelf(self)
     [req startRequestWithRspClass:[GZETVDetailRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
         StrongSelfReturnNil(self)
         if (isSuccess) {
             GZETVDetailRsp *response = (GZETVDetailRsp *)rsp;
             viewModel.detail = response;
-            // 额外计算一个魔法色
-            WeakSelf(self)
-            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                StrongSelfReturnNil(self)
-                if (image) {
-                    viewModel.magicColor = [image magicColor];
+            dispatch_group_t group = dispatch_group_create();
+            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_group_enter(group);
+            dispatch_async(queue, ^{
+                // 额外计算一个魔法色
+                WeakSelf(self)
+                [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                    StrongSelfReturnNil(self)
+                    if (image) {
+                        viewModel.magicColor = [image magicColor];
+                    } else {
+                        viewModel.magicColor = RGBColor(0, 191, 255);
+                    }
+                    dispatch_group_leave(group);
+                }];
+            });
+            dispatch_group_enter(group);
+            dispatch_async(queue, ^{
+                response.videos.results = [self reOrganizeVideos:response.videos.results];
+                // 请求首个视频信息展示在详情页
+                GZETmdbVideoItem *item = response.videos.results.firstObject;
+                if (item) {
+                    GZEYTVideoReq *videoReq = [[GZEYTVideoReq alloc] init];
+                    videoReq.v = item.key;
+                    videoReq.withoutApiKey = YES;
+                    WeakSelf(self)
+                    [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+                        StrongSelfReturnNil(self)
+                        if (isSuccess) {
+                            GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
+                            videoRsp.videoType = item.type;
+                            viewModel.firstVideo = videoRsp;
+                        } else {
+                            [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+                        }
+                        dispatch_group_leave(group);
+                    }];
                 } else {
-                    viewModel.magicColor = RGBColor(0, 191, 255);
+                    dispatch_group_leave(group);
                 }
+            });
+            dispatch_group_notify(group, dispatch_get_main_queue(), ^{
                 !completion ?: completion(YES, viewModel, @"");
-            }];
+            });
         } else {
             [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
             !completion ?: completion(YES, viewModel, @"");

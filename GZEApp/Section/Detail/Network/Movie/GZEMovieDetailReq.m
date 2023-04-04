@@ -46,6 +46,9 @@
         case GZEMovieDetailType_Recommend:
             [url appendString:@"/recommendations"];
             break;
+        case GZEMovieDetailType_Keyword:
+            [url appendString:@"/keywords"];
+            break;
         default:
             break;
     }

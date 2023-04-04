@@ -15,6 +15,7 @@
     static NSDictionary<NSString *, NSString *> *properties;
     return properties = properties ? properties : @{
         @"id": @"identifier",
+        @"keywords": @"keywords",
         @"results": @"results",
     };
 }
@@ -22,6 +23,7 @@
 + (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass
 {
     return @{
+        @"keywords": [GZEGenreItem class],
         @"results": [GZEGenreItem class],
     };
 }

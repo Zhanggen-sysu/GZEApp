@@ -68,8 +68,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) GZETmdbReviewRsp *reviews;
 @property (nonatomic, strong) GZETVListRsp *similar;
 @property (nonatomic, strong) GZETmdbVideoRsp *videos;
-
+// Local
 @property (nonatomic, copy) NSString *detailText;
+@property (nonatomic, copy) NSString *countryText;
+@property (nonatomic, copy) NSString *directorText;
+@property (nonatomic, copy) NSString *subTitleText;
+@property (nonatomic, copy) NSString *companyText;
+@property (nonatomic, copy) NSString *networkText;
 
 @end
 

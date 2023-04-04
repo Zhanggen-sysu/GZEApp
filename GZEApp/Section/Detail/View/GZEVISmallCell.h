@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateWithUrl:(NSURL *)url;
 // Youtube Key
-- (void)updateWithVideo:(GZEYTVideoRsp *)model;
+- (void)updateWithVideo:(GZEYTVideoRsp *)model magicColor:(UIColor *)magicColor;
 
 @end
 

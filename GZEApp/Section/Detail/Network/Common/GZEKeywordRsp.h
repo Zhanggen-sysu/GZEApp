@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger identifier;
 @property (nonatomic, copy)   NSArray<GZEGenreItem *> *keywords;
+@property (nonatomic, copy)   NSArray<GZEGenreItem *> *results;
 
 @end
 
