@@ -1,45 +1,41 @@
 //
-//  GZEDetailVIView.m
+//  GZEPeopleDetailImageView.m
 //  GZEApp
 //
-//  Created by GenZhang on 2023/3/28.
+//  Created by GenZhang on 2023/4/12.
 //
 
-#import "GZEDetailVIView.h"
-#import "GZEVISmallCell.h"
-#import "GZETmdbImageRsp.h"
-#import "GZEYTVideoRsp.h"
+#import "GZEPeopleDetailImageView.h"
 #import "GZECommonHelper.h"
-#import "GZETmdbImageItem.h"
 #import "GZECustomButton.h"
+#import "GZETmdbImageRsp.h"
+#import "GZETagImageRsp.h"
+#import "GZEVISmallCell.h"
+#import "GZETmdbImageItem.h"
 
-@interface GZEDetailVIView () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface GZEPeopleDetailImageView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *photoCollection;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) GZECustomButton *seeAllBtn;
-@property (nonatomic, strong) GZETmdbImageRsp *imgRsp;
-@property (nonatomic, strong) GZEYTVideoRsp *videoModel;
-@property (nonatomic, strong) UIColor *magicColor;
+@property (nonatomic, strong) GZETmdbImageRsp *images;
+@property (nonatomic, strong) GZETagImageRsp *taggedImages;
 
 @end
 
-@implementation GZEDetailVIView
+@implementation GZEPeopleDetailImageView
 
-- (void)updateWithImgModel:(GZETmdbImageRsp *)imgModel videoModel:(GZEYTVideoRsp *)videoModel magicColor:(nonnull UIColor *)magicColor
+- (void)updateWithImages:(GZETmdbImageRsp *)images taggedImages:(GZETagImageRsp *)taggedImages
 {
-    if (!videoModel && imgModel.backdrops.count <= 0) {
+    if (images.profiles.count <= 0 && taggedImages.results.count <= 0) {
         self.hidden = YES;
         return;
     }
-    self.magicColor = magicColor;
-    self.imgRsp = imgModel;
-    self.videoModel = videoModel;
-    self.backgroundColor = magicColor;
-    self.photoCollection.backgroundColor = magicColor;
+    self.images = images;
+    self.taggedImages = taggedImages;
     [self.photoCollection reloadData];
-    NSInteger count = self.imgRsp.backdrops.count + self.imgRsp.posters.count;
-    if (count > 9) {
+    NSInteger count = images.profiles.count + taggedImages.results.count;
+    if (count > 10) {
         [self.seeAllBtn setTitle:[NSString stringWithFormat:@"See All (%ld)", count] forState:UIControlStateNormal];
     } else {
         self.seeAllBtn.hidden = YES;
@@ -71,7 +67,7 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10.f);
         make.leading.equalTo(self).offset(15.f);
         make.trailing.equalTo(self);
-        make.height.mas_equalTo([self itemSize].height);
+        make.height.mas_equalTo(300 * 9 / 16);
         make.bottom.equalTo(self).offset(-10.f);
     }];
     [self.seeAllBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,20 +80,38 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GZEVISmallCell *cell = (GZEVISmallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEVISmallCell class]) forIndexPath:indexPath];
-    if (indexPath.row == 0 && self.videoModel) {
-        [cell updateWithVideo:self.videoModel magicColor:self.magicColor];
+    GZETmdbImageItem *item = nil;
+    if (indexPath.row < self.images.profiles.count) {
+        item = self.images.profiles[indexPath.row];
     } else {
-        NSInteger index = self.videoModel ? indexPath.row-1 : indexPath.row;
-        GZETmdbImageItem *backdrop = self.imgRsp.backdrops[index];
-        [cell updateWithUrl:[GZECommonHelper getBackdropUrl:backdrop.filePath size:GZEBackdropSize_w780] aspectRatio:backdrop.aspectRatio];
+        item = self.taggedImages.results[indexPath.row - self.images.profiles.count];
+    }
+    if (item.aspectRatio < 1) {
+        [cell updateWithUrl:[GZECommonHelper getPosterUrl:item.filePath size:GZEPosterSize_w342] aspectRatio:item.aspectRatio];
+    } else {
+        [cell updateWithUrl:[GZECommonHelper getBackdropUrl:item.filePath size:GZEBackdropSize_w780] aspectRatio:item.aspectRatio];
     }
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSInteger count = (self.videoModel ? 1 : 0) + self.imgRsp.backdrops.count;
-    return count > 10 ? 10 : count;
+    return MIN(self.images.profiles.count + self.taggedImages.results.count, 10);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    GZETmdbImageItem *item = nil;
+    if (indexPath.row < self.images.profiles.count) {
+        item = self.images.profiles[indexPath.row];
+    } else {
+        item = self.taggedImages.results[indexPath.row - self.images.profiles.count];
+    }
+    CGFloat height = 300 * 9 / 16;
+    if (item.aspectRatio < 1) {
+        return CGSizeMake(height / 3 * 2, height);
+    }
+    return CGSizeMake(300, height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -110,8 +124,8 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = kBoldFont(16.f);
-        _titleLabel.text = @"Videos & Images";
-        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.text = @"Images";
+        _titleLabel.textColor = [UIColor blackColor];
     }
     return _titleLabel;
 }
@@ -121,7 +135,6 @@
     if (!_photoCollection) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.itemSize = [self itemSize];
         
         _photoCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _photoCollection.showsHorizontalScrollIndicator = NO;
@@ -138,19 +151,13 @@
     if (!_seeAllBtn) {
         _seeAllBtn = [[GZECustomButton alloc] init];
         _seeAllBtn.titleLabel.font = kFont(14.f);
-        [_seeAllBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_seeAllBtn setImage:kGetImage(@"arrow-right-white") forState:UIControlStateNormal];
+        [_seeAllBtn setTitleColor:RGBColor(128, 128, 128) forState:UIControlStateNormal];
+        [_seeAllBtn setImage:kGetImage(@"arrow-right-gray") forState:UIControlStateNormal];
         [_seeAllBtn setImagePosition:GZEBtnImgPosition_Right spacing:5 contentAlign:GZEBtnContentAlign_Right contentOffset:0 imageSize:CGSizeZero titleSize:CGSizeZero];
         [_seeAllBtn addTarget:self action:@selector(didTapSeeAll) forControlEvents:UIControlEventTouchUpInside];
     }
     return _seeAllBtn;
 }
 
-- (CGSize)itemSize
-{
-    CGFloat width = 300;
-    CGFloat height = 300 / 16 * 9;
-    return CGSizeMake(width, height);
-}
-
 @end
+

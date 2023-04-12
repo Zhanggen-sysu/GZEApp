@@ -13,6 +13,7 @@
 #import "GZESearchAdvanceView.h"
 #import "GZETVDetailVC.h"
 #import "GZEMovieDetailVC.h"
+#import <MJRefresh/MJRefresh.h>
 #import <JXCategoryView/JXCategoryView.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import "GZESearchRsp.h"
@@ -42,6 +43,7 @@ static NSInteger kRecentSearchMax = 20;
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *searchArray;
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *recentArray;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger selectIndex;
  
 @end
 
@@ -52,6 +54,7 @@ static NSInteger kRecentSearchMax = 20;
     if (self = [super init]) {
         self.viewModel = viewModel;
         self.page = 0;
+        self.selectIndex = 0;
         self.request = [[GZESearchReq alloc] init];
         self.recentArray = [[NSMutableArray alloc] init];
     }
@@ -96,12 +99,13 @@ static NSInteger kRecentSearchMax = 20;
                 NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
                 NSInteger cnt = self.searchArray.count;
                 [response.results enumerateObjectsUsingBlock:^(GZESearchListItem *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    [indexPaths addObject:[NSIndexPath indexPathForRow:cnt+idx inSection:3]];
+                    [indexPaths addObject:[NSIndexPath indexPathForRow:cnt+idx inSection:0]];
                     [self.searchArray addObject:[GZESearchCellViewModel viewModelWithSearchModel:obj]];
                 }];
                 [self.searchTableView beginUpdates];
                 [self.searchTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
                 [self.searchTableView endUpdates];
+                [self.searchTableView.mj_footer endRefreshing];
             } else {
                 self.searchArray = [[NSMutableArray alloc] init];
                 [response.results enumerateObjectsUsingBlock:^(GZESearchListItem *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -167,7 +171,6 @@ static NSInteger kRecentSearchMax = 20;
     }];
     
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        // 导航栏+过滤按钮高度
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
         } else {
@@ -260,6 +263,11 @@ static NSInteger kRecentSearchMax = 20;
         _searchTableView.showsVerticalScrollIndicator = NO;
         _searchTableView.delegate = self;
         _searchTableView.dataSource = self;
+        WeakSelf(self)
+        _searchTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            StrongSelfReturnNil(self)
+            [self loadDataWithMore:YES];
+        }];
     }
     return _searchTableView;
 }
@@ -362,13 +370,23 @@ static NSInteger kRecentSearchMax = 20;
 #pragma mark - UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if (searchText.length > 0) {
-        self.contentView.hidden = YES;
-        self.searchTableView.hidden = NO;
-        [self loadDataWithMore:NO];
-    } else {
-        self.contentView.hidden = NO;
-        self.searchTableView.hidden = YES;
+    if (self.segmentView.selectedIndex != 2) {
+        if (searchText.length > 0) {
+            self.contentView.hidden = YES;
+            self.searchTableView.hidden = NO;
+            [self loadDataWithMore:NO];
+        } else {
+            self.contentView.hidden = NO;
+            self.searchTableView.hidden = YES;
+        }
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (self.segmentView.selectedIndex == 2)
+    {
+        
     }
 }
 

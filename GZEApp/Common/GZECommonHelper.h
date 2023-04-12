@@ -86,6 +86,11 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
 
 + (NSString *)getNumberString:(NSInteger)number;
 
+/// 判断是否是中文，或是否包含中文
+/// - Parameters:
+///   - str: 文本
+///   - isContain: yes判断是否包含中文，no判断是否全是中文
++ (BOOL)isChinese:(NSString *)str isContain:(BOOL)isContain;
 
 /// 持久存储
 + (void)setModel:(id)model withKey:(NSString *)key;

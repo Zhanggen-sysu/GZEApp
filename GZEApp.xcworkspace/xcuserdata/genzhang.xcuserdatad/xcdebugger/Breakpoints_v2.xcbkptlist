@@ -156,16 +156,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "24DAE3D5-44C2-491E-9A0B-807FA733054F"
+            uuid = "4D3F041E-C5C4-471F-8AA2-D2DE64A5F37E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GZEApp/Section/Detail/View/GZETVDetailSeasonView.m"
+            filePath = "GZEApp/Section/Detail/View/People/GZEPeopleCreditCell.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-updateWithCrewModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "708A0BFF-2600-48E5-88C9-65075CE7BFA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/View/People/GZEPeopleCreditCell.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "-updateWithModel:magicColor:"
+            landmarkName = "-updateWithCastModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,6 +8,7 @@
 #import "GZETVCastView.h"
 #import "GZECrewCastRsp.h"
 #import "GZECastSmallCell.h"
+#import "GZECastItem.h"
 
 static NSInteger kCastCount = 4;
 @interface GZETVCastView () <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -116,6 +117,12 @@ static NSInteger kCastCount = 4;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.model.cast.count > 10 ? 10 : self.model.cast.count;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GZECastItem *model = self.model.cast[indexPath.row];
+    !self.didTapPeople ?: self.didTapPeople(model.identifier);
 }
 
 - (CGSize)itemSize

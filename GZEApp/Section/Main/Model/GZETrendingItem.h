@@ -30,6 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, copy)   NSString *originalName;
 @property (nonatomic, nullable, copy)   NSString *firstAirDate;
 @property (nonatomic, nullable, copy)   NSArray<NSString *> *originCountry;
+// people
+@property (nonatomic, nullable, copy)   NSString *airDate;
+@property (nonatomic, nullable, strong) NSNumber *episodeNumber;
+@property (nonatomic, nullable, copy)   NSString *productionCode;
+@property (nonatomic, nullable, strong) NSNumber *runtime;
+@property (nonatomic, nullable, strong) NSNumber *seasonNumber;
+@property (nonatomic, nullable, strong) NSNumber *showID;
+@property (nonatomic, nullable, copy)   NSString *stillPath;
 
 @end
 

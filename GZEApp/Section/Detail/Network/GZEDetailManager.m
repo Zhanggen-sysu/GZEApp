@@ -18,6 +18,8 @@
 #import "GZETVDetailViewModel.h"
 #import "GZETVDetailRsp.h"
 
+#import "GZEPeopleDetailRsp.h"
+
 #import "Macro.h"
 #import "GZECommonHelper.h"
 #import "SDWebImageDownloader.h"
@@ -303,5 +305,24 @@
     }];
 }
 
+- (void)getPeopleDetailWithId:(NSInteger)peopleId completion:(GZECommonRspBlock)completion
+{
+    GZEPeopleDetailReq *req = [[GZEPeopleDetailReq alloc] init];
+    req.peopleId = peopleId;
+    req.language = @"";
+    req.type = GZEPeopleDetailType_All;
+    req.page = 1;
+    WeakSelf(self)
+    [req startRequestWithRspClass:[GZEPeopleDetailRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        StrongSelfReturnNil(self)
+        if (isSuccess) {
+            GZEPeopleDetailRsp *response = (GZEPeopleDetailRsp *)rsp;
+            !completion ?: completion(YES, response, @"");
+        } else {
+            [GZECommonHelper showMessage:errorMessage inView:nil duration:1.5];
+            !completion ?: completion(NO, rsp, @"");
+        }
+    }];
+}
 
 @end

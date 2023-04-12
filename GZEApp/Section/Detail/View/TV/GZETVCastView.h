@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZETVCastView : GZEBaseView
 
+@property (nonatomic, copy) void (^didTapPeople)(NSInteger peopleId);
+
 - (void)updateWithModel:(GZECrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor;
 
 @end

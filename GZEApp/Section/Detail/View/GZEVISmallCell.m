@@ -86,10 +86,11 @@
     return _playImg;
 }
 
-- (void)updateWithUrl:(NSURL *)url
+- (void)updateWithUrl:(NSURL *)url aspectRatio:(double)aspectRatio
 {
     self.videoBg.hidden = YES;
-    [self.imageView sd_setImageWithURL:url placeholderImage:kGetImage(@"default-backdrop")];
+    UIImage *placeHolder = aspectRatio > 1 ? kGetImage(@"default-backdrop") : kGetImage(@"default-poster");
+    [self.imageView sd_setImageWithURL:url placeholderImage:placeHolder];
 }
 
 - (void)updateWithVideo:(GZEYTVideoRsp *)model magicColor:(UIColor *)magicColor

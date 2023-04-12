@@ -20,6 +20,9 @@
         @"vote_average": @"voteAverage",
         @"vote_count": @"voteCount",
         @"width": @"width",
+        @"image_type": @"imageType",
+        @"media": @"media",
+        @"media_type": @"mediaType",
     };
 }
 

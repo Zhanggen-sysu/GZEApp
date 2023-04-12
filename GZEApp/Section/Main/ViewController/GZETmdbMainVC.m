@@ -574,10 +574,13 @@
         if (@available(iOS 15.0, *)) {
             _tableView.sectionHeaderTopPadding = 0;
         }
+        WeakSelf(self)
         _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            StrongSelfReturnNil(self)
             [self loadData];
         }];
         _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            StrongSelfReturnNil(self)
             [self loadDataWithMore:YES];
         }];
     }

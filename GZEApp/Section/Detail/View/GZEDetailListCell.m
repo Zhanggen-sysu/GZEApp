@@ -103,6 +103,8 @@
 {
     if (!_rateLabel) {
         _rateLabel = [[UILabel alloc] init];
+        _rateLabel.font = kFont(14.f);
+        _rateLabel.textColor = RGBColor(200, 200, 200);
     }
     return _rateLabel;
 }

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)   NSArray<GZETmdbImageItem *> *posters;
 // TV
 @property (nonatomic, copy)   NSArray<GZETmdbImageItem *> *logos;
+// people
+@property (nonatomic, copy)   NSArray<GZETmdbImageItem *> *profiles;
 
 @end
 

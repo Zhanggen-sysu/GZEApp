@@ -6,6 +6,7 @@
 //
 
 #import "GZEMovieDetailVC.h"
+#import "GZEPeopleDetailVC.h"
 #import "GZEMovieDetailView.h"
 #import "GZEMovieCastView.h"
 #import "GZEDetailVIView.h"
@@ -21,7 +22,7 @@
 #import "Macro.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 
-@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
@@ -177,6 +178,12 @@
 {
     if (!_castView) {
         _castView = [[GZEMovieCastView alloc] init];
+        WeakSelf(self)
+        _castView.didTapPeople = ^(NSInteger peopleId) {
+            StrongSelfReturnNil(self)
+            GZEPeopleDetailVC *vc = [[GZEPeopleDetailVC alloc] initWithPeopleId:peopleId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _castView;
 }

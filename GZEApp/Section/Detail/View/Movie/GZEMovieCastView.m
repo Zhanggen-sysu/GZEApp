@@ -109,7 +109,8 @@ static NSInteger kCastCount = 4;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    GZECastItem *model = self.model.cast[indexPath.row];
+    !self.didTapPeople ?: self.didTapPeople(model.identifier);
 }
 
 - (UILabel *)titleLabel

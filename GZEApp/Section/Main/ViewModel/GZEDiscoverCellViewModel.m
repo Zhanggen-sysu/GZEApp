@@ -23,10 +23,9 @@
         [title appendString:[NSString stringWithFormat:@" (%@)", [item.firstAirDate substringToIndex:4]]];
     }
     viewModel.name = title;
-    viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
+    viewModel.voteAverage = item.voteAverage;
     viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w300];
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w154];
-    viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
     viewModel.overview = item.overview;
     viewModel.isExpand = NO;
     NSMutableString *str = [[NSMutableString alloc] init];
@@ -56,10 +55,9 @@
         [title appendString:[NSString stringWithFormat:@" (%@)", [item.releaseDate substringToIndex:4]]];
     }
     viewModel.name = title;
-    viewModel.score = [NSString stringWithFormat:@"%.1f", item.voteAverage];
+    viewModel.voteAverage = item.voteAverage;
     viewModel.backdropUrl = [GZECommonHelper getBackdropUrl:item.backdropPath size:GZEBackdropSize_w780];
     viewModel.posterUrl = [GZECommonHelper getPosterUrl:item.posterPath size:GZEPosterSize_w185];
-    viewModel.stars = [GZECommonHelper generateRatingString:item.voteAverage starSize:15.f space:1];
     viewModel.overview = item.overview;
     viewModel.isExpand = NO;
     NSMutableString *str = [[NSMutableString alloc] init];

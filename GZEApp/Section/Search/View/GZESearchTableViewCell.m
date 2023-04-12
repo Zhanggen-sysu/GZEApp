@@ -14,6 +14,9 @@
 @interface GZESearchTableViewCell ()
 
 @property (nonatomic, strong) UIImageView *poster;
+@property (nonatomic, strong) UIStackView *stackView;
+@property (nonatomic, strong) UIView *scoreView;
+@property (nonatomic, strong) UIView *detailView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UILabel *scoreLabel;
@@ -29,19 +32,24 @@
     [self.poster sd_setImageWithURL:viewModel.posterUrl placeholderImage:kGetImage(@"default-poster")];
     self.titleLabel.text = viewModel.title;
     self.detailLabel.text = viewModel.detail;
-    self.scoreLabel.attributedText = [GZECommonHelper generateRatingString:viewModel.voteAverage starSize:12 space:1];
-    self.scoreNum.text = [NSString stringWithFormat:@"%.1f", viewModel.voteAverage];
     self.typeLabel.text = viewModel.typeText;
+    if (viewModel.mediaType == GZEMediaType_Person) {
+        self.scoreView.hidden = YES;
+    } else {
+        self.scoreLabel.attributedText = [GZECommonHelper generateRatingString:viewModel.voteAverage starSize:12 space:1];
+        self.scoreNum.text = [NSString stringWithFormat:@"%.1f", viewModel.voteAverage];
+        self.scoreView.hidden = NO;
+    }
 }
 
 - (void)setupSubviews
 {
     [self.contentView addSubview:self.poster];
-    [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.detailLabel];
-    [self.contentView addSubview:self.scoreLabel];
-    [self.contentView addSubview:self.scoreNum];
-    [self.contentView addSubview:self.typeLabel];
+    [self.scoreView addSubview:self.scoreLabel];
+    [self.scoreView addSubview:self.scoreNum];
+    [self.detailView addSubview:self.typeLabel];
+    [self.detailView addSubview:self.detailLabel];
+    [self.contentView addSubview:self.stackView];
 }
 
 - (void)defineLayout
@@ -51,30 +59,60 @@
         make.size.mas_equalTo(CGSizeMake(46, 69));
         make.leading.equalTo(self.contentView).offset(15.f);
     }];
+    [self.stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.contentView);
+        make.leading.equalTo(self.poster.mas_trailing).offset(10.f);
+        make.trailing.equalTo(self.contentView).offset(-15.f);
+    }];
     [self.scoreNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.scoreLabel);
         make.leading.equalTo(self.scoreLabel.mas_trailing).offset(5.f);
     }];
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(5.f);
-        make.leading.equalTo(self.titleLabel);
-    }];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView);
-        make.leading.equalTo(self.poster.mas_trailing).offset(10.f);
-        make.trailing.equalTo(self.contentView).offset(-15.f);
+        make.top.bottom.leading.equalTo(self.scoreView);
     }];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.typeLabel.mas_trailing).offset(5.f);
         make.centerY.equalTo(self.typeLabel);
-        make.trailing.equalTo(self.titleLabel);
+        make.trailing.equalTo(self.detailView);
     }];
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scoreLabel.mas_bottom).offset(10.f);
-        make.leading.equalTo(self.titleLabel);
+        make.top.bottom.leading.equalTo(self.detailView);
     }];
     [self.typeLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [self.typeLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (UIView *)detailView
+{
+    if (!_detailView) {
+        _detailView = [[UIView alloc] init];
+    }
+    return _detailView;
+}
+
+- (UIView *)scoreView
+{
+    if (!_scoreView) {
+        _scoreView = [[UIView alloc] init];
+    }
+    return _scoreView;
+}
+
+- (UIStackView *)stackView
+{
+    if (!_stackView) {
+        _stackView = [[UIStackView alloc] initWithArrangedSubviews:@[
+            self.titleLabel,
+            self.scoreView,
+            self.detailView,
+        ]];
+        _stackView.axis = UILayoutConstraintAxisVertical;
+        _stackView.alignment = UIStackViewAlignmentFill;
+        _stackView.distribution = UIStackViewDistributionFill;
+        _stackView.spacing = 5;
+    }
+    return _stackView;
 }
 
 - (UIImageView *)poster

@@ -9,8 +9,6 @@
 
 @interface GZESearchAdvanceView ()
 
-@property (nonatomic, strong) UITableView *tableView;
-
 @end
 
 @implementation GZESearchAdvanceView

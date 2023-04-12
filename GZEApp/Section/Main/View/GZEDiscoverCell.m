@@ -30,8 +30,13 @@
     [self.posterImg sd_setImageWithURL:viewModel.posterUrl placeholderImage:kGetImage(@"default-poster")];
     [self.backdropImg sd_setImageWithURL:viewModel.backdropUrl placeholderImage:kGetImage(@"default-backdrop")];
     self.nameLabel.text = viewModel.name;
-    self.scoreLabel.attributedText = viewModel.stars;
-    self.scoreNumLabel.text = viewModel.score;
+    self.scoreLabel.attributedText = [GZECommonHelper generateRatingString:viewModel.voteAverage starSize:15.f space:1];
+    if (viewModel.voteAverage > 0) {
+        self.scoreNumLabel.text = [NSString stringWithFormat:@"%.1f", viewModel.voteAverage];
+        self.scoreNumLabel.hidden = NO;
+    } else {
+        self.scoreNumLabel.hidden = YES;
+    }
     self.detailLabel.text = viewModel.detail;
     self.contentLabel.text = viewModel.overview;
     self.contentLabel.isExpand = viewModel.isExpand;

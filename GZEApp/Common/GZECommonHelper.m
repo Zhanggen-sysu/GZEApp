@@ -177,6 +177,12 @@
 
 + (NSAttributedString *)generateRatingString:(double)voteAverage starSize:(CGFloat)size space:(NSInteger)space
 {
+    if (voteAverage <= 0) {
+        return [[NSAttributedString alloc] initWithString:@"Not rating yet" attributes:@{
+            NSFontAttributeName: kFont(size),
+            NSForegroundColorAttributeName: RGBColor(255, 215, 0),
+        }];;
+    }
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] init];
     for (NSInteger i = 0; i < 5; i ++)
     {
@@ -226,6 +232,13 @@
         return [NSString stringWithFormat:@"%ldK", number / 1000];
     }
     return [NSString stringWithFormat:@"%ld", number];
+}
+
++ (BOOL)isChinese:(NSString *)str isContain:(BOOL)isContain
+{
+    NSString *reg = isContain ? @"[\u4e00-\u9fa5]" : @"^[\u4e00-\u9fa5]+$";
+    NSRegularExpression *regularexpression = [[NSRegularExpression alloc] initWithPattern:reg options:NSRegularExpressionCaseInsensitive error:nil];
+    return ([regularexpression numberOfMatchesInString:str options:NSMatchingReportProgress range:NSMakeRange(0, str.length)] > 0);
 }
 
 + (void)setModel:(id)model withKey:(NSString *)key

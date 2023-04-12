@@ -8,6 +8,7 @@
 #import "GZEBaseView.h"
 @class GZEMovieListRsp;
 @class GZETVListRsp;
+@class GZECombinedCreditsRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateWithModel:(GZEMovieListRsp *)model magicColor:(UIColor *)magicColor;
 - (void)updateWithTVModel:(GZETVListRsp *)model magicColor:(nonnull UIColor *)magicColor;
+- (void)updateWithCombinedCreditModel:(GZECombinedCreditsRsp *)model;
 
 @end
 

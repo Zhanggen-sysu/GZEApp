@@ -7,8 +7,10 @@
 
 #import "GZEDetailListView.h"
 #import "GZEDetailListCell.h"
+#import "GZEPeopleCreditCell.h"
 #import "GZEMovieListRsp.h"
 #import "GZETVListRsp.h"
+#import "GZECombinedCreditsRsp.h"
 
 @interface GZEDetailListView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -18,8 +20,8 @@
 
 @property (nonatomic, strong) GZEMovieListRsp *model;
 @property (nonatomic, strong) GZETVListRsp *tvModel;
+@property (nonatomic, strong) GZECombinedCreditsRsp *peopleModel;
 @property (nonatomic, strong) UIColor *magicColor;
-@property (nonatomic, assign) BOOL isTV;
 
 @end
 
@@ -31,6 +33,23 @@
         self.titleLabel.text = title;
     }
     return self;
+}
+
+- (void)updateWithCombinedCreditModel:(GZECombinedCreditsRsp *)model
+{
+    if (model.crew.count <= 0 && model.cast.count <= 0) {
+        self.hidden = YES;
+        return;
+    }
+    self.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.rightIcon.image = kGetImage(@"arrow-right-gray");
+    self.peopleModel = model;
+    [self.collectionView reloadData];
+    if (model.crew.count + model.cast.count <= 10) {
+        self.rightIcon.hidden = YES;
+    }
 }
 
 - (void)updateWithModel:(GZEMovieListRsp *)model magicColor:(nonnull UIColor *)magicColor
@@ -55,7 +74,6 @@
         self.hidden = YES;
         return;
     }
-    self.isTV = YES;
     self.magicColor = magicColor;
     self.backgroundColor = magicColor;
     self.collectionView.backgroundColor = magicColor;
@@ -118,6 +136,7 @@
         _collectionView.dataSource = self;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 15.f);
         [_collectionView registerClass:[GZEDetailListCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class])];
+        [_collectionView registerClass:[GZEPeopleCreditCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEPeopleCreditCell class])];
     }
     return _collectionView;
 }
@@ -134,21 +153,40 @@
 #pragma mark - UICollectionViewDelegate
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
-    if (self.isTV) {
+
+    if (self.tvModel) {
+        GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
         GZETVListItem *result = self.tvModel.results[indexPath.row];
         [cell updateWithTVModel:result magicColor:self.magicColor];
-    } else {
+        return cell;
+    }
+    if (self.model) {
+        GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
         GZEMovieListItem *result = self.model.results[indexPath.row];
         [cell updateWithModel:result magicColor:self.magicColor];
+        return cell;
     }
-    return cell;
+    if (self.peopleModel) {
+        GZEPeopleCreditCell *cell = (GZEPeopleCreditCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEPeopleCreditCell class]) forIndexPath:indexPath];
+        if (indexPath.row < self.peopleModel.cast.count) {
+            GZEMediaCast *cast = self.peopleModel.cast[indexPath.row];
+            [cell updateWithCastModel:cast];
+        } else {
+            GZEMediaCrew *crew = self.peopleModel.crew[indexPath.row - self.peopleModel.cast.count];
+            [cell updateWithCrewModel:crew];
+        }
+        return cell;
+    }
+    return nil;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.isTV) {
+    if (self.tvModel) {
         return self.tvModel.results.count > 10 ? 10 : self.tvModel.results.count;
+    }
+    if (self.peopleModel) {
+        return self.peopleModel.cast.count + self.peopleModel.crew.count > 10 ? 10 : self.peopleModel.cast.count + self.peopleModel.crew.count;
     }
     return self.model.results.count > 10 ? 10 : self.model.results.count;
 }

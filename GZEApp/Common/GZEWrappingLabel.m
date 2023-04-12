@@ -245,11 +245,11 @@
                     if (lineW + tokenW > rect.size.width) {
                         // token在下一行
                         CGContextSetTextPosition(context, lineOrigins[lineIndex].x, lineOrigins[lineIndex].y - self.font.lineHeight);
-                        self.wrapFrame = CGRectMake(lineOrigins[lineIndex].x, (lineIndex + 1) * self.font.lineHeight, tokenW, self.font.lineHeight);
+                        self.wrapFrame = CGRectMake(lineOrigins[lineIndex].x, lineIndex * self.font.lineHeight, tokenW, self.font.lineHeight);
                     } else {
                         // token在行尾
                         CGContextSetTextPosition(context, lineOrigins[lineIndex].x + lineW, lineOrigins[lineIndex].y);
-                        self.wrapFrame = CGRectMake(lineOrigins[lineIndex].x + lineW, lineIndex * self.font.lineHeight, tokenW, self.font.lineHeight);
+                        self.wrapFrame = CGRectMake(lineOrigins[lineIndex].x + lineW, (lineIndex - 1) * self.font.lineHeight, tokenW, self.font.lineHeight);
                     }
                     CTLineDraw(truncationTokenLine, context);
                     CFRelease(truncationTokenLine);

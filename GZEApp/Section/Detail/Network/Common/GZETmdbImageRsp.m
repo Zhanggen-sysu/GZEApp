@@ -19,6 +19,7 @@
         @"backdrops": @"backdrops",
         @"posters": @"posters",
         @"logos": @"logos",
+        @"profiles": @"profiles",
     };
 }
 
@@ -28,6 +29,7 @@
         @"backdrops": [GZETmdbImageItem class],
         @"posters": [GZETmdbImageItem class],
         @"logos": [GZETmdbImageItem class],
+        @"profiles": [GZETmdbImageItem class],
     };
 }
 

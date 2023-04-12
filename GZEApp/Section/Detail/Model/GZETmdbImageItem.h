@@ -6,6 +6,7 @@
 //
 
 #import "GZEBaseModel.h"
+@class GZETrendingItem;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,9 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)           NSString *filePath;
 @property (nonatomic, assign)         NSInteger height;
 @property (nonatomic, nullable, copy) id iso639_1;
-@property (nonatomic, assign)         NSInteger voteAverage;
+@property (nonatomic, assign)         double voteAverage;
 @property (nonatomic, assign)         NSInteger voteCount;
 @property (nonatomic, assign)         NSInteger width;
+// people
+@property (nonatomic, copy)           NSString *imageType;
+@property (nonatomic, strong)         GZETrendingItem *media;
+@property (nonatomic, copy)           NSString *mediaType;
 
 @end
 

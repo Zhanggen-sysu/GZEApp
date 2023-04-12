@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "GZEMovieDetailReq.h"
 #import "GZETVDetailReq.h"
+#import "GZEPeopleDetailReq.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)getMovieDetailWithId:(NSInteger)movieId completion:(GZECommonRspBlock)completion;
 - (void)getTVDetailWithId:(NSInteger)tvId completion:(GZECommonRspBlock)completion;
+- (void)getPeopleDetailWithId:(NSInteger)peopleId completion:(GZECommonRspBlock)completion;
 
 @end
 
