@@ -42,14 +42,23 @@
         req.type = GZEMovieDetailType_Common;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieDetailRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieDetailRsp *response = (GZEMovieDetailRsp *)rsp;
                 viewModel.commonInfo = response;
                 // 额外计算一个魔法色
                 WeakSelf(self)
                 [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                    StrongSelfReturnNil(self)
+                    // TODO: genzhang 如果直接return了怎么办
+                    StrongSelf(self)
+                    if (!self) {
+                        dispatch_group_leave(group);
+                        return;
+                    }
                     if (image) {
                         viewModel.magicColor = [image magicColor];
                     } else {
@@ -71,7 +80,11 @@
         req.type = GZEMovieDetailType_CrewCast;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZECrewCastRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZECrewCastRsp *response = (GZECrewCastRsp *)rsp;
                 viewModel.crewCast = response;
@@ -89,7 +102,11 @@
         req.type = GZEMovieDetailType_Video;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZETmdbVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZETmdbVideoRsp *response = (GZETmdbVideoRsp *)rsp;
                 response.results = [self reOrganizeVideos:response.results];
@@ -102,7 +119,11 @@
                     videoReq.withoutApiKey = YES;
                     WeakSelf(self)
                     [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-                        StrongSelfReturnNil(self)
+                        StrongSelf(self)
+                        if (!self) {
+                            dispatch_group_leave(group);
+                            return;
+                        }
                         if (isSuccess) {
                             GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
                             videoRsp.videoType = item.type;
@@ -131,7 +152,11 @@
         req.language = @"";
         WeakSelf(self)
         [req startRequestWithRspClass:[GZETmdbImageRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZETmdbImageRsp *response = (GZETmdbImageRsp *)rsp;
                 viewModel.images = response;
@@ -149,7 +174,11 @@
         req.type = GZEMovieDetailType_Keyword;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEKeywordRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEKeywordRsp *response = (GZEKeywordRsp *)rsp;
                 viewModel.keyword = response;
@@ -167,7 +196,11 @@
         req.type = GZEMovieDetailType_Review;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZETmdbReviewRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZETmdbReviewRsp *response = (GZETmdbReviewRsp *)rsp;
                 viewModel.reviews = response;
@@ -185,7 +218,11 @@
         req.type = GZEMovieDetailType_Similar;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
                 viewModel.similar = response;
@@ -203,7 +240,11 @@
         req.type = GZEMovieDetailType_Recommend;
         WeakSelf(self)
         [req startRequestWithRspClass:[GZEMovieListRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
                 viewModel.recommend = response;
@@ -261,7 +302,11 @@
                 // 额外计算一个魔法色
                 WeakSelf(self)
                 [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[GZECommonHelper getPosterUrl:response.posterPath size:GZEPosterSize_w185] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                    StrongSelfReturnNil(self)
+                    StrongSelf(self)
+                    if (!self) {
+                        dispatch_group_leave(group);
+                        return;
+                    }
                     if (image) {
                         viewModel.magicColor = [image magicColor];
                     } else {
@@ -281,7 +326,11 @@
                     videoReq.withoutApiKey = YES;
                     WeakSelf(self)
                     [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-                        StrongSelfReturnNil(self)
+                        StrongSelf(self)
+                        if (!self) {
+                            dispatch_group_leave(group);
+                            return;
+                        }
                         if (isSuccess) {
                             GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
                             videoRsp.videoType = item.type;

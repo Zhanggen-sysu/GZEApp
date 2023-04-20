@@ -52,7 +52,7 @@ static NSInteger kCastCount = 4;
 - (CGSize)itemSize
 {
     CGFloat width = (int)(SCREEN_WIDTH / kCastCount);
-    CGFloat height = width * 1.5 + 70.f;
+    CGFloat height = (int)(width * 1.5 + 70.f);
     return CGSizeMake(width, height);
 }
 

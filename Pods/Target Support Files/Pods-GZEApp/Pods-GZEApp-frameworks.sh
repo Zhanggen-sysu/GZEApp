@@ -178,6 +178,7 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GKPhotoBrowser/GKPhotoBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
@@ -197,6 +198,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/GKPhotoBrowser/GKPhotoBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"

@@ -9,7 +9,7 @@
 #import "GZESearchCellViewModel.h"
 #import "GZESearchTableViewCell.h"
 
-@interface GZESearchListView () <UITableViewDelegate, UITableViewDataSource>
+@interface GZESearchListView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
@@ -100,6 +100,13 @@
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
             !self.deleteItemBlock ?: self.deleteItemBlock(self.viewModel);
         }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([self.delegate respondsToSelector:@selector(GZESearchListViewDidScroll:)]) {
+        [self.delegate GZESearchListViewDidScroll:self];
     }
 }
 

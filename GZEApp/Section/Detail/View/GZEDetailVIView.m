@@ -102,7 +102,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    CGRect frame = [collectionView convertRect:cell.frame toView:self.superVC.view];
+    !self.didTapImage ?: self.didTapImage(self.videoModel ? indexPath.row - 1 : indexPath.row, frame);
 }
 
 - (UILabel *)titleLabel

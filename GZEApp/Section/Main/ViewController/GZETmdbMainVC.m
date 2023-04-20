@@ -156,7 +156,11 @@
     dispatch_async(queue, ^{
         WeakSelf(self)
         [self.manager getMovieListType:GZEMovieListType_Popular loadMore:NO block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
                 self.listViewModel[0] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular Movie" movieList:model.results];
@@ -170,7 +174,11 @@
     dispatch_async(queue, ^{
         WeakSelf(self)
         [self.manager getMovieListType:GZEMovieListType_TopRate loadMore:NO block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
                 self.listViewModel[1] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated Movie" movieList:model.results];
@@ -184,7 +192,11 @@
     dispatch_async(queue, ^{
         WeakSelf(self)
         [self.manager getTVListType:GZETVListType_Popular loadMore:NO block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
                 self.listViewModel[2] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular TV" tvList:model.results];
@@ -198,7 +210,11 @@
     dispatch_async(queue, ^{
         WeakSelf(self)
         [self.manager getTVListType:GZETVListType_TopRated loadMore:NO block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(group);
+                return;
+            }
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
                 self.listViewModel[3] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated TV" tvList:model.results];
@@ -218,7 +234,11 @@
         // 需要先有类型配置，才能生成tableview的viewmodel
         WeakSelf(self)
         [[GZEGlobalConfig shareConfig] getGenresWithType:GZEMediaType_Movie completion:^(NSDictionary<NSNumber *,NSString *> * _Nonnull genres) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(newGroup);
+                return;
+            }
             self.movieGenreFilterModel = [GZEDiscoverFilterViewModel viewModelWithGenreDict:genres mediaType:GZEMediaType_Movie];
             dispatch_group_leave(newGroup);
         }];
@@ -231,7 +251,11 @@
     dispatch_async(queue, ^{
         WeakSelf(self)
         [self.manager getMovieDiscoverWithReq:self.moviesReq loadMore:NO block:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-            StrongSelfReturnNil(self)
+            StrongSelf(self)
+            if (!self) {
+                dispatch_group_leave(newGroup);
+                return;
+            }
             if (isSuccess) {
                 GZEMovieListRsp *response = (GZEMovieListRsp *)rsp;
                 self.moviesRsp = response;

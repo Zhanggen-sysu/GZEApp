@@ -11,11 +11,11 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000 // 当前Xcode支持iOS8及以上
 // Screen Size
 #define SCREEN_WIDTH ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.width)
-#define SCREENH_HEIGHT ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.height)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.height)
 #define SCREEN_SIZE ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?CGSizeMake([UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale,[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale):[UIScreen mainScreen].bounds.size)
 #else
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREENH_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define SCREEN_SIZE [UIScreen mainScreen].bounds.size
 #endif
 
@@ -29,6 +29,7 @@
 
 // Cycle Retain
 #define WeakSelf(type)  __weak typeof(type) weak##type = type;
+#define StrongSelf(type) __strong typeof(type) type = weak##type;
 #define StrongSelfReturnNil(type)  __strong typeof(type) type = weak##type;\
                                     if (!type)return;
 

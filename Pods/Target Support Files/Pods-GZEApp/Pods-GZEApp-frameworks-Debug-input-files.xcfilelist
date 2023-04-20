@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-GZEApp/Pods-GZEApp-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/CYLTabBarController/CYLTabBarController.framework
+${BUILT_PRODUCTS_DIR}/GKPhotoBrowser/GKPhotoBrowser.framework
 ${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework
 ${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework

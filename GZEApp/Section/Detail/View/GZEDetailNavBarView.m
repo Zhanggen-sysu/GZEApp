@@ -37,7 +37,7 @@
     [self.posterIcon sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92] placeholderImage:kGetImage(@"default-poster")];
     self.titleLabel.text = model.title;
     self.starLabel.attributedText = [GZECommonHelper generateRatingString:model.voteAverage starSize:8 space:1];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%.1f", model.voteAverage];
+    self.scoreLabel.text = model.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", model.voteAverage] : @"";
 }
 
 - (void)updateWithTVModel:(GZETVDetailRsp *)model
@@ -45,7 +45,7 @@
     [self.posterIcon sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w92] placeholderImage:kGetImage(@"default-poster")];
     self.titleLabel.text = model.name;
     self.starLabel.attributedText = [GZECommonHelper generateRatingString:model.voteAverage starSize:10 space:1];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%.1f", model.voteAverage];
+    self.scoreLabel.text = model.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", model.voteAverage] : @"";
 }
 
 - (void)setupSubviews

@@ -11,6 +11,7 @@ target 'GZEApp' do
   pod 'CYLTabBarController'
   pod 'JXCategoryView'
   pod 'LookinServer', :configurations => ['Debug']
+  pod 'GKPhotoBrowser'
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'MJRefresh' 

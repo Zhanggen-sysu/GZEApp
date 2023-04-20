@@ -18,7 +18,7 @@
     viewModel.imgUrl = [GZECommonHelper getPosterUrl:movie.posterPath size:GZEPosterSize_w92];
     viewModel.title = movie.title;
     viewModel.score = [GZECommonHelper generateRatingString:movie.voteAverage starSize:10 space:1];
-    viewModel.scoreNum = [NSString stringWithFormat:@"%.1f", movie.voteAverage];
+    viewModel.scoreNum = movie.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", movie.voteAverage] : @"";
     return viewModel;
 }
 
@@ -28,7 +28,7 @@
     viewModel.imgUrl = [GZECommonHelper getPosterUrl:tv.posterPath size:GZEPosterSize_w92];
     viewModel.title = tv.name;
     viewModel.score = [GZECommonHelper generateRatingString:tv.voteAverage starSize:10 space:1];
-    viewModel.scoreNum = [NSString stringWithFormat:@"%.1f", tv.voteAverage];
+    viewModel.scoreNum = tv.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", tv.voteAverage] : @"";
     return viewModel;
 }
 

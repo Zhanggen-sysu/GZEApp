@@ -25,7 +25,7 @@
 static NSString *kRecentSearchKey = @"kRecentSearchKey";
 static NSInteger kRecentSearchMax = 20;
 
-@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate>
+@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate, GZESearchListViewDelegate>
 
 @property (nonatomic, strong) GZETrendingViewModel *viewModel;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -276,6 +276,7 @@ static NSInteger kRecentSearchMax = 20;
 {
     if (!_trendView) {
         _trendView = [[GZESearchListView alloc] init];
+        _trendView.delegate = self;
         WeakSelf(self)
         _trendView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
             StrongSelfReturnNil(self)
@@ -298,6 +299,7 @@ static NSInteger kRecentSearchMax = 20;
     if (!_recentView) {
         _recentView = [[GZESearchListView alloc] init];
         _recentView.supportDelete = YES;
+        _recentView.delegate = self;
         WeakSelf(self)
         _recentView.selectItemBlock = ^(GZESearchCellViewModel * _Nonnull model) {
             StrongSelfReturnNil(self)
@@ -388,6 +390,12 @@ static NSInteger kRecentSearchMax = 20;
     {
         
     }
+}
+
+#pragma mark - GZESearchListViewDelegate
+- (void)GZESearchListViewDidScroll:(GZESearchListView *)listView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark - YPNavigationBarConfigureStyle

@@ -37,7 +37,7 @@
         self.scoreView.hidden = YES;
     } else {
         self.scoreLabel.attributedText = [GZECommonHelper generateRatingString:viewModel.voteAverage starSize:12 space:1];
-        self.scoreNum.text = [NSString stringWithFormat:@"%.1f", viewModel.voteAverage];
+        self.scoreNum.text = viewModel.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", viewModel.voteAverage] : @"";
         self.scoreView.hidden = NO;
     }
 }

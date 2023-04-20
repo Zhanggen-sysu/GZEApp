@@ -6,8 +6,13 @@
 //
 
 #import "GZESearchResultVC.h"
+#import "Masonry.h"
+#import <TTGTextTagCollectionView.h>
 
 @interface GZESearchResultVC ()
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) TTGTextTagCollectionView *filterView;
 
 @end
 
@@ -15,17 +20,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setupSubviews
+{
+    [self.view addSubview:self.filterView];
+    [self.view addSubview:self.tableView];
 }
-*/
+
+- (void)defineLayout
+{
+    [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        } else {
+            make.top.equalTo(self.view).offset(44);
+        }
+        make.leading.trailing.equalTo(self.view);
+    }];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.filterView.mas_bottom);
+        make.leading.trailing.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+}
 
 @end

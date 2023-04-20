@@ -178,7 +178,7 @@
 + (NSAttributedString *)generateRatingString:(double)voteAverage starSize:(CGFloat)size space:(NSInteger)space
 {
     if (voteAverage <= 0) {
-        return [[NSAttributedString alloc] initWithString:@"Not rating yet" attributes:@{
+        return [[NSAttributedString alloc] initWithString:@"Not yet rated" attributes:@{
             NSFontAttributeName: kFont(size),
             NSForegroundColorAttributeName: RGBColor(255, 215, 0),
         }];;

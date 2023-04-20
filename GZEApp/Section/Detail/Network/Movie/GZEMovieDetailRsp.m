@@ -99,7 +99,7 @@
     }
     if (self.voteAverage > 0) {
         NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithAttributedString:[GZECommonHelper generateRatingString:self.voteAverage starSize:20 space:2]];
-        [attri appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1f", self.voteAverage] attributes:@{
+        [attri appendAttributedString:[[NSAttributedString alloc] initWithString:self.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", self.voteAverage] : @"" attributes:@{
             NSFontAttributeName: kBoldFont(16.f),
             NSForegroundColorAttributeName: RGBColor(255, 215, 0),
         }]];

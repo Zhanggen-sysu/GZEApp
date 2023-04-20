@@ -9,6 +9,12 @@ PODS:
   - CYLTabBarController (1.29.2):
     - CYLTabBarController/Core (= 1.29.2)
   - CYLTabBarController/Core (1.29.2)
+  - GKPhotoBrowser (2.4.4):
+    - GKPhotoBrowser/SD (= 2.4.4)
+  - GKPhotoBrowser/Core (2.4.4)
+  - GKPhotoBrowser/SD (2.4.4):
+    - GKPhotoBrowser/Core
+    - SDWebImage (~> 5.0)
   - JXCategoryView (1.6.1)
   - LookinServer (1.1.2):
     - LookinServer/Core (= 1.1.2)
@@ -34,6 +40,7 @@ PODS:
 
 DEPENDENCIES:
   - CYLTabBarController
+  - GKPhotoBrowser
   - JXCategoryView
   - LookinServer
   - Masonry
@@ -52,6 +59,7 @@ SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - CYLTabBarController
+    - GKPhotoBrowser
     - JXCategoryView
     - LookinServer
     - Masonry
@@ -71,6 +79,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CYLTabBarController: db44b5901a28693a8a4279e4721b3aafdd36c178
+  GKPhotoBrowser: 537fce685f6b9085d4a30b68d9fe0b4e4447d6e9
   JXCategoryView: 7b1ee69ede4843c581688afe84d0f047723262f2
   LookinServer: bb667a77f1ee594a8e91226e729dbe49f3401f5c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -87,6 +96,6 @@ SPEC CHECKSUMS:
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 921872faa2c3eaaf8777da492889f544d56dd60b
+PODFILE CHECKSUM: 9785ce09fc1eae2df0d63932f5a317edc259219e
 
 COCOAPODS: 1.11.3
