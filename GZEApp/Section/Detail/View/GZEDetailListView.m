@@ -11,6 +11,10 @@
 #import "GZEMovieListRsp.h"
 #import "GZETVListRsp.h"
 #import "GZECombinedCreditsRsp.h"
+#import "GZEMediaCast.h"
+#import "GZEMediaCrew.h"
+#import "GZETVListItem.h"
+#import "GZEMovieListItem.h"
 
 @interface GZEDetailListView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -153,7 +157,6 @@
 #pragma mark - UICollectionViewDelegate
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (self.tvModel) {
         GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
         GZETVListItem *result = self.tvModel.results[indexPath.row];
@@ -178,6 +181,37 @@
         return cell;
     }
     return nil;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.tvModel) {
+        GZETVListItem *result = self.tvModel.results[indexPath.row];
+        !self.didTapTv ?: self.didTapTv(result.identifier);
+        return;
+    }
+    if (self.model) {
+        GZEMovieListItem *result = self.model.results[indexPath.row];
+        !self.didTapMovie ?: self.didTapMovie(result.identifier);
+        return;
+    }
+    if (self.peopleModel) {
+        if (indexPath.row < self.peopleModel.cast.count) {
+            GZEMediaCast *cast = self.peopleModel.cast[indexPath.row];
+            if ([cast.mediaType isEqualToString:@"tv"]) {
+                !self.didTapTv ?: self.didTapTv(cast.identifier);
+            } else if ([cast.mediaType isEqualToString:@"movie"]) {
+                !self.didTapMovie ?: self.didTapMovie(cast.identifier);
+            }
+        } else {
+            GZEMediaCrew *crew = self.peopleModel.crew[indexPath.row - self.peopleModel.cast.count];
+            if ([crew.mediaType isEqualToString:@"tv"]) {
+                !self.didTapTv ?: self.didTapTv(crew.identifier);
+            } else if ([crew.mediaType isEqualToString:@"movie"]) {
+                !self.didTapMovie ?: self.didTapMovie(crew.identifier);
+            }
+        }
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

@@ -196,6 +196,12 @@
 {
     if (!_similarView) {
         _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
+        WeakSelf(self)
+        _similarView.didTapTv = ^(NSInteger tvId) {
+            StrongSelfReturnNil(self)
+            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _similarView;
 }
@@ -205,6 +211,12 @@
 {
     if (!_recommendView) {
         _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
+        WeakSelf(self)
+        _recommendView.didTapTv = ^(NSInteger tvId) {
+            StrongSelfReturnNil(self)
+            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _recommendView;
 }

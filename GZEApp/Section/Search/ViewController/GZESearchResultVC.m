@@ -9,7 +9,7 @@
 #import "Masonry.h"
 #import <TTGTextTagCollectionView.h>
 
-@interface GZESearchResultVC ()
+@interface GZESearchResultVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) TTGTextTagCollectionView *filterView;
@@ -43,6 +43,18 @@
         make.leading.trailing.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+}
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableView;
 }
 
 @end

@@ -12,6 +12,8 @@
 #import "GZEPeopleDetailImageView.h"
 #import "Masonry.h"
 #import "Macro.h"
+#import "GZETVDetailVC.h"
+#import "GZEMovieDetailVC.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 
 #import "GZEPeopleDetailView.h"
@@ -120,6 +122,17 @@
 {
     if (!_castView) {
         _castView = [[GZEDetailListView alloc] initWithTitle:@"Know For"];
+        WeakSelf(self)
+        _castView.didTapTv = ^(NSInteger tvId) {
+            StrongSelfReturnNil(self)
+            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
+        _castView.didTapMovie = ^(NSInteger movieId) {
+            StrongSelfReturnNil(self)
+            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _castView;
 }

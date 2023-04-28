@@ -26,7 +26,9 @@
     self.contentView.backgroundColor = magicColor;
     [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
     self.titleLabel.text = model.name;
-    self.detailLabel.text = [NSString stringWithFormat:@"%@ (%ld episodes)", model.airDate, model.episodeCount];
+    if (model.airDate.length > 0) {
+        self.detailLabel.text = [NSString stringWithFormat:@"%@ (%ld episodes)", model.airDate, model.episodeCount];
+    }
 }
 
 - (void)setupSubviews

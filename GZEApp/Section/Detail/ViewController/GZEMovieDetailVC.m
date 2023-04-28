@@ -200,30 +200,30 @@
         WeakSelf(self)
         _viView.didTapImage = ^(NSInteger index, CGRect frame) {
             StrongSelfReturnNil(self)
-//            if (self.viewModel.firstVideo && index == 0) {
-//
-//            } else {
-//                GZEImageBrowser *browser = [[GZEImageBrowser alloc] initWithIndex:self.viewModel.firstVideo ? index - 1 : index openFrame:frame];
-//                browser.delegate = self;
-//                [browser show];
-//            }
-            NSMutableArray *photos = [[NSMutableArray alloc] init];
-            [self.viewModel.images.backdrops enumerateObjectsUsingBlock:^(GZETmdbImageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                GKPhoto *photo = [[GKPhoto alloc] init];
-                photo.url = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_w780];
-                photo.originUrl = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_original];
-                photo.placeholderImage = kGetImage(@"default-backdrop");
-                photo.sourceFrame = frame;
-                [photos addObject:photo];
-                if (self.viewModel.firstVideo) {
-                    *stop = idx >= 8;
-                } else {
-                    *stop = idx >= 9;
-                }
-            }];
-            GKPhotoBrowser *broser = [[GKPhotoBrowser alloc] initWithPhotos:photos currentIndex:index];
-            broser.saveBtn.hidden = NO;
-            [broser showFromVC:self];
+            if (self.viewModel.firstVideo && index == 0) {
+
+            } else {
+                GZEImageBrowser *browser = [[GZEImageBrowser alloc] initWithIndex:self.viewModel.firstVideo ? index - 1 : index openFrame:frame];
+                browser.delegate = self;
+                [browser show];
+            }
+//            NSMutableArray *photos = [[NSMutableArray alloc] init];
+//            [self.viewModel.images.backdrops enumerateObjectsUsingBlock:^(GZETmdbImageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                GKPhoto *photo = [[GKPhoto alloc] init];
+//                photo.url = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_w780];
+//                photo.originUrl = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_original];
+//                photo.placeholderImage = kGetImage(@"default-backdrop");
+//                photo.sourceFrame = frame;
+//                [photos addObject:photo];
+//                if (self.viewModel.firstVideo) {
+//                    *stop = idx >= 8;
+//                } else {
+//                    *stop = idx >= 9;
+//                }
+//            }];
+//            GKPhotoBrowser *broser = [[GKPhotoBrowser alloc] initWithPhotos:photos currentIndex:index];
+//            broser.saveBtn.hidden = NO;
+//            [broser showFromVC:self];
         };
     }
     return _viView;
@@ -233,6 +233,12 @@
 {
     if (!_similarView) {
         _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
+        WeakSelf(self)
+        _similarView.didTapMovie = ^(NSInteger movieId) {
+            StrongSelfReturnNil(self)
+            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _similarView;
 }
@@ -242,6 +248,12 @@
 {
     if (!_recommendView) {
         _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
+        WeakSelf(self)
+        _recommendView.didTapMovie = ^(NSInteger movieId) {
+            StrongSelfReturnNil(self)
+            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _recommendView;
 }

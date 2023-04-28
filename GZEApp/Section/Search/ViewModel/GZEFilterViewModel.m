@@ -36,12 +36,9 @@
         dispatch_group_enter(group);
         dispatch_async(queue, ^{
             [[GZEGlobalConfig shareConfig] getAllLanguagesWithCompletion:^(NSDictionary<NSString *,GZELanguageItem *> * _Nonnull languages) {
-                
                 [mutableArray addObject:model];
             }];
         });
-        
-        
     }
 }
 

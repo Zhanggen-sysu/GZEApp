@@ -8,6 +8,11 @@
 #import "SceneDelegate.h"
 #import "SceneDelegate+CYLTabBar.h"
 
+#ifdef DEBUG
+#import <DoraemonKit/DoraemonKit.h>
+#import <YKWoodpecker/YKWoodpecker.h>
+#endif
+
 @interface SceneDelegate ()
 
 @end
@@ -23,6 +28,12 @@
         [self configureForTabBarViewController];
         UIWindowScene *windowScene = (UIWindowScene *)scene;
         [self.window setWindowScene:windowScene];
+#ifdef DEBUG
+        [[DoraemonManager shareInstance] install];
+        [YKWoodpeckerManager sharedInstance].cmdSourceUrl = @"https://raw.githubusercontent.com/ZimWoodpecker/WoodpeckerCmdSource/master/cmdSource/default/demo.json";
+        [[YKWoodpeckerManager sharedInstance] show];
+        [[YKWoodpeckerManager sharedInstance] registerCrashHandler];
+#endif
     }
     
 }
