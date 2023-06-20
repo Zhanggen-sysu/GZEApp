@@ -23,9 +23,17 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取类型列表
 - (void)getGenresWithType:(GZEMediaType)mediaType completion:(nullable void (^)(NSDictionary<NSNumber *, NSString *> *))completion;
 
+// 获取语言列表
 - (void)getAllLanguagesWithCompletion:(nullable void (^)(NSDictionary<NSString *, GZELanguageItem *> *))completion;
 
 - (NSArray<NSString *> *)supportLanguages;
+
+- (NSInteger)currentYear;
+- (NSInteger)currentMonth;
+- (NSInteger)currentDay;
+- (NSInteger)currentHour;
+- (NSInteger)currentMinute;
+- (NSInteger)currentSecond;
 
 @end
 

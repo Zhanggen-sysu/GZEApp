@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GZEDiscoverFilterCell : GZEBaseCollectionViewCell
 
 - (void)updateWithString:(NSString *)text;
+- (void)updateSelected:(BOOL)selected;
 
 @end
 

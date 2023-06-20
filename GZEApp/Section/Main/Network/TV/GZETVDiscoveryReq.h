@@ -41,44 +41,44 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZETVDiscoveryReq : GZEBaseReq
 
-@property (nonatomic, copy) NSString *language;
-@property (nonatomic, copy) NSString *sortBy;
-@property (nonatomic, copy) NSString *airDateGte;
-@property (nonatomic, copy) NSString *airDateLTE;
-@property (nonatomic, copy) NSString *firstAirDateGte;
-@property (nonatomic, copy) NSString *firstAirDateLTE;
+@property (nonatomic, copy, nullable) NSString *language;
+@property (nonatomic, copy, nullable) NSString *sortBy;
+@property (nonatomic, copy, nullable) NSString *airDateGte;
+@property (nonatomic, copy, nullable) NSString *airDateLTE;
+@property (nonatomic, copy, nullable) NSString *firstAirDateGte;
+@property (nonatomic, copy, nullable) NSString *firstAirDateLTE;
 // NSInteger
-@property (nonatomic, strong) NSNumber *firstAirDateYear;
+@property (nonatomic, strong, nullable) NSNumber *firstAirDateYear;
 // NSInteger
-@property (nonatomic, strong) NSNumber *page;
-@property (nonatomic, copy) NSString *timezone;
+@property (nonatomic, strong, nullable) NSNumber *page;
+@property (nonatomic, copy, nullable) NSString *timezone;
 // Number, min=0
-@property (nonatomic, strong) NSNumber *voteAverageGte;
+@property (nonatomic, strong, nullable) NSNumber *voteAverageGte;
 // NSInteger, min=0
-@property (nonatomic, strong) NSNumber *voteCountGte;
-@property (nonatomic, copy) NSString *withGenres;
-@property (nonatomic, copy) NSString *withNetworks;
-@property (nonatomic, copy) NSString *withoutGenres;
+@property (nonatomic, strong, nullable) NSNumber *voteCountGte;
+@property (nonatomic, copy, nullable) NSString *withGenres;
+@property (nonatomic, copy, nullable) NSString *withNetworks;
+@property (nonatomic, copy, nullable) NSString *withoutGenres;
 // NSInteger
-@property (nonatomic, strong) NSNumber *withRuntimeGte;
+@property (nonatomic, strong, nullable) NSNumber *withRuntimeGte;
 // NSInteger
-@property (nonatomic, strong) NSNumber *withRuntimeLTE;
+@property (nonatomic, strong, nullable) NSNumber *withRuntimeLTE;
 // Bool
-@property (nonatomic, strong) NSNumber *includeNullFirstAirDates;
-@property (nonatomic, copy) NSString *withOriginalLanguage;
-@property (nonatomic, copy) NSString *withoutKeywords;
+@property (nonatomic, strong, nullable) NSNumber *includeNullFirstAirDates;
+@property (nonatomic, copy, nullable) NSString *withOriginalLanguage;
+@property (nonatomic, copy, nullable) NSString *withoutKeywords;
 // Bool
-@property (nonatomic, strong) NSNumber *screenedTheatrically;
-@property (nonatomic, copy) NSString *withCompanies;
-@property (nonatomic, copy) NSString *withKeywords;
-@property (nonatomic, copy) NSString *withWatchProviders;
-@property (nonatomic, copy) NSString *watchRegion;
-@property (nonatomic, copy) NSString *withWatchMonetizationTypes;
+@property (nonatomic, strong, nullable) NSNumber *screenedTheatrically;
+@property (nonatomic, copy, nullable) NSString *withCompanies;
+@property (nonatomic, copy, nullable) NSString *withKeywords;
+@property (nonatomic, copy, nullable) NSString *withWatchProviders;
+@property (nonatomic, copy, nullable) NSString *watchRegion;
+@property (nonatomic, copy, nullable) NSString *withWatchMonetizationTypes;
 // NSInteger 0-5
-@property (nonatomic, strong) NSNumber *withStatus;
+@property (nonatomic, strong, nullable) NSNumber *withStatus;
 // NSInteger 0-6
-@property (nonatomic, strong) NSNumber *withType;
-@property (nonatomic, copy) NSString *withoutCompanies;
+@property (nonatomic, strong, nullable) NSNumber *withType;
+@property (nonatomic, copy, nullable) NSString *withoutCompanies;
 
 // local
 @property (nonatomic, assign) GZETVDiscoverySortType sortType;

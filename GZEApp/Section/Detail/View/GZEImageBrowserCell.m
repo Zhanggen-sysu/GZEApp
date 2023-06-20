@@ -17,7 +17,15 @@
 - (void)setupSubviews
 {
     self.contentView.backgroundColor = [UIColor blackColor];
-    [self addGestures];
+//    [self addGestures];
+    [self.contentView addSubview:self.imageScrollView];
+}
+
+- (void)defineLayout
+{
+    [self.imageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentView);
+    }];
 }
 
 - (void)addGestures

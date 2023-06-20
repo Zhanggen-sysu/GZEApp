@@ -21,11 +21,12 @@
 #import "GZESearchCellViewModel.h"
 #import "GZETrendingViewModel.h"
 #import "GZECommonHelper.h"
+#import "GZESearchResultVC.h"
 
 static NSString *kRecentSearchKey = @"kRecentSearchKey";
 static NSInteger kRecentSearchMax = 20;
 
-@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate, GZESearchListViewDelegate>
+@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate, GZESearchListViewDelegate, GZESearchAdvanceViewDelegate>
 
 @property (nonatomic, strong) GZETrendingViewModel *viewModel;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -165,7 +166,7 @@ static NSInteger kRecentSearchMax = 20;
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
         } else {
-            make.top.equalTo(self.view).offset(44);
+            make.top.equalTo(self.view);
         }
         make.bottom.leading.trailing.equalTo(self.view);
     }];
@@ -174,7 +175,7 @@ static NSInteger kRecentSearchMax = 20;
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
         } else {
-            make.top.equalTo(self.view).offset(44);
+            make.top.equalTo(self.view);
         }
         make.bottom.leading.trailing.equalTo(self.view);
     }];
@@ -321,6 +322,7 @@ static NSInteger kRecentSearchMax = 20;
 {
     if (!_advanceView) {
         _advanceView = [[GZESearchAdvanceView alloc] init];
+        _advanceView.delegate = self;
     }
     return _advanceView;
 }
@@ -409,6 +411,14 @@ static NSInteger kRecentSearchMax = 20;
 
 - (UIColor *)yp_navigationBackgroundColor {
     return [UIColor whiteColor];
+}
+
+#pragma mark - GZESearchAdvanceViewDelegate
+- (void)searchAdvanceViewConfirm:(GZEFilterViewModel *)viewModel
+{
+    GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
+    self.navigationItem.backButtonTitle = @"";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

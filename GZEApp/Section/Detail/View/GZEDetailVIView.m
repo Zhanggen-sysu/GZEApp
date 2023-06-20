@@ -104,7 +104,7 @@
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = [collectionView convertRect:cell.frame toView:self.superVC.view];
-    !self.didTapImage ?: self.didTapImage(self.videoModel ? indexPath.row - 1 : indexPath.row, frame);
+    !self.didTapImage ?: self.didTapImage(indexPath.row, frame);
 }
 
 - (UILabel *)titleLabel

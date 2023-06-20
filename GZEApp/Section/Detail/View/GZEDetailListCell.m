@@ -25,6 +25,9 @@
 {
     self.contentView.backgroundColor = magicColor;
     self.nameLabel.text = model.title;
+    if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
+        self.nameLabel.textColor = [UIColor blackColor];
+    }
     [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
     self.rateLabel.attributedText = [self ratingString:model.voteAverage];
 }
@@ -33,6 +36,9 @@
 {
     self.contentView.backgroundColor = magicColor;
     self.nameLabel.text = model.name;
+    if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
+        self.nameLabel.textColor = [UIColor blackColor];
+    }
     [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
 
     self.rateLabel.attributedText = [self ratingString:model.voteAverage];

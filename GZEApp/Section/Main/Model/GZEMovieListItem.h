@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isVideo;
 @property (nonatomic, assign) double voteAverage;
 
+// local, 文本是否展开
+@property (nonatomic, assign) BOOL isExpand;
+
 @end
 
 NS_ASSUME_NONNULL_END

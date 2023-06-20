@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class GZEFilterViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZESearchResultVC : UIViewController
+
+- (instancetype)initWithViewModel:(GZEFilterViewModel *)viewModel;
 
 @end
 

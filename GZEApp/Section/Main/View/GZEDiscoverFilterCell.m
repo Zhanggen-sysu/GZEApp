@@ -45,6 +45,18 @@
     }];
 }
 
+// 有取消选中
+- (void)updateSelected:(BOOL)selected
+{
+    if (selected) {
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = RGBColor(0, 191, 255);
+    } else {
+        self.titleLabel.textColor = RGBColor(128, 128, 128);
+        self.contentView.backgroundColor = RGBColor(245, 245, 245);
+    }
+}
+
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];

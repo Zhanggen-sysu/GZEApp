@@ -470,7 +470,7 @@
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(30.f);
         } else {
-            make.top.equalTo(self.view).offset(44 + 30.f);
+            make.top.equalTo(self.view).offset(30.f);
         }
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -479,7 +479,7 @@
         if (@available(iOS 11.0, *)) {
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(30.f);
         } else {
-            make.top.equalTo(self.view).offset(44 + 30.f);
+            make.top.equalTo(self.view).offset(30.f);
         }
     }];
     [self.backToTopBtn mas_makeConstraints:^(MASConstraintMaker *make) {

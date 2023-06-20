@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *tvGenresDict;
 // 把GZELanguageItem的iso639_1作为key，方便使用
 @property (nonatomic, copy) NSDictionary<NSString *, GZELanguageItem *> *allLanguage;
+@property (nonatomic, strong) NSDateComponents *dateComponents;
 
 @end
 
@@ -100,6 +101,46 @@
 - (NSArray<NSString *> *)supportLanguages
 {
     return @[@"en", @"zh", @"cn", @"ja", @"ko", @"th", @"de", @"fr", @"ru", @"it", @"es", @"sv"];
+}
+
+- (NSDateComponents *)dateComponents
+{
+    if (!_dateComponents) {
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+        _dateComponents = [calendar components:unitFlags fromDate:[NSDate date]];
+    }
+    return _dateComponents;
+}
+
+- (NSInteger)currentYear
+{
+    return [self.dateComponents year];
+}
+
+- (NSInteger)currentMonth
+{
+    return [self.dateComponents month];
+}
+
+- (NSInteger)currentDay
+{
+    return [self.dateComponents day];
+}
+
+- (NSInteger)currentHour
+{
+    return [self.dateComponents hour];
+}
+
+- (NSInteger)currentMinute
+{
+    return [self.dateComponents minute];
+}
+
+- (NSInteger)currentSecond
+{
+    return [self.dateComponents second];
 }
 
 @end

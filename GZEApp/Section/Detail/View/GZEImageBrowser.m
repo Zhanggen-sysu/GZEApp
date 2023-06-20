@@ -8,6 +8,7 @@
 #import "GZEImageBrowser.h"
 #import "GZEImageBrowserCell.h"
 #import "UIImageView+WebCache.h"
+#import "GZEImageBrowserScrollView.h"
 
 #define kGapWidth 20
 
@@ -206,20 +207,20 @@
     if (!url) {
         url = @"default-poster";
     }
-//    if ([url containsString:@"http"]) {
-//        UIImage *defaultImage = nil;
-//        if ([self.delegate imageBrowser:self defaultImageAtIndex:self.curIndex])
-//        {
-//            defaultImage = [self.delegate imageBrowser:self defaultImageAtIndex:self.curIndex];
-//        }
-//        if (!defaultImage) {
-//            defaultImage = [UIImage imageNamed:@"default-poster"];
-//        }
-//        [photoCell.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:defaultImage];
-//    } else {
-//        photoCell.imageView.image = [UIImage imageNamed:url];
-//    }
-//
+    if ([url containsString:@"http"]) {
+        UIImage *defaultImage = nil;
+        if ([self.delegate imageBrowser:self defaultImageAtIndex:self.curIndex])
+        {
+            defaultImage = [self.delegate imageBrowser:self defaultImageAtIndex:self.curIndex];
+        }
+        if (!defaultImage) {
+            defaultImage = [UIImage imageNamed:@"default-poster"];
+        }
+        [photoCell.imageScrollView.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:defaultImage];
+    } else {
+        photoCell.imageScrollView.imageView.image = [UIImage imageNamed:url];
+    }
+
     return photoCell;
 }
 
@@ -230,7 +231,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self close];
+//    [self close];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -251,7 +252,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.curIndex = collectionView.contentOffset.x / (SCREEN_WIDTH + kGapWidth);
-
 }
 
 - (void)setSelectedIndex:(NSInteger)index
@@ -268,16 +268,6 @@
     if (itemCnt > 0 && self.curIndex >= itemCnt) {
         self.curIndex = itemCnt - 1;
     }
-}
-
-- (void)netPhotoCollCellTapped:(GZEImageBrowserCell *)cell
-{
-    
-}
-
-- (void)netPhotoCollCellLongTapped:(GZEImageBrowserCell *)cell
-{
-
 }
 
 @end
