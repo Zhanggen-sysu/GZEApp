@@ -18,6 +18,10 @@
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import "GZESearchRsp.h"
 #import "GZESearchReq.h"
+#import "GZESearchKWReq.h"
+#import "GZESearchKWRsp.h"
+#import "GZEGenreItem.h"
+#import "GZEFilterViewModel.h"
 #import "GZESearchCellViewModel.h"
 #import "GZETrendingViewModel.h"
 #import "GZECommonHelper.h"
@@ -26,7 +30,7 @@
 static NSString *kRecentSearchKey = @"kRecentSearchKey";
 static NSInteger kRecentSearchMax = 20;
 
-@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate, GZESearchListViewDelegate, GZESearchAdvanceViewDelegate>
+@interface GZESearchVC () <YPNavigationBarConfigureStyle, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, JXCategoryListContainerViewDelegate, JXCategoryViewDelegate, GZESearchListViewDelegate, GZESearchAdvanceViewDelegate>
 
 @property (nonatomic, strong) GZETrendingViewModel *viewModel;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -45,6 +49,7 @@ static NSInteger kRecentSearchMax = 20;
 @property (nonatomic, strong) NSMutableArray<GZESearchCellViewModel *> *recentArray;
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger selectIndex;
+@property (nonatomic, copy) NSString *keyword;
  
 @end
 
@@ -113,6 +118,30 @@ static NSInteger kRecentSearchMax = 20;
                     [self.searchArray addObject:[GZESearchCellViewModel viewModelWithSearchModel:obj]];
                 }];
                 [self.searchTableView reloadData];
+            }
+        } else {
+            [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
+        }
+    }];
+}
+
+- (void)getKeywordsWithQuery:(NSString *)query completionBlock:(void (^)(GZEGenreItem *keyword))completionBlock
+{
+    if (query.length <= 0) {
+        return;
+    }
+    GZESearchKWReq *req = [[GZESearchKWReq alloc] init];
+    req.query = query;
+    req.page = 1;
+    WeakSelf(self)
+    [req startRequestWithRspClass:[GZESearchKWRsp class] completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+        StrongSelfReturnNil(self)
+        if (isSuccess) {
+            GZESearchKWRsp* response = (GZESearchKWRsp *)rsp;
+            if (response.results.count > 0) {
+                !completionBlock ?: completionBlock(response.results[0]);
+            } else {
+                !completionBlock ?: completionBlock(nil);
             }
         } else {
             [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
@@ -236,6 +265,7 @@ static NSInteger kRecentSearchMax = 20;
         _segmentView.contentEdgeInsetRight = 0;
         _segmentView.averageCellSpacingEnabled = NO;
         _segmentView.listContainer = self.containerView;
+        _segmentView.delegate = self;
         
         JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
         lineView.indicatorColor = RGBColor(0, 191, 255);
@@ -343,6 +373,16 @@ static NSInteger kRecentSearchMax = 20;
     return self.advanceView;
 }
 
+#pragma mark - JXCategoryViewDelegate
+- (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index
+{
+    if (index != 2) {
+        _searchBar.placeholder = @"Search Movie, TV, Person...";
+    } else {
+        _searchBar.placeholder = @"Search Keywords";
+    }
+}
+
 #pragma mark - UITableViewDelegate, DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -383,6 +423,8 @@ static NSInteger kRecentSearchMax = 20;
             self.contentView.hidden = NO;
             self.searchTableView.hidden = YES;
         }
+    } else {
+        self.keyword = searchText;
     }
 }
 
@@ -415,6 +457,30 @@ static NSInteger kRecentSearchMax = 20;
 
 #pragma mark - GZESearchAdvanceViewDelegate
 - (void)searchAdvanceViewConfirm:(GZEFilterViewModel *)viewModel
+{
+    if (self.keyword.length > 0) {
+        WeakSelf(self)
+        // 看起来没有高级搜索功能，只能先搜关键词，然后通过关键词去调发现的接口
+        [self getKeywordsWithQuery:self.keyword completionBlock:^(GZEGenreItem *keyword) {
+            StrongSelfReturnNil(self)
+            if (!keyword) {
+                [self enterSearchResultWithVM:viewModel];
+                return;
+            }
+            GZEFilterViewModel *vm = [[GZEFilterViewModel alloc] init];
+            vm.filterTypes = viewModel.filterTypes;
+            NSMutableArray *array = [[NSMutableArray alloc] initWithArray:viewModel.filterArray];
+            GZEFilterItem *keywordItem = [GZEFilterItem itemWithKey:[NSString stringWithFormat:@"%ld", keyword.identifier] value:self.keyword ?: @"" type:GZEFilterType_Keywords];
+            [array addObject:[GZEFilterModel modelWithTitle:@"Keyword" filterType:GZEFilterType_Keywords array:@[keywordItem] selectIndex:[[NSMutableArray alloc] initWithObjects:@0, nil] allowMultiSelect:NO]];
+            vm.filterArray = array;
+            [self enterSearchResultWithVM:vm];
+        }];
+    } else {
+        [self enterSearchResultWithVM:viewModel];
+    }
+}
+
+- (void)enterSearchResultWithVM:(GZEFilterViewModel *)viewModel
 {
     GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
     self.navigationItem.backButtonTitle = @"";

@@ -1,0 +1,43 @@
+{
+  "_buildCommand2" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "733c626897c4b2bcd22ec8994e56ed72401feabd545bf15aa7a095fa8e959fbd"
+    }
+  ],
+  "containerPath" : "/Users/genzhang/Documents/Learn/GZEApp/GZEApp.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "CC" : "/Users/genzhang/Documents/Learn/OpenSource/infer/infer/bin/../lib/wrappers/clang",
+          "CPLUSPLUS" : "/Users/genzhang/Documents/Learn/OpenSource/infer/infer/bin/../lib/wrappers/clang++",
+          "GCC_PRECOMPILE_PREFIX_HEADER" : "NO",
+          "SDKROOT" : "iphonesimulator16.2"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

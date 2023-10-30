@@ -12,6 +12,7 @@
 #import "GZECommonHelper.h"
 #import "GZETmdbImageItem.h"
 #import "GZECustomButton.h"
+#import <GKPhotoBrowser/GKPhotoBrowser.h>
 
 @interface GZEDetailVIView () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) GZETmdbImageRsp *imgRsp;
 @property (nonatomic, strong) GZEYTVideoRsp *videoModel;
 @property (nonatomic, strong) UIColor *magicColor;
+@property (nonatomic, copy) NSArray<GKPhoto *> *photos;
 
 @end
 
@@ -102,9 +104,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    CGRect frame = [collectionView convertRect:cell.frame toView:self.superVC.view];
-    !self.didTapImage ?: self.didTapImage(indexPath.row, frame);
+    !self.didTapImage ?: self.didTapImage(self.photos, indexPath.item);
 }
 
 - (UILabel *)titleLabel
@@ -146,6 +146,35 @@
         [_seeAllBtn addTarget:self action:@selector(didTapSeeAll) forControlEvents:UIControlEventTouchUpInside];
     }
     return _seeAllBtn;
+}
+
+- (NSArray<GKPhoto *> *)photos
+{
+    if (!_photos) {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        if (self.videoModel) {
+            GKPhoto *video = [[GKPhoto alloc] init];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+            GZEVISmallCell *cell = (GZEVISmallCell *)[self.photoCollection cellForItemAtIndexPath:indexPath];
+            video.sourceImageView = cell.imageView;
+            video.videoUrl = [NSURL URLWithString:self.videoModel.url];
+            [array addObject:video];
+        }
+        [self.imgRsp.backdrops enumerateObjectsUsingBlock:^(GZETmdbImageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (idx + (self.videoModel ? 1 : 0) >= 10) {
+                return;
+            }
+            GKPhoto *photo = [[GKPhoto alloc] init];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx+1 inSection:0];
+            GZEVISmallCell *cell = (GZEVISmallCell *)[self.photoCollection cellForItemAtIndexPath:indexPath];
+            photo.sourceImageView = cell.imageView;
+            photo.url = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_w780];
+            photo.originUrl = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_original];
+            [array addObject:photo];
+        }];
+        _photos = array;
+    }
+    return _photos;
 }
 
 - (CGSize)itemSize

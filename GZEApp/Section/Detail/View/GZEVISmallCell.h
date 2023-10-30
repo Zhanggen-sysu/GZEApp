@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEVISmallCell : GZEBaseCollectionViewCell
 
+@property (nonatomic, strong, readonly) UIImageView *imageView;
+
 - (void)updateWithUrl:(NSURL *)url aspectRatio:(double)aspectRatio;
 // Youtube Key
 - (void)updateWithVideo:(GZEYTVideoRsp *)model magicColor:(UIColor *)magicColor;

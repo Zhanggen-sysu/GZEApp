@@ -15,9 +15,8 @@
 #import "GZEDetailReviewView.h"
 #import "GZECopyRightView.h"
 #import "GZEKeyWordView.h"
-#import "GZEImageBrowser.h"
-#import <GKPhotoBrowser/GKPhotoBrowser.h>
-
+#import "GZESearchResultVC.h"
+#import "GZEFilterViewModel.h"
 #import "GZETmdbImageItem.h"
 #import "GZETmdbImageRsp.h"
 #import "GZEDetailManager.h"
@@ -25,8 +24,9 @@
 #import "GZEMovieDetailViewModel.h"
 #import "Macro.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
+#import <GKPhotoBrowser/GKPhotoBrowser.h>
 
-@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate, GZEImageBrowserDelegate>
+@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
@@ -174,6 +174,13 @@
 {
     if (!_keywordView) {
         _keywordView = [[GZEKeyWordView alloc] init];
+        WeakSelf(self)
+        _keywordView.didTapKeyword = ^(GZEGenreItem * _Nonnull keyword) {
+            StrongSelfReturnNil(self)
+            GZEFilterViewModel *viewModel = [GZEFilterViewModel createFilterModelWithKeywords:@[keyword] mediaType:GZEMediaType_Movie];
+            GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _keywordView;
 }
@@ -196,34 +203,16 @@
 {
     if (!_viView) {
         _viView = [[GZEDetailVIView alloc] init];
-        _viView.superVC = self;
         WeakSelf(self)
-        _viView.didTapImage = ^(NSInteger index, CGRect frame) {
+        _viView.didTapImage = ^(NSArray * _Nonnull photos, NSInteger idx) {
             StrongSelfReturnNil(self)
-            if (self.viewModel.firstVideo && index == 0) {
-
-            } else {
-                GZEImageBrowser *browser = [[GZEImageBrowser alloc] initWithIndex:self.viewModel.firstVideo ? index - 1 : index openFrame:frame];
-                browser.delegate = self;
-                [browser show];
-            }
-//            NSMutableArray *photos = [[NSMutableArray alloc] init];
-//            [self.viewModel.images.backdrops enumerateObjectsUsingBlock:^(GZETmdbImageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                GKPhoto *photo = [[GKPhoto alloc] init];
-//                photo.url = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_w780];
-//                photo.originUrl = [GZECommonHelper getBackdropUrl:obj.filePath size:GZEBackdropSize_original];
-//                photo.placeholderImage = kGetImage(@"default-backdrop");
-//                photo.sourceFrame = frame;
-//                [photos addObject:photo];
-//                if (self.viewModel.firstVideo) {
-//                    *stop = idx >= 8;
-//                } else {
-//                    *stop = idx >= 9;
-//                }
-//            }];
-//            GKPhotoBrowser *broser = [[GKPhotoBrowser alloc] initWithPhotos:photos currentIndex:index];
-//            broser.saveBtn.hidden = NO;
-//            [broser showFromVC:self];
+            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:idx];
+            browser.showStyle = GKPhotoBrowserShowStyleZoom;
+            browser.hideStyle = GKPhotoBrowserHideStyleZoomScale;
+            browser.loadStyle = GKPhotoBrowserLoadStyleCustom;
+            browser.originLoadStyle = GKPhotoBrowserLoadStyleCustom;
+//            browser.delegate = self;
+            [browser showFromVC:self];
         };
     }
     return _viView;
@@ -330,23 +319,23 @@
     return [color colorWithAlphaComponent:self.gradientProgress];
 }
 
-#pragma mark - GZEImageBrowserDelegate
-- (NSInteger)getImageBrowserCount:(GZEImageBrowser *)browser
-{
-    return self.viewModel.firstVideo ? 9 : 10;
-}
-
-- (NSString *)imageBrowser:(GZEImageBrowser *)browser imageUrlAtIndex:(NSInteger)idx
-{
-    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
-    NSString *backdropPath = [NSString stringWithFormat:@"%@w780%@", API_IMG_BASEURL, imageItem.filePath];
-    return backdropPath;
-}
-
-- (UIImage *)imageBrowser:(GZEImageBrowser *)browser defaultImageAtIndex:(NSInteger)idx
-{
-    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
-    return imageItem.aspectRatio > 1 ? kGetImage(@"default-backdrop") : kGetImage(@"default-poster");
-}
+//#pragma mark - GZEImageBrowserDelegate
+//- (NSInteger)getImageBrowserCount:(GZEImageBrowser *)browser
+//{
+//    return self.viewModel.firstVideo ? 9 : 10;
+//}
+//
+//- (NSString *)imageBrowser:(GZEImageBrowser *)browser imageUrlAtIndex:(NSInteger)idx
+//{
+//    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
+//    NSString *backdropPath = [NSString stringWithFormat:@"%@w780%@", API_IMG_BASEURL, imageItem.filePath];
+//    return backdropPath;
+//}
+//
+//- (UIImage *)imageBrowser:(GZEImageBrowser *)browser defaultImageAtIndex:(NSInteger)idx
+//{
+//    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
+//    return imageItem.aspectRatio > 1 ? kGetImage(@"default-backdrop") : kGetImage(@"default-poster");
+//}
 
 @end

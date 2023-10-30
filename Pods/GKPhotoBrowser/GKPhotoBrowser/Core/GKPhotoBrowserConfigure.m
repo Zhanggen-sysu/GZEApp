@@ -50,6 +50,20 @@ NSString *const GKPhotoBrowserBundleName = @"GKPhotoBrowser";
     return safeAreaInsets;
 }
 
++ (CGFloat)gk_safeAreaTop {
+    if ([self gk_isNotchedScreen]) {
+        return [self gk_safeAreaInsets].top;
+    }
+    return 0;
+}
+
++ (CGFloat)gk_safeAreaBottom {
+    if ([self gk_isNotchedScreen]) {
+        return [self gk_safeAreaInsets].bottom;
+    }
+    return 0;
+}
+
 + (CGRect)gk_statusBarFrame {
     CGRect statusBarFrame = CGRectZero;
     if (@available(iOS 13.0, *)) {
@@ -65,10 +79,22 @@ NSString *const GKPhotoBrowserBundleName = @"GKPhotoBrowser";
     
     if (CGRectEqualToRect(statusBarFrame, CGRectZero)) {
         CGFloat statusBarH = [GKPhotoBrowserConfigure gk_isNotchedScreen] ? 44 : 20;
-        statusBarFrame = CGRectMake(0, 0, GKScreenW, statusBarH);
+        statusBarFrame = CGRectMake(0, 0, self.getKeyWindow.bounds.size.width, statusBarH);
     }
     
     return statusBarFrame;
+}
+
++ (BOOL)isMac {
+#ifdef IOS14_SDK_ALLOWED
+    if (@available(iOS 14.0, *)) {
+        return [NSProcessInfo processInfo].isiOSAppOnMac || [NSProcessInfo processInfo].isMacCatalystApp;
+    }
+#endif
+    if (@available(iOS 13.0, *)) {
+        return [NSProcessInfo processInfo].isMacCatalystApp;
+    }
+    return NO;
 }
 
 static NSInteger isNotchedScreen = -1;

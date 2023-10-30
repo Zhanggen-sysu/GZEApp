@@ -12,7 +12,9 @@
 #import "GZECommonHelper.h"
 #import "GZETVDetailRsp.h"
 #import "GZETVDetailViewModel.h"
+#import "GZEFilterViewModel.h"
 
+#import "GZESearchResultVC.h"
 #import "GZETVDetailSeasonView.h"
 #import "GZEKeyWordView.h"
 #import "GZEDetailListView.h"
@@ -158,6 +160,13 @@
 {
     if (!_keywordView) {
         _keywordView = [[GZEKeyWordView alloc] init];
+        WeakSelf(self)
+        _keywordView.didTapKeyword = ^(GZEGenreItem * _Nonnull keyword) {
+            StrongSelfReturnNil(self)
+            GZEFilterViewModel *viewModel = [GZEFilterViewModel createFilterModelWithKeywords:@[keyword] mediaType:GZEMediaType_Movie];
+            GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
     }
     return _keywordView;
 }

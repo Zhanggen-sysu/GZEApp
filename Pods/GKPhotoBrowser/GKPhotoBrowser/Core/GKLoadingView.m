@@ -24,6 +24,8 @@
 @property (nonatomic, strong) UILabel       *failureLabel;
 @property (nonatomic, strong) UIImageView   *failureImgView;
 
+@property (nonatomic, assign) BOOL isLoading;
+
 @end
 
 @implementation GKLoadingView
@@ -55,11 +57,13 @@
     // centerButton必须保持在loadingView内部
     CGFloat btnWH = self.radius * 2 - self.lineWidth;
     
-    self.centerButton.bounds = CGRectMake(0, 0, btnWH, btnWH);
-    self.centerButton.center = CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5);
-    
-    self.centerButton.layer.cornerRadius  = btnWH * 0.5;
-    self.centerButton.layer.masksToBounds = YES;
+    if (self.centerButton) {
+        self.centerButton.bounds = CGRectMake(0, 0, btnWH, btnWH);
+        self.centerButton.center = CGPointMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetHeight(self.bounds) * 0.5);
+        
+        self.centerButton.layer.cornerRadius  = btnWH * 0.5;
+        self.centerButton.layer.masksToBounds = YES;
+    }
     
     if (self.failStyle == GKPhotoBrowserFailStyleOnlyText) {
         self.failureLabel.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
@@ -74,7 +78,17 @@
         
         textF.origin.y = imgF.origin.y + imgF.size.height + 10;
         self.failureLabel.frame = textF;
+        
+        CGPoint center = self.failureImgView.center;
+        center.x = self.bounds.size.width * 0.5;
+        self.failureImgView.center = center;
+        
+        center = self.failureLabel.center;
+        center.x = self.bounds.size.width * 0.5;
+        self.failureLabel.center = center;
     }
+    
+    [self layoutAnimatedLayer];
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -90,8 +104,7 @@
 }
 
 - (void)layoutAnimatedLayer {
-    CALayer *layer = self.animatedLayer;
-    [self.layer addSublayer:layer];
+    CALayer *layer = self.backgroundLayer;
     
     CGFloat viewW   = CGRectGetWidth(self.bounds);
     CGFloat viewH   = CGRectGetHeight(self.bounds);
@@ -107,6 +120,7 @@
     layer.position = CGPointMake(positionX, positionY);
 
     self.backgroundLayer.position = layer.position;
+    self.animatedLayer.position = layer.position;
 }
 
 #pragma mark - 懒加载
@@ -127,9 +141,6 @@
 
 - (CAShapeLayer *)animatedLayer {
     if (!_animatedLayer) {
-        
-        [self.layer addSublayer:self.backgroundLayer];
-        
         CGPoint arcCenter = [self layerCenter];
         
         _animatedLayer               = [CAShapeLayer layer];
@@ -300,6 +311,20 @@
     [CATransaction commit];
 }
 
+- (void)setFailText:(NSString *)failText {
+    if (failText) {
+        _failText = failText;
+        self.failureLabel.text = failText;
+    }
+}
+
+- (void)setFailImage:(UIImage *)failImage {
+    if (failImage) {
+        _failImage = failImage;
+        self.failureImgView.image = failImage;
+    }
+}
+
 - (CGSize)sizeThatFits:(CGSize)size {
     CGFloat wh = (self.radius + self.lineWidth * 0.5 + 5 ) * 2;
     return CGSizeMake(wh, wh);
@@ -315,12 +340,16 @@
 }
 
 - (void)startLoading {
+    if (self.isLoading) return;
+    self.isLoading = YES;
     [self.failureLabel removeFromSuperview];
     self.failureLabel = nil;
     
     [self.failureImgView removeFromSuperview];
     self.failureImgView = nil;
     
+    [self.layer addSublayer:self.backgroundLayer];
+    [self.layer addSublayer:self.animatedLayer];
     [self layoutAnimatedLayer];
     
     if (self.loadingStyle == GKLoadingStyleIndeterminate) {
@@ -368,10 +397,12 @@
 }
 
 - (void)stopLoading {
+    self.isLoading = NO;
     [self hideLoadingView];
 }
 
 - (void)showFailure {
+    self.isLoading = NO;
     [self.animatedLayer removeFromSuperlayer];
     self.animatedLayer = nil;
     
@@ -400,6 +431,7 @@
 }
 
 - (void)hideFailure {
+    self.isLoading = NO;
     [self.animatedLayer removeFromSuperlayer];
     self.animatedLayer = nil;
     
@@ -431,20 +463,6 @@
     self.backgroundLayer = nil;
     
     [self.layer removeAllAnimations];
-}
-
-- (void)startLoadingWithDuration:(NSTimeInterval)duration completion:(void (^)(GKLoadingView *, BOOL))completion {
-    self.completion = completion;
-    
-    self.progress = 1.0;
-    
-    CABasicAnimation *pathAnimation     = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    pathAnimation.duration              = duration;
-    pathAnimation.fromValue             = @(0.0);
-    pathAnimation.toValue               = @(1.0);
-    pathAnimation.removedOnCompletion   = YES;
-    pathAnimation.delegate              = self;
-    [self.animatedLayer addAnimation:pathAnimation forKey:nil];
 }
 
 #pragma mark - CAAnimationDelegate

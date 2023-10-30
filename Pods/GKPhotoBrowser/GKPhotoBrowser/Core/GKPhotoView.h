@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GKPhotoManager.h"
 #import "GKWebImageProtocol.h"
+#import "GKVideoPlayerProtocol.h"
 #import "GKLoadingView.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,22 +20,40 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class GKPhotoView;
 
+@protocol GKPhotoViewDelegate <NSObject>
+
+// 缩放结束
+- (void)photoView:(GKPhotoView *)photoView zoomEndedWithScale:(CGFloat)scale;
+
+// 加载失败
+- (void)photoView:(GKPhotoView *)photoView loadFailedWithError:(NSError *)error;
+
+// 加载进度，isOriginImage：是否是原图
+- (void)photoView:(GKPhotoView *)photoView loadProgress:(float)progress isOriginImage:(BOOL)isOriginImage;
+
+@end
+
 @interface GKPhotoView : UIView<UIScrollViewDelegate>
 
 @property (nonatomic, strong, readonly) GKScrollView *scrollView;
 
 @property (nonatomic, strong, readonly) UIImageView  *imageView;
 
+@property (nonatomic, strong, readonly) UIButton     *playBtn;
+
 @property (nonatomic, strong, readonly) GKLoadingView *loadingView;
 
 @property (nonatomic, strong, readonly) GKPhoto *photo;
 
-@property (nonatomic, copy) void(^zoomEnded)(GKPhotoView *photoView, CGFloat scale);
-@property (nonatomic, copy) void(^loadFailed)(GKPhotoView *photoView);
-@property (nonatomic, copy) void(^loadProgressBlock)(GKPhotoView *photoView, float progress, BOOL isOriginImage);
+@property (nonatomic, weak) id<GKVideoPlayerProtocol> player;
+
+@property (nonatomic, weak) id<GKPhotoViewDelegate> delegate;
 
 /** 横屏时是否充满屏幕宽度，默认YES，为NO时图片自动填充屏幕 */
 @property (nonatomic, assign) BOOL isFullWidthForLandScape;
+
+/// 是否适配安全区域，默认NO，为YES时图片会自动适配iPhone X的安全区域
+@property (nonatomic, assign) BOOL isAdaptiveSafeArea;
 
 /** 图片最大放大倍数 */
 @property (nonatomic, assign) CGFloat maxZoomScale;
@@ -52,7 +71,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString    *failureText;
 @property (nonatomic, strong) UIImage   *failureImage;
 
+@property (nonatomic, assign) BOOL      showPlayImage;
+@property (nonatomic, strong) UIImage   *videoPlayImage;
+/// 拖拽开始时是否暂停播放，默认YES
+@property (nonatomic, assign) BOOL isVideoPausedWhenDragged;
+
+/// 视图重用时是否清除对应url的换成，默认NO
+/// 如果设置为YES，则视图放入重用池时回调用GKWebImageProtocol协议的clearMemoryForURL:方法
+@property (nonatomic, assign) BOOL isClearMemoryWhenViewReuse;
+
 - (instancetype)initWithFrame:(CGRect)frame imageProtocol:(id<GKWebImageProtocol>)imageProtocol;
+
+// 准备复用
+- (void)prepareForReuse;
 
 // 设置数据
 - (void)setupPhoto:(GKPhoto *)photo;
@@ -70,6 +101,28 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)adjustFrame;
 // 重新布局
 - (void)resetFrame;
+
+#pragma mark - **********处理视频播放**********
+- (void)playAction;
+- (void)pauseAction;
+
+// 加载
+- (void)showLoading;
+- (void)hideLoading;
+- (void)showFailure;
+- (void)showPlayBtn;
+
+// 左右滑动
+- (void)didScrollAppear;
+- (void)willScrollDisappear;
+- (void)didScrollDisappear;
+
+// 隐藏滑动
+- (void)didDismissAppear;
+- (void)willDismissDisappear;
+- (void)didDismissDisappear;
+
+- (void)updateFrame;
 
 @end
 

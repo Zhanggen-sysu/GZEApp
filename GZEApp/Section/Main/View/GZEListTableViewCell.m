@@ -8,8 +8,9 @@
 #import "GZEListTableViewCell.h"
 #import "GZEListCollectionViewCell.h"
 #import "GZEListCollectionFooterView.h"
+#import "GZEListCollectionViewModel.h"
 
-@interface GZEListTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface GZEListTableViewCell () <UICollectionViewDelegate, UICollectionViewDataSource, GZEListCollectionViewCellDelegate>
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -80,6 +81,7 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GZEListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEListCollectionViewCell class]) forIndexPath:indexPath];
+    cell.delegate = self;
     GZEListCollectionViewModel *item = self.viewModel[indexPath.row];
     [cell updateWithModel:item];
     return cell;
@@ -111,7 +113,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    GZEListCollectionViewModel *model = self.viewModel[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(listTableViewCellDidTapList:)]) {
+        [self.delegate listTableViewCellDidTapList:model.title];
+    }
+}
+
+#pragma mark - GZEListCollectionViewCellDelegate
+- (void)listCollectionViewCellDidTapCell:(GZEListSmallTableViewCellModel *)cellModel
+{
+    if ([self.delegate respondsToSelector:@selector(listTableViewCellDidTapCell:)]) {
+        [self.delegate listTableViewCellDidTapCell:cellModel];
+    }
 }
 
 @end

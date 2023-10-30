@@ -1,0 +1,84 @@
+[51077][      debug] Loading models took 22.2ms
+[51077][      debug] Opening a new database connection Primary CaptureDatabase
+[51077][      debug] Opening a new database connection Primary AnalysisDatabase
+[51077][      debug] Sqlite write daemon: starting up
+[51077][      debug] Sqlite write daemon: set up complete, waiting for connections
+[51077][environment] CWD = /Users/genzhang/Documents/Learn/GZEApp/build
+[51077][environment] No .inferconfig file found
+[51077][environment] Project root = /Users/genzhang/Documents/Learn/GZEApp/build
+[51077][environment] INFER_ARGS =   @/var/folders/v5/2vb0qp7s0b942d8v6rkjnz5h0000gp/T/args.tmp.6cc59a
+[51077][environment]                --progress-bar-style multiline
+[51077][environment] command line arguments:   infer --compilation-database compile_commands.json
+[51077][environment] Could not retrieve available memory (possibly not on Linux)
+[51077][environment] Active checkers: self-in-block (C/C++/ObjC), parameter-not-null-checked (C/C++/ObjC), starvation (C/C++/ObjC, Java), siof (C/C++/ObjC), racerd (C/C++/ObjC, C#/.Net, Java), liveness (C/C++/ObjC), inefficient-keyset-iterator (Java), fragment-retains-view (Java), biabduction (C/C++/ObjC, C#/.Net, Java)
+[51077][environment] Scheduler: file
+[51077][environment] Cores used: 3
+[51077][environment] Infer version v1.1.0-0fa2162a48
+[51077][environment] Copyright 2009 - present Facebook. All Rights Reserved.
+[51077][environment] 
+[51077][   progress] Capturing using compilation database...
+[51077][      debug] parsing compilation database from /Users/genzhang/Documents/Learn/GZEApp/build/compile_commands.json
+[51077][      debug] created database with 0 entries
+[51077][      debug] Starting translating 0 files
+[51077][      debug] 
+[51077][   progress] Starting translating 0 files
+[51077][   progress] 
+[51077][      debug] Closing an existing database connection Primary CaptureDatabase
+[51077][      debug] Closing an existing database connection Primary AnalysisDatabase
+[51077][      debug] 
+
+
+Opening a new database connection Primary CaptureDatabase
+[51077][      debug] Opening a new database connection Primary AnalysisDatabase
+[51077][      debug] Opening a new database connection Primary CaptureDatabase
+[51077][      debug] Closing an existing database connection Primary CaptureDatabase
+[51077][      debug] Opening a new database connection Primary AnalysisDatabase
+[51077][      debug] Closing an existing database connection Primary AnalysisDatabase
+[51077][      debug] [51083][      debug] Opening a new database connection Primary CaptureDatabase
+[51083][      debug] Opening a new database connection Primary AnalysisDatabase
+[51083][      debug] [51081][      debug] Opening a new database connection Primary CaptureDatabase
+[51081][      debug] Opening a new database connection Primary AnalysisDatabase
+[51081][      debug] [51082][      debug] Opening a new database connection Primary CaptureDatabase
+[51082][      debug] Opening a new database connection Primary AnalysisDatabase
+[51082][      debug] 
+[51077][   progress] 
+[51077][      debug] GC stats for capture:
+[51077][      debug]   minor_words: 8113
+[51077][      debug]   promoted_words: 2024
+[51077][      debug]   major_words: 10217
+[51077][      debug]   minor_collections: 1
+[51077][      debug]   major_collections: 2
+[51077][      debug]   compactions: 1
+[51077][      debug]   top_heap_words: 1157632
+[51077][      debug]   
+[51077][  user warn] Nothing to compile. Try cleaning the build first.
+[51077][   progress] There was nothing to analyze.
+[51077][      debug] GC stats for report:
+[51077][      debug]   minor_words: 3187
+[51077][      debug]   promoted_words: 0
+[51077][      debug]   major_words: 0
+[51077][      debug]   minor_collections: 0
+[51077][      debug]   major_collections: 0
+[51077][      debug]   compactions: 0
+[51077][      debug]   top_heap_words: 1157632
+[51077][      debug]   
+[51077][      debug] GC stats for main_process_full:
+[51077][      debug]   minor_words: 3.23275e+06
+[51077][      debug]   promoted_words: 617750
+[51077][      debug]   major_words: 1.0503e+06
+[51077][      debug]   minor_collections: 9
+[51077][      debug]   major_collections: 2
+[51077][      debug]   compactions: 1
+[51077][      debug]   top_heap_words: 1157632
+[51077][      debug]   
+[51080][      debug] Opening a new database connection Primary CaptureDatabase
+[51080][      debug] Closing an existing database connection Primary CaptureDatabase
+[51080][      debug] Opening a new database connection Primary AnalysisDatabase
+[51080][      debug] Closing an existing database connection Primary AnalysisDatabase
+[51080][      debug] Detected 0 spec overwrites.
+[51080][      debug] Sqlite write daemon: terminating
+[51077][      debug] Closing an existing database connection Primary CaptureDatabase
+[51077][      debug] Closing an existing database connection Primary AnalysisDatabase
+[51077][      debug] 
+[51077][     result] 
+  No issues found  

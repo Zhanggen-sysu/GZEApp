@@ -8,6 +8,7 @@
 #import "GZEFilterViewModel.h"
 #import "GZEGlobalConfig.h"
 #import "GZELanguageItem.h"
+#import "GZEGenreItem.h"
 #import "Macro.h"
 
 @implementation GZEFilterItem
@@ -55,6 +56,25 @@
 @end
 
 @implementation GZEFilterViewModel
+
++ (GZEFilterViewModel *)createFilterModelWithKeywords:(NSArray<GZEGenreItem *> *)keywords mediaType:(GZEMediaType)mediaType;
+{
+    GZEFilterViewModel *viewModel = [[GZEFilterViewModel alloc] init];
+    viewModel.filterTypes = GZEFilterType_MediaType | GZEFilterType_Keywords;
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    GZEFilterItem *tvItem = [GZEFilterItem itemWithKey:@"tv" value:@"TV" type:GZEFilterType_MediaType];
+    GZEFilterItem *movieItem = [GZEFilterItem itemWithKey:@"movie" value:@"Movie" type:GZEFilterType_MediaType];
+    [mutableArray addObject:[GZEFilterModel modelWithTitle:@"Media Type" filterType:GZEFilterType_MediaType array:@[movieItem, tvItem] selectIndex:[[NSMutableArray alloc] initWithObjects:mediaType == GZEMediaType_Movie ? @0 : @1, nil] allowMultiSelect:NO]];
+    NSMutableArray *keywordArray = [[NSMutableArray alloc] init];
+    [keywords enumerateObjectsUsingBlock:^(GZEGenreItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // keyword的key需要是数字，keyword的name是名字
+        GZEFilterItem *keywordItem = [GZEFilterItem itemWithKey:[NSString stringWithFormat:@"%ld", obj.identifier] value:obj.name ?: @"" type:GZEFilterType_Keywords];
+        [keywordArray addObject:keywordItem];
+    }];
+    [mutableArray addObject:[GZEFilterModel modelWithTitle:@"Keyword" filterType:GZEFilterType_Keywords array:keywordArray selectIndex:[[NSMutableArray alloc] initWithObjects:@0, nil] allowMultiSelect:NO]];
+    viewModel.filterArray = mutableArray;
+    return viewModel;
+}
 
 + (void)createFilterModelWithType:(GZEFilterType)filterTypes completeBlock:(void (^)(GZEFilterViewModel *))completeBlock;
 {
@@ -114,7 +134,7 @@
         [itemArray addObject:[GZEFilterItem itemWithKey:@"180" value:@"2 to 3 hours" type:GZEFilterType_Runtime]];
         [itemArray addObject:[GZEFilterItem itemWithKey:@"240" value:@"3 to 4 hours" type:GZEFilterType_Runtime]];
         [itemArray addObject:[GZEFilterItem itemWithKey:@"240+" value:@"Over 4 hours" type:GZEFilterType_Runtime]];
-        [mutableArray addObject:[GZEFilterModel modelWithTitle:@"Runtime" filterType:GZEFilterType_Runtime array:itemArray selectIndex:nil allowMultiSelect:NO]];
+        [mutableArray addObject:[GZEFilterModel modelWithTitle:@"Runtime" filterType:GZEFilterType_Runtime array:itemArray selectIndex:[NSMutableArray new] allowMultiSelect:NO]];
     }
     if (filterTypes & GZEFilterType_Language) {
         dispatch_group_enter(group);

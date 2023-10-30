@@ -10,10 +10,11 @@
 #import "GZEGenreItem.h"
 #import <TTGTextTagCollectionView.h>
 
-@interface GZEKeyWordView ()
+@interface GZEKeyWordView () <TTGTextTagCollectionViewDelegate>
 
 @property (nonatomic, strong) TTGTextTagCollectionView *keywordView;
 @property (nonatomic, strong) TTGTextTagStyle *keywordStyle;
+@property (nonatomic, strong) GZEKeywordRsp *model;
 
 @end
 
@@ -25,6 +26,7 @@
         self.hidden = YES;
         return;
     }
+    self.model = model;
     self.keywordStyle.backgroundColor = magicColor;
     [model.keywords enumerateObjectsUsingBlock:^(GZEGenreItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         TTGTextTagStringContent *text = [TTGTextTagStringContent contentWithText:obj.name];
@@ -62,6 +64,7 @@
 {
     if (!_keywordView) {
         _keywordView = [[TTGTextTagCollectionView alloc] init];
+        _keywordView.delegate = self;
     }
     return _keywordView;
 }
@@ -76,6 +79,13 @@
         _keywordStyle.extraSpace = CGSizeMake(8, 3);
     }
     return _keywordStyle;
+}
+
+- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView
+                    didTapTag:(TTGTextTag *)tag
+                      atIndex:(NSUInteger)index
+{
+    !self.didTapKeyword ?: self.didTapKeyword(self.model.keywords[index]);
 }
 
 @end

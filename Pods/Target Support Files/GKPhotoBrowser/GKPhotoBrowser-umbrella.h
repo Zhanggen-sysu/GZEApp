@@ -10,14 +10,20 @@
 #endif
 #endif
 
+#import "GKAVPlayerManager.h"
 #import "GKLoadingView.h"
-#import "GKPanGestureRecognizer.h"
 #import "GKPhotoBrowser.h"
 #import "GKPhotoBrowserConfigure.h"
+#import "GKPhotoBrowserHandler.h"
+#import "GKPhotoGestureHandler.h"
 #import "GKPhotoManager.h"
+#import "GKPhotoRotationHandler.h"
 #import "GKPhotoView.h"
+#import "GKProgressViewProtocol.h"
+#import "GKVideoPlayerProtocol.h"
 #import "GKWebImageProtocol.h"
 #import "UIScrollView+GKPhotoBrowser.h"
+#import "GKProgressView.h"
 #import "GKSDWebImageManager.h"
 
 FOUNDATION_EXPORT double GKPhotoBrowserVersionNumber;

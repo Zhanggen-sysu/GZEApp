@@ -9,31 +9,18 @@ PODS:
   - CYLTabBarController (1.29.2):
     - CYLTabBarController/Core (= 1.29.2)
   - CYLTabBarController/Core (1.29.2)
-  - DoraemonKit/Core (3.0.4):
-    - FMDB
-    - GCDWebServer
-    - GCDWebServer/WebDAV
-    - GCDWebServer/WebUploader
-  - DoraemonKit/WithMLeaksFinder (3.0.4):
-    - DoraemonKit/Core
-    - FBRetainCycleDetector
   - FBRetainCycleDetector (0.1.4)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
-  - GCDWebServer/WebDAV (3.5.4):
-    - GCDWebServer/Core
-  - GCDWebServer/WebUploader (3.5.4):
-    - GCDWebServer/Core
-  - GKPhotoBrowser (2.4.4):
-    - GKPhotoBrowser/SD (= 2.4.4)
-  - GKPhotoBrowser/Core (2.4.4)
-  - GKPhotoBrowser/SD (2.4.4):
+  - GKPhotoBrowser/AVPlayer (2.7.0):
+    - GKPhotoBrowser/Core
+    - GKSliderView
+  - GKPhotoBrowser/Core (2.7.0)
+  - GKPhotoBrowser/Progress (2.7.0):
+    - GKPhotoBrowser/Core
+    - GKSliderView
+  - GKPhotoBrowser/SD (2.7.0):
     - GKPhotoBrowser/Core
     - SDWebImage (~> 5.0)
+  - GKSliderView (1.2.0)
   - JXCategoryView (1.6.1)
   - LookinServer (1.1.2):
     - LookinServer/Core (= 1.1.2)
@@ -41,6 +28,8 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - MMKV (1.2.14):
     - MMKVCore (~> 1.2.14)
   - MMKVCore (1.2.14)
@@ -60,14 +49,17 @@ PODS:
 
 DEPENDENCIES:
   - CYLTabBarController
-  - DoraemonKit/Core (~> 3.0.4)
-  - DoraemonKit/WithMLeaksFinder (= 3.0.4)
-  - GKPhotoBrowser
+  - FBRetainCycleDetector
+  - GKPhotoBrowser/AVPlayer
+  - GKPhotoBrowser/Core
+  - GKPhotoBrowser/Progress
+  - GKPhotoBrowser/SD
   - JXCategoryView
   - LookinServer
   - Masonry
   - MBProgressHUD
   - MJRefresh
+  - MLeaksFinder
   - MMKV
   - SDCycleScrollView (>= 1.82)
   - TTGTagCollectionView
@@ -82,16 +74,15 @@ SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - CYLTabBarController
-    - DoraemonKit
     - FBRetainCycleDetector
-    - FMDB
-    - GCDWebServer
     - GKPhotoBrowser
+    - GKSliderView
     - JXCategoryView
     - LookinServer
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - MLeaksFinder
     - MMKV
     - MMKVCore
     - SDCycleScrollView
@@ -105,18 +96,17 @@ SPEC REPOS:
     - YYModel
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   CYLTabBarController: db44b5901a28693a8a4279e4721b3aafdd36c178
-  DoraemonKit: b507a1500667024070f248d648632a3f7bbb6044
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
-  GKPhotoBrowser: 537fce685f6b9085d4a30b68d9fe0b4e4447d6e9
+  GKPhotoBrowser: 4d9d145e30d8f54a423f8a287dc29fadf0a95050
+  GKSliderView: 49480065d2155bbc219bde5f9136f785757ed8d4
   JXCategoryView: 7b1ee69ede4843c581688afe84d0f047723262f2
   LookinServer: bb667a77f1ee594a8e91226e729dbe49f3401f5c
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   MMKV: 9c4663aa7ca255d478ff10f2f5cb7d17c1651ccd
   MMKVCore: 89f5c8a66bba2dcd551779dea4d412eeec8ff5bb
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
@@ -129,6 +119,6 @@ SPEC CHECKSUMS:
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 34514f7ad35c562b994d7951c57117311387e848
+PODFILE CHECKSUM: 9310720548fa64caea4c46d1e232b0ad6b0cd391
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

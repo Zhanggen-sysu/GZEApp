@@ -18,15 +18,20 @@ typedef NS_OPTIONS(NSUInteger, GZEFilterType) {
     GZEFilterType_VoteCount,
     GZEFilterType_VoteAverage,
     GZEFilterType_Runtime,
+    GZEFilterType_Keywords,
 };
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class GZEGenreItem;
 
 @interface GZEFilterItem : GZEBaseModel
 
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, assign) GZEFilterType type;
+
++ (instancetype)itemWithKey:(NSString *)key value:(NSString *)value type:(GZEFilterType)type;
 
 @end
 
@@ -38,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *selectIndexs;
 @property (nonatomic, assign) BOOL allowMultiSelect;
 + (NSString *)getTextWithModel:(GZEFilterModel *)model;
++ (instancetype)modelWithTitle:(NSString *)title filterType:(GZEFilterType)filterType array:(NSArray<GZEFilterItem *> *)array selectIndex:(NSMutableArray *)selectIndexs allowMultiSelect:(BOOL)allowMultiSelect;
 
 @end
 
@@ -46,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) GZEFilterType filterTypes;
 @property (nonatomic, copy) NSArray<GZEFilterModel *> *filterArray;
 
++ (GZEFilterViewModel *)createFilterModelWithKeywords:(NSArray<GZEGenreItem *> *)keywords mediaType:(GZEMediaType)mediaType;
 + (void)createFilterModelWithType:(GZEFilterType)filterTypes completeBlock:(void (^)(GZEFilterViewModel *))completeBlock;
 - (void)selectMediaType:(GZEMediaType)mediaType completeBlock:(void (^)(void))completeBlock;
 

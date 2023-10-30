@@ -8,8 +8,9 @@
 #import "GZEListCollectionViewCell.h"
 #import "GZEListCollectionViewModel.h"
 #import "GZEListSmallTableViewCell.h"
-#import "UIImageView+WebCache.h"
+#import "SDWebImageDownloader.h"
 #import "GZECommonHelper.h"
+#import "UIImage+magicColor.h"
 
 @interface GZEListCollectionViewCell () <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) CAGradientLayer *gradientLayer;
 @property (nonatomic, strong) GZEListCollectionViewModel *viewModel;
 
 @end
@@ -27,8 +29,24 @@
 {
     self.viewModel = viewModel;
     self.titleLabel.text = viewModel.title;
-    [self.bgImg sd_setImageWithURL:viewModel.imgUrl placeholderImage:kGetImage(@"default-backdrop")];
+    WeakSelf(self)
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:viewModel.imgUrl completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        StrongSelfReturnNil(self)
+        if (image) {
+            self.bgImg.image = image;
+            UIColor *magicColor = [image magicColor];
+            self.gradientLayer.colors = @[(__bridge id)[magicColor colorWithAlphaComponent:0.1f].CGColor
+                                          , (__bridge id)magicColor.CGColor
+                                          , (__bridge id)magicColor.CGColor];
+        } else {
+            self.bgImg.image = kGetImage(@"default-backdrop");
+            self.gradientLayer.colors = @[(__bridge id)RGBAColor(70, 130, 180, 0.1f).CGColor
+                                          , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor
+                                          , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor];
+        }
+    }];
     [self.tableView reloadData];
+    
 }
 
 - (void)setupSubviews
@@ -39,6 +57,7 @@
     [self.contentView addSubview:self.maskView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.tableView];
+    [self.maskView.layer addSublayer:self.gradientLayer];
 }
 
 - (void)defineLayout
@@ -60,15 +79,6 @@
     [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(0, 0, 320, 300);
-    gradientLayer.colors = @[(__bridge id)RGBAColor(70, 130, 180, 0.1f).CGColor
-                             , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor
-                             , (__bridge id)RGBAColor(70, 130, 180, 1.f).CGColor];
-    gradientLayer.startPoint = CGPointMake(0.5, 0);
-    gradientLayer.endPoint = CGPointMake(0.5, 1);
-    gradientLayer.locations = @[@0, @0.4, @1];
-    [self.maskView.layer addSublayer:gradientLayer];
 }
 
 - (UIImageView *)bgImg {
@@ -92,6 +102,18 @@
         _maskView = [[UIView alloc] init];
     }
     return _maskView;
+}
+
+- (CAGradientLayer *)gradientLayer
+{
+    if (!_gradientLayer) {
+        _gradientLayer  = [CAGradientLayer layer];
+        _gradientLayer.frame = CGRectMake(0, 0, 320, 300);
+        _gradientLayer.startPoint = CGPointMake(0.5, 0);
+        _gradientLayer.endPoint = CGPointMake(0.5, 1);
+        _gradientLayer.locations = @[@0, @0.4, @1];
+    }
+    return _gradientLayer;
 }
 
 - (UITableView *)tableView
@@ -131,5 +153,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    GZEListSmallTableViewCellModel *model = self.viewModel.viewModels[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(listCollectionViewCellDidTapCell:)]) {
+        [self.delegate listCollectionViewCellDidTapCell:model];
+    }
+}
 
 @end

@@ -19,6 +19,8 @@
     viewModel.title = movie.title;
     viewModel.score = [GZECommonHelper generateRatingString:movie.voteAverage starSize:10 space:1];
     viewModel.scoreNum = movie.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", movie.voteAverage] : @"";
+    viewModel.mediaType = GZEMediaType_Movie;
+    viewModel.identifier = movie.identifier;
     return viewModel;
 }
 
@@ -29,6 +31,8 @@
     viewModel.title = tv.name;
     viewModel.score = [GZECommonHelper generateRatingString:tv.voteAverage starSize:10 space:1];
     viewModel.scoreNum = tv.voteAverage > 0 ? [NSString stringWithFormat:@"%.1f", tv.voteAverage] : @"";
+    viewModel.mediaType = GZEMediaType_TV;
+    viewModel.identifier = tv.identifier;
     return viewModel;
 }
 

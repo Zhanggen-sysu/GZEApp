@@ -35,9 +35,15 @@
 #import "GZEListTableViewCell.h"
 #import "GZEDiscoverCell.h"
 #import "CYLTabBarController.h"
+#import "GZEListSmallTableViewCellModel.h"
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 
-@interface GZETmdbMainVC () <YPNavigationBarConfigureStyle, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+static NSString *kPopularMovie = @"Popular Movie";
+static NSString *kTopRatedMovie = @"Top Rated Movie";
+static NSString *kPopularTV = @"Popular TV";
+static NSString *kTopRatedTV = @"Top Rated TV";
+
+@interface GZETmdbMainVC () <YPNavigationBarConfigureStyle, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, GZEListTableViewCellDelegate>
 
 @property (nonatomic, strong) GZECustomButton *searchBtn;
 @property (nonatomic, strong) UITableView *tableView;
@@ -163,7 +169,7 @@
             }
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
-                self.listViewModel[0] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular Movie" movieList:model.results];
+                self.listViewModel[0] = [GZEListCollectionViewModel viewModelWithTitle:kPopularMovie movieList:model.results];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
@@ -181,7 +187,7 @@
             }
             if (isSuccess) {
                 GZEMovieListRsp *model = (GZEMovieListRsp *)rsp;
-                self.listViewModel[1] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated Movie" movieList:model.results];
+                self.listViewModel[1] = [GZEListCollectionViewModel viewModelWithTitle:kTopRatedMovie movieList:model.results];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
@@ -199,7 +205,7 @@
             }
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
-                self.listViewModel[2] = [GZEListCollectionViewModel viewModelWithTitle:@"Popular TV" tvList:model.results];
+                self.listViewModel[2] = [GZEListCollectionViewModel viewModelWithTitle:kPopularTV tvList:model.results];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
@@ -217,7 +223,7 @@
             }
             if (isSuccess) {
                 GZETVListRsp *model = (GZETVListRsp *)rsp;
-                self.listViewModel[3] = [GZEListCollectionViewModel viewModelWithTitle:@"Top Rated TV" tvList:model.results];
+                self.listViewModel[3] = [GZEListCollectionViewModel viewModelWithTitle:kTopRatedTV tvList:model.results];
             } else {
                 [GZECommonHelper showMessage:errorMessage inView:self.view duration:1.5];
             }
@@ -758,6 +764,7 @@
         GZEListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([GZEListTableViewCell class])];
         if (!cell) {
             cell = [[GZEListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([GZEListTableViewCell class])];
+            cell.delegate = self;
         }
         [cell updateWithModel:self.listViewModel];
         return cell;
@@ -872,6 +879,31 @@
 
 - (UIColor *)yp_navigationBackgroundColor {
     return [UIColor colorWithWhite:1 alpha:self.gradientProgress];
+}
+
+#pragma mark - GZEListTableViewCellDelegate
+- (void)listTableViewCellDidTapList:(NSString *)listName
+{
+    if ([listName isEqualToString:kPopularMovie]) {
+        
+    } else if ([listName isEqualToString:kTopRatedMovie]) {
+        
+    } else if ([listName isEqualToString:kPopularTV]) {
+        
+    } else if ([listName isEqualToString:kTopRatedTV]) {
+        
+    }
+}
+
+- (void)listTableViewCellDidTapCell:(GZEListSmallTableViewCellModel *)cellModel
+{
+    if (cellModel.mediaType == GZEMediaType_Movie) {
+        GZEMovieDetailVC *movieVC = [[GZEMovieDetailVC alloc] initWithMovieId:cellModel.identifier];
+        [self.navigationController pushViewController:movieVC animated:YES];
+    } else if (cellModel.mediaType == GZEMediaType_TV) {
+        GZETVDetailVC *tvVC = [[GZETVDetailVC alloc] initWithTVId:cellModel.identifier];
+        [self.navigationController pushViewController:tvVC animated:YES];
+    }
 }
 
 @end

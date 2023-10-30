@@ -12,6 +12,15 @@
 
 @implementation GZEBaseReq
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        YTKNetworkConfig *config = [YTKNetworkConfig sharedConfig];
+        config.baseUrl = @"https://api.themoviedb.org/3/";
+    }
+    return self;
+}
+
 + (NSDictionary<NSString *, NSString *> *)properties
 {
     NSString *assert = [NSString stringWithFormat:@"Must override %@ %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd)];

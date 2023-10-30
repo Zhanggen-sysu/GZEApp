@@ -6,11 +6,21 @@
 //
 
 #import "GZEBaseTableViewCell.h"
-@class GZEListCollectionViewModel;
 NS_ASSUME_NONNULL_BEGIN
+
+@class GZEListSmallTableViewCellModel;
+@class GZEListCollectionViewModel;
+
+@protocol GZEListTableViewCellDelegate <NSObject>
+
+- (void)listTableViewCellDidTapList:(NSString *)listName;
+- (void)listTableViewCellDidTapCell:(GZEListSmallTableViewCellModel *)cellModel;
+
+@end
 
 @interface GZEListTableViewCell : GZEBaseTableViewCell
 
+@property (nonatomic, weak) id<GZEListTableViewCellDelegate> delegate;
 - (void)updateWithModel:(NSArray<GZEListCollectionViewModel *> *)viewModel;
 
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3D03B18A2A25CFF400B1DA7B /* GZEFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03B1892A25CFF400B1DA7B /* GZEFilterTableViewCell.m */; };
+		3D1CAB1B2A7BC66600150C31 /* GZEAudioCaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CAB1A2A7BC66600150C31 /* GZEAudioCaptureVC.m */; };
+		3D1CAB1E2A7BCDB200150C31 /* GZEAudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CAB1D2A7BCDB200150C31 /* GZEAudioEncoder.m */; };
 		3D1ED2D729C3124D008A17E4 /* GZEDiscoverSortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ED2D629C3124D008A17E4 /* GZEDiscoverSortView.m */; };
 		3D1ED2DA29C3139D008A17E4 /* GZEDiscoverSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ED2D929C3139D008A17E4 /* GZEDiscoverSortCell.m */; };
 		3D1ED2EC29C33ECE008A17E4 /* GZEDiscoverFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ED2EB29C33ECE008A17E4 /* GZEDiscoverFilterView.m */; };
@@ -16,12 +18,10 @@
 		3D1ED2FB29C412A8008A17E4 /* NSString+GZEExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ED2FA29C412A7008A17E4 /* NSString+GZEExtension.m */; };
 		3D237A2729E0244200C969F6 /* GZEPeopleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D237A2629E0244200C969F6 /* GZEPeopleImageView.m */; };
 		3D237A2A29E02A3300C969F6 /* GZEPeopleCreditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D237A2929E02A3300C969F6 /* GZEPeopleCreditCell.m */; };
-		3D2A515D29F10CA0002692A2 /* GZEImageBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A515C29F10CA0002692A2 /* GZEImageBrowserScrollView.m */; };
+		3D3158A42AE8FC7B00CDB01C /* GZEBookSearchReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3158A32AE8FC7B00CDB01C /* GZEBookSearchReq.m */; };
 		3D56E7EA29E6A20400F51A73 /* GZEPeopleDetailImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56E7E929E6A20400F51A73 /* GZEPeopleDetailImageView.m */; };
 		3D56E7ED29E6AD6100F51A73 /* GZESearchResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56E7EC29E6AD6100F51A73 /* GZESearchResultVC.m */; };
 		3D56E7F029E6AF6700F51A73 /* GZESearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56E7EF29E6AF6700F51A73 /* GZESearchResultCell.m */; };
-		3D56E7FF29E7D9C700F51A73 /* GZEImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56E7FE29E7D9C700F51A73 /* GZEImageBrowser.m */; };
-		3D56E80829E825B100F51A73 /* GZEImageBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56E80729E825B100F51A73 /* GZEImageBrowserCell.m */; };
 		3D5796C829DE659C00570545 /* GZEFilterAdvanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5796C729DE659C00570545 /* GZEFilterAdvanceView.m */; };
 		3D5796CB29DE6AEA00570545 /* GZEFilterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5796CA29DE6AEA00570545 /* GZEFilterViewModel.m */; };
 		3D638C0729BACBD100987BA4 /* GZECompaniesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D638C0629BACBD100987BA4 /* GZECompaniesCell.m */; };
@@ -34,6 +34,8 @@
 		3D6ED4F829D299AC00562E29 /* GZECastSmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6ED4F729D299AC00562E29 /* GZECastSmallCell.m */; };
 		3D6ED50229D2BCC800562E29 /* GZECollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6ED50129D2BCC800562E29 /* GZECollectionItem.m */; };
 		3D6ED50E29D2C44700562E29 /* UIImage+magicColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6ED50D29D2C44700562E29 /* UIImage+magicColor.m */; };
+		3D7853242A7B85B400187CAA /* GZEAudioConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7853232A7B85B400187CAA /* GZEAudioConfig.m */; };
+		3D7853272A7B86A200187CAA /* GZEAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7853262A7B86A200187CAA /* GZEAudioCapture.m */; };
 		3D829D8429DE79790026D47E /* GZEPeopleDetailReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D829D8329DE79790026D47E /* GZEPeopleDetailReq.m */; };
 		3D829D8729DE798E0026D47E /* GZEPeopleDetailRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D829D8629DE798E0026D47E /* GZEPeopleDetailRsp.m */; };
 		3D829D8A29DE97190026D47E /* GZEPeopleDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D829D8929DE97190026D47E /* GZEPeopleDetailVC.m */; };
@@ -98,6 +100,8 @@
 		3DA27DD329B07B180086089A /* UIView+GZEExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD229B07B180086089A /* UIView+GZEExtension.m */; };
 		3DA27DD629B07D440086089A /* GZEBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD529B07D440086089A /* GZEBaseTableViewCell.m */; };
 		3DA27DD929B07DBC0086089A /* GZEBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27DD829B07DBC0086089A /* GZEBaseCollectionViewCell.m */; };
+		3DBCB2A42AC1A28500887DF0 /* GZESearchKWReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB2A32AC1A28500887DF0 /* GZESearchKWReq.m */; };
+		3DBCB2A72AC1A29B00887DF0 /* GZESearchKWRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB2A62AC1A29B00887DF0 /* GZESearchKWRsp.m */; };
 		3DBFAEB629CD40C3002749B7 /* GZESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFAEB529CD40C3002749B7 /* GZESearchVC.m */; };
 		3DD8FB4229C946C9005DF827 /* GZEListSmallTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4029C946C9005DF827 /* GZEListSmallTableViewCellModel.m */; };
 		3DD8FB4529C946F3005DF827 /* GZEListSmallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4429C946F3005DF827 /* GZEListSmallTableViewCell.m */; };
@@ -154,6 +158,10 @@
 		2520A96919FC83F5AABF1E17 /* Pods_GZEApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GZEApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D03B1882A25CFF400B1DA7B /* GZEFilterTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEFilterTableViewCell.h; sourceTree = "<group>"; };
 		3D03B1892A25CFF400B1DA7B /* GZEFilterTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEFilterTableViewCell.m; sourceTree = "<group>"; };
+		3D1CAB192A7BC66600150C31 /* GZEAudioCaptureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEAudioCaptureVC.h; sourceTree = "<group>"; };
+		3D1CAB1A2A7BC66600150C31 /* GZEAudioCaptureVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEAudioCaptureVC.m; sourceTree = "<group>"; };
+		3D1CAB1C2A7BCDB200150C31 /* GZEAudioEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEAudioEncoder.h; sourceTree = "<group>"; };
+		3D1CAB1D2A7BCDB200150C31 /* GZEAudioEncoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEAudioEncoder.m; sourceTree = "<group>"; };
 		3D1ED2D529C3124D008A17E4 /* GZEDiscoverSortView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDiscoverSortView.h; sourceTree = "<group>"; };
 		3D1ED2D629C3124D008A17E4 /* GZEDiscoverSortView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDiscoverSortView.m; sourceTree = "<group>"; };
 		3D1ED2D829C3139D008A17E4 /* GZEDiscoverSortCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDiscoverSortCell.h; sourceTree = "<group>"; };
@@ -170,18 +178,14 @@
 		3D237A2629E0244200C969F6 /* GZEPeopleImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleImageView.m; sourceTree = "<group>"; };
 		3D237A2829E02A3300C969F6 /* GZEPeopleCreditCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleCreditCell.h; sourceTree = "<group>"; };
 		3D237A2929E02A3300C969F6 /* GZEPeopleCreditCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleCreditCell.m; sourceTree = "<group>"; };
-		3D2A515B29F10CA0002692A2 /* GZEImageBrowserScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEImageBrowserScrollView.h; sourceTree = "<group>"; };
-		3D2A515C29F10CA0002692A2 /* GZEImageBrowserScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEImageBrowserScrollView.m; sourceTree = "<group>"; };
+		3D3158A22AE8FC7B00CDB01C /* GZEBookSearchReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBookSearchReq.h; sourceTree = "<group>"; };
+		3D3158A32AE8FC7B00CDB01C /* GZEBookSearchReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBookSearchReq.m; sourceTree = "<group>"; };
 		3D56E7E829E6A20400F51A73 /* GZEPeopleDetailImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailImageView.h; sourceTree = "<group>"; };
 		3D56E7E929E6A20400F51A73 /* GZEPeopleDetailImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleDetailImageView.m; sourceTree = "<group>"; };
 		3D56E7EB29E6AD6100F51A73 /* GZESearchResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchResultVC.h; sourceTree = "<group>"; };
 		3D56E7EC29E6AD6100F51A73 /* GZESearchResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchResultVC.m; sourceTree = "<group>"; };
 		3D56E7EE29E6AF6700F51A73 /* GZESearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchResultCell.h; sourceTree = "<group>"; };
 		3D56E7EF29E6AF6700F51A73 /* GZESearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchResultCell.m; sourceTree = "<group>"; };
-		3D56E7FD29E7D9C700F51A73 /* GZEImageBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEImageBrowser.h; sourceTree = "<group>"; };
-		3D56E7FE29E7D9C700F51A73 /* GZEImageBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEImageBrowser.m; sourceTree = "<group>"; };
-		3D56E80629E825B100F51A73 /* GZEImageBrowserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEImageBrowserCell.h; sourceTree = "<group>"; };
-		3D56E80729E825B100F51A73 /* GZEImageBrowserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEImageBrowserCell.m; sourceTree = "<group>"; };
 		3D5796C629DE659C00570545 /* GZEFilterAdvanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEFilterAdvanceView.h; sourceTree = "<group>"; };
 		3D5796C729DE659C00570545 /* GZEFilterAdvanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEFilterAdvanceView.m; sourceTree = "<group>"; };
 		3D5796C929DE6AEA00570545 /* GZEFilterViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEFilterViewModel.h; sourceTree = "<group>"; };
@@ -206,6 +210,10 @@
 		3D6ED50129D2BCC800562E29 /* GZECollectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECollectionItem.m; sourceTree = "<group>"; };
 		3D6ED50C29D2C44700562E29 /* UIImage+magicColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+magicColor.h"; sourceTree = "<group>"; };
 		3D6ED50D29D2C44700562E29 /* UIImage+magicColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+magicColor.m"; sourceTree = "<group>"; };
+		3D7853222A7B85B400187CAA /* GZEAudioConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEAudioConfig.h; sourceTree = "<group>"; };
+		3D7853232A7B85B400187CAA /* GZEAudioConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEAudioConfig.m; sourceTree = "<group>"; };
+		3D7853252A7B86A200187CAA /* GZEAudioCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEAudioCapture.h; sourceTree = "<group>"; };
+		3D7853262A7B86A200187CAA /* GZEAudioCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEAudioCapture.m; sourceTree = "<group>"; };
 		3D829D8229DE79790026D47E /* GZEPeopleDetailReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailReq.h; sourceTree = "<group>"; };
 		3D829D8329DE79790026D47E /* GZEPeopleDetailReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleDetailReq.m; sourceTree = "<group>"; };
 		3D829D8529DE798E0026D47E /* GZEPeopleDetailRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailRsp.h; sourceTree = "<group>"; };
@@ -336,6 +344,10 @@
 		3DA27DD529B07D440086089A /* GZEBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseTableViewCell.m; sourceTree = "<group>"; };
 		3DA27DD729B07DBC0086089A /* GZEBaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBaseCollectionViewCell.h; sourceTree = "<group>"; };
 		3DA27DD829B07DBC0086089A /* GZEBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		3DBCB2A22AC1A28500887DF0 /* GZESearchKWReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchKWReq.h; sourceTree = "<group>"; };
+		3DBCB2A32AC1A28500887DF0 /* GZESearchKWReq.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchKWReq.m; sourceTree = "<group>"; };
+		3DBCB2A52AC1A29B00887DF0 /* GZESearchKWRsp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchKWRsp.h; sourceTree = "<group>"; };
+		3DBCB2A62AC1A29B00887DF0 /* GZESearchKWRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchKWRsp.m; sourceTree = "<group>"; };
 		3DBFAEB429CD40C3002749B7 /* GZESearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchVC.h; sourceTree = "<group>"; };
 		3DBFAEB529CD40C3002749B7 /* GZESearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchVC.m; sourceTree = "<group>"; };
 		3DD8FB4029C946C9005DF827 /* GZEListSmallTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEListSmallTableViewCellModel.m; sourceTree = "<group>"; };
@@ -447,6 +459,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D31589D2AE8FAA200CDB01C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3D31589E2AE8FB9800CDB01C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D31589F2AE8FB9F00CDB01C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3D3158A22AE8FC7B00CDB01C /* GZEBookSearchReq.h */,
+				3D3158A32AE8FC7B00CDB01C /* GZEBookSearchReq.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3D7853212A7B852500187CAA /* AudioVideo */ = {
+			isa = PBXGroup;
+			children = (
+				3D7853222A7B85B400187CAA /* GZEAudioConfig.h */,
+				3D7853232A7B85B400187CAA /* GZEAudioConfig.m */,
+				3D7853252A7B86A200187CAA /* GZEAudioCapture.h */,
+				3D7853262A7B86A200187CAA /* GZEAudioCapture.m */,
+				3D1CAB192A7BC66600150C31 /* GZEAudioCaptureVC.h */,
+				3D1CAB1A2A7BC66600150C31 /* GZEAudioCaptureVC.m */,
+				3D1CAB1C2A7BCDB200150C31 /* GZEAudioEncoder.h */,
+				3D1CAB1D2A7BCDB200150C31 /* GZEAudioEncoder.m */,
+			);
+			path = AudioVideo;
+			sourceTree = "<group>";
+		};
 		3D829D7F29DE78080026D47E /* TV */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +749,7 @@
 		3DA27D7E29AEFD6B0086089A /* Section */ = {
 			isa = PBXGroup;
 			children = (
+				3D7853212A7B852500187CAA /* AudioVideo */,
 				3DF2506B29D28EB8001EF515 /* Book */,
 				3DA27D7F29AEFD810086089A /* Base */,
 				3DF2503229D17930001EF515 /* Detail */,
@@ -906,6 +957,10 @@
 				3DF2500629CD95DD001EF515 /* GZESearchReq.m */,
 				3DF2500829CD9785001EF515 /* GZESearchRsp.h */,
 				3DF2500929CD9785001EF515 /* GZESearchRsp.m */,
+				3DBCB2A22AC1A28500887DF0 /* GZESearchKWReq.h */,
+				3DBCB2A32AC1A28500887DF0 /* GZESearchKWReq.m */,
+				3DBCB2A52AC1A29B00887DF0 /* GZESearchKWRsp.h */,
+				3DBCB2A62AC1A29B00887DF0 /* GZESearchKWRsp.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1028,12 +1083,6 @@
 				3D99D54C29D55D9D00E7142F /* GZEReviewCell.m */,
 				3D99D52F29D2EAD800E7142F /* GZEVISmallCell.h */,
 				3D99D53029D2EAD800E7142F /* GZEVISmallCell.m */,
-				3D56E7FD29E7D9C700F51A73 /* GZEImageBrowser.h */,
-				3D56E7FE29E7D9C700F51A73 /* GZEImageBrowser.m */,
-				3D56E80629E825B100F51A73 /* GZEImageBrowserCell.h */,
-				3D56E80729E825B100F51A73 /* GZEImageBrowserCell.m */,
-				3D2A515B29F10CA0002692A2 /* GZEImageBrowserScrollView.h */,
-				3D2A515C29F10CA0002692A2 /* GZEImageBrowserScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1041,6 +1090,9 @@
 		3DF2506B29D28EB8001EF515 /* Book */ = {
 			isa = PBXGroup;
 			children = (
+				3D31589F2AE8FB9F00CDB01C /* Network */,
+				3D31589E2AE8FB9800CDB01C /* Model */,
+				3D31589D2AE8FAA200CDB01C /* View */,
 				3DF2506C29D28EBD001EF515 /* ViewController */,
 			);
 			path = Book;
@@ -1105,6 +1157,7 @@
 				TargetAttributes = {
 					3DA27D4D29AE0DA00086089A = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -1195,12 +1248,15 @@
 				3D99D5A529DABABD00E7142F /* GZETVCastView.m in Sources */,
 				3DA27DB929B072420086089A /* GZETmdbDate.m in Sources */,
 				3DF2501F29CDA95A001EF515 /* GZESearchCellViewModel.m in Sources */,
+				3D7853242A7B85B400187CAA /* GZEAudioConfig.m in Sources */,
+				3D1CAB1E2A7BCDB200150C31 /* GZEAudioEncoder.m in Sources */,
 				3D99D59F29D6D28C00E7142F /* GZETmdbImageItem.m in Sources */,
 				3D638C2B29BB2F8100987BA4 /* GZEMovieDiscoveryReq.m in Sources */,
 				3D6ED4F829D299AC00562E29 /* GZECastSmallCell.m in Sources */,
 				3DA27DD929B07DBC0086089A /* GZEBaseCollectionViewCell.m in Sources */,
 				3DF2503729D179B3001EF515 /* GZEMovieDetailVC.m in Sources */,
 				3DF2503E29D1804B001EF515 /* GZEMovieDetailRsp.m in Sources */,
+				3DBCB2A42AC1A28500887DF0 /* GZESearchKWReq.m in Sources */,
 				3DA27DCC29B0758B0086089A /* GZEMovieListReq.m in Sources */,
 				3DD8FB4829C94FD5005DF827 /* GZELanguageListReq.m in Sources */,
 				3D1ED2F529C4067D008A17E4 /* GZEDiscoverFilterViewModel.m in Sources */,
@@ -1215,7 +1271,6 @@
 				3D1ED2EF29C40146008A17E4 /* GZEDiscoverFilterCell.m in Sources */,
 				3D99D52E29D2E9B000E7142F /* GZEDetailVIView.m in Sources */,
 				3DF1EE2F29BF1AA1006BCF3E /* GZETVListItem.m in Sources */,
-				3D56E80829E825B100F51A73 /* GZEImageBrowserCell.m in Sources */,
 				3DF1EE1929BF06BA006BCF3E /* GZEListCollectionViewCell.m in Sources */,
 				3DF2504229D18127001EF515 /* GZEProductionCompany.m in Sources */,
 				3D99D5AB29DAE16300E7142F /* GZETVDetailSeasonCell.m in Sources */,
@@ -1232,12 +1287,12 @@
 				3D99D54729D44F4800E7142F /* GZEDetailNavBarView.m in Sources */,
 				3DF2500D29CD9803001EF515 /* GZESearchListItem.m in Sources */,
 				3DF1EE4729C027C4006BCF3E /* GZEDiscoverCell.m in Sources */,
+				3D3158A42AE8FC7B00CDB01C /* GZEBookSearchReq.m in Sources */,
 				3D99D56E29D6B24400E7142F /* GZETmdbVideoItem.m in Sources */,
 				3D99D53729D3DED200E7142F /* GZEYTVideoReq.m in Sources */,
 				3DF1EE0629BEF301006BCF3E /* GZETrendingRsp.m in Sources */,
 				3DF1EE1029BEF58A006BCF3E /* GZETrendingViewModel.m in Sources */,
 				3DA27DAA29B051E70086089A /* GZEBaseView.m in Sources */,
-				3D2A515D29F10CA0002692A2 /* GZEImageBrowserScrollView.m in Sources */,
 				3D99D5A829DADE7D00E7142F /* GZETVDetailSeasonView.m in Sources */,
 				3D829D8A29DE97190026D47E /* GZEPeopleDetailVC.m in Sources */,
 				3D1ED2D729C3124D008A17E4 /* GZEDiscoverSortView.m in Sources */,
@@ -1271,6 +1326,7 @@
 				3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */,
 				3DF2500A29CD9785001EF515 /* GZESearchRsp.m in Sources */,
 				3D56E7ED29E6AD6100F51A73 /* GZESearchResultVC.m in Sources */,
+				3D7853272A7B86A200187CAA /* GZEAudioCapture.m in Sources */,
 				3D99D58A29D6C1EF00E7142F /* GZETmdbNetwork.m in Sources */,
 				3D99D53129D2EAD800E7142F /* GZEVISmallCell.m in Sources */,
 				3DF1EE0029BEF088006BCF3E /* GZETrendingReq.m in Sources */,
@@ -1298,6 +1354,7 @@
 				3DD8FB4229C946C9005DF827 /* GZEListSmallTableViewCellModel.m in Sources */,
 				3D97CE1629C2C36500C19665 /* GZEDiscoverHeaderView.m in Sources */,
 				3D829D9E29DFB3360026D47E /* GZEPeopleDetailView.m in Sources */,
+				3D1CAB1B2A7BC66600150C31 /* GZEAudioCaptureVC.m in Sources */,
 				3DF1EE0329BEF0CE006BCF3E /* GZETrendingItem.m in Sources */,
 				3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */,
 				3DF2500729CD95DD001EF515 /* GZESearchReq.m in Sources */,
@@ -1307,7 +1364,6 @@
 				3DF2502E29D16BFA001EF515 /* GZESearchListView.m in Sources */,
 				3D99D57529D6B3E100E7142F /* GZETmdbTrendingCell.m in Sources */,
 				3D5796C829DE659C00570545 /* GZEFilterAdvanceView.m in Sources */,
-				3D56E7FF29E7D9C700F51A73 /* GZEImageBrowser.m in Sources */,
 				3D237A2729E0244200C969F6 /* GZEPeopleImageView.m in Sources */,
 				3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */,
 				3DF2506629D190DF001EF515 /* GZEMovieDetailViewModel.m in Sources */,
@@ -1317,6 +1373,7 @@
 				3D829D8729DE798E0026D47E /* GZEPeopleDetailRsp.m in Sources */,
 				3DF2506F29D28ED0001EF515 /* GZEBookMainVC.m in Sources */,
 				3DD8FB4529C946F3005DF827 /* GZEListSmallTableViewCell.m in Sources */,
+				3DBCB2A72AC1A29B00887DF0 /* GZESearchKWRsp.m in Sources */,
 				3DF2504B29D18A62001EF515 /* GZECrewCastRsp.m in Sources */,
 				3D97CE1C29C2FC7100C19665 /* GZETVDiscoveryReq.m in Sources */,
 				3D99D58729D6C19200E7142F /* GZEEpisodeToAir.m in Sources */,
@@ -1444,6 +1501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q8H2R68RPW;
@@ -1463,6 +1521,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genzhang.GZEApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1473,6 +1533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q8H2R68RPW;
@@ -1492,6 +1553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genzhang.GZEApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

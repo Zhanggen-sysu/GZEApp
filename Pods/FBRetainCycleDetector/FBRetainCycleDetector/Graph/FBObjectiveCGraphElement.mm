@@ -55,7 +55,7 @@
         _object = object;
       }
     } else {
-      _object = object;
+//      _object = object;
     }
 #endif
     _namePath = namePath;

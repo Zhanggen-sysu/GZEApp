@@ -9,14 +9,17 @@ target 'GZEApp' do
 
   # Pods for GZEApp
   pod 'CYLTabBarController'
-  pod 'DoraemonKit/Core', '~> 3.0.4', :configurations => ['Debug']
-  pod 'DoraemonKit/WithMLeaksFinder', '3.0.4', :configurations => ['Debug']
+  pod 'FBRetainCycleDetector' 
   pod 'JXCategoryView'
   pod 'LookinServer', :configurations => ['Debug']
-  pod 'GKPhotoBrowser'
+  pod 'GKPhotoBrowser/Core'
+  pod 'GKPhotoBrowser/SD'
+  pod 'GKPhotoBrowser/AVPlayer'
+  pod 'GKPhotoBrowser/Progress'
   pod 'Masonry'
   pod 'MBProgressHUD'
   pod 'MJRefresh' 
+  pod 'MLeaksFinder'
   pod 'MMKV'
   pod 'SDCycleScrollView','>= 1.82'
   pod 'TTGTagCollectionView'
@@ -25,13 +28,16 @@ target 'GZEApp' do
   pod 'YPNavigationBarTransition'
   pod 'YKWoodpecker'
   pod 'YTKNetwork'
-  pod 'YYModel' 
+  pod 'YYModel'
 end
 
 post_install do |installer|
     ## Fix for XCode 12.5
     find_and_replace("Pods/FBRetainCycleDetector/FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm",
       "layoutCache[currentClass] = ivars;", "layoutCache[(id<NSCopying>)currentClass] = ivars;")
+    find_and_replace("Pods/FBRetainCycleDetector/fishhook/fishhook.c",
+         "indirect_symbol_bindings[i] = cur->rebindings[j].replacement;", "if (i < (sizeof(indirect_symbol_bindings) /
+              sizeof(indirect_symbol_bindings[0]))) { \n indirect_symbol_bindings[i]=cur->rebindings[j].replacement; \n }")
 end
 
 def find_and_replace(dir, findstr, replacestr)

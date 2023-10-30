@@ -83,6 +83,14 @@
                 }
             }
                 break;
+            case GZEFilterType_Keywords: {
+                if (self.currentMediaType == GZEMediaType_Movie) {
+                    self.movieReq.withKeywords = text;
+                } else if (self.currentMediaType == GZEMediaType_TV) {
+                    self.tvReq.withKeywords = text;
+                }
+            }
+                break;
             case GZEFilterType_Language:
             {
                 if (self.currentMediaType == GZEMediaType_Movie) {
@@ -253,6 +261,7 @@
         }
         [obj.selectIndexs enumerateObjectsUsingBlock:^(NSNumber * _Nonnull index, NSUInteger idx, BOOL * _Nonnull stop) {
             GZEFilterItem *item = obj.array[index.integerValue];
+            if (item.key.length <= 0) return;
             [self.tagArray addObject:item];
             TTGTextTagStringContent *text = [TTGTextTagStringContent contentWithText:item.value];
             text.textFont = kFont(15.f);
@@ -340,6 +349,11 @@
         self.tableView.hidden = YES;
         self.collectionView.hidden = NO;
     }
+}
+
+- (void)didTapFilterBtn
+{
+    
 }
 
 - (GZECustomScrollView *)scrollView
@@ -528,7 +542,7 @@
             StrongSelfReturnNil(self)
             StrongSelfReturnNil(cell)
             // 获取修改cell的IndexPath的正确姿势，不能直接用indexPath
-            NSIndexPath *changeIndexPath = [tableView indexPathForCell:cell];
+            NSIndexPath *changeIndexPath = [self.tableView indexPathForCell:cell];
             if (self.currentMediaType == GZEMediaType_Movie) {
                 self.movieList[indexPath.row].isExpand = isExpand;
             } else if (self.currentMediaType == GZEMediaType_TV) {
@@ -566,6 +580,23 @@
 }
 
 #pragma mark - UICollectionViewDelegate, DataSource
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.currentMediaType == GZEMediaType_Movie) {
+        GZEMovieListItem *item = self.movieList[indexPath.row];
+        GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:item.identifier];
+        // tips: 下一页的返回按钮需要在上一页设置才有效
+        self.navigationItem.backButtonTitle = @"";
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (self.currentMediaType == GZEMediaType_TV) {
+        GZETVListItem *item = self.tvList[indexPath.row];
+        GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:item.identifier];
+        // tips: 下一页的返回按钮需要在上一页设置才有效
+        self.navigationItem.backButtonTitle = @"";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.currentMediaType == GZEMediaType_TV) {
