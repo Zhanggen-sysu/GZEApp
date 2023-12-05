@@ -21,6 +21,7 @@ target 'GZEApp' do
   pod 'MJRefresh' 
   pod 'MLeaksFinder'
   pod 'MMKV'
+  pod 'ReactiveObjC'
   pod 'SDCycleScrollView','>= 1.82'
   pod 'TTGTagCollectionView'
   pod 'UICollectionViewLeftAlignedLayout'

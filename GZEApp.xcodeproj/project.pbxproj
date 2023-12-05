@@ -109,6 +109,7 @@
 		3DD8FB4E29C95139005DF827 /* GZELanguageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4C29C95139005DF827 /* GZELanguageItem.m */; };
 		3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5029C9539F005DF827 /* GZELanguageListRsp.m */; };
 		3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */; };
+		3DE437422B1F35300036D82D /* GZEPeopleDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */; };
 		3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */; };
 		3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */; };
 		3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */; };
@@ -362,6 +363,9 @@
 		3DD8FB5029C9539F005DF827 /* GZELanguageListRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZELanguageListRsp.m; sourceTree = "<group>"; };
 		3DD8FB5929CA978E005DF827 /* GZEWrappingLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEWrappingLabel.h; sourceTree = "<group>"; };
 		3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEWrappingLabel.m; sourceTree = "<group>"; };
+		3DE4373F2B1F2E8C0036D82D /* GZERacViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZERacViewProtocol.h; sourceTree = "<group>"; };
+		3DE437402B1F35300036D82D /* GZEPeopleDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailViewModel.h; sourceTree = "<group>"; };
+		3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleDetailViewModel.m; sourceTree = "<group>"; };
 		3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGlobalConfig.h; sourceTree = "<group>"; };
 		3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGlobalConfig.m; sourceTree = "<group>"; };
 		3DF1EDEC29BEC8B9006BCF3E /* GZEGenreListReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGenreListReq.h; sourceTree = "<group>"; };
@@ -607,6 +611,8 @@
 				3DF2506529D190DF001EF515 /* GZEMovieDetailViewModel.m */,
 				3D99D55629D67E7F00E7142F /* GZETVDetailViewModel.h */,
 				3D99D55729D67E7F00E7142F /* GZETVDetailViewModel.m */,
+				3DE437402B1F35300036D82D /* GZEPeopleDetailViewModel.h */,
+				3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -712,28 +718,29 @@
 		3DA27D7129AE0FDC0086089A /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3DA27D7A29AE12C30086089A /* Macro.h */,
-				3D97CE1D29C3013A00C19665 /* GZEEnum.h */,
-				3DA27D7B29AEED0F0086089A /* YPNavigationController+Configure.h */,
-				3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */,
 				3DA27DAF29B0563A0086089A /* GZECommonHelper.h */,
 				3DA27DB029B0563A0086089A /* GZECommonHelper.m */,
-				3DA27DD129B07B180086089A /* UIView+GZEExtension.h */,
-				3DA27DD229B07B180086089A /* UIView+GZEExtension.m */,
-				3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */,
-				3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */,
 				3DF1EE5A29C199BF006BCF3E /* GZECustomButton.h */,
 				3DF1EE5B29C199BF006BCF3E /* GZECustomButton.m */,
-				3D97CE1729C2F84400C19665 /* GZEPaddingLabel.h */,
-				3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */,
-				3D1ED2F929C412A7008A17E4 /* NSString+GZEExtension.h */,
-				3D1ED2FA29C412A7008A17E4 /* NSString+GZEExtension.m */,
-				3DD8FB5929CA978E005DF827 /* GZEWrappingLabel.h */,
-				3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */,
-				3D6ED50C29D2C44700562E29 /* UIImage+magicColor.h */,
-				3D6ED50D29D2C44700562E29 /* UIImage+magicColor.m */,
 				3DA150BB2A39CF9400368D26 /* GZECustomScrollView.h */,
 				3DA150BC2A39CF9400368D26 /* GZECustomScrollView.m */,
+				3D97CE1D29C3013A00C19665 /* GZEEnum.h */,
+				3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */,
+				3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */,
+				3D97CE1729C2F84400C19665 /* GZEPaddingLabel.h */,
+				3D97CE1829C2F84400C19665 /* GZEPaddingLabel.m */,
+				3DE4373F2B1F2E8C0036D82D /* GZERacViewProtocol.h */,
+				3DD8FB5929CA978E005DF827 /* GZEWrappingLabel.h */,
+				3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */,
+				3DA27D7A29AE12C30086089A /* Macro.h */,
+				3D1ED2F929C412A7008A17E4 /* NSString+GZEExtension.h */,
+				3D1ED2FA29C412A7008A17E4 /* NSString+GZEExtension.m */,
+				3D6ED50C29D2C44700562E29 /* UIImage+magicColor.h */,
+				3D6ED50D29D2C44700562E29 /* UIImage+magicColor.m */,
+				3DA27DD129B07B180086089A /* UIView+GZEExtension.h */,
+				3DA27DD229B07B180086089A /* UIView+GZEExtension.m */,
+				3DA27D7B29AEED0F0086089A /* YPNavigationController+Configure.h */,
+				3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1320,6 +1327,7 @@
 				3D1ED2FB29C412A8008A17E4 /* NSString+GZEExtension.m in Sources */,
 				3D1ED2EC29C33ECE008A17E4 /* GZEDiscoverFilterView.m in Sources */,
 				3DF1EE3529BF1E8B006BCF3E /* GZEListCollectionViewModel.m in Sources */,
+				3DE437422B1F35300036D82D /* GZEPeopleDetailViewModel.m in Sources */,
 				3D99D55029D67ACF00E7142F /* GZECopyRightView.m in Sources */,
 				3DA27D6429AE0DA10086089A /* main.m in Sources */,
 				3D829D9029DE9ECF0026D47E /* GZEMediaCast.m in Sources */,

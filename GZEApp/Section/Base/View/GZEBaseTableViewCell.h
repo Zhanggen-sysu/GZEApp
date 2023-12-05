@@ -6,12 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Macro.h"
-#import "Masonry.h"
+#import "GZERacViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GZEBaseTableViewCell : UITableViewCell
+@interface GZEBaseTableViewCell : UITableViewCell <GZERacViewProtocol>
 
 @end
 

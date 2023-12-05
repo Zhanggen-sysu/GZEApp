@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEPeopleDetailView : GZEBaseView
 
-- (void)updateWithModel:(GZEPeopleDetailRsp *)model;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -33,4 +33,9 @@
     NSAssert(NO, assert);
 }
 
+- (void)bindViewModel:(id)viewModel
+{
+    
+}
+
 @end

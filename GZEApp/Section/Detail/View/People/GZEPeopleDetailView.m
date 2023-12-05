@@ -24,7 +24,7 @@
 
 @implementation GZEPeopleDetailView
 
-- (void)updateWithModel:(GZEPeopleDetailRsp *)model
+- (void)bindViewModel:(GZEPeopleDetailRsp *)model
 {
     [self.profileImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:model.profilePath size:GZEProfileSize_h632] placeholderImage:kGetImage(@"default-poster")];
     NSMutableString *name = [[NSMutableString alloc] initWithString:model.name];

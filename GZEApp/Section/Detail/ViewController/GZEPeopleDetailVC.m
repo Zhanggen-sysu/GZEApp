@@ -68,7 +68,7 @@
         StrongSelfReturnNil(self)
         if (isSuccess) {
             self.viewModel = (GZEPeopleDetailRsp *)rsp;
-            [self.detailView updateWithModel:self.viewModel];
+            [self.detailView bindViewModel:self.viewModel];
             [self.castView updateWithCombinedCreditModel:self.viewModel.combinedCredits];
             [self.imagesView updateWithImages:self.viewModel.images taggedImages:self.viewModel.taggedImages];
         }

@@ -33,6 +33,7 @@ PODS:
   - MMKV (1.2.14):
     - MMKVCore (~> 1.2.14)
   - MMKVCore (1.2.14)
+  - ReactiveObjC (3.1.1)
   - SDCycleScrollView (1.82):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.14.2):
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - MJRefresh
   - MLeaksFinder
   - MMKV
+  - ReactiveObjC
   - SDCycleScrollView (>= 1.82)
   - TTGTagCollectionView
   - UICollectionViewLeftAlignedLayout
@@ -85,6 +87,7 @@ SPEC REPOS:
     - MLeaksFinder
     - MMKV
     - MMKVCore
+    - ReactiveObjC
     - SDCycleScrollView
     - SDWebImage
     - TTGTagCollectionView
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   MMKV: 9c4663aa7ca255d478ff10f2f5cb7d17c1651ccd
   MMKVCore: 89f5c8a66bba2dcd551779dea4d412eeec8ff5bb
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
   TTGTagCollectionView: 4104f93281097eae5adbf4444811e32f5e52dc95
@@ -119,6 +123,6 @@ SPEC CHECKSUMS:
   YTKNetwork: c16be90b06be003de9e9cd0d3b187cc8eaf35c04
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 9310720548fa64caea4c46d1e232b0ad6b0cd391
+PODFILE CHECKSUM: 18588db3d2e2261f27ae96a65df15b438a4d078d
 
 COCOAPODS: 1.12.1
