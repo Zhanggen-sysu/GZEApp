@@ -14,8 +14,12 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+#if (defined(DEBUG) && defined(TARGET_IPHONE_SIMULATOR))
+    [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];
+#endif
+    
     // Override point for customization after application launch.
     [MMKV initializeMMKV:nil];
     return YES;

@@ -6,7 +6,7 @@
 //
 
 #import "GZEPeopleDetailView.h"
-#import "GZEPeopleDetailRsp.h"
+#import "GZEPeopleDetailViewVM.h"
 #import "UIImageView+WebCache.h"
 #import "GZECommonHelper.h"
 #import "GZEWrappingLabel.h"
@@ -24,30 +24,11 @@
 
 @implementation GZEPeopleDetailView
 
-- (void)bindViewModel:(GZEPeopleDetailRsp *)model
+- (void)bindViewModel:(GZEPeopleDetailViewVM *)model
 {
-    [self.profileImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:model.profilePath size:GZEProfileSize_h632] placeholderImage:kGetImage(@"default-poster")];
-    NSMutableString *name = [[NSMutableString alloc] initWithString:model.name];
-    [model.alsoKnownAs enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([GZECommonHelper isChinese:obj isContain:YES]) {
-            [name appendFormat:@" (%@)", obj];
-            *stop = YES;
-        }
-    }];
-    self.nameLabel.text = name;
-    NSMutableString *detail = [[NSMutableString alloc] initWithFormat:@"Department: %@", model.knownForDepartment];
-    if (model.placeOfBirth.length > 0) {
-        [detail appendFormat:@"\nBirthplace: %@", model.placeOfBirth];
-    }
-    if (model.birthday.length > 0) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy"];
-        NSInteger beginYear = [model.birthday substringToIndex:4].integerValue;
-        NSInteger endYear = model.deathday.length > 0 ? [model.deathday substringToIndex:4].integerValue : [formatter stringFromDate:[NSDate date]].integerValue;
-        [detail appendFormat:@"\nAge: %@ ~ %@, %ld years old", model.birthday, model.deathday.length > 0 ? model.deathday : @"Now", endYear - beginYear];
-    }
-    
-    self.detailLabel.text = detail;
+    [self.profileImg sd_setImageWithURL:model.profileUrl placeholderImage:kGetImage(@"default-poster")];
+    self.nameLabel.text = model.name;
+    self.detailLabel.text = model.detail;
     self.overviewLabel.text = model.biography;
 }
 

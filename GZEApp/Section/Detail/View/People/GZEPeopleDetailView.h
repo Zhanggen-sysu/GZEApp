@@ -6,7 +6,6 @@
 //
 
 #import "GZEBaseView.h"
-@class GZEPeopleDetailRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 

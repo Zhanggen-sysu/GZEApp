@@ -110,6 +110,7 @@
 		3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5029C9539F005DF827 /* GZELanguageListRsp.m */; };
 		3DD8FB5B29CA978E005DF827 /* GZEWrappingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB5A29CA978E005DF827 /* GZEWrappingLabel.m */; };
 		3DE437422B1F35300036D82D /* GZEPeopleDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */; };
+		3DF0F8ED2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0F8EC2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m */; };
 		3DF1EDEA29BEC799006BCF3E /* GZEGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */; };
 		3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDED29BEC8B9006BCF3E /* GZEGenreListReq.m */; };
 		3DF1EDF129BEC8D3006BCF3E /* GZEGenreListRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF1EDF029BEC8D3006BCF3E /* GZEGenreListRsp.m */; };
@@ -366,6 +367,8 @@
 		3DE4373F2B1F2E8C0036D82D /* GZERacViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZERacViewProtocol.h; sourceTree = "<group>"; };
 		3DE437402B1F35300036D82D /* GZEPeopleDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailViewModel.h; sourceTree = "<group>"; };
 		3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleDetailViewModel.m; sourceTree = "<group>"; };
+		3DF0F8EB2B20815A00DD1D3D /* GZEPeopleDetailViewVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEPeopleDetailViewVM.h; sourceTree = "<group>"; };
+		3DF0F8EC2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEPeopleDetailViewVM.m; sourceTree = "<group>"; };
 		3DF1EDE829BEC799006BCF3E /* GZEGlobalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGlobalConfig.h; sourceTree = "<group>"; };
 		3DF1EDE929BEC799006BCF3E /* GZEGlobalConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEGlobalConfig.m; sourceTree = "<group>"; };
 		3DF1EDEC29BEC8B9006BCF3E /* GZEGenreListReq.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEGenreListReq.h; sourceTree = "<group>"; };
@@ -613,6 +616,8 @@
 				3D99D55729D67E7F00E7142F /* GZETVDetailViewModel.m */,
 				3DE437402B1F35300036D82D /* GZEPeopleDetailViewModel.h */,
 				3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */,
+				3DF0F8EB2B20815A00DD1D3D /* GZEPeopleDetailViewVM.h */,
+				3DF0F8EC2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1386,6 +1391,7 @@
 				3D97CE1C29C2FC7100C19665 /* GZETVDiscoveryReq.m in Sources */,
 				3D99D58729D6C19200E7142F /* GZEEpisodeToAir.m in Sources */,
 				3D638C1629BAD8CD00987BA4 /* GZECompanyListItem.m in Sources */,
+				3DF0F8ED2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m in Sources */,
 				3D6ED50229D2BCC800562E29 /* GZECollectionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

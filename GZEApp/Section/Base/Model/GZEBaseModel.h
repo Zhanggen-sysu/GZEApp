@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveObjC.h>
+#import "Macro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
