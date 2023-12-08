@@ -81,6 +81,8 @@
 		3D99D5A529DABABD00E7142F /* GZETVCastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5A429DABABD00E7142F /* GZETVCastView.m */; };
 		3D99D5A829DADE7D00E7142F /* GZETVDetailSeasonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5A729DADE7D00E7142F /* GZETVDetailSeasonView.m */; };
 		3D99D5AB29DAE16300E7142F /* GZETVDetailSeasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */; };
+		3D9A4CB32B22F1DD00A4C332 /* GZEDetailListViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A4CB22B22F1DD00A4C332 /* GZEDetailListViewVM.m */; };
+		3D9A4CB62B22F4E300A4C332 /* GZEDetailListCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A4CB52B22F4E300A4C332 /* GZEDetailListCellVM.m */; };
 		3DA150BD2A39CF9400368D26 /* GZECustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA150BC2A39CF9400368D26 /* GZECustomScrollView.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
@@ -307,6 +309,10 @@
 		3D99D5A729DADE7D00E7142F /* GZETVDetailSeasonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailSeasonView.m; sourceTree = "<group>"; };
 		3D99D5A929DAE16300E7142F /* GZETVDetailSeasonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZETVDetailSeasonCell.h; sourceTree = "<group>"; };
 		3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZETVDetailSeasonCell.m; sourceTree = "<group>"; };
+		3D9A4CB12B22F1DD00A4C332 /* GZEDetailListViewVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailListViewVM.h; sourceTree = "<group>"; };
+		3D9A4CB22B22F1DD00A4C332 /* GZEDetailListViewVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListViewVM.m; sourceTree = "<group>"; };
+		3D9A4CB42B22F4E300A4C332 /* GZEDetailListCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailListCellVM.h; sourceTree = "<group>"; };
+		3D9A4CB52B22F4E300A4C332 /* GZEDetailListCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListCellVM.m; sourceTree = "<group>"; };
 		3DA150BB2A39CF9400368D26 /* GZECustomScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECustomScrollView.h; sourceTree = "<group>"; };
 		3DA150BC2A39CF9400368D26 /* GZECustomScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECustomScrollView.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -618,6 +624,10 @@
 				3DE437412B1F35300036D82D /* GZEPeopleDetailViewModel.m */,
 				3DF0F8EB2B20815A00DD1D3D /* GZEPeopleDetailViewVM.h */,
 				3DF0F8EC2B20815A00DD1D3D /* GZEPeopleDetailViewVM.m */,
+				3D9A4CB12B22F1DD00A4C332 /* GZEDetailListViewVM.h */,
+				3D9A4CB22B22F1DD00A4C332 /* GZEDetailListViewVM.m */,
+				3D9A4CB42B22F4E300A4C332 /* GZEDetailListCellVM.h */,
+				3D9A4CB52B22F4E300A4C332 /* GZEDetailListCellVM.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1339,6 +1349,7 @@
 				3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */,
 				3DF2500A29CD9785001EF515 /* GZESearchRsp.m in Sources */,
 				3D56E7ED29E6AD6100F51A73 /* GZESearchResultVC.m in Sources */,
+				3D9A4CB62B22F4E300A4C332 /* GZEDetailListCellVM.m in Sources */,
 				3D7853272A7B86A200187CAA /* GZEAudioCapture.m in Sources */,
 				3D99D58A29D6C1EF00E7142F /* GZETmdbNetwork.m in Sources */,
 				3D99D53129D2EAD800E7142F /* GZEVISmallCell.m in Sources */,
@@ -1379,6 +1390,7 @@
 				3D5796C829DE659C00570545 /* GZEFilterAdvanceView.m in Sources */,
 				3D237A2729E0244200C969F6 /* GZEPeopleImageView.m in Sources */,
 				3DD8FB5129C9539F005DF827 /* GZELanguageListRsp.m in Sources */,
+				3D9A4CB32B22F1DD00A4C332 /* GZEDetailListViewVM.m in Sources */,
 				3DF2506629D190DF001EF515 /* GZEMovieDetailViewModel.m in Sources */,
 				3DF1EE2529BF1862006BCF3E /* GZETVListReq.m in Sources */,
 				3DF2504829D1837C001EF515 /* GZEDetailManager.m in Sources */,

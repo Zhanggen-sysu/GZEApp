@@ -6,9 +6,8 @@
 //
 
 #import "GZEDetailListCell.h"
-#import "GZEMovieListItem.h"
-#import "GZETVListItem.h"
 #import "GZECommonHelper.h"
+#import "GZEDetailListCellVM.h"
 #import "UIImageView+WebCache.h"
 
 @interface GZEDetailListCell ()
@@ -21,42 +20,13 @@
 
 @implementation GZEDetailListCell
 
-- (void)updateWithModel:(GZEMovieListItem *)model magicColor:(UIColor *)magicColor
+- (void)bindViewModel:(GZEDetailListCellVM *)viewModel
 {
-    self.contentView.backgroundColor = magicColor;
-    self.nameLabel.text = model.title;
-    if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
-        self.nameLabel.textColor = [UIColor blackColor];
-    }
-    [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
-    self.rateLabel.attributedText = [self ratingString:model.voteAverage];
-}
-
-- (void)updateWithTVModel:(GZETVListItem *)model magicColor:(UIColor *)magicColor
-{
-    self.contentView.backgroundColor = magicColor;
-    self.nameLabel.text = model.name;
-    if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
-        self.nameLabel.textColor = [UIColor blackColor];
-    }
-    [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:model.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
-
-    self.rateLabel.attributedText = [self ratingString:model.voteAverage];
-}
-
-- (NSAttributedString *)ratingString:(double)voteAverage
-{
-    NSMutableAttributedString *ratingStr = [[NSMutableAttributedString alloc] init];
-    NSTextAttachment *attach = [[NSTextAttachment alloc] init];
-    attach.image = kGetImage(@"starFullIcon");
-    attach.bounds = CGRectMake(0, -2, 14.f, 14.f);
-    NSDictionary *attri = @{
-        NSFontAttributeName: kFont(14.f),
-        NSForegroundColorAttributeName: RGBColor(255, 215, 0)
-    };
-    [ratingStr appendAttributedString:[NSAttributedString attributedStringWithAttachment:attach]];
-    [ratingStr appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %.1f", voteAverage] attributes:attri]];
-    return ratingStr;
+    self.contentView.backgroundColor = viewModel.magicColor;
+    self.nameLabel.text = viewModel.name;
+    self.nameLabel.textColor = viewModel.nameColor;
+    [self.posterImg sd_setImageWithURL:viewModel.posterUrl placeholderImage:kGetImage(@"default-poster")];
+    self.rateLabel.attributedText = viewModel.ratingString;
 }
 
 #pragma mark - UI

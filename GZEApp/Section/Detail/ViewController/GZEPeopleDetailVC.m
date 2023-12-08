@@ -7,7 +7,7 @@
 
 #import "GZEPeopleDetailVC.h"
 #import "GZEDetailManager.h"
-#import "GZEPeopleDetailRsp.h"
+#import "GZEPeopleDetailViewModel.h"
 #import "GZEDetailListView.h"
 #import "GZEPeopleDetailImageView.h"
 #import "Masonry.h"
@@ -18,11 +18,11 @@
 
 #import "GZEPeopleDetailView.h"
 
-@interface GZEPeopleDetailVC () <YPNavigationBarConfigureStyle, UIScrollViewDelegate>
+@interface GZEPeopleDetailVC () <YPNavigationBarConfigureStyle>
 
 @property (nonatomic, assign) NSInteger peopleId;
 @property (nonatomic, strong) GZEDetailManager *manager;
-@property (nonatomic, strong) GZEPeopleDetailRsp *viewModel;
+@property (nonatomic, strong) GZEPeopleDetailViewModel *viewModel;
 @property (nonatomic, assign) CGFloat gradientProgress;
 
 @property (nonatomic, strong) GZEPeopleDetailView *detailView;
@@ -47,7 +47,30 @@
     [super viewDidLoad];
     [self setupSubviews];
     [self defineLayout];
-    [self loadData];
+    [self bindViewModel];
+}
+
+- (void)bindViewModel
+{
+    self.viewModel = [[GZEPeopleDetailViewModel alloc] init];
+    WeakSelf(self)
+    [[self.viewModel.reloadSubject deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
+        StrongSelfReturnNil(self)
+        [self.detailView bindViewModel:self.viewModel.detailViewVM];
+    }];
+    
+    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id  _Nullable x) {
+        StrongSelfReturnNil(self)
+        CGFloat progress = self.scrollView.contentOffset.y + self.scrollView.contentInset.top;
+        CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2 * 3));
+        if (gradientProgress != self.gradientProgress) {
+            self.gradientProgress = gradientProgress;
+            [self yp_refreshNavigationBarStyle];
+            [self setNeedsStatusBarAppearanceUpdate];
+        }
+    }];
+    
+    [self.viewModel.reqCommand execute:@(self.peopleId)];
 }
 
 #pragma mark - StatusBar
@@ -63,16 +86,10 @@
 
 - (void)loadData
 {
-    WeakSelf(self)
-    [self.manager getPeopleDetailWithId:self.peopleId completion:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
-        StrongSelfReturnNil(self)
-        if (isSuccess) {
-            self.viewModel = (GZEPeopleDetailRsp *)rsp;
-            [self.detailView bindViewModel:self.viewModel];
-            [self.castView updateWithCombinedCreditModel:self.viewModel.combinedCredits];
-            [self.imagesView updateWithImages:self.viewModel.images taggedImages:self.viewModel.taggedImages];
-        }
-    }];
+            
+//            [self.detailView bindViewModel:self.viewModel];
+//            [self.castView updateWithCombinedCreditModel:self.viewModel.combinedCredits];
+//            [self.imagesView updateWithImages:self.viewModel.images taggedImages:self.viewModel.taggedImages];
 }
 
 - (void)setupSubviews
@@ -107,7 +124,6 @@
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.delegate = self;
         // Tips: 去除scrollView顶部空白区域
         if (@available(iOS 11, *)) {
             _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -167,22 +183,6 @@
         _contentView.spacing = 15.f;
     }
     return _contentView;
-}
-
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 2 * 3));
-    if (gradientProgress != self.gradientProgress) {
-//        if (gradientProgress >= 1 && self.gradientProgress < 1) {
-//            [self.navBarView updateView:NO];
-//        } else if (self.gradientProgress >= 1 && gradientProgress < 1){
-//            [self.navBarView updateView:YES];
-//        }
-        self.gradientProgress = gradientProgress;
-        [self yp_refreshNavigationBarStyle];
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
 }
 
 #pragma mark - YPNavigationBarConfigureStyle

@@ -319,23 +319,4 @@
     return [color colorWithAlphaComponent:self.gradientProgress];
 }
 
-//#pragma mark - GZEImageBrowserDelegate
-//- (NSInteger)getImageBrowserCount:(GZEImageBrowser *)browser
-//{
-//    return self.viewModel.firstVideo ? 9 : 10;
-//}
-//
-//- (NSString *)imageBrowser:(GZEImageBrowser *)browser imageUrlAtIndex:(NSInteger)idx
-//{
-//    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
-//    NSString *backdropPath = [NSString stringWithFormat:@"%@w780%@", API_IMG_BASEURL, imageItem.filePath];
-//    return backdropPath;
-//}
-//
-//- (UIImage *)imageBrowser:(GZEImageBrowser *)browser defaultImageAtIndex:(NSInteger)idx
-//{
-//    GZETmdbImageItem *imageItem = self.viewModel.images.backdrops[idx];
-//    return imageItem.aspectRatio > 1 ? kGetImage(@"default-backdrop") : kGetImage(@"default-poster");
-//}
-
 @end

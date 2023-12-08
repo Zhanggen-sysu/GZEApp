@@ -16,20 +16,29 @@
 @class GZEYTVideoRsp;
 @class GZEKeywordRsp;
 
+
+@class GZEDetailListViewVM;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEMovieDetailViewModel : GZEBaseModel
 
-@property (nonatomic, strong) GZECrewCastRsp *crewCast;
-@property (nonatomic, strong) GZEMovieDetailRsp *commonInfo;
-@property (nonatomic, strong) GZETmdbImageRsp *images;
-@property (nonatomic, strong) GZETmdbReviewRsp *reviews;
-@property (nonatomic, strong) GZEMovieListRsp *similar;
-@property (nonatomic, strong) GZEMovieListRsp *recommend;
-@property (nonatomic, strong) GZETmdbVideoRsp *videos;
-@property (nonatomic, strong) GZEYTVideoRsp *firstVideo;
-@property (nonatomic, strong) GZEKeywordRsp *keyword;
-@property (nonatomic, strong) UIColor *magicColor;
+@property (nonatomic, strong, readonly) GZEMovieDetailRsp *commonInfo;
+@property (nonatomic, strong, readonly) GZECrewCastRsp *crewCast;
+@property (nonatomic, strong, readonly) GZETmdbImageRsp *images;
+@property (nonatomic, strong, readonly) GZETmdbReviewRsp *reviews;
+@property (nonatomic, strong, readonly) GZEMovieListRsp *similar;
+@property (nonatomic, strong, readonly) GZEMovieListRsp *recommend;
+@property (nonatomic, strong, readonly) GZETmdbVideoRsp *videos;
+@property (nonatomic, strong, readonly) GZEYTVideoRsp *firstVideo;
+@property (nonatomic, strong, readonly) GZEKeywordRsp *keyword;
+@property (nonatomic, strong, readonly) UIColor *magicColor;
+@property (nonatomic, strong, readonly) GZEDetailListViewVM *similarVM;
+@property (nonatomic, strong, readonly) GZEDetailListViewVM *recommendVM;
+
+@property (nonatomic, strong, readonly) RACCommand *reqCommand;
+
+- (instancetype)initWithMovieId:(NSInteger)movieId;
 
 @end
 
