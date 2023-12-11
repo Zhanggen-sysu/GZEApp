@@ -83,6 +83,7 @@
 		3D99D5AB29DAE16300E7142F /* GZETVDetailSeasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D99D5AA29DAE16300E7142F /* GZETVDetailSeasonCell.m */; };
 		3D9A4CB32B22F1DD00A4C332 /* GZEDetailListViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A4CB22B22F1DD00A4C332 /* GZEDetailListViewVM.m */; };
 		3D9A4CB62B22F4E300A4C332 /* GZEDetailListCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A4CB52B22F4E300A4C332 /* GZEDetailListCellVM.m */; };
+		3D9A4CD92B272DDB00A4C332 /* GZEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9A4CD82B272DDB00A4C332 /* GZEBaseViewController.m */; };
 		3DA150BD2A39CF9400368D26 /* GZECustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA150BC2A39CF9400368D26 /* GZECustomScrollView.m */; };
 		3DA27D5329AE0DA00086089A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5229AE0DA00086089A /* AppDelegate.m */; };
 		3DA27D5629AE0DA00086089A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA27D5529AE0DA00086089A /* SceneDelegate.m */; };
@@ -313,6 +314,8 @@
 		3D9A4CB22B22F1DD00A4C332 /* GZEDetailListViewVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListViewVM.m; sourceTree = "<group>"; };
 		3D9A4CB42B22F4E300A4C332 /* GZEDetailListCellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEDetailListCellVM.h; sourceTree = "<group>"; };
 		3D9A4CB52B22F4E300A4C332 /* GZEDetailListCellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEDetailListCellVM.m; sourceTree = "<group>"; };
+		3D9A4CD72B272DDB00A4C332 /* GZEBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZEBaseViewController.h; sourceTree = "<group>"; };
+		3D9A4CD82B272DDB00A4C332 /* GZEBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZEBaseViewController.m; sourceTree = "<group>"; };
 		3DA150BB2A39CF9400368D26 /* GZECustomScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECustomScrollView.h; sourceTree = "<group>"; };
 		3DA150BC2A39CF9400368D26 /* GZECustomScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECustomScrollView.m; sourceTree = "<group>"; };
 		3DA27D4E29AE0DA00086089A /* GZEApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GZEApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -632,6 +635,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3D9A4CD62B272DBB00A4C332 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3D9A4CD72B272DDB00A4C332 /* GZEBaseViewController.h */,
+				3D9A4CD82B272DDB00A4C332 /* GZEBaseViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		3DA27D4529AE0DA00086089A = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +796,7 @@
 		3DA27D7F29AEFD810086089A /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				3D9A4CD62B272DBB00A4C332 /* ViewController */,
 				3DA27D8029AEFDDB0086089A /* Model */,
 				3DA27D8129AEFDE60086089A /* View */,
 				3DA27D8229AEFE0B0086089A /* Network */,
@@ -1264,6 +1277,7 @@
 				3D99D57129D6B2E400E7142F /* GZEKeyWordView.m in Sources */,
 				3DF2506A29D19C51001EF515 /* GZEMovieDetailView.m in Sources */,
 				3DF2503129D16D31001EF515 /* GZESearchAdvanceView.m in Sources */,
+				3D9A4CD92B272DDB00A4C332 /* GZEBaseViewController.m in Sources */,
 				3DF2505129D18AD3001EF515 /* GZECrewItem.m in Sources */,
 				3DF2505429D18B7E001EF515 /* GZETmdbImageRsp.m in Sources */,
 				3DF1EDEE29BEC8B9006BCF3E /* GZEGenreListReq.m in Sources */,

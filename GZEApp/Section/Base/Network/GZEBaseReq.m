@@ -88,4 +88,35 @@
     }];
 }
 
+- (void)startRequestWithRspClass:(Class)rspClass
+          completeWithErrorBlock:(GZECommonNewRspBlock)block
+{
+    NSLog(@"Start Request %@", NSStringFromClass(self.class));
+    [self startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        NSLog(@"End Request %@", NSStringFromClass(request.class));
+        id rsp = nil;
+        // 请求回来是字典，直接转模型
+        if ([request.responseObject isKindOfClass:[NSDictionary class]]) {
+            if ([rspClass respondsToSelector:@selector(yy_modelWithJSON:)]) {
+                rsp = [rspClass yy_modelWithJSON:request.responseString];
+            }
+        }
+        // 请求回来是数组，先给数组加个key：results，然后再转模型，在rsp中需要添加results属性，
+        // 并实现modelContainerPropertyGenericClass，具体见GZELanguageListRsp
+        if ([request.responseObject isKindOfClass:[NSArray class]]) {
+            if ([rspClass respondsToSelector:@selector(yy_modelWithJSON:)]) {
+                NSString *str = [[NSString alloc] initWithFormat:@"{\"results\":%@}", request.responseString];
+                rsp = [rspClass yy_modelWithJSON:str];
+            }
+        }
+        if (rsp) {
+            !block ?: block(YES, rsp, nil);
+        } else {
+            !block ?: block(NO, rsp, [NSError errorWithDomain:request.requestUrl code:0 userInfo:@{NSLocalizedDescriptionKey: @"unable to convert model"}]);
+        }
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        !block ?: block(NO, nil, request.error);
+    }];
+}
+
 @end

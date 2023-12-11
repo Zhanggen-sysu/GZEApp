@@ -615,10 +615,10 @@
     GZEDetailListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
     if (self.currentMediaType == GZEMediaType_Movie) {
         GZEMovieListItem *item = self.movieList[indexPath.row];
-        [cell updateWithModel:item magicColor:[UIColor whiteColor]];
+//        [cell updateWithModel:item magicColor:[UIColor whiteColor]];
     } else if (self.currentMediaType == GZEMediaType_TV) {
         GZETVListItem *item = self.tvList[indexPath.row];
-        [cell updateWithTVModel:item magicColor:[UIColor whiteColor]];
+//        [cell updateWithTVModel:item magicColor:[UIColor whiteColor]];
     }
     return cell;
 }

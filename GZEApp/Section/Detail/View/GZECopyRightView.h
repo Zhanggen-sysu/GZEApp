@@ -11,8 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZECopyRightView : GZEBaseView
 
-- (void)updateWithMagicColor:(UIColor *)magicColor;
-
 @end
 
 NS_ASSUME_NONNULL_END

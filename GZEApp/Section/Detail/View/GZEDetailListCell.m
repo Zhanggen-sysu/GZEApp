@@ -24,7 +24,7 @@
 {
     self.contentView.backgroundColor = viewModel.magicColor;
     self.nameLabel.text = viewModel.name;
-    self.nameLabel.textColor = viewModel.nameColor;
+    self.nameLabel.textColor = viewModel.nameColor ?: [UIColor whiteColor];
     [self.posterImg sd_setImageWithURL:viewModel.posterUrl placeholderImage:kGetImage(@"default-poster")];
     self.rateLabel.attributedText = viewModel.ratingString;
 }

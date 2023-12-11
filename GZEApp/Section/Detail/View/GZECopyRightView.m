@@ -16,11 +16,6 @@
 
 @implementation GZECopyRightView
 
-- (void)updateWithMagicColor:(UIColor *)magicColor
-{
-    self.backgroundColor = [GZECommonHelper changeColor:magicColor deeper:YES degree:20];
-}
-
 - (void)setupSubviews
 {
     [self addSubview:self.tipsLabel];

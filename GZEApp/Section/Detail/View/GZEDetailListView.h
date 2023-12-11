@@ -14,11 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEDetailListView : GZEBaseView
 
-- (instancetype)initWithTitle:(NSString *)title;
+@property (nonatomic, copy) void (^didTapMovie)(NSInteger movieId);
+@property (nonatomic, copy) void (^didTapTv)(NSInteger tvId);
 
-- (void)updateWithModel:(GZEMovieListRsp *)model magicColor:(UIColor *)magicColor;
-- (void)updateWithTVModel:(GZETVListRsp *)model magicColor:(nonnull UIColor *)magicColor;
-- (void)updateWithCombinedCreditModel:(GZECombinedCreditsRsp *)model;
 
 @end
 

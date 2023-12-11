@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void (^GZECommonRspBlock)(BOOL isSuccess, id _Nullable rsp, NSString * _Nullable errorMessage);
+typedef void (^GZECommonNewRspBlock)(BOOL isSuccess, id _Nullable rsp, NSError *_Nullable error);
 
 @interface GZEBaseReq : YTKBaseRequest
 
@@ -18,6 +19,9 @@ typedef void (^GZECommonRspBlock)(BOOL isSuccess, id _Nullable rsp, NSString * _
 
 - (void)startRequestWithRspClass:(Class)rspClass
                    completeBlock:(GZECommonRspBlock)block;
+
+- (void)startRequestWithRspClass:(Class)rspClass
+          completeWithErrorBlock:(GZECommonNewRspBlock)block;
 
 @end
 

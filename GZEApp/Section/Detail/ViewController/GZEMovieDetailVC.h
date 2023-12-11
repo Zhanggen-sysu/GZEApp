@@ -5,11 +5,11 @@
 //  Created by GenZhang on 2023/3/27.
 //
 
-#import <UIKit/UIKit.h>
+#import "GZEBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GZEMovieDetailVC : UIViewController
+@interface GZEMovieDetailVC : GZEBaseViewController
 
 - (instancetype)initWithMovieId:(NSInteger)movieId;
 

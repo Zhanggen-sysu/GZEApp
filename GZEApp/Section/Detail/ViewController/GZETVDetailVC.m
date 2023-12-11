@@ -85,10 +85,10 @@
             [self.keywordView updateWithModel:self.viewModel.detail.keywords magicColor:self.viewModel.magicColor];
             [self.castView updateWithModel:self.viewModel.detail.aggregateCredits magicColor:self.viewModel.magicColor];
             [self.viView updateWithImgModel:self.viewModel.detail.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
-            [self.similarView updateWithTVModel:self.viewModel.detail.similar magicColor:self.viewModel.magicColor];
-            [self.recommendView updateWithTVModel:self.viewModel.detail.recommendations magicColor:self.viewModel.magicColor];
+//            [self.similarView updateWithTVModel:self.viewModel.detail.similar magicColor:self.viewModel.magicColor];
+//            [self.recommendView updateWithTVModel:self.viewModel.detail.recommendations magicColor:self.viewModel.magicColor];
             [self.reviewView updateWithModel:self.viewModel.detail.reviews magicColor:self.viewModel.magicColor];
-            [self.cprView updateWithMagicColor:self.viewModel.magicColor];
+//            [self.cprView updateWithMagicColor:self.viewModel.magicColor];
         }
     }];
 }
@@ -201,34 +201,34 @@
     return _viView;
 }
 
-- (GZEDetailListView *)similarView
-{
-    if (!_similarView) {
-        _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
-        WeakSelf(self)
-        _similarView.didTapTv = ^(NSInteger tvId) {
-            StrongSelfReturnNil(self)
-            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
-    }
-    return _similarView;
-}
-
-// 感觉这个的数据更像similar
-- (GZEDetailListView *)recommendView
-{
-    if (!_recommendView) {
-        _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
-        WeakSelf(self)
-        _recommendView.didTapTv = ^(NSInteger tvId) {
-            StrongSelfReturnNil(self)
-            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
-    }
-    return _recommendView;
-}
+//- (GZEDetailListView *)similarView
+//{
+//    if (!_similarView) {
+//        _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
+//        WeakSelf(self)
+//        _similarView.didTapTv = ^(NSInteger tvId) {
+//            StrongSelfReturnNil(self)
+//            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        };
+//    }
+//    return _similarView;
+//}
+//
+//// 感觉这个的数据更像similar
+//- (GZEDetailListView *)recommendView
+//{
+//    if (!_recommendView) {
+//        _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
+//        WeakSelf(self)
+//        _recommendView.didTapTv = ^(NSInteger tvId) {
+//            StrongSelfReturnNil(self)
+//            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        };
+//    }
+//    return _recommendView;
+//}
 
 - (GZEDetailReviewView *)reviewView
 {

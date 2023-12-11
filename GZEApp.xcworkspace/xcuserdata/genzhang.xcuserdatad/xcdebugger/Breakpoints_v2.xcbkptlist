@@ -217,5 +217,144 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36B7E007-3580-42EF-9D8A-8A35E958E4D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Base/ViewController/GZEBaseViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-willDealloc"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-crewCastSignal"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - c2e38e8aca88269c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[GZEMovieDetailViewModel videoSignal]_block_invoke"
+                  moduleName = "GZEApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - a471099372ac06a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEMovieDetailViewModel videoSignal]"
+                  moduleName = "eval101.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - b19201d626fc421a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[GZEMovieDetailViewModel videoSignal]_block_invoke"
+                  moduleName = "eval101.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - 8de7a20770d42ea2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[GZEMovieDetailViewModel crewCastSignal]_block_invoke"
+                  moduleName = "eval109.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - 8de7a20770d42ea2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[GZEMovieDetailViewModel crewCastSignal]_block_invoke"
+                  moduleName = "eval109.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "390">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - 22cdbfa168ff3a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[GZEMovieDetailViewModel crewCastSignal]_block_invoke"
+                  moduleName = "eval117.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "C4DFB1EB-93D0-49B1-BB66-1CCB8F6C1A23 - 22cdbfa168ff3a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[GZEMovieDetailViewModel crewCastSignal]_block_invoke"
+                  moduleName = "eval117.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "390">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

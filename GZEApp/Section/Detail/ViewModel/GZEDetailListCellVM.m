@@ -18,9 +18,6 @@
 @property (nonatomic, strong, readwrite) NSURL *posterUrl;
 @property (nonatomic, assign, readwrite) NSAttributedString *ratingString;
 @property (nonatomic, copy, readwrite) NSString *name;
-@property (nonatomic, strong, readwrite) RACCommand *tapCommand;
-@property (nonatomic, strong, readwrite) RACSubject *jumpTVSubject;
-@property (nonatomic, strong, readwrite) RACSubject *jumpMovieSubjec;
 
 @end
 
@@ -36,10 +33,6 @@
             self.nameColor = [UIColor blackColor];
         }
         self.ratingString = [self ratingString:tvItem.voteAverage];
-        self.tapCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            [self.jumpTVSubject sendNext:RACTuplePack(@(GZEMediaType_TV), @(tvItem.identifier))];
-            return [RACSignal empty];
-        }];
     }
     return self;
 }
@@ -54,10 +47,6 @@
             self.nameColor = [UIColor blackColor];
         }
         self.ratingString = [self ratingString:movieItem.voteAverage];
-        self.tapCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            [self.jumpTVSubject sendNext:RACTuplePack(@(GZEMediaType_Movie), @(movieItem.identifier))];
-            return [RACSignal empty];
-        }];
     }
     return self;
 }

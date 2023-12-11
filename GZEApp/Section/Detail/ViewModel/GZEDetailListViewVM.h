@@ -17,10 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSArray *listArray;
 @property (nonatomic, strong, readonly) UIColor *magicColor;
 
-- (instancetype)initWithMovieListRsp:(GZEMovieListRsp *)model
-                          magicColor:(UIColor *)magicColor;
-- (instancetype)initWithTVListRsp:(GZETVListRsp *)model
-                       magicColor:(UIColor *)magicColor;
+- (instancetype)initWithTitle:(NSString *)title
+                 movieListRsp:(GZEMovieListRsp *)model
+                   magicColor:(UIColor *)magicColor;
+- (instancetype)initWithTitle:(NSString *)title
+                    tvListRsp:(GZETVListRsp *)model
+                   magicColor:(UIColor *)magicColor;
 
 @end
 

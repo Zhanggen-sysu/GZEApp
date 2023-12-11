@@ -7,14 +7,8 @@
 
 #import "GZEDetailListView.h"
 #import "GZEDetailListCell.h"
-#import "GZEPeopleCreditCell.h"
-#import "GZEMovieListRsp.h"
-#import "GZETVListRsp.h"
-#import "GZECombinedCreditsRsp.h"
-#import "GZEMediaCast.h"
-#import "GZEMediaCrew.h"
-#import "GZETVListItem.h"
-#import "GZEMovieListItem.h"
+#import "GZEDetailListViewVM.h"
+#import "GZEDetailListCellVM.h"
 
 @interface GZEDetailListView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -22,10 +16,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIImageView *rightIcon;
 
-@property (nonatomic, strong) GZEMovieListRsp *model;
-@property (nonatomic, strong) GZETVListRsp *tvModel;
-@property (nonatomic, strong) GZECombinedCreditsRsp *peopleModel;
-@property (nonatomic, strong) UIColor *magicColor;
+@property (nonatomic, strong) GZEDetailListViewVM *viewModel;
 
 @end
 
@@ -39,53 +30,23 @@
     return self;
 }
 
-- (void)updateWithCombinedCreditModel:(GZECombinedCreditsRsp *)model
+- (void)bindViewModel:(GZEDetailListViewVM *)viewModel
 {
-    if (model.crew.count <= 0 && model.cast.count <= 0) {
-        self.hidden = YES;
-        return;
+    self.viewModel = viewModel;
+    self.titleLabel.text = viewModel.title;
+    if (viewModel.magicColor) {
+        self.backgroundColor = viewModel.magicColor;
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = viewModel.magicColor;
+        self.rightIcon.image = kGetImage(@"arrow-right-white");
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+        self.titleLabel.textColor = [UIColor blackColor];
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        self.rightIcon.image = kGetImage(@"arrow-right-gray");
     }
-    self.backgroundColor = [UIColor whiteColor];
-    self.titleLabel.textColor = [UIColor blackColor];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    self.rightIcon.image = kGetImage(@"arrow-right-gray");
-    self.peopleModel = model;
+    self.rightIcon.hidden = self.viewModel.listArray.count <= 10;
     [self.collectionView reloadData];
-    if (model.crew.count + model.cast.count <= 10) {
-        self.rightIcon.hidden = YES;
-    }
-}
-
-- (void)updateWithModel:(GZEMovieListRsp *)model magicColor:(nonnull UIColor *)magicColor
-{
-    if (model.results.count <= 0) {
-        self.hidden = YES;
-        return;
-    }
-    self.magicColor = magicColor;
-    self.backgroundColor = magicColor;
-    self.collectionView.backgroundColor = magicColor;
-    self.model = model;
-    [self.collectionView reloadData];
-    if (model.results.count <= 10) {
-        self.rightIcon.hidden = YES;
-    }
-}
-
-- (void)updateWithTVModel:(GZETVListRsp *)model magicColor:(nonnull UIColor *)magicColor
-{
-    if (model.results.count <= 0) {
-        self.hidden = YES;
-        return;
-    }
-    self.magicColor = magicColor;
-    self.backgroundColor = magicColor;
-    self.collectionView.backgroundColor = magicColor;
-    self.tvModel = model;
-    [self.collectionView reloadData];
-    if (model.results.count <= 10) {
-        self.rightIcon.hidden = YES;
-    }
 }
 
 #pragma mark - UI
@@ -140,7 +101,6 @@
         _collectionView.dataSource = self;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 15.f);
         [_collectionView registerClass:[GZEDetailListCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class])];
-        [_collectionView registerClass:[GZEPeopleCreditCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEPeopleCreditCell class])];
     }
     return _collectionView;
 }
@@ -157,72 +117,21 @@
 #pragma mark - UICollectionViewDelegate
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tvModel) {
-        GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
-        GZETVListItem *result = self.tvModel.results[indexPath.row];
-        [cell updateWithTVModel:result magicColor:self.magicColor];
-        return cell;
-    }
-    if (self.model) {
-        GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
-        GZEMovieListItem *result = self.model.results[indexPath.row];
-        [cell updateWithModel:result magicColor:self.magicColor];
-        return cell;
-    }
-    if (self.peopleModel) {
-        GZEPeopleCreditCell *cell = (GZEPeopleCreditCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEPeopleCreditCell class]) forIndexPath:indexPath];
-        if (indexPath.row < self.peopleModel.cast.count) {
-            GZEMediaCast *cast = self.peopleModel.cast[indexPath.row];
-            [cell updateWithCastModel:cast];
-        } else {
-            GZEMediaCrew *crew = self.peopleModel.crew[indexPath.row - self.peopleModel.cast.count];
-            [cell updateWithCrewModel:crew];
-        }
-        return cell;
-    }
-    return nil;
+    GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
+    GZEDetailListCellVM *model = self.viewModel.listArray[indexPath.item];
+    [cell bindViewModel:model];
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.tvModel) {
-        GZETVListItem *result = self.tvModel.results[indexPath.row];
-        !self.didTapTv ?: self.didTapTv(result.identifier);
-        return;
-    }
-    if (self.model) {
-        GZEMovieListItem *result = self.model.results[indexPath.row];
-        !self.didTapMovie ?: self.didTapMovie(result.identifier);
-        return;
-    }
-    if (self.peopleModel) {
-        if (indexPath.row < self.peopleModel.cast.count) {
-            GZEMediaCast *cast = self.peopleModel.cast[indexPath.row];
-            if ([cast.mediaType isEqualToString:@"tv"]) {
-                !self.didTapTv ?: self.didTapTv(cast.identifier);
-            } else if ([cast.mediaType isEqualToString:@"movie"]) {
-                !self.didTapMovie ?: self.didTapMovie(cast.identifier);
-            }
-        } else {
-            GZEMediaCrew *crew = self.peopleModel.crew[indexPath.row - self.peopleModel.cast.count];
-            if ([crew.mediaType isEqualToString:@"tv"]) {
-                !self.didTapTv ?: self.didTapTv(crew.identifier);
-            } else if ([crew.mediaType isEqualToString:@"movie"]) {
-                !self.didTapMovie ?: self.didTapMovie(crew.identifier);
-            }
-        }
-    }
+    GZEDetailListCellVM *model = self.viewModel.listArray[indexPath.item];
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (self.tvModel) {
-        return self.tvModel.results.count > 10 ? 10 : self.tvModel.results.count;
-    }
-    if (self.peopleModel) {
-        return self.peopleModel.cast.count + self.peopleModel.crew.count > 10 ? 10 : self.peopleModel.cast.count + self.peopleModel.crew.count;
-    }
-    return self.model.results.count > 10 ? 10 : self.model.results.count;
+    return self.viewModel.listArray.count > 10 ? 10 : self.viewModel.listArray.count;
 }
 
 - (CGSize)itemSize

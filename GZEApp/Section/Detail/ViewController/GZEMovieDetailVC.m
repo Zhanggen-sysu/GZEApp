@@ -17,12 +17,10 @@
 #import "GZEKeyWordView.h"
 #import "GZESearchResultVC.h"
 #import "GZEFilterViewModel.h"
-#import "GZETmdbImageItem.h"
-#import "GZETmdbImageRsp.h"
-#import "GZEDetailManager.h"
 #import "GZECommonHelper.h"
 #import "GZEMovieDetailViewModel.h"
 #import "Macro.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import <GKPhotoBrowser/GKPhotoBrowser.h>
 
@@ -40,7 +38,6 @@
 @property (nonatomic, strong) GZECopyRightView *cprView;
 
 @property (nonatomic, assign) CGFloat gradientProgress;
-@property (nonatomic, strong) GZEDetailManager *manager;
 @property (nonatomic, assign) NSInteger movieId;
 @property (nonatomic, strong) GZEMovieDetailViewModel *viewModel;
 
@@ -63,7 +60,7 @@
     [super viewDidLoad];
     [self setupSubviews];
     [self defineLayout];
-    [self loadData];
+    [self bindViewModel];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -72,23 +69,57 @@
 }
 
 #pragma mark - Data
-- (void)loadData
+- (void)bindViewModel
 {
+    self.viewModel = [[GZEMovieDetailViewModel alloc] initWithMovieId:self.movieId];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[self.viewModel.reqCommand execute:nil] subscribeNext:^(id  _Nullable x) {
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+    } error:^(NSError * _Nullable error) {
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+        NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
+        [GZECommonHelper showMessage:errorMessage inView:self.view duration:1];
+    }];
+    RAC(self.cprView, backgroundColor) = RACObserve(self.viewModel, magicColor);
+    RAC(self.contentView, backgroundColor) = [RACObserve(self.viewModel, magicColor) map:^id _Nullable(id  _Nullable value) {
+        return [GZECommonHelper changeColor:(UIColor *)value deeper:YES degree:20];
+    }];
     WeakSelf(self)
-    [self.manager getMovieDetailWithId:self.movieId
-                            completion:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+    // 这个会触发3次，第3次两个属性才都有值，写到外面是保证各模块分开刷
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, commonInfo), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
         StrongSelfReturnNil(self)
-        self.viewModel = (GZEMovieDetailViewModel *)rsp;
-        [self.navBarView updateWithModel:self.viewModel.commonInfo];
-        self.contentView.backgroundColor = [GZECommonHelper changeColor:self.viewModel.magicColor deeper:YES degree:20];
         [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, keyword), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
         [self.keywordView updateWithModel:self.viewModel.keyword magicColor:self.viewModel.magicColor];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, crewCast), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
         [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, images), RACObserve(self.viewModel, magicColor), RACObserve(self.viewModel, firstVideo)]] skip:3] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
         [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
-        [self.similarView updateWithModel:self.viewModel.similar magicColor:self.viewModel.magicColor];
-        [self.recommendView updateWithModel:self.viewModel.recommend magicColor:self.viewModel.magicColor];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, reviews), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
         [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
-        [self.cprView updateWithMagicColor:self.viewModel.magicColor];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, similarVM), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
+        [self.similarView bindViewModel:self.viewModel.similarVM];
+    }];
+    
+    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, recommendVM), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
+        [self.recommendView bindViewModel:self.viewModel.recommendVM];
     }];
 }
 
@@ -115,14 +146,6 @@
     [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(300.f);
     }];
-}
-
-- (GZEDetailManager *)manager
-{
-    if (!_manager) {
-        _manager = [[GZEDetailManager alloc] init];
-    }
-    return _manager;
 }
 
 - (UIScrollView *)scrollView
@@ -221,7 +244,7 @@
 - (GZEDetailListView *)similarView
 {
     if (!_similarView) {
-        _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
+        _similarView = [[GZEDetailListView alloc] init];
         WeakSelf(self)
         _similarView.didTapMovie = ^(NSInteger movieId) {
             StrongSelfReturnNil(self)
@@ -236,7 +259,7 @@
 - (GZEDetailListView *)recommendView
 {
     if (!_recommendView) {
-        _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
+        _recommendView = [[GZEDetailListView alloc] init];
         WeakSelf(self)
         _recommendView.didTapMovie = ^(NSInteger movieId) {
             StrongSelfReturnNil(self)

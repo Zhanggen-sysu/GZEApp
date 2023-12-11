@@ -8,6 +8,7 @@
 #import "GZEDetailListViewVM.h"
 #import "GZEMovieListRsp.h"
 #import "GZETVListRsp.h"
+#import "GZECombinedCreditsRsp.h"
 #import "GZEDetailListCellVM.h"
 
 @interface GZEDetailListViewVM ()
@@ -20,8 +21,9 @@
 
 @implementation GZEDetailListViewVM
 
-- (instancetype)initWithMovieListRsp:(GZEMovieListRsp *)model
-                          magicColor:(UIColor *)magicColor
+- (instancetype)initWithTitle:(NSString *)title
+                 movieListRsp:(GZEMovieListRsp *)model
+                   magicColor:(UIColor *)magicColor
 {
     if (self = [super init]) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -31,12 +33,14 @@
         }];
         self.listArray = array;
         self.magicColor = magicColor;
+        self.title = title;
     }
     return self;
 }
 
-- (instancetype)initWithTVListRsp:(GZETVListRsp *)model
-                       magicColor:(UIColor *)magicColor
+- (instancetype)initWithTitle:(NSString *)title
+                    tvListRsp:(GZETVListRsp *)model
+                   magicColor:(UIColor *)magicColor
 {
     if (self = [super init]) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -44,6 +48,9 @@
             GZEDetailListCellVM *vm = [[GZEDetailListCellVM alloc] initWithTVListItem:obj magicColor:magicColor];
             [array addObject:vm];
         }];
+        self.listArray = array;
+        self.magicColor = magicColor;
+        self.title = title;
     }
     return self;
 }

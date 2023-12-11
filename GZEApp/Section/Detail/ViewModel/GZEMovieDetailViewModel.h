@@ -27,8 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) GZECrewCastRsp *crewCast;
 @property (nonatomic, strong, readonly) GZETmdbImageRsp *images;
 @property (nonatomic, strong, readonly) GZETmdbReviewRsp *reviews;
-@property (nonatomic, strong, readonly) GZEMovieListRsp *similar;
-@property (nonatomic, strong, readonly) GZEMovieListRsp *recommend;
 @property (nonatomic, strong, readonly) GZETmdbVideoRsp *videos;
 @property (nonatomic, strong, readonly) GZEYTVideoRsp *firstVideo;
 @property (nonatomic, strong, readonly) GZEKeywordRsp *keyword;
