@@ -54,10 +54,6 @@
 {
     self.viewModel = [[GZEPeopleDetailViewModel alloc] init];
     WeakSelf(self)
-    [[self.viewModel.reloadSubject deliverOnMainThread] subscribeNext:^(id  _Nullable x) {
-        StrongSelfReturnNil(self)
-        [self.detailView bindViewModel:self.viewModel.detailViewVM];
-    }];
     
     [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id  _Nullable x) {
         StrongSelfReturnNil(self)
@@ -70,7 +66,10 @@
         }
     }];
     
-    [self.viewModel.reqCommand execute:@(self.peopleId)];
+    [[self.viewModel.reqCommand execute:@(self.peopleId)] subscribeNext:^(id  _Nullable x) {
+        StrongSelfReturnNil(self)
+        [self.detailView bindViewModel:self.viewModel.detailViewVM];
+    }];;
 }
 
 #pragma mark - StatusBar

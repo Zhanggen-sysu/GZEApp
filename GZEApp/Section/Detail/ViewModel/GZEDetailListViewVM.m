@@ -27,11 +27,14 @@
 {
     if (self = [super init]) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
-        [model.results enumerateObjectsUsingBlock:^(GZEMovieListItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            GZEDetailListCellVM *vm = [[GZEDetailListCellVM alloc] initWithMovieListItem:obj magicColor:magicColor];
+        // MARK: rac数组映射
+        [model.results.rac_sequence.signal subscribeNext:^(GZEMovieListItem * _Nullable x) {
+            GZEDetailListCellVM *vm = [[GZEDetailListCellVM alloc] initWithMovieListItem:x magicColor:magicColor];
             [array addObject:vm];
         }];
-        self.listArray = array;
+        self.listArray = [[model.results.rac_sequence map:^id _Nullable(GZEMovieListItem * _Nullable value) {
+            return [[GZEDetailListCellVM alloc] initWithMovieListItem:value magicColor:magicColor];
+        }] array];
         self.magicColor = magicColor;
         self.title = title;
     }
@@ -43,12 +46,9 @@
                    magicColor:(UIColor *)magicColor
 {
     if (self = [super init]) {
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        [model.results enumerateObjectsUsingBlock:^(GZETVListItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            GZEDetailListCellVM *vm = [[GZEDetailListCellVM alloc] initWithTVListItem:obj magicColor:magicColor];
-            [array addObject:vm];
-        }];
-        self.listArray = array;
+        self.listArray = [[model.results.rac_sequence map:^id _Nullable(GZETVListItem * _Nullable value) {
+            return [[GZEDetailListCellVM alloc] initWithTVListItem:value magicColor:magicColor];
+        }] array];
         self.magicColor = magicColor;
         self.title = title;
     }

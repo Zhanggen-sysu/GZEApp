@@ -47,6 +47,7 @@
     }
     self.rightIcon.hidden = self.viewModel.listArray.count <= 10;
     [self.collectionView reloadData];
+    self.hidden = self.viewModel.listArray.count <= 0;
 }
 
 #pragma mark - UI

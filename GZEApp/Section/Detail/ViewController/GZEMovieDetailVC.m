@@ -90,6 +90,7 @@
     [[[RACSignal combineLatest:@[RACObserve(self.viewModel, commonInfo), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
         StrongSelfReturnNil(self)
         [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
+        [self.navBarView updateWithModel:self.viewModel.commonInfo];
     }];
     
     [[[RACSignal combineLatest:@[RACObserve(self.viewModel, keyword), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {

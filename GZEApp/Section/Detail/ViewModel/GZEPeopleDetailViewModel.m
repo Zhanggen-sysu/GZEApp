@@ -13,7 +13,6 @@
 @interface GZEPeopleDetailViewModel ()
 
 @property (nonatomic, strong, readwrite) RACCommand *reqCommand;
-@property (nonatomic, strong, readwrite) RACSubject *reloadSubject;
 @property (nonatomic, strong, readwrite) GZEPeopleDetailViewVM *detailViewVM;
 
 @end
@@ -37,22 +36,19 @@
                 req.page = 1;
                 WeakSelf(self)
                 [req startRequestWithRspClass:[GZEPeopleDetailRsp class]
-                                completeBlock:^(BOOL isSuccess, id  _Nullable rsp, NSString * _Nullable errorMessage) {
+                       completeWithErrorBlock:^(BOOL isSuccess, id  _Nullable rsp, NSError * _Nullable error) {
                     StrongSelfReturnNil(self)
                     if (isSuccess) {
                         self.detailViewVM = [[GZEPeopleDetailViewVM alloc] initWithModel:rsp];
-                        
-                        [self.reloadSubject sendNext:nil];
                         [subscriber sendNext:nil];
+                        [subscriber sendCompleted];
                     } else {
-                        [subscriber sendNext:errorMessage];
+                        [subscriber sendError:error];
                     }
-                    [subscriber sendCompleted];
                 }];
                 return nil;
             }];
         }];
-        self.reloadSubject = [RACSubject subject];
     };
     return self;
 }

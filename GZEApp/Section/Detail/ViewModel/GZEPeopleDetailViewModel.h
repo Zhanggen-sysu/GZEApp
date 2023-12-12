@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GZEPeopleDetailViewModel : GZEBaseModel
 
 @property (nonatomic, strong, readonly) RACCommand *reqCommand;
-@property (nonatomic, strong, readonly) RACSubject *reloadSubject;
 @property (nonatomic, strong, readonly) GZEPeopleDetailViewVM *detailViewVM;
 
 @end

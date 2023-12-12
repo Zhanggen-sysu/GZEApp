@@ -50,6 +50,7 @@
     if (self = [super init]) {
         self.movieId = movieId;
         WeakSelf(self)
+        // MARK: rac封装网络请求
         self.reqCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             StrongSelf(self)
             if (!self)return [RACSignal empty];
@@ -107,7 +108,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
@@ -146,7 +146,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
@@ -170,35 +169,33 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
     }] then:^RACSignal * _Nonnull{
-        // 请求首个视频信息展示在详情页
-        GZETmdbVideoItem *item = self.videos.results.firstObject;
-        if (item) {
-            GZEYTVideoReq *videoReq = [[GZEYTVideoReq alloc] init];
-            videoReq.v = item.key;
-            videoReq.withoutApiKey = YES;
-            WeakSelf(self)
-            [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeWithErrorBlock:^(BOOL isSuccess, id  _Nullable rsp, NSError * _Nullable error) {
-                StrongSelfReturnNil(self)
-                if (isSuccess) {
-                    GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
-                    videoRsp.videoType = item.type;
-                    self.firstVideo = videoRsp;
+        return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            // 请求首个视频信息展示在详情页
+            GZETmdbVideoItem *item = self.videos.results.firstObject;
+            if (item) {
+                GZEYTVideoReq *videoReq = [[GZEYTVideoReq alloc] init];
+                videoReq.v = item.key;
+                videoReq.withoutApiKey = YES;
+                WeakSelf(self)
+                [videoReq startRequestWithRspClass:[GZEYTVideoRsp class] completeWithErrorBlock:^(BOOL isSuccess, id  _Nullable rsp, NSError * _Nullable error) {
+                    StrongSelfReturnNil(self)
+                    if (isSuccess) {
+                        GZEYTVideoRsp *videoRsp = (GZEYTVideoRsp *)rsp;
+                        videoRsp.videoType = item.type;
+                        self.firstVideo = videoRsp;
+                    }
                     [subscriber sendNext:nil];
                     [subscriber sendCompleted];
-                } else {
-                    [subscriber sendNext:nil];
-                    [subscriber sendCompleted];
-                }
-            }];
-        } else {
+                }];
+            }
             [subscriber sendNext:nil];
             [subscriber sendCompleted];
-        }
+            return nil;
+        }];
     }];
 }
 
@@ -220,7 +217,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
@@ -243,7 +239,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         
@@ -267,7 +262,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
@@ -290,7 +284,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;
@@ -313,7 +306,6 @@
                 [subscriber sendCompleted];
             } else {
                 [subscriber sendError:error];
-                [subscriber sendCompleted];
             }
         }];
         return nil;

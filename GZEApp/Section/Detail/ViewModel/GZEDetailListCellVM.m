@@ -16,7 +16,7 @@
 @property (nonatomic, strong, readwrite) UIColor *magicColor;
 @property (nonatomic, strong, readwrite) UIColor *nameColor;
 @property (nonatomic, strong, readwrite) NSURL *posterUrl;
-@property (nonatomic, assign, readwrite) NSAttributedString *ratingString;
+@property (nonatomic, copy, readwrite) NSAttributedString *ratingString;
 @property (nonatomic, copy, readwrite) NSString *name;
 
 @end
