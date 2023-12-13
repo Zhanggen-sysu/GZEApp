@@ -24,7 +24,7 @@
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
 #import <GKPhotoBrowser/GKPhotoBrowser.h>
 
-@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle, UIScrollViewDelegate>
+@interface GZEMovieDetailVC ()<YPNavigationBarConfigureStyle>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIStackView *contentView;
@@ -72,31 +72,38 @@
 - (void)bindViewModel
 {
     self.viewModel = [[GZEMovieDetailViewModel alloc] initWithMovieId:self.movieId];
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[self.viewModel.reqCommand execute:nil] subscribeNext:^(id  _Nullable x) {
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
-    } error:^(NSError * _Nullable error) {
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
-        NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
-        [GZECommonHelper showMessage:errorMessage inView:self.view duration:1];
-    }];
     RAC(self.cprView, backgroundColor) = RACObserve(self.viewModel, magicColor);
     RAC(self.contentView, backgroundColor) = [RACObserve(self.viewModel, magicColor) map:^id _Nullable(id  _Nullable value) {
         return [GZECommonHelper changeColor:(UIColor *)value deeper:YES degree:20];
     }];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     WeakSelf(self)
-    // 这个会触发3次，第3次两个属性才都有值，写到外面是保证各模块分开刷
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, commonInfo), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+    [[self.viewModel.reqCommand execute:nil] subscribeNext:^(id  _Nullable x) {
         StrongSelfReturnNil(self)
-        [self.detailView updateWithModel:self.viewModel.commonInfo magicColor:self.viewModel.magicColor];
-        [self.navBarView updateWithModel:self.viewModel.commonInfo];
-    }];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, keyword), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+    } error:^(NSError * _Nullable error) {
         StrongSelfReturnNil(self)
-        [self.keywordView updateWithModel:self.viewModel.keyword magicColor:self.viewModel.magicColor];
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+        NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
+        [GZECommonHelper showMessage:errorMessage inView:self.view duration:1];
     }];
+    [RACObserve(self.scrollView, contentOffset) subscribeNext:^(id  _Nullable x) {
+        StrongSelfReturnNil(self)
+        CGFloat progress = self.scrollView.contentOffset.y + self.scrollView.contentInset.top;
+        CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16 * 9));
+        if (gradientProgress != self.gradientProgress) {
+            if (gradientProgress >= 1 && self.gradientProgress < 1) {
+                [self.navBarView updateView:NO];
+            } else if (self.gradientProgress >= 1 && gradientProgress < 1){
+                [self.navBarView updateView:YES];
+            }
+            self.gradientProgress = gradientProgress;
+            [self yp_refreshNavigationBarStyle];
+        }
+    }];
+    [self.detailView bindViewModel:self.viewModel];
+//    [self.navBarView bindViewModel:self.viewModel];
+    [self.keywordView bindViewModel:self.viewModel];
     
     [[[RACSignal combineLatest:@[RACObserve(self.viewModel, crewCast), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
         StrongSelfReturnNil(self)
@@ -154,7 +161,6 @@
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.delegate = self;
         // Tips: 去除scrollView顶部空白区域
         if (@available(iOS 11, *)) {
             _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -198,13 +204,6 @@
 {
     if (!_keywordView) {
         _keywordView = [[GZEKeyWordView alloc] init];
-        WeakSelf(self)
-        _keywordView.didTapKeyword = ^(GZEGenreItem * _Nonnull keyword) {
-            StrongSelfReturnNil(self)
-            GZEFilterViewModel *viewModel = [GZEFilterViewModel createFilterModelWithKeywords:@[keyword] mediaType:GZEMediaType_Movie];
-            GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
     }
     return _keywordView;
 }
@@ -293,21 +292,6 @@
         _navBarView = [[GZEDetailNavBarView alloc] init];
     }
     return _navBarView;
-}
-
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat progress = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGFloat gradientProgress = MIN(1, progress / (SCREEN_WIDTH / 16 * 9));
-    if (gradientProgress != self.gradientProgress) {
-        if (gradientProgress >= 1 && self.gradientProgress < 1) {
-            [self.navBarView updateView:NO];
-        } else if (self.gradientProgress >= 1 && gradientProgress < 1){
-            [self.navBarView updateView:YES];
-        }
-        self.gradientProgress = gradientProgress;
-        [self yp_refreshNavigationBarStyle];
-    }
 }
 
 #pragma mark - YPNavigationBarConfigureStyle

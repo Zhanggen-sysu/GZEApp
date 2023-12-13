@@ -7,13 +7,8 @@
 
 #import "GZEBaseView.h"
 NS_ASSUME_NONNULL_BEGIN
-@class GZEGenreItem;
-@class GZEKeywordRsp;
 
 @interface GZEKeyWordView : GZEBaseView
-
-@property (nonatomic, copy) void (^didTapKeyword)(GZEGenreItem *keyword);
-- (void)updateWithModel:(GZEKeywordRsp *)model magicColor:(UIColor *)magicColor;
 
 @end
 

@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEMovieDetailView : GZEBaseView
 
-- (void)updateWithModel:(GZEMovieDetailRsp *)rsp magicColor:(UIColor *)magicColor;
-
 @end
 
 NS_ASSUME_NONNULL_END

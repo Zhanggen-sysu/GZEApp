@@ -82,7 +82,7 @@
             [self.navBarView updateWithTVModel:self.viewModel.detail];
             [self.detailView updateWithModel:self.viewModel.detail magicColor:self.viewModel.magicColor];
             [self.seasonView updateWithModel:self.viewModel.detail.seasons magicColor:self.viewModel.magicColor];
-            [self.keywordView updateWithModel:self.viewModel.detail.keywords magicColor:self.viewModel.magicColor];
+//            [self.keywordView updateWithModel:self.viewModel.detail.keywords magicColor:self.viewModel.magicColor];
             [self.castView updateWithModel:self.viewModel.detail.aggregateCredits magicColor:self.viewModel.magicColor];
             [self.viView updateWithImgModel:self.viewModel.detail.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
 //            [self.similarView updateWithTVModel:self.viewModel.detail.similar magicColor:self.viewModel.magicColor];
@@ -161,12 +161,12 @@
     if (!_keywordView) {
         _keywordView = [[GZEKeyWordView alloc] init];
         WeakSelf(self)
-        _keywordView.didTapKeyword = ^(GZEGenreItem * _Nonnull keyword) {
-            StrongSelfReturnNil(self)
-            GZEFilterViewModel *viewModel = [GZEFilterViewModel createFilterModelWithKeywords:@[keyword] mediaType:GZEMediaType_Movie];
-            GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
+//        _keywordView.didTapKeyword = ^(GZEGenreItem * _Nonnull keyword) {
+//            StrongSelfReturnNil(self)
+//            GZEFilterViewModel *viewModel = [GZEFilterViewModel createFilterModelWithKeywords:@[keyword] mediaType:GZEMediaType_Movie];
+//            GZESearchResultVC *vc = [[GZESearchResultVC alloc] initWithViewModel:viewModel];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        };
     }
     return _keywordView;
 }

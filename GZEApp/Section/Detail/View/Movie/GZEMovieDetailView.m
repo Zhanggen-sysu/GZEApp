@@ -7,6 +7,7 @@
 
 #import "GZEMovieDetailView.h"
 #import "GZEMovieDetailRsp.h"
+#import "GZEMovieDetailViewModel.h"
 #import "UIImageView+WebCache.h"
 #import "GZECommonHelper.h"
 #import "GZEGenreItem.h"
@@ -15,8 +16,6 @@
 #import "Macro.h"
 
 @interface GZEMovieDetailView ()
-
-@property (nonatomic, strong) GZEMovieDetailRsp *detail;
 
 @property (nonatomic, strong) UIImageView *backdropImg;
 @property (nonatomic, strong) UIImageView *posterImg;
@@ -37,66 +36,70 @@
 
 @implementation GZEMovieDetailView
 
-- (void)updateWithModel:(GZEMovieDetailRsp *)rsp magicColor:(nonnull UIColor *)magicColor
+- (void)bindViewModel:(GZEMovieDetailViewModel *)viewModel
 {
-    self.detail = rsp;
-    self.detailContent.backgroundColor = magicColor;
-    [self.backdropImg sd_setImageWithURL:[GZECommonHelper getBackdropUrl:self.detail.backdropPath size:GZEBackdropSize_w780] placeholderImage:kGetImage(@"default-backdrop")];
-    [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:self.detail.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
-    if (self.detail.title.length > 0) {
-        self.titleLabel.text = self.detail.title;
-    } else {
-        self.titleLabel.text = @"(Not Initialized Yet)";
-    }
-    
-    if (self.detail.subTitleText.length > 0) {
-        self.subTitleLabel.text = self.detail.subTitleText;
-        self.subTitleLabel.hidden = NO;
-    } else {
-        self.subTitleLabel.hidden = YES;
-    }
-    
-    if (self.detail.tagline.length > 0) {
-        self.tagLineLabel.hidden = NO;
-        self.tagLineLabel.text = self.detail.tagline;
-    } else {
-        self.tagLineLabel.hidden = YES;
-    }
-    
-    if (self.detail.rateText.length > 0) {
-        self.ratingLabel.hidden = NO;
-        self.ratingLabel.attributedText = self.detail.rateText;
-    } else {
-        self.ratingLabel.hidden = YES;
-    }
-    
-    if (self.detail.genres.count > 0) {
-        TTGTextTagStyle *style = [[TTGTextTagStyle alloc] init];
-        style.backgroundColor = [GZECommonHelper changeColor:magicColor deeper:NO degree:30];
-        style.borderWidth = 0;
-        style.shadowOffset = CGSizeMake(0, 0);
-        style.shadowRadius = 0;
-        style.extraSpace = CGSizeMake(8, 3);
-        [self.detail.genres enumerateObjectsUsingBlock:^(GZEGenreItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            TTGTextTagStringContent *text = [TTGTextTagStringContent contentWithText:obj.name];
-            text.textFont = kFont(12.f);
-            text.textColor = [UIColor whiteColor];
-            TTGTextTag *textTag = [TTGTextTag tagWithContent:text style:style];
-            [self.genresView addTag:textTag];
-        }];
-        [self.genresView reload];
-        self.genresView.hidden = NO;
-    } else {
-        self.genresView.hidden = YES;
-    }
-    
-    if (self.detail.detailText.length > 0) {
-        self.detailLabel.text = self.detail.detailText;
-        self.detailLabel.hidden = NO;
-    } else {
-        self.detailLabel.hidden = YES;
-    }
-    self.overviewLabel.text = self.detail.overview;
+    RAC(self.detailContent, backgroundColor) = RACObserve(viewModel, magicColor);
+    WeakSelf(self)
+    [[[RACSignal combineLatest:@[RACObserve(viewModel, commonInfo), RACObserve(viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        StrongSelfReturnNil(self)
+        RACTupleUnpack(GZEMovieDetailRsp *detail, UIColor *magicColor) = x;
+        [self.backdropImg sd_setImageWithURL:[GZECommonHelper getBackdropUrl:detail.backdropPath size:GZEBackdropSize_w780] placeholderImage:kGetImage(@"default-backdrop")];
+        [self.posterImg sd_setImageWithURL:[GZECommonHelper getPosterUrl:detail.posterPath size:GZEPosterSize_w342] placeholderImage:kGetImage(@"default-poster")];
+        if (detail.title.length > 0) {
+            self.titleLabel.text = detail.title;
+        } else {
+            self.titleLabel.text = @"(Not Initialized Yet)";
+        }
+        
+        if (detail.subTitleText.length > 0) {
+            self.subTitleLabel.text = detail.subTitleText;
+            self.subTitleLabel.hidden = NO;
+        } else {
+            self.subTitleLabel.hidden = YES;
+        }
+        
+        if (detail.tagline.length > 0) {
+            self.tagLineLabel.hidden = NO;
+            self.tagLineLabel.text = detail.tagline;
+        } else {
+            self.tagLineLabel.hidden = YES;
+        }
+        
+        if (detail.rateText.length > 0) {
+            self.ratingLabel.hidden = NO;
+            self.ratingLabel.attributedText = detail.rateText;
+        } else {
+            self.ratingLabel.hidden = YES;
+        }
+        
+        if (detail.genres.count > 0) {
+            TTGTextTagStyle *style = [[TTGTextTagStyle alloc] init];
+            style.backgroundColor = [GZECommonHelper changeColor:magicColor deeper:NO degree:30];
+            style.borderWidth = 0;
+            style.shadowOffset = CGSizeMake(0, 0);
+            style.shadowRadius = 0;
+            style.extraSpace = CGSizeMake(8, 3);
+            [detail.genres enumerateObjectsUsingBlock:^(GZEGenreItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                TTGTextTagStringContent *text = [TTGTextTagStringContent contentWithText:obj.name];
+                text.textFont = kFont(12.f);
+                text.textColor = [UIColor whiteColor];
+                TTGTextTag *textTag = [TTGTextTag tagWithContent:text style:style];
+                [self.genresView addTag:textTag];
+            }];
+            [self.genresView reload];
+            self.genresView.hidden = NO;
+        } else {
+            self.genresView.hidden = YES;
+        }
+        
+        if (detail.detailText.length > 0) {
+            self.detailLabel.text = detail.detailText;
+            self.detailLabel.hidden = NO;
+        } else {
+            self.detailLabel.hidden = YES;
+        }
+        self.overviewLabel.text = detail.overview;
+    }];
 }
 
 #pragma mark - UI

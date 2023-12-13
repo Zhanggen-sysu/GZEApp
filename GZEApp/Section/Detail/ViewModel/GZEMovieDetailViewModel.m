@@ -25,21 +25,13 @@
 @interface GZEMovieDetailViewModel ()
 
 @property (nonatomic, strong, readwrite) GZEMovieDetailRsp *commonInfo;
-@property (nonatomic, strong, readwrite) GZECrewCastRsp *crewCast;
-@property (nonatomic, strong, readwrite) GZETmdbImageRsp *images;
-@property (nonatomic, strong, readwrite) GZETmdbReviewRsp *reviews;
-@property (nonatomic, strong, readwrite) GZEMovieListRsp *similar;
-@property (nonatomic, strong, readwrite) GZEMovieListRsp *recommend;
-@property (nonatomic, strong, readwrite) GZETmdbVideoRsp *videos;
-@property (nonatomic, strong, readwrite) GZEYTVideoRsp *firstVideo;
-@property (nonatomic, strong, readwrite) GZEKeywordRsp *keyword;
-@property (nonatomic, strong, readwrite) UIColor *magicColor;
-@property (nonatomic, strong, readwrite) GZEDetailListViewVM *similarVM;
-@property (nonatomic, strong, readwrite) GZEDetailListViewVM *recommendVM;
 
 @property (nonatomic, strong, readwrite) RACCommand *reqCommand;
 
 @property (nonatomic, assign, readwrite) NSInteger movieId;
+
+@property (nonatomic, strong, readwrite) GZEMovieListRsp *similar;
+@property (nonatomic, strong, readwrite) GZEMovieListRsp *recommend;
 
 @end
 
