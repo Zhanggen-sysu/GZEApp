@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YPNavigationController.h"
 
 @interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
 

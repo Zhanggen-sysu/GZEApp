@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)   NSArray<GZECastItem *> *cast;
 @property (nonatomic, copy)   NSArray<GZECrewItem *> *crew;
 
+// local
+@property (nonatomic, copy) NSString *director;
+
 @end
 
 NS_ASSUME_NONNULL_END

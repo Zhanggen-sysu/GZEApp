@@ -29,4 +29,16 @@
     };
 }
 
+- (NSString *)director
+{
+    __block NSString *director = @"Unknown";
+    [self.crew enumerateObjectsUsingBlock:^(GZECrewItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.job isEqualToString:@"Director"]) {
+            director = obj.name;
+            *stop = YES;
+        }
+    }];
+    return director;
+}
+
 @end

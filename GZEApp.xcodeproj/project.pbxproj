@@ -107,6 +107,7 @@
 		3DBCB2A42AC1A28500887DF0 /* GZESearchKWReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB2A32AC1A28500887DF0 /* GZESearchKWReq.m */; };
 		3DBCB2A72AC1A29B00887DF0 /* GZESearchKWRsp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB2A62AC1A29B00887DF0 /* GZESearchKWRsp.m */; };
 		3DBFAEB629CD40C3002749B7 /* GZESearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFAEB529CD40C3002749B7 /* GZESearchVC.m */; };
+		3DC953A32B2AE59E004D1B74 /* GZECollectionViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC953A22B2AE59E004D1B74 /* GZECollectionViewBindingHelper.m */; };
 		3DD8FB4229C946C9005DF827 /* GZEListSmallTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4029C946C9005DF827 /* GZEListSmallTableViewCellModel.m */; };
 		3DD8FB4529C946F3005DF827 /* GZEListSmallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4429C946F3005DF827 /* GZEListSmallTableViewCell.m */; };
 		3DD8FB4829C94FD5005DF827 /* GZELanguageListReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8FB4729C94FD5005DF827 /* GZELanguageListReq.m */; };
@@ -364,6 +365,8 @@
 		3DBCB2A62AC1A29B00887DF0 /* GZESearchKWRsp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchKWRsp.m; sourceTree = "<group>"; };
 		3DBFAEB429CD40C3002749B7 /* GZESearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZESearchVC.h; sourceTree = "<group>"; };
 		3DBFAEB529CD40C3002749B7 /* GZESearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZESearchVC.m; sourceTree = "<group>"; };
+		3DC953A12B2AE59E004D1B74 /* GZECollectionViewBindingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GZECollectionViewBindingHelper.h; sourceTree = "<group>"; };
+		3DC953A22B2AE59E004D1B74 /* GZECollectionViewBindingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GZECollectionViewBindingHelper.m; sourceTree = "<group>"; };
 		3DD8FB4029C946C9005DF827 /* GZEListSmallTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZEListSmallTableViewCellModel.m; sourceTree = "<group>"; };
 		3DD8FB4129C946C9005DF827 /* GZEListSmallTableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEListSmallTableViewCellModel.h; sourceTree = "<group>"; };
 		3DD8FB4329C946F3005DF827 /* GZEListSmallTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZEListSmallTableViewCell.h; sourceTree = "<group>"; };
@@ -773,6 +776,8 @@
 				3DA27DD229B07B180086089A /* UIView+GZEExtension.m */,
 				3DA27D7B29AEED0F0086089A /* YPNavigationController+Configure.h */,
 				3DA27D7C29AEED0F0086089A /* YPNavigationController+Configure.m */,
+				3DC953A12B2AE59E004D1B74 /* GZECollectionViewBindingHelper.h */,
+				3DC953A22B2AE59E004D1B74 /* GZECollectionViewBindingHelper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1366,6 +1371,7 @@
 				3DA27D6429AE0DA10086089A /* main.m in Sources */,
 				3D829D9029DE9ECF0026D47E /* GZEMediaCast.m in Sources */,
 				3DF1EE2C29BF1A7C006BCF3E /* GZETVListRsp.m in Sources */,
+				3DC953A32B2AE59E004D1B74 /* GZECollectionViewBindingHelper.m in Sources */,
 				3DF2500A29CD9785001EF515 /* GZESearchRsp.m in Sources */,
 				3D56E7ED29E6AD6100F51A73 /* GZESearchResultVC.m in Sources */,
 				3D9A4CB62B22F4E300A4C332 /* GZEDetailListCellVM.m in Sources */,

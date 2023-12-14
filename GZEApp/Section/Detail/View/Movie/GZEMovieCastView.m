@@ -7,15 +7,14 @@
 
 #import "GZEMovieCastView.h"
 #import "GZECrewCastRsp.h"
+#import "GZEMovieDetailViewModel.h"
 #import "GZECastSmallCell.h"
-#import "GZECastItem.h"
-#import "GZECrewItem.h"
+#import "GZECollectionViewBindingHelper.h"
+#import "GZEGlobalConfig.h"
 
 static NSInteger kCastCount = 4;
 
-@interface GZEMovieCastView () <UICollectionViewDelegate, UICollectionViewDataSource>
-
-@property (nonatomic, strong) GZECrewCastRsp *model;
+@interface GZEMovieCastView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UICollectionView *castCollection;
@@ -23,30 +22,29 @@ static NSInteger kCastCount = 4;
 @property (nonatomic, strong) UIButton *seeAllBtn;
 @property (nonatomic, strong) UIImageView *rightIcon;
 
-@property (nonatomic, strong) UIColor *magicColor;
+@property (nonatomic, strong) GZECollectionViewBindingHelper *bindingHelper;
 
 @end
 
 @implementation GZEMovieCastView
 
-- (void)updateWithModel:(GZECrewCastRsp *)model magicColor:(nonnull UIColor *)magicColor
+- (void)bindViewModel:(GZEMovieDetailViewModel *)viewModel
 {
-    if (model.cast.count <= 0) {
-        self.hidden = YES;
-        return;
-    }
-    self.model = model;
-    self.backgroundColor = magicColor;
-    self.magicColor = magicColor;
-    [self.castCollection reloadData];
-    __block NSString *director = @"Unknown";
-    [model.crew enumerateObjectsUsingBlock:^(GZECrewItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.job isEqualToString:@"Director"]) {
-            director = obj.name;
-            *stop = YES;
+    RAC(self, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
+    RAC(self.castCollection, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
+    WeakSelf(self)
+    [[RACObserve(viewModel, crewCast) skip:1] subscribeNext:^(GZECrewCastRsp * _Nullable x) {
+        StrongSelfReturnNil(self)
+        if (x.cast.count <= 0) {
+            self.hidden = YES;
+            return;
         }
+        self.directorLabel.text = [NSString stringWithFormat:@"Director: %@", x.director];
     }];
-    self.directorLabel.text = [NSString stringWithFormat:@"Director: %@", director];
+    self.bindingHelper = [GZECollectionViewBindingHelper bindCollectionView:self.castCollection sourceSignal:[[RACObserve(viewModel, crewCast) map:^id _Nullable(GZECrewCastRsp * _Nullable value) {
+        if (value.cast.count <= 0) return [NSArray new];
+        return [value.cast subarrayWithRange:NSMakeRange(0, MIN(value.cast.count, 10))];
+    }] skip:1] selectCommand:viewModel.peopleCommand cellClass:[GZECastSmallCell class]];
 }
 
 - (CGSize)itemSize
@@ -93,26 +91,6 @@ static NSInteger kCastCount = 4;
     }];
 }
 
-#pragma mark - UICollectionViewDelegate
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    GZECastSmallCell *cell = (GZECastSmallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZECastSmallCell class]) forIndexPath:indexPath];
-    GZECastItem *cast = self.model.cast[indexPath.row];
-    [cell updateWithModel:cast magicColor:self.magicColor];
-    return cell;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.model.cast.count > 10 ? 10 : self.model.cast.count;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    GZECastItem *model = self.model.cast[indexPath.row];
-    !self.didTapPeople ?: self.didTapPeople(model.identifier);
-}
-
 - (UILabel *)titleLabel
 {
     if (!_titleLabel) {
@@ -134,10 +112,7 @@ static NSInteger kCastCount = 4;
         
         _castCollection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _castCollection.showsHorizontalScrollIndicator = NO;
-        _castCollection.delegate = self;
-        _castCollection.dataSource = self;
         _castCollection.contentInset = UIEdgeInsetsMake(0, 0, 0, 15.f);
-        _castCollection.backgroundColor = self.magicColor;
         [_castCollection registerClass:[GZECastSmallCell class] forCellWithReuseIdentifier:NSStringFromClass([GZECastSmallCell class])];
     }
     return _castCollection;

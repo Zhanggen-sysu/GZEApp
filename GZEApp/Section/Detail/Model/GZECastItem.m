@@ -38,4 +38,19 @@
     };
 }
 
+- (NSString *)roleString
+{
+    if (self.character.length > 0) {
+        return self.character;
+    }
+    NSMutableString *text = [[NSMutableString alloc] init];
+    [self.roles enumerateObjectsUsingBlock:^(GZERoleItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [text appendString:obj.character];
+        if (self.roles.count-1 != idx) {
+            [text appendString:@" / "];
+        }
+    }];
+    return text;
+}
+
 @end

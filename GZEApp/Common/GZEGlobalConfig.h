@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "GZEEnum.h"
 @class GZEGenreItem;
 @class GZELanguageItem;
@@ -15,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *genresDict;
 @property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *tvGenresDict;
+@property (nonatomic, strong) UIColor *magicColor;
 
 + (GZEGlobalConfig *)shareConfig;
+
 // 语言
 + (NSString *)language;
 

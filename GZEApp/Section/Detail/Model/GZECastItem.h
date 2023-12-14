@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)           NSArray<GZERoleItem *> *roles;
 @property (nonatomic, assign)         NSInteger totalEpisodeCount;
 
+// local
+@property (nonatomic, copy, readonly) NSString *roleString;
+
 @end
 
 NS_ASSUME_NONNULL_END

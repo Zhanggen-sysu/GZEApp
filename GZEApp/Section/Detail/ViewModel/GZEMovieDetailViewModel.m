@@ -21,6 +21,7 @@
 #import "SDWebImageDownloader.h"
 #import "GZECommonHelper.h"
 #import "UIImage+magicColor.h"
+#import "GZEGlobalConfig.h"
 
 @interface GZEMovieDetailViewModel ()
 
@@ -111,8 +112,10 @@
                 StrongSelfReturnNil(self)
                 if (image) {
                     self.magicColor = [image magicColor];
+                    [GZEGlobalConfig shareConfig].magicColor = [image magicColor];
                 } else {
                     self.magicColor = RGBColor(0, 191, 255);
+                    [GZEGlobalConfig shareConfig].magicColor = RGBColor(0, 191, 255);
                 }
                 [subscriber sendNext:nil];
                 [subscriber sendCompleted];

@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) GZEDetailListViewVM *recommendVM;
 
 @property (nonatomic, strong) RACCommand *keywordCommand;
+@property (nonatomic, strong) RACCommand *peopleCommand;
 
 @end
 

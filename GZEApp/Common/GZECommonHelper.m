@@ -10,6 +10,7 @@
 #import "Macro.h"
 #import <YYModel/YYModel.h>
 #import <MMKV/MMKV.h>
+#import "SceneDelegate.h"
 
 @implementation GZECommonHelper
 
@@ -256,6 +257,21 @@
         return [NSDictionary yy_modelDictionaryWithClass:aClass json:jsonString];
     }
     return [aClass yy_modelWithJSON:jsonString];
+}
+
++ (UINavigationController *)getMainNavigationController
+{
+    UIViewController *rootVC = [GZECommonHelper getKeyWindow].rootViewController;
+    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        return (UINavigationController *)rootVC;
+    } else if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarVC = (UITabBarController *)rootVC;
+        UINavigationController *selectNVC = (UINavigationController *)tabBarVC.selectedViewController;
+        if ([selectNVC isKindOfClass:[UINavigationController class]]) {
+            return selectNVC;
+        }
+    }
+    return nil;
 }
 
 @end

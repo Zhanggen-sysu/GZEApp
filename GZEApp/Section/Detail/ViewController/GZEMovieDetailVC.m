@@ -104,11 +104,7 @@
     [self.detailView bindViewModel:self.viewModel];
 //    [self.navBarView bindViewModel:self.viewModel];
     [self.keywordView bindViewModel:self.viewModel];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, crewCast), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
-        StrongSelfReturnNil(self)
-        [self.castView updateWithModel:self.viewModel.crewCast magicColor:self.viewModel.magicColor];
-    }];
+    [self.castView bindViewModel:self.viewModel];
     
     [[[RACSignal combineLatest:@[RACObserve(self.viewModel, images), RACObserve(self.viewModel, magicColor), RACObserve(self.viewModel, firstVideo)]] skip:3] subscribeNext:^(RACTuple * _Nullable x) {
         StrongSelfReturnNil(self)
@@ -212,12 +208,6 @@
 {
     if (!_castView) {
         _castView = [[GZEMovieCastView alloc] init];
-        WeakSelf(self)
-        _castView.didTapPeople = ^(NSInteger peopleId) {
-            StrongSelfReturnNil(self)
-            GZEPeopleDetailVC *vc = [[GZEPeopleDetailVC alloc] initWithPeopleId:peopleId];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
     }
     return _castView;
 }

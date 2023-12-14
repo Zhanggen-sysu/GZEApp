@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIView+GZEExtension.h"
 #import "GZERoleItem.h"
+#import "GZEGlobalConfig.h"
 
 @interface GZECastSmallCell ()
 
@@ -23,6 +24,14 @@
 @end
 
 @implementation GZECastSmallCell
+
+- (void)bindViewModel:(GZECastItem *)viewModel
+{
+    RAC(self.contentView, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
+    [self.avatarImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:viewModel.profilePath size:GZEProfileSize_w185]  placeholderImage:kGetImage(@"default-poster")];
+    self.nameLabel.text = viewModel.name;
+    self.characterLabel.text = viewModel.roleString;
+}
 
 - (void)updateWithModel:(GZECastItem *)model magicColor:(nonnull UIColor *)magicColor
 {

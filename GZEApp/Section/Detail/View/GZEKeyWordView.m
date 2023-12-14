@@ -90,7 +90,9 @@
                     didTapTag:(TTGTextTag *)tag
                       atIndex:(NSUInteger)index
 {
-    [self.viewModel.keywordCommand execute:self.viewModel.keyword.keywords[index]];
+    if (self.viewModel.keywordCommand) {
+        [self.viewModel.keywordCommand execute:@(index)];
+    }
 }
 
 @end

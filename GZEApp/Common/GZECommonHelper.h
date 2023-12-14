@@ -96,6 +96,9 @@ typedef NS_ENUM(NSUInteger, GZELogoSize) {
 + (void)setModel:(id)model withKey:(NSString *)key;
 + (id)getModel:(Class)aClass withKey:(NSString *)key dataType:(GZEDataType)dataType;
 
+// 根NVC
++ (UINavigationController *)getMainNavigationController;
+
 @end
 
 NS_ASSUME_NONNULL_END
