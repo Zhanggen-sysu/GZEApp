@@ -7,6 +7,7 @@
 
 #import "GZEMovieDetailViewModel.h"
 #import "GZEDetailListViewVM.h"
+#import "GZEVISmallCellVM.h"
 #import "GZEMovieDetailReq.h"
 #import "GZEMovieDetailRsp.h"
 #import "GZETmdbVideoRsp.h"
@@ -18,10 +19,14 @@
 #import "GZEYTVideoRsp.h"
 #import "GZEYTVideoReq.h"
 #import "GZETmdbVideoItem.h"
+#import "GZECastItem.h"
 #import "SDWebImageDownloader.h"
 #import "GZECommonHelper.h"
 #import "UIImage+magicColor.h"
 #import "GZEGlobalConfig.h"
+#import "GZEMovieDetailVC.h"
+#import "GZECastViewVM.h"
+#import "GZEMovieListItem.h"
 
 @interface GZEMovieDetailViewModel ()
 
@@ -29,10 +34,13 @@
 
 @property (nonatomic, strong, readwrite) RACCommand *reqCommand;
 
+@property (nonatomic, strong, readwrite) RACCommand *movieCommand;
+
 @property (nonatomic, assign, readwrite) NSInteger movieId;
 
 @property (nonatomic, strong, readwrite) GZEMovieListRsp *similar;
 @property (nonatomic, strong, readwrite) GZEMovieListRsp *recommend;
+@property (nonatomic, strong, readwrite) GZECrewCastRsp *crewCast;
 
 @end
 
@@ -49,15 +57,48 @@
             if (!self)return [RACSignal empty];
             return [RACSignal combineLatest:@[self.detailSignal, self.crewCastSignal, self.videoSignal, self.imageSignal, self.keywordSignal, self.reviewSignal, self.similarSignal, self.recommendSignal]];
         }];
+        
+        self.movieCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(GZEMovieListItem *movie) {
+            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movie.identifier];
+            [[GZECommonHelper getMainNavigationController] pushViewController:vc animated:YES];
+            return [RACSignal empty];
+        }];
+        
+        [[[RACSignal combineLatest:@[RACObserve(self, magicColor), RACObserve(self, crewCast)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+            StrongSelfReturnNil(self)
+            RACTupleUnpack(UIColor *magicColor, GZECrewCastRsp *rsp) = x;
+            self.castVM = [[GZECastViewVM alloc] initWithCrewCastRsp:rsp magicColor:magicColor];
+        }];
+        
         [[[RACSignal combineLatest:@[RACObserve(self, magicColor), RACObserve(self, similar)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
             StrongSelf(self)
-            if (!self)return;
-            self.similarVM = [[GZEDetailListViewVM alloc] initWithTitle:@"Recommend For You" movieListRsp:self.similar magicColor:self.magicColor];
+            RACTupleUnpack(UIColor *magicColor, GZEMovieListRsp *rsp) = x;
+            GZEDetailListViewVM *vm = [[GZEDetailListViewVM alloc] initWithMovieListRsp:rsp magicColor:magicColor];
+            vm.movieCommand = self.movieCommand;
+            self.similarVM = vm;
         }];
-        [[[RACSignal combineLatest:@[RACObserve(self, magicColor), RACObserve(self, recommend)] ] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+        
+        [[[RACSignal combineLatest:@[RACObserve(self, magicColor), RACObserve(self, recommend)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
             StrongSelf(self)
-            if (!self)return;
-            self.recommendVM = [[GZEDetailListViewVM alloc] initWithTitle:@"More Like This" movieListRsp:self.recommend magicColor:self.magicColor];
+            RACTupleUnpack(UIColor *magicColor, GZEMovieListRsp *rsp) = x;
+            GZEDetailListViewVM *vm = [[GZEDetailListViewVM alloc] initWithMovieListRsp:rsp magicColor:magicColor];
+            vm.movieCommand = self.movieCommand;
+            self.recommendVM = vm;
+        }];
+        
+        [[[RACSignal combineLatest:@[RACObserve(self, firstVideo), RACObserve(self, images)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+            StrongSelf(self)
+            if (!self) return;
+            RACTupleUnpack(GZEYTVideoRsp *video, GZETmdbImageRsp *images) = x;
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            if (video) {
+                [array addObject:[[GZEVISmallCellVM alloc] initWithVideoRsp:video]];
+            }
+            [images.backdrops enumerateObjectsUsingBlock:^(GZETmdbImageItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [array addObject:[[GZEVISmallCellVM alloc] initWithImageItem:obj]];
+                *stop = array.count >= 10;
+            }];
+            self.viVM = array;
         }];
     }
     return self;
@@ -112,10 +153,8 @@
                 StrongSelfReturnNil(self)
                 if (image) {
                     self.magicColor = [image magicColor];
-                    [GZEGlobalConfig shareConfig].magicColor = [image magicColor];
                 } else {
                     self.magicColor = RGBColor(0, 191, 255);
-                    [GZEGlobalConfig shareConfig].magicColor = RGBColor(0, 191, 255);
                 }
                 [subscriber sendNext:nil];
                 [subscriber sendCompleted];

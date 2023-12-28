@@ -91,9 +91,9 @@
 - (void)startRequestWithRspClass:(Class)rspClass
           completeWithErrorBlock:(GZECommonNewRspBlock)block
 {
-    NSLog(@"Start Request %@", NSStringFromClass(self.class));
+//    NSLog(@"Start Request %@", NSStringFromClass(self.class));
     [self startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        NSLog(@"End Request %@", NSStringFromClass(request.class));
+//        NSLog(@"End Request %@", NSStringFromClass(request.class));
         id rsp = nil;
         // 请求回来是字典，直接转模型
         if ([request.responseObject isKindOfClass:[NSDictionary class]]) {

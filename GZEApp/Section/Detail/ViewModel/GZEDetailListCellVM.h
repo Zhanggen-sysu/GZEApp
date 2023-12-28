@@ -12,12 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 @class GZETVListItem;
 
 @interface GZEDetailListCellVM : GZEBaseModel
-// 魔法色计算比较麻烦，就放VM里吧
 @property (nonatomic, strong, readonly) UIColor *magicColor;
-@property (nonatomic, strong, readonly) UIColor *nameColor;
 @property (nonatomic, strong, readonly) NSURL *posterUrl;
 @property (nonatomic, copy, readonly) NSAttributedString *ratingString;
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, assign, readonly) NSInteger identifier;
 
 - (instancetype)initWithMovieListItem:(GZEMovieListItem *)movieItem magicColor:(UIColor *)magicColor;
 - (instancetype)initWithTVListItem:(GZETVListItem *)tvItem magicColor:(UIColor *)magicColor;

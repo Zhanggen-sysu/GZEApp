@@ -9,6 +9,7 @@
 #import "GZEBaseDetailViewModel.h"
 #import "GZEKeywordRsp.h"
 #import "GZEGenreItem.h"
+#import "GZEGlobalConfig.h"
 #import <TTGTextTagCollectionView.h>
 
 @interface GZEKeyWordView () <TTGTextTagCollectionViewDelegate>

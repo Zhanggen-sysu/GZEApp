@@ -13,16 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEDetailListViewVM : GZEBaseModel
 
-@property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSArray *listArray;
 @property (nonatomic, strong, readonly) UIColor *magicColor;
+@property (nonatomic, strong) RACCommand *movieCommand;
+@property (nonatomic, strong) RACCommand *tvCommand;
 
-- (instancetype)initWithTitle:(NSString *)title
-                 movieListRsp:(GZEMovieListRsp *)model
-                   magicColor:(UIColor *)magicColor;
-- (instancetype)initWithTitle:(NSString *)title
-                    tvListRsp:(GZETVListRsp *)model
-                   magicColor:(UIColor *)magicColor;
+- (instancetype)initWithMovieListRsp:(GZEMovieListRsp *)model magicColor:(UIColor *)magicColor;
+- (instancetype)initWithTvListRsp:(GZETVListRsp *)model magicColor:(UIColor *)magicColor;
 
 @end
 

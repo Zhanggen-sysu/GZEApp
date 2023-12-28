@@ -9,14 +9,16 @@
 #import "GZEDetailListCell.h"
 #import "GZEDetailListViewVM.h"
 #import "GZEDetailListCellVM.h"
+#import "GZEGlobalConfig.h"
+#import "GZECollectionViewBindingHelper.h"
 
-@interface GZEDetailListView () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface GZEDetailListView ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIImageView *rightIcon;
 
-@property (nonatomic, strong) GZEDetailListViewVM *viewModel;
+@property (nonatomic, strong) GZECollectionViewBindingHelper *bindingHelper;
 
 @end
 
@@ -32,22 +34,23 @@
 
 - (void)bindViewModel:(GZEDetailListViewVM *)viewModel
 {
-    self.viewModel = viewModel;
-    self.titleLabel.text = viewModel.title;
-    if (viewModel.magicColor) {
-        self.backgroundColor = viewModel.magicColor;
-        self.titleLabel.textColor = [UIColor whiteColor];
-        self.collectionView.backgroundColor = viewModel.magicColor;
-        self.rightIcon.image = kGetImage(@"arrow-right-white");
-    } else {
-        self.backgroundColor = [UIColor whiteColor];
-        self.titleLabel.textColor = [UIColor blackColor];
-        self.collectionView.backgroundColor = [UIColor whiteColor];
-        self.rightIcon.image = kGetImage(@"arrow-right-gray");
-    }
-    self.rightIcon.hidden = self.viewModel.listArray.count <= 10;
-    [self.collectionView reloadData];
-    self.hidden = self.viewModel.listArray.count <= 0;
+    RAC(self, backgroundColor) = RACObserve(viewModel, magicColor);
+    RAC(self.collectionView, backgroundColor) = RACObserve(viewModel, magicColor);
+    self.bindingHelper = [GZECollectionViewBindingHelper bindCollectionView:self.collectionView
+                                                               sourceSignal:[RACObserve(viewModel, listArray) map:^id _Nullable(NSArray * _Nullable value) {
+        return [value subarrayWithRange:NSMakeRange(0, MIN(value.count, 10))];
+    }]
+                                                              selectCommand:viewModel.movieCommand
+                                                                  cellClass:[GZEDetailListCell class]];
+    WeakSelf(self)
+    [RACObserve(viewModel, listArray) subscribeNext:^(NSArray * _Nullable x) {
+        StrongSelfReturnNil(self)
+        if (x.count <= 0) {
+            self.hidden = YES;
+        } else if (x.count <= 10) {
+            self.rightIcon.hidden = YES;
+        }
+    }];
 }
 
 #pragma mark - UI
@@ -98,8 +101,6 @@
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 15.f);
         [_collectionView registerClass:[GZEDetailListCell class] forCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class])];
     }
@@ -113,26 +114,6 @@
         _rightIcon.image = kGetImage(@"arrow-right-white");
     }
     return _rightIcon;
-}
-
-#pragma mark - UICollectionViewDelegate
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    GZEDetailListCell *cell = (GZEDetailListCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZEDetailListCell class]) forIndexPath:indexPath];
-    GZEDetailListCellVM *model = self.viewModel.listArray[indexPath.item];
-    [cell bindViewModel:model];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    GZEDetailListCellVM *model = self.viewModel.listArray[indexPath.item];
-    
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.viewModel.listArray.count > 10 ? 10 : self.viewModel.listArray.count;
 }
 
 - (CGSize)itemSize

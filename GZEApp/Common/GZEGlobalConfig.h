@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *genresDict;
 @property (nonatomic, copy, readonly) NSDictionary<NSNumber *, NSString *> *tvGenresDict;
-@property (nonatomic, strong) UIColor *magicColor;
 
 + (GZEGlobalConfig *)shareConfig;
 

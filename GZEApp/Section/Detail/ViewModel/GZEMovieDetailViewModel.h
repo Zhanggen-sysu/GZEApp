@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) RACCommand *reqCommand;
 
+@property (nonatomic, strong, readonly) RACCommand *movieCommand;
+
 - (instancetype)initWithMovieId:(NSInteger)movieId;
 
 @end

@@ -11,6 +11,7 @@
 #import "GZECastSmallCell.h"
 #import "GZECollectionViewBindingHelper.h"
 #import "GZEGlobalConfig.h"
+#import "GZECastViewVM.h"
 
 static NSInteger kCastCount = 4;
 
@@ -30,21 +31,23 @@ static NSInteger kCastCount = 4;
 
 - (void)bindViewModel:(GZEMovieDetailViewModel *)viewModel
 {
-    RAC(self, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
-    RAC(self.castCollection, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
+    RAC(self, backgroundColor) = RACObserve(viewModel, magicColor);
+    RAC(self.castCollection, backgroundColor) = RACObserve(viewModel, magicColor);
     WeakSelf(self)
-    [[RACObserve(viewModel, crewCast) skip:1] subscribeNext:^(GZECrewCastRsp * _Nullable x) {
+    [[RACObserve(viewModel, castVM) skip:1] subscribeNext:^(GZECastViewVM * _Nullable x) {
         StrongSelfReturnNil(self)
-        if (x.cast.count <= 0) {
+        if (x.castArray.count <= 0) {
             self.hidden = YES;
             return;
         }
         self.directorLabel.text = [NSString stringWithFormat:@"Director: %@", x.director];
     }];
-    self.bindingHelper = [GZECollectionViewBindingHelper bindCollectionView:self.castCollection sourceSignal:[[RACObserve(viewModel, crewCast) map:^id _Nullable(GZECrewCastRsp * _Nullable value) {
-        if (value.cast.count <= 0) return [NSArray new];
-        return [value.cast subarrayWithRange:NSMakeRange(0, MIN(value.cast.count, 10))];
-    }] skip:1] selectCommand:viewModel.peopleCommand cellClass:[GZECastSmallCell class]];
+    self.bindingHelper = [GZECollectionViewBindingHelper bindCollectionView:self.castCollection
+                                                               sourceSignal:[[RACObserve(viewModel, castVM) map:^id _Nullable(GZECastViewVM * _Nullable value) {
+        return [value.castArray subarrayWithRange:NSMakeRange(0, MIN(value.castArray.count, 10))];
+    }] skip:1]
+                                                              selectCommand:viewModel.peopleCommand
+                                                                  cellClass:[GZECastSmallCell class]];
 }
 
 - (CGSize)itemSize

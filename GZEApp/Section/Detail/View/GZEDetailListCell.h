@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// MARK: cell会复用，但由于不能重复绑定同一个keypath，所以cell内部要直接赋值而不是用绑定
 @interface GZEDetailListCell : GZEBaseCollectionViewCell
 
 @end

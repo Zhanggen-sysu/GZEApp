@@ -6,12 +6,9 @@
 //
 
 #import "GZEBaseCollectionViewCell.h"
-@class GZECastItem;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZECastSmallCell : GZEBaseCollectionViewCell
-
-- (void)updateWithModel:(GZECastItem *)model magicColor:(UIColor *)magicColor;
 
 @end
 

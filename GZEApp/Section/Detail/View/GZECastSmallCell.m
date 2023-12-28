@@ -27,30 +27,10 @@
 
 - (void)bindViewModel:(GZECastItem *)viewModel
 {
-    RAC(self.contentView, backgroundColor) = RACObserve([GZEGlobalConfig shareConfig], magicColor);
-    [self.avatarImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:viewModel.profilePath size:GZEProfileSize_w185]  placeholderImage:kGetImage(@"default-poster")];
+    self.contentView.backgroundColor = viewModel.magicColor;
     self.nameLabel.text = viewModel.name;
     self.characterLabel.text = viewModel.roleString;
-}
-
-- (void)updateWithModel:(GZECastItem *)model magicColor:(nonnull UIColor *)magicColor
-{
-    self.model = model;
-    self.contentView.backgroundColor = magicColor;
-    [self.avatarImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:model.profilePath size:GZEProfileSize_w185]  placeholderImage:kGetImage(@"default-poster")];
-    self.nameLabel.text = model.name;
-    if (model.character.length > 0) {
-        self.characterLabel.text = model.character;
-    } else {
-        NSMutableString *text = [[NSMutableString alloc] init];
-        [model.roles enumerateObjectsUsingBlock:^(GZERoleItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [text appendString:obj.character];
-            if (model.roles.count-1 != idx) {
-                [text appendString:@" / "];
-            }
-        }];
-        self.characterLabel.text = text;
-    }
+    [self.avatarImg sd_setImageWithURL:[GZECommonHelper getProfileUrl:viewModel.profilePath size:GZEProfileSize_w185]  placeholderImage:kGetImage(@"default-poster")];
 }
 
 - (void)setupSubviews

@@ -110,7 +110,7 @@ static NSInteger kCastCount = 4;
 {
     GZECastSmallCell *cell = (GZECastSmallCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GZECastSmallCell class]) forIndexPath:indexPath];
     GZECastItem *model = self.model.cast[indexPath.row];
-    [cell updateWithModel:model magicColor:self.magicColor];
+//    [cell updateWithModel:model magicColor:self.magicColor];
     return cell;
 }
 

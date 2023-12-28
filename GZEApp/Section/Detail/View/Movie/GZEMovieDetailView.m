@@ -12,6 +12,7 @@
 #import "GZECommonHelper.h"
 #import "GZEGenreItem.h"
 #import "GZEPaddingLabel.h"
+#import "GZEGlobalConfig.h"
 #import <TTGTextTagCollectionView.h>
 #import "Macro.h"
 

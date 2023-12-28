@@ -19,6 +19,7 @@
 #import "GZEFilterViewModel.h"
 #import "GZECommonHelper.h"
 #import "GZEMovieDetailViewModel.h"
+#import "GZEGlobalConfig.h"
 #import "Macro.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <YPNavigationBarTransition/YPNavigationBarTransition.h>
@@ -106,24 +107,24 @@
     [self.keywordView bindViewModel:self.viewModel];
     [self.castView bindViewModel:self.viewModel];
     
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, images), RACObserve(self.viewModel, magicColor), RACObserve(self.viewModel, firstVideo)]] skip:3] subscribeNext:^(RACTuple * _Nullable x) {
+//    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, images), RACObserve(self.viewModel, magicColor), RACObserve(self.viewModel, firstVideo)]] skip:3] subscribeNext:^(RACTuple * _Nullable x) {
+//        StrongSelfReturnNil(self)
+//        [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
+//    }];
+//
+//    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, reviews), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+//        StrongSelfReturnNil(self)
+//        [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
+//    }];
+//
+    [[RACObserve(self.viewModel, similarVM) skip:1] subscribeNext:^(id  _Nullable x) {
         StrongSelfReturnNil(self)
-        [self.viView updateWithImgModel:self.viewModel.images videoModel:self.viewModel.firstVideo magicColor:self.viewModel.magicColor];
+        [self.similarView bindViewModel:x];
     }];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, reviews), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
+
+    [[RACObserve(self.viewModel, recommendVM) skip:1] subscribeNext:^(id  _Nullable x) {
         StrongSelfReturnNil(self)
-        [self.reviewView updateWithModel:self.viewModel.reviews magicColor:self.viewModel.magicColor];
-    }];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, similarVM), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
-        StrongSelfReturnNil(self)
-        [self.similarView bindViewModel:self.viewModel.similarVM];
-    }];
-    
-    [[[RACSignal combineLatest:@[RACObserve(self.viewModel, recommendVM), RACObserve(self.viewModel, magicColor)]] skip:2] subscribeNext:^(RACTuple * _Nullable x) {
-        StrongSelfReturnNil(self)
-        [self.recommendView bindViewModel:self.viewModel.recommendVM];
+        [self.recommendView bindViewModel:x];
     }];
 }
 
@@ -234,13 +235,7 @@
 - (GZEDetailListView *)similarView
 {
     if (!_similarView) {
-        _similarView = [[GZEDetailListView alloc] init];
-        WeakSelf(self)
-        _similarView.didTapMovie = ^(NSInteger movieId) {
-            StrongSelfReturnNil(self)
-            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
+        _similarView = [[GZEDetailListView alloc] initWithTitle:@"Recommend For You"];
     }
     return _similarView;
 }
@@ -249,13 +244,7 @@
 - (GZEDetailListView *)recommendView
 {
     if (!_recommendView) {
-        _recommendView = [[GZEDetailListView alloc] init];
-        WeakSelf(self)
-        _recommendView.didTapMovie = ^(NSInteger movieId) {
-            StrongSelfReturnNil(self)
-            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
-            [self.navigationController pushViewController:vc animated:YES];
-        };
+        _recommendView = [[GZEDetailListView alloc] initWithTitle:@"More Like This"];
     }
     return _recommendView;
 }

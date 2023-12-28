@@ -9,6 +9,8 @@
 #import "UIImageView+WebCache.h"
 #import "GZEYTVideoRsp.h"
 #import "GZEPaddingLabel.h"
+#import "GZEVISmallCellVM.h"
+#import "GZEGlobalConfig.h"
 
 @interface GZEVISmallCell ()
 
@@ -84,6 +86,15 @@
         _playImg.image = kGetImage(@"play-video-white");
     }
     return _playImg;
+}
+
+- (void)bindViewModel:(GZEVISmallCellVM *)viewModel
+{
+    self.videoBg.hidden = viewModel.isVideo;
+    UIImage *placeHolder = viewModel.isPoster ? kGetImage(@"default-poster") : kGetImage(@"default-backdrop");
+    [self.imageView sd_setImageWithURL:viewModel.url placeholderImage:placeHolder];
+    self.tagLabel.text = viewModel.videoType;
+//    self.tagLabel.backgroundColor = viewModel.;
 }
 
 - (void)updateWithUrl:(NSURL *)url aspectRatio:(double)aspectRatio

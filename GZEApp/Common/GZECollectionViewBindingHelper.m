@@ -44,7 +44,6 @@
         [sourceSignal subscribeNext:^(id  _Nullable x) {
             @strongify(self)
             self.data = (NSArray *)x;
-            
             [self.collectionView reloadData];
         }];
         
@@ -61,7 +60,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.selectCommand) {
-        [self.selectCommand execute:@(indexPath.row)];
+        id item = [self.data objectAtIndex:indexPath.row];
+        [self.selectCommand execute:item];
     }
 }
 

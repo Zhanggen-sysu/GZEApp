@@ -265,5 +265,223 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "listArray"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB - 3bbb37c9daf9933d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListViewVM setListArray:]"
+                  moduleName = "GZEApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB - 4cdb8113a3a0dffa"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListViewVM setListArray:]"
+                  moduleName = "eval120.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB - 4c5a4783af7739fb"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListViewVM setListArray:]"
+                  moduleName = "eval121.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB - 4025d59c7d190fe2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListViewVM setListArray:]"
+                  moduleName = "eval128.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E6CA841E-8C3F-4D31-8D84-2B4CEA9943DB - c7689f77237022e1"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListViewVM setListArray:]"
+                  moduleName = "eval136.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListViewVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D47B3B8-8262-4752-A203-51215D831B5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "magicColor"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7D47B3B8-8262-4752-A203-51215D831B5E - 624dbc3945bcf820"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListCellVM setPosterUrl:]"
+                  moduleName = "GZEApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "7D47B3B8-8262-4752-A203-51215D831B5E - 70d7a7b5fbf687c"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListCellVM magicColor]"
+                  moduleName = "eval122.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "7D47B3B8-8262-4752-A203-51215D831B5E - 9e82eb640be8f7ae"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListCellVM setMagicColor:]"
+                  moduleName = "eval122.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "7D47B3B8-8262-4752-A203-51215D831B5E - 9e0415f434bbd9af"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListCellVM setMagicColor:]"
+                  moduleName = "eval123.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "7D47B3B8-8262-4752-A203-51215D831B5E - 1bb5a2b09fe998b0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GZEDetailListCellVM setMagicColor:]"
+                  moduleName = "eval137.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/genzhang/Documents/Learn/GZEApp/GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "43">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E248F868-5848-4D7F-AF69-6CE0FAE7AD9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/ViewModel/GZEDetailListCellVM.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-initWithMovieListItem:magicColor:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "688694F1-3FAB-4F5D-B63B-595BC07B742C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GZEApp/Section/Detail/ViewModel/GZEMovieDetailViewModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-initWithMovieId:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

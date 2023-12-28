@@ -14,10 +14,10 @@
 @interface GZEDetailListCellVM ()
 
 @property (nonatomic, strong, readwrite) UIColor *magicColor;
-@property (nonatomic, strong, readwrite) UIColor *nameColor;
 @property (nonatomic, strong, readwrite) NSURL *posterUrl;
 @property (nonatomic, copy, readwrite) NSAttributedString *ratingString;
 @property (nonatomic, copy, readwrite) NSString *name;
+@property (nonatomic, assign, readwrite) NSInteger identifier;
 
 @end
 
@@ -29,10 +29,8 @@
         self.magicColor = magicColor;
         self.name = tvItem.name;
         self.posterUrl = [GZECommonHelper getPosterUrl:tvItem.posterPath size:GZEPosterSize_w342];
-        if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
-            self.nameColor = [UIColor blackColor];
-        }
         self.ratingString = [self ratingString:tvItem.voteAverage];
+        self.identifier = tvItem.identifier;
     }
     return self;
 }
@@ -43,10 +41,8 @@
         self.magicColor = magicColor;
         self.name = movieItem.title;
         self.posterUrl = [GZECommonHelper getPosterUrl:movieItem.posterPath size:GZEPosterSize_w342];
-        if (CGColorEqualToColor(magicColor.CGColor, [UIColor whiteColor].CGColor)) {
-            self.nameColor = [UIColor blackColor];
-        }
         self.ratingString = [self ratingString:movieItem.voteAverage];
+        self.identifier = movieItem.identifier;
     }
     return self;
 }

@@ -133,24 +133,13 @@
     return _scrollView;
 }
 
-//- (GZEDetailListView *)castView
-//{
-//    if (!_castView) {
-//        _castView = [[GZEDetailListView alloc] initWithTitle:@"Know For"];
-//        WeakSelf(self)
-//        _castView.didTapTv = ^(NSInteger tvId) {
-//            StrongSelfReturnNil(self)
-//            GZETVDetailVC *vc = [[GZETVDetailVC alloc] initWithTVId:tvId];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        };
-//        _castView.didTapMovie = ^(NSInteger movieId) {
-//            StrongSelfReturnNil(self)
-//            GZEMovieDetailVC *vc = [[GZEMovieDetailVC alloc] initWithMovieId:movieId];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        };
-//    }
-//    return _castView;
-//}
+- (GZEDetailListView *)castView
+{
+    if (!_castView) {
+        _castView = [[GZEDetailListView alloc] initWithTitle:@"Know For"];
+    }
+    return _castView;
+}
 
 - (GZEPeopleDetailImageView *)imagesView
 {

@@ -6,17 +6,12 @@
 //
 
 #import "GZEBaseView.h"
-@class GZEMovieListRsp;
-@class GZETVListRsp;
-@class GZECombinedCreditsRsp;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GZEDetailListView : GZEBaseView
 
-@property (nonatomic, copy) void (^didTapMovie)(NSInteger movieId);
-@property (nonatomic, copy) void (^didTapTv)(NSInteger tvId);
-
+- (instancetype)initWithTitle:(NSString *)title;
 
 @end
 
